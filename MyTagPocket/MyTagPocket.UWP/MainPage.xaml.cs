@@ -12,16 +12,18 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Xamarin.Forms;
 
 namespace MyTagPocket.UWP
 {
-    public sealed partial class MainPage
-    {
-        public MainPage()
-        {
-            this.InitializeComponent();
+  public sealed partial class MainPage
+  {
 
-            LoadApplication(new MyTagPocket.App());
-        }
+    public MainPage()
+    {
+      this.InitializeComponent();
+
+      LoadApplication(new MyTagPocket.App());
     }
+  }
 }
