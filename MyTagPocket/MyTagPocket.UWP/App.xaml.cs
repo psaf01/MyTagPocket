@@ -63,12 +63,7 @@ namespace MyTagPocket.UWP
 
         // Place the frame in the current Window
         Window.Current.Content = rootFrame;
-        Log.Audit("StartAppUwp", "Start application");
-        Log.Warn("Warn test");
-        Log.Error("Error test");
-        Log.Fatal("Fatal test");
-        Log.Debug("Debug test");
-        Log.Trace("Trace test");
+        Log.Info("Init app");
       }
 
       if (rootFrame.Content == null)
