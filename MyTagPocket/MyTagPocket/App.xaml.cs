@@ -5,28 +5,28 @@ using Xamarin.Forms.Xaml;
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace MyTagPocket
 {
-    public partial class App : Application
+  public partial class App : Application
+  {
+
+    public App()
     {
-        public App()
-        {
-            InitializeComponent();
-
-            MainPage = new MainPage();
-        }
-
-        protected override void OnStart()
-        {
-            // Handle when your app starts
-        }
-
-        protected override void OnSleep()
-        {
-            // Handle when your app sleeps
-        }
-
-        protected override void OnResume()
-        {
-            // Handle when your app resumes
-        }
+      InitializeComponent();
+      MainPage = new MainPage();
     }
+
+    protected override void OnStart()
+    {
+      
+    }
+
+    protected override void OnSleep()
+    {
+      // Handle when your app sleeps
+    }
+
+    protected override void OnResume()
+    {
+      // Handle when your app resumes
+    }
+  }
 }
