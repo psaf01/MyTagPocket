@@ -82,7 +82,7 @@ namespace MyTagPocket
     /// <param name="args">Aguments</param>
     public void Audit(string id, string text, params object[] args)
     {
-      //TODO: create log audit db
+      log.Info(string.Format(text, args));
     }
   }
 }

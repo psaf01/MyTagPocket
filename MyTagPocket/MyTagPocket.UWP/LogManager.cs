@@ -18,42 +18,56 @@ namespace MyTagPocket.UWP
     {
       var config = new LoggingConfiguration();
       //Debuger
+#if DEBUG
       var debugerTarget = new DebuggerTarget("Debugger")
       {
-        Layout = @"${date:format=HH\:mm\:ss} ${level} ${message} ${exception}"
+        Layout = @"${date:format=HH\:mm\:ss} | ${pad:padding=5:inner=${level:uppercase=true}} | ${message} | ${exception}"
       };
       config.AddTarget(debugerTarget);
-
-      //Console
-      var consoleTarget = new ColoredConsoleTarget("Console")
-      {
-        Layout = @"${date:format=HH\:mm\:ss} ${level} ${message} ${exception}"
-      };
-      config.AddTarget("console", consoleTarget);
-      //Console rule
-      //var consoleRule = new LoggingRule("*", LogLevel.Info, consoleTarget);
-      //config.LoggingRules.Add(consoleRule);
-
+#endif
       //File
       //string folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
       Windows.Storage.StorageFolder folder = Windows.Storage.ApplicationData.Current.LocalFolder;
-      string file = Path.Combine(folder.Path, "Log.txt");
-      var fileTarget = new FileTarget("File")
+      var fileInfoTarget = new FileTarget("FileInfo")
       {
-        FileName = file,
-        Layout = "${longdate} ${level} ${message}  ${exception}"
+        FileName = Path.Combine(folder.Path, "Log-${shortdate}.txt"),
+        Layout = "${longdate} ${pad:padding=5:inner=${level:uppercase=true}} ${message}  ${exception}",
+        MaxArchiveFiles = 5,
+        ArchiveEvery = FileArchivePeriod.Day,
       };
-      
-      //fileTarget.FileName = Path.Combine(folder, "Log.txt");
-      config.AddTarget("file", fileTarget);
-      //File rule
-      //var fileRule = new LoggingRule("*", LogLevel.Info, fileTarget);
-      //config.LoggingRules.Add(fileRule);
-      //Rule
-      config.AddRuleForAllLevels(consoleTarget);
-      config.AddRuleForAllLevels(fileTarget);
-      config.AddRuleForAllLevels(debugerTarget);
+      var fileErrorTarget = new FileTarget("FileError")
+      {
+        FileName = Path.Combine(folder.Path, "LogError-${shortdate}.txt"),
+        Layout = "${longdate} ${pad:padding=5:inner=${level:uppercase=true}} ${message}  ${exception}",
+        MaxArchiveFiles = 5,
+        ArchiveEvery = FileArchivePeriod.Day,
+      };
 
+      var fileTraceTarget = new FileTarget("FileTrace")
+      {
+        FileName = Path.Combine(folder.Path, "LogTrace-${shortdate}.txt"),
+        Layout = "${longdate} ${pad:padding=5:inner=${level:uppercase=true}} ${message}  ${exception}",
+        MaxArchiveFiles = 5,
+        ArchiveEvery = FileArchivePeriod.Day,
+      };
+      //fileTarget.FileName = Path.Combine(folder, "Log.txt");
+      config.AddTarget("FileInfo", fileInfoTarget);
+      config.AddTarget("FileError", fileErrorTarget);
+      config.AddTarget("FileTrace", fileTraceTarget);
+     
+      //File Info rule
+      var fileInfoRule = new LoggingRule("*", LogLevel.Info, fileInfoTarget);
+      config.LoggingRules.Add(fileInfoRule);
+      //File Error rule
+      var fileErrorRule = new LoggingRule("*", LogLevel.Error, fileErrorTarget);
+      config.LoggingRules.Add(fileErrorRule);
+      //File Trace rule
+      var fileTraceRule = new LoggingRule("*", LogLevel.Trace, fileTraceTarget);
+      config.LoggingRules.Add(fileTraceRule);
+      //Debuger rule
+#if DEBUG
+      config.AddRuleForAllLevels(debugerTarget);
+#endif
       NLog.LogManager.Configuration = config;
     }
 
