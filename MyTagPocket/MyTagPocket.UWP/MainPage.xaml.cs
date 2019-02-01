@@ -18,12 +18,19 @@ namespace MyTagPocket.UWP
 {
   public sealed partial class MainPage
   {
+    public static ILogger Log = Xamarin.Forms.DependencyService.Get<ILogManager>().GetLog();
 
     public MainPage()
     {
       this.InitializeComponent();
 
       LoadApplication(new MyTagPocket.App());
+      InitCouchBase();
+    }
+
+    public void InitCouchBase()
+    {
+      Log.Trace("Init CouchBase");
     }
   }
 }
