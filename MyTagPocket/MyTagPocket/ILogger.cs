@@ -13,46 +13,57 @@ namespace MyTagPocket
   public interface ILogger
   {
     /// <summary>
+    /// Class code
+    /// </summary>
+    string ClassCode { get; set; }
+
+    /// <summary>
     /// Trace
     /// </summary>
+    /// <param name="codeMethod">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Arguments</param>
-    void Trace(string text, params object[] args);
+    void Trace(string codeMethod, string text, params object[] args);
 
     /// <summary>
     /// Debug
     /// </summary>
+    /// <param name="codeMethod">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Agruments</param>
-    void Debug(string text, params object[] args);
+    void Debug(string codeMethod, string text, params object[] args);
 
     /// <summary>
     /// Informatin
     /// </summary>
+    /// <param name="codeMethod">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Arguments</param>
-    void Info(string text, params object[] args);
+    void Info(string codeMethod, string text, params object[] args);
 
     /// <summary>
     /// Warning
     /// </summary>
+    /// <param name="codeMethod">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Arguments</param>
-    void Warn(string text, params object[] args);
+    void Warn(string codeMethod, string text, params object[] args);
 
     /// <summary>
     /// Error
     /// </summary>
+    /// <param name="codeMethod">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Arguments</param>
-    void Error(string text, params object[] args);
+    void Error(string codeMethod, string text, params object[] args);
 
     /// <summary>
     /// Fatal error
     /// </summary>
+    /// <param name="codeMethod">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Arguments</param>
-    void Fatal(string text, params object[] args);
+    void Fatal(string codeMethod, string text, params object[] args);
 
     /// <summary>
     /// Audit

@@ -7,7 +7,8 @@ namespace MyTagPocket
   /// </summary>
   public partial class MainPage : ContentPage
   {
-    public static ILogger Log = Xamarin.Forms.DependencyService.Get<ILogManager>().GetLog();
+    const string classCode = "[1000100]";
+    public static ILogger Log = Xamarin.Forms.DependencyService.Get<ILogManager>().GetLog(classCode);
 
     /// <summary>
     /// Concstructor
@@ -15,12 +16,6 @@ namespace MyTagPocket
     public MainPage()
     {
       InitializeComponent();
-      InitCouchBase();
-    }
-
-    public void InitCouchBase()
-    {
-      Log.Trace("Init Couchbase Core");
     }
   }
 }

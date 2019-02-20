@@ -18,7 +18,8 @@ namespace MyTagPocket.UWP
 {
   public sealed partial class MainPage
   {
-    public static ILogger Log = Xamarin.Forms.DependencyService.Get<ILogManager>().GetLog();
+    const string classCode = "[2000200]";
+    public static ILogger Log = Xamarin.Forms.DependencyService.Get<ILogManager>().GetLog(classCode);
 
     public MainPage()
     {
@@ -30,7 +31,8 @@ namespace MyTagPocket.UWP
 
     public void InitCouchBase()
     {
-      Log.Trace("Init CouchBase");
+      const string methodCode = "[2000201]";
+      Log.Trace(methodCode, "Init CouchBase");
     }
   }
 }

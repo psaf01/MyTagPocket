@@ -9,8 +9,9 @@
     /// <summary>
     /// Get Log 
     /// </summary>
+    /// <param name="classCode">Class code for localization</param>
     /// <param name="callerFilePath">Pat to log file</param>
     /// <returns>Logger</returns>
-    ILogger GetLog([System.Runtime.CompilerServices.CallerFilePath]string callerFilePath = "");
+    ILogger GetLog(string classCode, [System.Runtime.CompilerServices.CallerFilePath]string callerFilePath = "");
   }
 }

@@ -73,9 +73,10 @@ namespace MyTagPocket.UWP
     /// <summary>
     ///  GetLog instance
     /// </summary>
+    /// <param name="classCode">Class code for localization</param>
     /// <param name="callerFilePath"></param>
     /// <returns></returns>
-    public ILogger GetLog([System.Runtime.CompilerServices.CallerFilePath] string callerFilePath = "")
+    public ILogger GetLog(string classCode, [System.Runtime.CompilerServices.CallerFilePath] string callerFilePath = "")
     {
       string fileName = callerFilePath;
 

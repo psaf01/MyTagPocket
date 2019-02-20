@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MyTagPocket.Dal.Upgrade;
+using SQLite;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,6 +9,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -22,7 +25,13 @@ namespace MyTagPocket.UWP
   /// </summary>
   sealed partial class App : Application
   {
-    public static ILogger Log = Xamarin.Forms.DependencyService.Get<ILogManager>().GetLog();
+    const string classCode = "[2000100]";
+    public static ILogger Log = Xamarin.Forms.DependencyService.Get<ILogManager>().GetLog(classCode);
+
+    /// <summary>
+    /// Database MyTagPocket
+    /// </summary>
+    public static SQLiteConnection Db;
 
     /// <summary>
     /// Initializes the singleton application object.  This is the first line of authored code
@@ -41,7 +50,7 @@ namespace MyTagPocket.UWP
     /// <param name="e">Details about the launch request and process.</param>
     protected override void OnLaunched(LaunchActivatedEventArgs e)
     {
-
+      const string methodCode = "[2000101]";
 
       Frame rootFrame = Window.Current.Content as Frame;
 
@@ -63,7 +72,20 @@ namespace MyTagPocket.UWP
 
         // Place the frame in the current Window
         Window.Current.Content = rootFrame;
-        Log.Info("Init app");
+        Log.Info(methodCode, "Init app");
+        try
+        {
+          var path = Path.Combine(ApplicationData.Current.LocalFolder.Path, "MyTagPocket.db3");
+          Db = new SQLiteConnection(path);
+          Log.Trace(methodCode, "Opened datatabse uwp.db3");
+          var upgradeDb = new UpgradeDb(Db);
+          upgradeDb.CheckAndUpgrade();
+        }
+        catch(Exception ex)
+        {
+          Log.Fatal(methodCode, "Initialize database uwp.db3", ex);
+        }
+        
       }
 
       if (rootFrame.Content == null)

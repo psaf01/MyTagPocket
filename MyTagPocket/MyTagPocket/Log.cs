@@ -10,10 +10,15 @@ namespace MyTagPocket
   {
     private Logger log;
     
-      /// <summary>
-      /// Instance log
-      /// </summary>
-      /// <param name="log"></param>
+    /// <summary>
+    /// Class code
+    /// </summary>
+    public string ClassCode { get; set; }
+
+    /// <summary>
+    /// Instance log
+    /// </summary>
+    /// <param name="log"></param>
     public Log(Logger log)
     {
       this.log = log;
@@ -22,56 +27,67 @@ namespace MyTagPocket
     /// <summary>
     /// Debug
     /// </summary>
+    /// <param name="codeMethod">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Agruments</param>
-    public void Debug(string text, params object[] args)
+    public void Debug(string codeMethod, string text, params object[] args)
     {
-      log.Debug(text, args);
+      log.Debug($"{ClassCode} {codeMethod} {text}", args);
     }
 
     /// <summary>
     /// Error
     /// </summary>
+    /// <param name="codeMethod">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Arguments</param>
-    public void Error(string text, params object[] args)
+    public void Error(string codeMethod, string text, params object[] args)
     {
-      log.Error(text, args);
+      log.Error($"{ClassCode} {codeMethod} {text}", args);
     }
 
     /// <summary>
     /// Fatal error
     /// </summary>
+    /// <param name="codeMethod">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Arguments</param>
-    public void Fatal(string text, params object[] args)
+    public void Fatal(string codeMethod, string text, params object[] args)
     {
-      log.Fatal(text, args);
+      log.Fatal($"{ClassCode} {codeMethod} {text}", args);
     }
 
     /// <summary>
     /// Informatin
     /// </summary>
+    /// <param name="codeMethod">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Arguments</param>
-    public void Info(string text, params object[] args)
+    public void Info(string codeMethod, string text, params object[] args)
     {
-      log.Info(text, args);
+      log.Info($"{ClassCode} {codeMethod} {text}", args);
     }
 
     /// <summary>
     /// Trace
     /// </summary>
+    /// <param name="codeMethod">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Arguments</param>
-    public void Trace(string text, params object[] args)
+    public void Trace(string codeMethod, string text, params object[] args)
     {
-      log.Trace(text, args);
+      log.Trace($"{ClassCode} {codeMethod} {text}", args);
     }
 
-    public void Warn(string text, params object[] args)
+    /// <summary>
+    /// Warning
+    /// </summary>
+    /// <param name="codeMethod">Code method for localization</param>
+    /// <param name="text">Text message</param>
+    /// <param name="args">Arument</param>
+    public void Warn(string codeMethod, string text, params object[] args)
     {
-      log.Warn(text, args);
+      log.Warn($"{ClassCode} {codeMethod} {text}", args);
     }
 
     /// <summary>
@@ -82,7 +98,7 @@ namespace MyTagPocket
     /// <param name="args">Aguments</param>
     public void Audit(string id, string text, params object[] args)
     {
-      log.Info(string.Format(text, args));
+      log.Info($"{ClassCode} [0000000] {id} {string.Format(text, args)}");
     }
   }
 }
