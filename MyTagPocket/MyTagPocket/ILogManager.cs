@@ -1,6 +1,5 @@
 ﻿namespace MyTagPocket
 {
-
   /// <summary>
   /// Inteface Log Manager
   /// </summary>

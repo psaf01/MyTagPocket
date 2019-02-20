@@ -1,10 +1,12 @@
-﻿using SQLite;
+﻿using MyTagPocket.CoreUtil;
+using SQLite;
 
 namespace MyTagPocket.Dal.Entities
 {
   /// <summary>
   /// Table version in app
   /// </summary>
+  [TableVersion(1)]
   public class TableVersion
   {
     /// <summary>

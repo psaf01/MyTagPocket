@@ -1,5 +1,6 @@
 ﻿using MyTagPocket.Dal.Entities;
 using MyTagPocket.Dal.Upgrade.Interface;
+using MyTagPocket.CoreUtil;
 using SQLite;
 using System;
 
@@ -148,7 +149,29 @@ namespace MyTagPocket.Dal.Upgrade
       
 
     }
-   
+
+    /// <summary>
+    /// Get version table from Entity class
+    /// </summary>
+    /// <param name="t">Entity table class</param>
+    /// <returns>Version actual table entity</returns>
+    private int GetVersionTableFromEntity(Type t)
+    {
+      const string methodCode = "[1000405]";
+      // Get instance of the attribute.
+      TableVersionAttribute MyAttribute =
+          (TableVersionAttribute)Attribute.GetCustomAttribute(t, typeof(TableVersionAttribute));
+
+      if (MyAttribute == null)
+      {
+        Log.Fatal(methodCode, $"Not definition TableVersionAttribute in {t.Name}");
+        return 0;
+      }
+      else
+      {
+        return MyAttribute.Version;
+      }
+    }
     #endregion Private method
   }
 }
