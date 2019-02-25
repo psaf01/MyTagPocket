@@ -1,19 +1,19 @@
-﻿using MyTagPocket.Dal.Entities;
+﻿using MyTagPocket.CoreUtil;
+using MyTagPocket.Dal.Entities;
 using MyTagPocket.Dal.Upgrade.Interface;
-using MyTagPocket.CoreUtil;
 using SQLite;
 using System;
-using Xamarin.Forms;
-using MyTagPocket.CoreUtil.Interface;
+using System.Collections.Generic;
+using System.Text;
 
 namespace MyTagPocket.Dal.Upgrade
 {
   /// <summary>
-  /// Upgrade DB
+  /// Upgrade database contens
   /// </summary>
-  public class UpgradeDb : IUpgradeDbBase,IUpgradeDb
+  public class UpgradeDbContents : IUpgradeDbContents
   {
-    const string classCode = "[1000400]";
+    const string classCode = "[1000500]";
     public static ILogger Log = Xamarin.Forms.DependencyService.Get<ILogManager>().GetLog(classCode);
 
     /// <summary>
@@ -24,16 +24,16 @@ namespace MyTagPocket.Dal.Upgrade
     /// <summary>
     /// SQL database connection
     /// </summary>
-    private SQLiteConnection _Db;
+    SQLiteConnection db;
 
     #region Constructor
     /// <summary>
     /// Constructor
     /// </summary>
-    /// <param name="fileHelper">File helper for acces file storage</param>
-    public UpgradeDb()
+    /// <param name="conn"></param>
+    public UpgradeDbContents(SQLiteConnection conn)
     {
-      _Db = new SQLiteConnection(DependencyService.Get<IFileHelper>().GetPathAppDb());
+      db = conn;
     }
     #endregion Constructor
 
@@ -43,11 +43,10 @@ namespace MyTagPocket.Dal.Upgrade
     /// </summary>
     public void CheckAndUpgrade()
     {
-      const string methodCode = "[1000401]";
-      Log.Trace(methodCode, "Start Check And Upgrade application database");
-
-      CheckAndUpgradeTableVersion();
-      Log.Trace(methodCode, "End Check And Upgrade application database");
+      const string methodCode = "[1000501]";
+      Log.Trace(methodCode, "Start Check And Upgrade Contents");
+      CheckAndUpgrade(new TableVersion());
+      Log.Trace(methodCode, "End Check And Upgrade Contents");
     }
 
     /// <summary>
@@ -57,17 +56,17 @@ namespace MyTagPocket.Dal.Upgrade
     /// <returns></returns>
     public bool DropTable<T>() where T : class
     {
-      const string methodCode = "[1000402]";
+      const string methodCode = "[1000502]";
       try
       {
-        var error = _Db.DropTable<T>();
+        var error = db.DropTable<T>();
         var exists = (error != 0);
-        Log.Trace(methodCode, $"Drop table [{typeof(T).Name}]");
+        Log.Trace(methodCode, $"Contents Drop table [{typeof(T).Name}]");
         return exists;
       }
       catch (Exception ex)
       {
-        Log.Fatal(methodCode, $"Drop table [{typeof(T).Name}] Exception [{ex.Message}]");
+        Log.Fatal(methodCode, $"Contents Drop table [{typeof(T).Name}] Exception [{ex.Message}]");
         return false;
       }
 
@@ -91,7 +90,7 @@ namespace MyTagPocket.Dal.Upgrade
     /// <returns></returns>
     public void CreateTable<T>() where T : class
     {
-      const string methodCode = "[1000403]";
+      const string methodCode = "[1000503]";
       try
       {
         if (IsExistsTable<T>())
@@ -99,14 +98,14 @@ namespace MyTagPocket.Dal.Upgrade
           return;
         }
 
-        var error = _Db.CreateTable<T>();
+        var error = db.CreateTable<T>();
         var exists = (error == 0);
-        Log.Trace(methodCode, $"Create table [{typeof(T).Name}]");
+        Log.Trace(methodCode, $"Contents Create table [{typeof(T).Name}]");
       }
       catch (Exception ex)
       {
-        Log.Fatal(methodCode, $"Cant create table [{typeof(T).Name}] Exception [{ex.Message}]");
-        throw new Exception($"Cant create table [{typeof(T).Name}] ");
+        Log.Fatal(methodCode, $"Contents Cant create table [{typeof(T).Name}] Exception [{ex.Message}]");
+        throw new Exception($"Contents Cant create table [{typeof(T).Name}] ");
       }
     }
 
@@ -118,7 +117,7 @@ namespace MyTagPocket.Dal.Upgrade
     /// <returns></returns>
     public bool IsTypeExistst(string type, string name)
     {
-      SQLiteCommand command = _Db.CreateCommand("SELECT COUNT(1) FROM SQLITE_MASTER WHERE TYPE = @TYPE AND NAME = @NAME");
+      SQLiteCommand command = db.CreateCommand("SELECT COUNT(1) FROM SQLITE_MASTER WHERE TYPE = @TYPE AND NAME = @NAME");
       command.Bind("@TYPE", type);
       command.Bind("@NAME", name);
 
@@ -130,22 +129,21 @@ namespace MyTagPocket.Dal.Upgrade
     /// <summary>
     /// Check TableVersion
     /// </summary>
-    public void CheckAndUpgradeTableVersion()
+    public void CheckAndUpgrade(TableVersion table)
     {
-      const string methodCode = "[1000404]";
+      const string methodCode = "[1000504]";
       int actualVersion = 1;
       try
       {
         CreateTable<Entities.TableVersion>();
-        TableVersion table = new TableVersion();
         table.ActualVersion = actualVersion;
         table.TableName = typeof(TableVersion).Name;
-        _Db.Insert(table);
+        db.Insert(table);
       }
       catch (Exception ex)
       {
-        Log.Fatal(methodCode, $"Cant CheckAndUpgrade [{typeof(TableVersion).Name}] Exception [{ex.Message}]", ex);
-        throw new Exception($"Cant CheckAndUpgrade [{typeof(TableVersion).Name}]");
+        Log.Fatal(methodCode, $"Contents Cant CheckAndUpgrade [{typeof(TableVersion).Name}] Exception [{ex.Message}]", ex);
+        throw new Exception($"Contents Cant CheckAndUpgrade [{typeof(TableVersion).Name}]");
       }
     }
 
@@ -156,14 +154,14 @@ namespace MyTagPocket.Dal.Upgrade
     /// <returns>Version actual table entity</returns>
     public int GetVersionTableFromEntity(Type t)
     {
-      const string methodCode = "[1000405]";
+      const string methodCode = "[1000505]";
       // Get instance of the attribute.
       TableVersionAttribute MyAttribute =
           (TableVersionAttribute)Attribute.GetCustomAttribute(t, typeof(TableVersionAttribute));
 
       if (MyAttribute == null)
       {
-        Log.Fatal(methodCode, $"Not definition TableVersionAttribute in {t.Name}");
+        Log.Fatal(methodCode, $"Contents Not definition TableVersionAttribute in {t.Name}");
         return 0;
       }
       else
@@ -176,9 +174,5 @@ namespace MyTagPocket.Dal.Upgrade
     #region Private method
 
     #endregion Private method
-
-    #region Public properties
-
-    #endregion PUblic properties
   }
 }

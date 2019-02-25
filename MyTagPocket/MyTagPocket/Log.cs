@@ -1,4 +1,5 @@
 ﻿using NLog;
+using System;
 
 namespace MyTagPocket
 {
@@ -47,6 +48,18 @@ namespace MyTagPocket
     }
 
     /// <summary>
+    /// Error
+    /// </summary>
+    /// <param name="ex">Exception</param>
+    /// <param name="codeMethod">Code method for localization</param>
+    /// <param name="text">Message</param>
+    /// <param name="args">Arguments</param>
+    public void Error(Exception ex, string codeMethod, string text, params object[] args)
+    {
+      log.Error(ex, $"{ClassCode} {codeMethod} {text}", args);
+    }
+
+    /// <summary>
     /// Fatal error
     /// </summary>
     /// <param name="codeMethod">Code method for localization</param>
@@ -55,6 +68,18 @@ namespace MyTagPocket
     public void Fatal(string codeMethod, string text, params object[] args)
     {
       log.Fatal($"{ClassCode} {codeMethod} {text}", args);
+    }
+
+    /// <summary>
+    /// Fatal error
+    /// </summary>
+    /// <param name="ex">Exception</param>
+    /// <param name="codeMethod">Code method for localization</param>
+    /// <param name="text">Message</param>
+    /// <param name="args">Arguments</param>
+    public void Fatal(Exception ex, string codeMethod, string text, params object[] args)
+    {
+      log.Fatal(ex, $"{ClassCode} {codeMethod} {text}", args);
     }
 
     /// <summary>

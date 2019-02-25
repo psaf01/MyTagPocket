@@ -23,11 +23,21 @@
     <Folder Include="Dal\Entities\Devices\" />
     <Folder Include="Dal\Entities\Links\" />
     <Folder Include="Dal\Entities\Tags\" />
+    <Folder Include="Dal\Repository\Artifacts\" />
+    <Folder Include="Dal\Repository\Devices\" />
+    <Folder Include="Dal\Repository\Links\" />
+    <Folder Include="Dal\Repository\Tags\" />
     <Folder Include="Dal\Upgrade\v1\" />
-    <Folder Include="Storage\Contents\" />
-    <Folder Include="Storage\Links\" />
-    <Folder Include="Storage\Artifacts\" />
-    <Folder Include="Storage\Devices\" />
-    <Folder Include="Storage\Tags\" />
+    <Folder Include="Storage\Entities\Artifacts\" />
+    <Folder Include="Storage\Entities\Contents\" />
+    <Folder Include="Storage\Entities\Devices\" />
+    <Folder Include="Storage\Entities\Links\" />
+    <Folder Include="Storage\Entities\Tags\" />
+    <Folder Include="Storage\Repository\Links\" />
+    <Folder Include="Storage\Repository\Artifacts\" />
+    <Folder Include="Storage\Repository\Devices\" />
+    <Folder Include="Storage\Repository\Interface\" />
+    <Folder Include="Storage\Repository\Tags\" />
+    <Folder Include="Storage\Upgrade\v1\" />
   </ItemGroup>
 </Project>

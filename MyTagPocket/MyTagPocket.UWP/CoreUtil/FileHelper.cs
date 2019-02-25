@@ -1,0 +1,70 @@
+﻿using MyTagPocket.CoreUtil;
+using MyTagPocket.CoreUtil.Interface;
+using MyTagPocket.UWP.CoreUtil;
+using System;
+using System.IO;
+using Windows.Storage;
+using Xamarin.Forms;
+
+[assembly: Dependency(typeof(FileHelper))]
+namespace MyTagPocket.UWP.CoreUtil
+{
+  /// <summary>
+  /// File helper for UWP application
+  /// </summary>
+  public class FileHelper :IFileHelper
+  {
+    /// <summary>
+    /// Get local file path
+    /// </summary>
+    /// <param name="fileType">FileType</param>
+    /// <param name="filename">File name</param>
+    /// <returns>Full path file</returns>
+    public string GetLocalFilePath(FileTypeEnum fileType, string filename)
+    {
+      string folder = string.Empty;
+      switch (fileType.Value)
+      {
+        case FileTypeEnum.FileType.Settings:
+          folder = "settings";
+          break;
+        case FileTypeEnum.FileType.Contents:
+          folder = "contents";
+          break;
+        default:
+          folder = "temp";
+          break;
+      }
+      return Path.Combine(ApplicationData.Current.LocalFolder.Path, folder, filename);
+    }
+      /// <summary>
+      /// Get full path for application database
+      /// </summary>
+      /// <returns></returns>
+      public string GetPathAppDb()
+    {
+      string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+      return Path.Combine(path, "MyTagPocket.db3");
+    }
+
+    /// <summary>
+    /// Get full path for content database
+    /// </summary>
+    /// <returns></returns>
+    public string GetPathContentDb()
+    {
+      string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+      return Path.Combine(path, GetPathContent(), "ContentList.db3");
+    }
+
+    /// <summary>
+    /// Get path for Contents files
+    /// </summary>
+    /// <returns></returns>
+    public string GetPathContent()
+    {
+      string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+      return Path.Combine(path, "Contents");
+    }
+  }
+}

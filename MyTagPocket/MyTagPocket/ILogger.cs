@@ -58,12 +58,30 @@ namespace MyTagPocket
     void Error(string codeMethod, string text, params object[] args);
 
     /// <summary>
+    /// Error
+    /// </summary>
+    /// <param name="ex">Exception</param>
+    /// <param name="codeMethod">Code method for localization</param>
+    /// <param name="text">Message</param>
+    /// <param name="args">Arguments</param>
+    void Error(Exception ex, string codeMethod, string text, params object[] args);
+
+    /// <summary>
     /// Fatal error
     /// </summary>
     /// <param name="codeMethod">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Arguments</param>
     void Fatal(string codeMethod, string text, params object[] args);
+
+    /// <summary>
+    /// Fatal error
+    /// </summary>
+    /// <param name="ex">Exception</param>
+    /// <param name="codeMethod">Code method for localization</param>
+    /// <param name="text">Message</param>
+    /// <param name="args">Arguments</param>
+    void Fatal(Exception ex, string codeMethod, string text, params object[] args);
 
     /// <summary>
     /// Audit

@@ -1,4 +1,4 @@
-﻿namespace MyTagPocket.Storage.Settings
+﻿namespace MyTagPocket.Storage.Entities.Settings
 {
   /// <summary>
   /// Global setting application

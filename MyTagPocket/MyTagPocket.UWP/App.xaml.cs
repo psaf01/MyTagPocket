@@ -1,4 +1,6 @@
 ﻿using MyTagPocket.Dal.Upgrade;
+using MyTagPocket.Storage.Upgrade;
+using MyTagPocket.UWP.CoreUtil;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -75,15 +77,15 @@ namespace MyTagPocket.UWP
         Log.Info(methodCode, "Init app");
         try
         {
-          var path = Path.Combine(ApplicationData.Current.LocalFolder.Path, "MyTagPocket.db3");
-          Db = new SQLiteConnection(path);
-          Log.Trace(methodCode, "Opened datatabse uwp.db3");
-          var upgradeDb = new UpgradeDb(Db);
+          var upgradeStorageContents = new UpgradeStorageContents();
+          var upgradeStorage = new UpgradeStorage(upgradeStorageContents);
+          upgradeStorage.CheckAndUpgrade();
+          var upgradeDb = new UpgradeDb();
           upgradeDb.CheckAndUpgrade();
         }
         catch(Exception ex)
         {
-          Log.Fatal(methodCode, "Initialize database uwp.db3", ex);
+          Log.Fatal(methodCode, "Init app", ex);
         }
         
       }

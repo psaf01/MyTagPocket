@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyTagPocket.Dal.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,8 +11,8 @@ namespace MyTagPocket.Dal.Upgrade.Interface
   public interface IUpgradeDb
   {
     /// <summary>
-    /// Check and if necessary upgrade database
+    /// Check and upgrade TableVersion
     /// </summary>
-    void CheckAndUpgrade();
+    void CheckAndUpgradeTableVersion();
   }
 }
