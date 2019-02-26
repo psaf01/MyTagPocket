@@ -84,11 +84,11 @@ namespace MyTagPocket.CoreUtil
     /// <summary>
     /// Application settings
     /// </summary>
-    public static readonly FileTypeEnum SETTINGS= new FileTypeEnum(FileType.Settings, "SETTINGS", "json");
+    public static readonly FileTypeEnum SETTINGS= new FileTypeEnum(FileType.Settings, "SETTINGS", "cfg");
     /// <summary>
     /// Contents notes
     /// </summary>
-    public static readonly FileTypeEnum CONTENTS = new FileTypeEnum(FileType.Settings, "CONTENTS", "json");
+    public static readonly FileTypeEnum CONTENTS = new FileTypeEnum(FileType.Settings, "CONTENTS", "data");
 
   }
 }

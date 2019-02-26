@@ -19,7 +19,7 @@ namespace MyTagPocket.UWP.CoreUtil
     /// </summary>
     /// <param name="fileType">FileType</param>
     /// <param name="filename">File name</param>
-    /// <returns>Full path file</returns>
+    /// <returns>Full path file. If File name null or empty return Full path folder</returns>
     public string GetLocalFilePath(FileTypeEnum fileType, string filename)
     {
       string folder = string.Empty;
@@ -34,6 +34,10 @@ namespace MyTagPocket.UWP.CoreUtil
         default:
           folder = "temp";
           break;
+      }
+      if(String.IsNullOrEmpty(filename))
+      {
+        return Path.Combine(ApplicationData.Current.LocalFolder.Path, folder);
       }
       return Path.Combine(ApplicationData.Current.LocalFolder.Path, folder, filename);
     }

@@ -15,7 +15,7 @@ namespace MyTagPocket.Storage.Upgrade
 
     public void CheckAndUpgrade()
     {
-      throw new System.NotImplementedException();
+       
     }
   }
 }

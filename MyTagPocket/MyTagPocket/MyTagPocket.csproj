@@ -36,7 +36,6 @@
     <Folder Include="Storage\Repository\Links\" />
     <Folder Include="Storage\Repository\Artifacts\" />
     <Folder Include="Storage\Repository\Devices\" />
-    <Folder Include="Storage\Repository\Interface\" />
     <Folder Include="Storage\Repository\Tags\" />
     <Folder Include="Storage\Upgrade\v1\" />
   </ItemGroup>

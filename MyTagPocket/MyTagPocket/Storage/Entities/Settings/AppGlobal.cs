@@ -5,6 +5,9 @@
   /// </summary>
   public class AppGlobal
   {
-
+    /// <summary>
+    /// Version application
+    /// </summary>
+    public string Version { get; set; }
   }
 }

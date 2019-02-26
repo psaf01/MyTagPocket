@@ -78,7 +78,8 @@ namespace MyTagPocket.UWP
         try
         {
           var upgradeStorageContents = new UpgradeStorageContents();
-          var upgradeStorage = new UpgradeStorage(upgradeStorageContents);
+          var upgradeStorageSettings = new UpgradeStorageSettings();
+          var upgradeStorage = new UpgradeStorage(upgradeStorageSettings, upgradeStorageContents);
           upgradeStorage.CheckAndUpgrade();
           var upgradeDb = new UpgradeDb();
           upgradeDb.CheckAndUpgrade();

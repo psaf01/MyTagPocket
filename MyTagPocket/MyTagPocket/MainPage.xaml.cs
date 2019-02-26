@@ -7,7 +7,7 @@ namespace MyTagPocket
   /// </summary>
   public partial class MainPage : ContentPage
   {
-    const string classCode = "[1000100]";
+    const string classCode = "[1001100]";
     public static ILogger Log = Xamarin.Forms.DependencyService.Get<ILogManager>().GetLog(classCode);
 
     /// <summary>

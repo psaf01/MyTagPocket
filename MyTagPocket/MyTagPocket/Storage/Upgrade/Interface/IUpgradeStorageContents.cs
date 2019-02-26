@@ -5,9 +5,6 @@
   /// </summary>
   public interface IUpgradeStorageContents : IUpgradeStorageBase
   {
-    /// <summary>
-    /// Context contents storage
-    /// </summary>
-    IUpgradeStorageContents ContextStorage { get; }
+    
   }
 }
