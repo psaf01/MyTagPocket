@@ -48,9 +48,10 @@ namespace MyTagPocket.Storage.Upgrade
         _UpgradeStorageSettings.CheckAndUpgrade();
         _UpgradeStorageContents.CheckAndUpgrade();
         var repoSett = new SettingsRepository();
-        var ver = repoSett.AppVersionLoad();
+        var ver = new Entities.Settings.Version();
+        repoSett.Load(ver);
         ver.Ver = ver.GetActuaAssemblylVersion();
-        repoSett.AppVersionSave()
+        repoSett.Save(ver);
         Log.Trace(methodCode, "End Check And Upgrade application storage");
       }
       catch(Exception ex)
@@ -83,7 +84,8 @@ namespace MyTagPocket.Storage.Upgrade
       if (File.Exists(pathVersion))
       {
         var setRepo = new SettingsRepository();
-        var ver = setRepo.AppVersionLoad();
+        var ver = new Entities.Settings.Version();
+        setRepo.Load(ver);
         if (ver == null)
           return false;
 

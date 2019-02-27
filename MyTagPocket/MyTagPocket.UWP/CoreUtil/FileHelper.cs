@@ -23,13 +23,16 @@ namespace MyTagPocket.UWP.CoreUtil
     public string GetLocalFilePath(FileTypeEnum fileType, string filename)
     {
       string folder = string.Empty;
+      string ext = string.Empty;
       switch (fileType.Value)
       {
         case FileTypeEnum.FileType.Settings:
           folder = "settings";
+          ext = "." + FileTypeEnum.SETTINGS.Ext;
           break;
         case FileTypeEnum.FileType.Contents:
           folder = "contents";
+          ext = "." + FileTypeEnum.CONTENTS.Ext;
           break;
         default:
           folder = "temp";
@@ -39,7 +42,7 @@ namespace MyTagPocket.UWP.CoreUtil
       {
         return Path.Combine(ApplicationData.Current.LocalFolder.Path, folder);
       }
-      return Path.Combine(ApplicationData.Current.LocalFolder.Path, folder, filename);
+      return Path.Combine(ApplicationData.Current.LocalFolder.Path, folder, $"{filename}{ext}");
     }
       /// <summary>
       /// Get full path for application database

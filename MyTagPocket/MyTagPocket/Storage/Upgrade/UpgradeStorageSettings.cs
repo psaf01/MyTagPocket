@@ -54,7 +54,7 @@ namespace MyTagPocket.Storage.Upgrade
       var setRepo = new SettingsRepository();
       var verEntity = new Entities.Settings.Version();
       verEntity.Ver = "0";
-      setRepo.AppVersionSave(verEntity);
+      setRepo.Save(verEntity);
 
     }
   }

@@ -38,7 +38,7 @@ namespace MyTagPocket.Storage.Repository
     /// Load  application version
     /// </summary>
     /// <returns>Application version</returns>
-    public Entities.Settings.Version AppVersionLoad()
+    public void Load(Entities.Settings.Version version)
     {
       const string methodCode = "[1000602]";
       try
@@ -46,20 +46,19 @@ namespace MyTagPocket.Storage.Repository
         Log.Trace(methodCode, "Edit version application");
         string path = DependencyService.Get<IFileHelper>().GetLocalFilePath(FileTypeEnum.SETTINGS, typeof(Storage.Entities.Settings.Version).Name);
         string jsonString = File.ReadAllText(path);
-        var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<Entities.Settings.Version>(jsonString);
-        return obj;
+        version = Newtonsoft.Json.JsonConvert.DeserializeObject<Entities.Settings.Version>(jsonString);
       }
       catch (Exception ex)
       {
-        Log.Error(ex, methodCode, "Edit version application");
-        return null;
+        Log.Error(ex, methodCode, "Load version application");
+        version = null;
       }
     }
     /// <summary>
     /// Save application version
     /// </summary>
     /// <param name="Version">Application version</param>
-    public void Edit(Entities.Settings.Version version)
+    public void Save(Entities.Settings.Version version)
     {
       const string methodCode = "[1000602]";
       try
