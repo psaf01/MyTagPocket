@@ -29,6 +29,7 @@
     <Folder Include="Dal\Repository\Links\" />
     <Folder Include="Dal\Repository\Tags\" />
     <Folder Include="Dal\Upgrade\v1\" />
+    <Folder Include="Resources\" />
     <Folder Include="Storage\Entities\Artifacts\" />
     <Folder Include="Storage\Entities\Contents\" />
     <Folder Include="Storage\Entities\Devices\" />
@@ -42,6 +43,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="FatalError.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="MainPageUwp.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

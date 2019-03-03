@@ -60,23 +60,6 @@ namespace MyTagPocket.UWP
         Xamarin.Forms.Forms.Init(e);
         // Place the frame in the current Window
         Window.Current.Content = rootFrame;
-        Log.Info(methodCode, "Init app");
-        try
-        {
-          
-          /*var upgradeStorageContents = new UpgradeStorageContents();
-          var upgradeStorageSettings = new UpgradeStorageSettings();
-          var upgradeStorage = new Upgrade.UpgradeApp();
-          upgradeStorage.CheckAndUpgradeStorage(upgradeStorageSettings, upgradeStorageContents);
-          var upgradeDb = new UpgradeDb();
-          upgradeDb.CheckAndUpgrade();
-          */
-        }
-        catch(Exception ex)
-        {
-          Log.Fatal(methodCode, "Init app", ex);
-        }
-        
       }
 
       if (rootFrame.Content == null)
