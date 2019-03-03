@@ -11,7 +11,14 @@ namespace MyTagPocket
     public App()
     {
       InitializeComponent();
-      MainPage = new MainPageUwp();
+      if (Device.RuntimePlatform == Device.UWP)
+      {
+        MainPage = new MainPageUwp();
+      }
+      else
+      {
+        MainPage = new MainPage();
+      }
     }
 
     protected override void OnStart()
