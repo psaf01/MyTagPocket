@@ -10,7 +10,7 @@ namespace MyTagPocket.Test
     [TestMethod]
     public void CreateTabelTest()
     {
-
+      Assert.IsFalse(false, "UPS");
     }
   }
 }

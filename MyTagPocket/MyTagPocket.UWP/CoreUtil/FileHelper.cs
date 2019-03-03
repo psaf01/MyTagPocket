@@ -38,11 +38,13 @@ namespace MyTagPocket.UWP.CoreUtil
           folder = "temp";
           break;
       }
-      if(String.IsNullOrEmpty(filename))
+      string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+
+      if (String.IsNullOrEmpty(filename))
       {
-        return Path.Combine(ApplicationData.Current.LocalFolder.Path, folder);
+        return Path.Combine(path, folder);
       }
-      return Path.Combine(ApplicationData.Current.LocalFolder.Path, folder, $"{filename}{ext}");
+      return Path.Combine(path, folder, $"{filename}{ext}");
     }
       /// <summary>
       /// Get full path for application database
@@ -50,7 +52,7 @@ namespace MyTagPocket.UWP.CoreUtil
       /// <returns></returns>
       public string GetPathAppDb()
     {
-      string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+      string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
       return Path.Combine(path, "MyTagPocket.db3");
     }
 
@@ -60,7 +62,7 @@ namespace MyTagPocket.UWP.CoreUtil
     /// <returns></returns>
     public string GetPathContentDb()
     {
-      string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+      string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
       return Path.Combine(path, GetPathContent(), "ContentList.db3");
     }
 
@@ -70,7 +72,7 @@ namespace MyTagPocket.UWP.CoreUtil
     /// <returns></returns>
     public string GetPathContent()
     {
-      string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+      string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
       return Path.Combine(path, "Contents");
     }
   }

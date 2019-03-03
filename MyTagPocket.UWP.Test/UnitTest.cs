@@ -2,18 +2,15 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-
 namespace MyTagPocket.UWP.Test
 {
-  [TestClass]
-  public class UnitTest1
-  {
-    [TestMethod]
-    public void TestMethod1()
+    [TestClass]
+    public class UnitTest1
     {
-      var i = 1;
-      var b = i + 1;
-      Assert.AreEqual(0, 0);
+        [TestMethod]
+        public void TestMethod1()
+        {
+      Assert.IsTrue(true, "UPS");
+        }
     }
-  }
 }

@@ -1,23 +1,11 @@
 ﻿using MyTagPocket.Dal.Upgrade;
 using MyTagPocket.Storage.Upgrade;
-using MyTagPocket.UWP.CoreUtil;
 using SQLite;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace MyTagPocket.UWP
@@ -69,18 +57,20 @@ namespace MyTagPocket.UWP
         {
           //TODO: Load state from previously suspended application
         }
-
+        Xamarin.Forms.Forms.Init(e);
         // Place the frame in the current Window
         Window.Current.Content = rootFrame;
         Log.Info(methodCode, "Init app");
         try
         {
-          var upgradeStorageContents = new UpgradeStorageContents();
+          
+          /*var upgradeStorageContents = new UpgradeStorageContents();
           var upgradeStorageSettings = new UpgradeStorageSettings();
-          var upgradeStorage = new UpgradeStorage(upgradeStorageSettings, upgradeStorageContents);
-          upgradeStorage.CheckAndUpgrade();
+          var upgradeStorage = new Upgrade.UpgradeApp();
+          upgradeStorage.CheckAndUpgradeStorage(upgradeStorageSettings, upgradeStorageContents);
           var upgradeDb = new UpgradeDb();
           upgradeDb.CheckAndUpgrade();
+          */
         }
         catch(Exception ex)
         {

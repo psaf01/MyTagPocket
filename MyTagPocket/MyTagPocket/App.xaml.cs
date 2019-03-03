@@ -11,7 +11,7 @@ namespace MyTagPocket
     public App()
     {
       InitializeComponent();
-      MainPage = new MainPage();
+      MainPage = new MainPageUwp();
     }
 
     protected override void OnStart()
