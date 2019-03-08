@@ -7,7 +7,7 @@ namespace MyTagPocket
   /// <summary>
   /// Loging
   /// </summary>
-  public class Log : ILogger
+  public class Log : MyTagPocket.Interface.ILogger
   {
     private Logger log;
     

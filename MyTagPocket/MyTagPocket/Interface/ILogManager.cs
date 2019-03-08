@@ -1,4 +1,6 @@
-﻿namespace MyTagPocket
+﻿using MyTagPocket.Interface;
+
+namespace MyTagPocket.Interface
 {
   /// <summary>
   /// Inteface Log Manager

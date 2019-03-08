@@ -5,8 +5,8 @@ using NLog.Targets;
 using System.IO;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(MyTagPocket.UWP.LogManager))]
-namespace MyTagPocket.UWP
+[assembly: Dependency(typeof(MyTagPocket.UWP.Test.LogManager))]
+namespace MyTagPocket.UWP.Test
 {
 
   /// <summary>

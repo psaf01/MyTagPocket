@@ -16,7 +16,7 @@ namespace MyTagPocket.Storage.Upgrade
   public class UpgradeStorageSettings : IUpgradeStorageSettings
   {
     const string classCode = "[1000700]";
-    public static ILogger Log = Xamarin.Forms.DependencyService.Get<ILogManager>().GetLog(classCode);
+    public static MyTagPocket.Interface.ILogger Log = Xamarin.Forms.DependencyService.Get<MyTagPocket.Interface.ILogManager>().GetLog(classCode);
 
     /// <summary>
     /// Check and if necessary upgrade storage

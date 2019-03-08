@@ -1,4 +1,4 @@
-﻿namespace MyTagPocket.CoreUtil
+﻿namespace MyTagPocket
 {
   /// <summary>
   /// Define last acuual class code in project
@@ -10,6 +10,6 @@
     /// <summary>
     /// Last used class code
     /// </summary>
-    private const string ClassCode = "[1001300]";
+    private const string ClassCode = "[1001800]";
     }
 }

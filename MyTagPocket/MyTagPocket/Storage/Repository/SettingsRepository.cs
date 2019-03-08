@@ -1,24 +1,23 @@
 ﻿using MyTagPocket.CoreUtil;
 using MyTagPocket.CoreUtil.Interface;
 using MyTagPocket.Storage.Entities.Settings;
+using MyTagPocket.Storage.Repository.Interface;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using Xamarin.Forms;
 
 namespace MyTagPocket.Storage.Repository
 {
-    public class SettingsRepository
-    {
+  public class SettingsRepository : ISettingsRespository
+  {
     const string classCode = "[1000600]";
-    public static ILogger Log = Xamarin.Forms.DependencyService.Get<ILogManager>().GetLog(classCode);
+    public static MyTagPocket.Interface.ILogger Log = Xamarin.Forms.DependencyService.Get<MyTagPocket.Interface.ILogManager>().GetLog(classCode);
 
     /// <summary>
     /// Save application global settings
     /// </summary>
     /// <param name="appGlobal">Application global settings</param>
-    public void AppGlobalSave(AppGlobal appGlobal)
+    public void Save(AppGlobal appGlobal)
     {
       const string methodCode = "[1000601]";
       try

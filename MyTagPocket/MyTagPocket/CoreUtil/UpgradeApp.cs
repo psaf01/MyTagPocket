@@ -8,7 +8,7 @@ namespace MyTagPocket.CoreUtil.Upgrade
   public class UpgradeApp
   {
     const string classCode = "[1001300]";
-    public static ILogger Log = Xamarin.Forms.DependencyService.Get<ILogManager>().GetLog(classCode);
+    public static MyTagPocket.Interface.ILogger Log = Xamarin.Forms.DependencyService.Get<MyTagPocket.Interface.ILogManager>().GetLog(classCode);
 
     /// <summary>
     /// Check version and upgrade storage

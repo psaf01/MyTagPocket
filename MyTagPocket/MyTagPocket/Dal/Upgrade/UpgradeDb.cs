@@ -14,7 +14,7 @@ namespace MyTagPocket.Dal.Upgrade
   public class UpgradeDb : IUpgradeDbBase,IUpgradeDb
   {
     const string classCode = "[1000400]";
-    public static ILogger Log = Xamarin.Forms.DependencyService.Get<ILogManager>().GetLog(classCode);
+    public static MyTagPocket.Interface.ILogger Log = Xamarin.Forms.DependencyService.Get<MyTagPocket.Interface.ILogManager>().GetLog(classCode);
 
     /// <summary>
     /// Object locker for secure operations over databases

@@ -1,6 +1,4 @@
 ﻿using MyTagPocket.CoreUtil.Upgrade;
-using MyTagPocket.Dal.Upgrade;
-using MyTagPocket.Storage.Upgrade;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,7 +9,7 @@ namespace MyTagPocket
   public partial class App : Application
   {
     const string classCode = "[1001200]";
-    public static ILogger Log = Xamarin.Forms.DependencyService.Get<ILogManager>().GetLog(classCode);
+    public static Interface.ILogger Log = Xamarin.Forms.DependencyService.Get<Interface.ILogManager>().GetLog(classCode);
 
     public App()
     {
@@ -30,14 +28,27 @@ namespace MyTagPocket
       }
       if (Device.RuntimePlatform == Device.UWP)
       {
-        MainPage = new MainPageUwp();
+        MainPage = new Pages.MainPageUwp();
       }
       else
       {
-        MainPage = new MainPage();
+        MainPage = new Pages.MainPage();
       }
     }
 
+    public App(bool test)
+    {
+      InitializeComponent();
+
+      if (Device.RuntimePlatform == Device.UWP)
+      {
+        MainPage = new Pages.MainPageUwp();
+      }
+      else
+      {
+        MainPage = new Pages.MainPage();
+      }
+    }
     protected override void OnStart()
     {
       

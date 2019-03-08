@@ -10,7 +10,7 @@ namespace MyTagPocket.Dal.Repository
   public class TableVersionRepository : GenericRepository<TableVersion>, ITableVersionRepository
   {
     const string classCode = "[1000300]";
-    public static ILogger Log = Xamarin.Forms.DependencyService.Get<ILogManager>().GetLog(classCode);
+    public static MyTagPocket.Interface.ILogger Log = Xamarin.Forms.DependencyService.Get<MyTagPocket.Interface.ILogManager>().GetLog(classCode);
 
     SQLiteConnection db;
     /// <summary>

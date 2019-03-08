@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MyTagPocket
+namespace MyTagPocket.Interface
 {
   /// <summary>
   /// Interface Logger in application

@@ -16,7 +16,7 @@ namespace MyTagPocket.UWP
   sealed partial class App : Application
   {
     const string classCode = "[2000100]";
-    public static ILogger Log = Xamarin.Forms.DependencyService.Get<ILogManager>().GetLog(classCode);
+    public static Interface.ILogger Log = Xamarin.Forms.DependencyService.Get<Interface.ILogManager>().GetLog(classCode);
 
     /// <summary>
     /// Database MyTagPocket
@@ -40,7 +40,6 @@ namespace MyTagPocket.UWP
     /// <param name="e">Details about the launch request and process.</param>
     protected override void OnLaunched(LaunchActivatedEventArgs e)
     {
-      const string methodCode = "[2000101]";
 
       Frame rootFrame = Window.Current.Content as Frame;
 

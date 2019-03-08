@@ -79,8 +79,13 @@ namespace MyTagPocket.CoreUtil
       /// <summary>
       /// Contents notes
       /// </summary>
-      Contents
+      Contents,
+      /// <summary>
+      /// Theme application
+      /// </summary>
+      Themes
     }
+
     /// <summary>
     /// Application settings
     /// </summary>
@@ -89,6 +94,11 @@ namespace MyTagPocket.CoreUtil
     /// Contents notes
     /// </summary>
     public static readonly FileTypeEnum CONTENTS = new FileTypeEnum(FileType.Settings, "CONTENTS", "data");
+    
+    /// <summary>
+    /// Contents notes
+    /// </summary>
+    public static readonly FileTypeEnum THEMES = new FileTypeEnum(FileType.Themes, "THEMES", "cfg");
 
   }
 }

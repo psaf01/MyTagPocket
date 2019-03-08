@@ -7,7 +7,7 @@ namespace MyTagPocket.About
   public class About
   {
     const string classCode = "[1000200]";
-    public static ILogger Log = Xamarin.Forms.DependencyService.Get<ILogManager>().GetLog(classCode);
+    public static Interface.ILogger Log = Xamarin.Forms.DependencyService.Get<Interface.ILogManager>().GetLog(classCode);
 
     public About()
     {

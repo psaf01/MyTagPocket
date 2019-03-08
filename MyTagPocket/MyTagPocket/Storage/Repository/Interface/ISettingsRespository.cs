@@ -1,7 +1,4 @@
 ﻿using MyTagPocket.Storage.Entities.Settings;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MyTagPocket.Storage.Repository.Interface
 {
@@ -14,6 +11,18 @@ namespace MyTagPocket.Storage.Repository.Interface
     /// Save application global settings
     /// </summary>
     /// <param name="appGlobal">Application global settings</param>
-    void AppGlobalSave(AppGlobal appGlobal);
+    void Save(AppGlobal appGlobal);
+
+    /// <summary>
+    /// Load  application version
+    /// </summary>
+    /// <returns>Application version</returns>
+    void Load(Entities.Settings.Version version);
+
+    /// <summary>
+    /// Save application version
+    /// </summary>
+    /// <param name="Version">Application version</param>
+    void Save(Entities.Settings.Version version);
   }
 }
