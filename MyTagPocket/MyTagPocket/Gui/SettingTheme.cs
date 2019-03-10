@@ -4,73 +4,70 @@ using Xamarin.Forms;
 namespace MyTagPocket.Gui.Themes
 {
   /// <summary>
-  /// Actual theme application for GUI
+  /// Setting GUI theme application
   /// </summary>
-  public class Theme
+  public class SettingTheme
   {
     const string classCode = "[1001800]";
     public static MyTagPocket.Interface.ILogger Log = Xamarin.Forms.DependencyService.Get<MyTagPocket.Interface.ILogManager>().GetLog(classCode);
 
 
     /// <summary>
-    /// Load actual theme from resources of application
+    /// Initialize actual theme 
     /// </summary>
-    /// <returns>Actual theme in application</returns>
-    public Storage.Entities.Themes.Theme LoadFromResources()
+    public void InitializeTheme()
     {
-      Storage.Entities.Themes.Theme theme = new Storage.Entities.Themes.Theme();
-      TextBlockStyle(theme, true);
-      return theme;
+      Storage.Entities.Themes.Theme theme = new Storage.Entities.Themes.Theme
+      {
+        FileNameTeheme = ""
+      };
+      new Storage.Repository.ThemeRepository().Load(theme);
+
+      ErrorLabelStyle(theme);
     }
 
+    /// <summary>
+    /// Create sample theme and save to Storage
+    /// </summary>
+    public bool CreateSampleTheme()
+    {
+      const string methodCode = "[1001802]";
+      Log.Trace(methodCode, "Create sample theme");
+      Storage.Entities.Themes.Theme theme = new Storage.Entities.Themes.Theme
+      {
+        Description = Resources.ResourceApp.ThemeDescriptionExample,
+        Name = "SampleTheme"
+      };
+      return new Storage.Repository.ThemeRepository().Save(theme);
+    }
     /// <summary>
     /// Save theme to actual resources of application
     /// </summary>
     /// <param name="theme">Theme for setting</param>
     public void SaveToResource(Storage.Entities.Themes.Theme theme)
     {
-      TextBlockStyle(theme);
+      ErrorLabelStyle(theme);
     }
 
     /// <summary>
-    /// 
+    /// Error label style
     /// </summary>
     /// <param name="theme"></param>
     /// <param name="setFromResources">True = Load from Resources and set to object, False = Load from object and set to Resources</param>
-    private void TextBlockStyle(Storage.Entities.Themes.Theme theme, bool setFromResources = false)
+    private void ErrorLabelStyle(Storage.Entities.Themes.Theme theme)
     {
       const string methodCode = "[1001801]";
       string styleName = "ErrorLabelStyle";
-      Style style;
       try
       {
-        style = (Style)App.Current.Resources[styleName];
-        if (style == null)
-          throw new Exception($"Style [{styleName}] not found in Resources");
-
+        Style style = new Style(typeof(Label));
+        style.Setters.Add(new Setter() { Property = Label.TextColorProperty, Value = Color.FromHex(theme.BasicSetting.ErrorLabelColor) });
+        Application.Current.Resources[styleName] = style;
       }
-      catch (Exception ex)
+      catch (Exception)
       {
-        Log.Error(methodCode, "Theme", ex);
-        return;
+        Log.Error(methodCode, "Definition style Error label");
       }
-
-      if (setFromResources)
-      {
-
-        foreach (var prop in style.Setters)
-        {
-          if (prop.Property.PropertyName == "TextColor")
-            theme.BasicSetting.ErrorLabelColor = GetHexString((Color)prop.Value);
-        }
-        //typeof(Label)
-        return;
-      }
-
-      //Set resource from theme
-
-      Application.Current.Resources["TextBlockStyle"] = style;
-
     }
 
     /// <summary>

@@ -4,15 +4,5 @@
              xmlns:local="using:MyTagPocket"
              x:Class="MyTagPocket.App">
   <Application.Resources>
-    <Style x:Key="ErrorLabelStyle" TargetType="Label">
-      <Setter Property="TextColor" Value="#A14265" />
-      <Setter Property="FontSize" Value="14" />
-      <Setter Property="HorizontalOptions" Value="StartAndExpand" />
-      <Setter Property="VerticalOptions" Value="CenterAndExpand" />
-      <Setter Property="FontAttributes" Value="Bold" />
-      <Setter Property="VerticalTextAlignment" Value="Center" />
-      <Setter Property="LineBreakMode" Value="TailTruncation" />
-      <Setter Property="BackgroundColor" Value="Transparent" />
-    </Style>
   </Application.Resources>
 </Application>

@@ -19,7 +19,7 @@ namespace MyTagPocket.Dal.Upgrade
     /// <summary>
     /// Object locker for secure operations over databases
     /// </summary>
-    static object locker = new object();
+    static readonly object locker = new object();
 
     /// <summary>
     /// SQL database connection

@@ -27,31 +27,34 @@ namespace MyTagPocket.Storage.Repository
       try
       {
         Log.Trace(methodCode, $"Save theme [{theme.Name}]");
+        FileTypeEnum fileType = FileTypeEnum.THEMES;
+        theme.Description = Resources.ResourceApp.ThemeDescriptionExample;
         string jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(theme);
-        string path = DependencyService.Get<IFileHelper>().GetLocalFilePath(FileTypeEnum.THEMES, theme.Name);
+        string folder = DependencyService.Get<IFileHelper>().GetLocalFolderPath(fileType);
+        //check exist folder
+        if (!Directory.Exists(folder))
+        {
+          Directory.CreateDirectory(folder);
+        }
+
+        string path = DependencyService.Get<IFileHelper>().GetLocalFilePath(fileType, theme.Name);
+       
         File.WriteAllText(path, jsonString);
+        Log.Trace(methodCode, "Saved file {file}", new { file= path});
+
         return true;
       }
       catch (Exception ex)
       {
-        Log.Error(ex, methodCode, "Save setting");
+        Log.Error(ex, methodCode, "Save theme");
         return false;
       }
     }
 
     public bool Load(Theme theme)
     {
-      const string methodCode = "[1001602]";
-      Style textBlockStyle;
-      try
-      {
-        textBlockStyle = (Style)Application.Current.Resources["TextBlockStyle"];
-      }
-      catch (Exception ex)
-      {
-        // exception handling
-      }
-      
+      //Load default values
+      theme = new Theme();
       return true;
     }
 

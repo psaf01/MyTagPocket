@@ -20,68 +20,68 @@ namespace MyTagPocket.Interface
     /// <summary>
     /// Trace
     /// </summary>
-    /// <param name="codeMethod">Code method for localization</param>
+    /// <param name="methodCode">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Arguments</param>
-    void Trace(string codeMethod, string text, params object[] args);
+    void Trace(string methodCode, string text, params object[] args);
 
     /// <summary>
     /// Debug
     /// </summary>
-    /// <param name="codeMethod">Code method for localization</param>
+    /// <param name="methodCode">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Agruments</param>
-    void Debug(string codeMethod, string text, params object[] args);
+    void Debug(string methodCode, string text, params object[] args);
 
     /// <summary>
     /// Informatin
     /// </summary>
-    /// <param name="codeMethod">Code method for localization</param>
+    /// <param name="methodCode">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Arguments</param>
-    void Info(string codeMethod, string text, params object[] args);
+    void Info(string methodCode, string text, params object[] args);
 
     /// <summary>
     /// Warning
     /// </summary>
-    /// <param name="codeMethod">Code method for localization</param>
+    /// <param name="methodCode">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Arguments</param>
-    void Warn(string codeMethod, string text, params object[] args);
+    void Warn(string methodCode, string text, params object[] args);
 
     /// <summary>
     /// Error
     /// </summary>
-    /// <param name="codeMethod">Code method for localization</param>
+    /// <param name="methodCode">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Arguments</param>
-    void Error(string codeMethod, string text, params object[] args);
+    void Error(string methodCode, string text, params object[] args);
 
     /// <summary>
     /// Error
     /// </summary>
     /// <param name="ex">Exception</param>
-    /// <param name="codeMethod">Code method for localization</param>
+    /// <param name="methodCode">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Arguments</param>
-    void Error(Exception ex, string codeMethod, string text, params object[] args);
+    void Error(Exception ex, string methodCode, string text, params object[] args);
 
     /// <summary>
     /// Fatal error
     /// </summary>
-    /// <param name="codeMethod">Code method for localization</param>
+    /// <param name="methodCode">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Arguments</param>
-    void Fatal(string codeMethod, string text, params object[] args);
+    void Fatal(string methodCode, string text, params object[] args);
 
     /// <summary>
     /// Fatal error
     /// </summary>
     /// <param name="ex">Exception</param>
-    /// <param name="codeMethod">Code method for localization</param>
+    /// <param name="methodCode">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Arguments</param>
-    void Fatal(Exception ex, string codeMethod, string text, params object[] args);
+    void Fatal(Exception ex, string methodCode, string text, params object[] args);
 
     /// <summary>
     /// Audit

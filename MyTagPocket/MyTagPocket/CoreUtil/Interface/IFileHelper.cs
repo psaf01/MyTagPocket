@@ -10,6 +10,13 @@ namespace MyTagPocket.CoreUtil.Interface
   public interface IFileHelper
   {
     /// <summary>
+    /// Get local folder path
+    /// </summary>
+    /// <param name="type">File type</param>
+    /// <returns>Full path folder</returns>
+    string GetLocalFolderPath(FileTypeEnum type);
+
+    /// <summary>
     /// Get local file path
     /// </summary>
     /// <param name="type">File type</param>

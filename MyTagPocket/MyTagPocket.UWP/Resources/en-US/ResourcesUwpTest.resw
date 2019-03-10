@@ -117,27 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutApp" xml:space="preserve">
-    <value>About</value>
-    <comment>About</comment>
-  </data>
-  <data name="AppHelp" xml:space="preserve">
-    <value>Help</value>
-    <comment>App</comment>
-  </data>
-  <data name="InitAppFatalError" xml:space="preserve">
-    <value>An error occurred during application initialization</value>
-    <comment>App</comment>
-  </data>
-  <data name="Test" xml:space="preserve">
-    <value>Test</value>
-  </data>
-  <data name="ThemeDescription" xml:space="preserve">
-    <value>The basic theme for MyTagPocket.</value>
-    <comment>Gui</comment>
-  </data>
-  <data name="ThemeDescriptionExample" xml:space="preserve">
-    <value>It serves as an example of the Theme definition in the application. Changes in this file do not affect the application itself.</value>
-    <comment>Gui</comment>
+  <data name="no" xml:space="preserve">
+    <value />
   </data>
 </root>

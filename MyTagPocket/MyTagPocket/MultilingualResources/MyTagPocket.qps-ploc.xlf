@@ -9,15 +9,31 @@
         <trans-unit id="AboutApp" translate="yes" xml:space="preserve">
           <source>About</source>
           <target state="final">About</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">About application</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">About</note>
         </trans-unit>
         <trans-unit id="AppHelp" translate="yes" xml:space="preserve">
           <source>Help</source>
           <target state="final">Help</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">App</note>
         </trans-unit>
         <trans-unit id="InitAppFatalError" translate="yes" xml:space="preserve">
           <source>An error occurred during application initialization</source>
           <target state="final">An error occurred during application initialization</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">App</note>
+        </trans-unit>
+        <trans-unit id="ThemeDescription" translate="yes" xml:space="preserve">
+          <source>The basic theme for MyTagPocket.</source>
+          <target state="new">The basic theme for MyTagPocket.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Gui</note>
+        </trans-unit>
+        <trans-unit id="ThemeDescriptionExample" translate="yes" xml:space="preserve">
+          <source>It serves as an example of the Theme definition in the application. Changes in this file do not affect the application itself.</source>
+          <target state="new">It serves as an example of the Theme definition in the application. Changes in this file do not affect the application itself.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Gui</note>
+        </trans-unit>
+        <trans-unit id="Test" translate="yes" xml:space="preserve">
+          <source>Test</source>
+          <target state="new">Test</target>
         </trans-unit>
       </group>
     </body>

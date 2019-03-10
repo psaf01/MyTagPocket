@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-  <file datatype="xml" source-language="en" target-language="cs" original="MYTAGPOCKET/RESOURCES/RESOURCEAPP.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+  <file datatype="xml" source-language="en" target-language="en-US" original="MYTAGPOCKET/RESOURCES/RESOURCEAPP.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
     <header>
       <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.6901.0" tool-company="Microsoft" />
     </header>
@@ -8,22 +8,22 @@
       <group id="MYTAGPOCKET/RESOURCES/RESOURCEAPP.RESX" datatype="resx">
         <trans-unit id="AboutApp" translate="yes" xml:space="preserve">
           <source>About</source>
-          <target state="final">O aplikaci</target>
+          <target state="new">About</target>
           <note from="MultilingualBuild" annotates="source" priority="2">About</note>
         </trans-unit>
         <trans-unit id="AppHelp" translate="yes" xml:space="preserve">
           <source>Help</source>
-          <target state="final">Nápověda</target>
+          <target state="new">Help</target>
           <note from="MultilingualBuild" annotates="source" priority="2">App</note>
         </trans-unit>
         <trans-unit id="InitAppFatalError" translate="yes" xml:space="preserve">
           <source>An error occurred during application initialization</source>
-          <target state="final">Během aplikace došlo k chybě.</target>
+          <target state="new">An error occurred during application initialization</target>
           <note from="MultilingualBuild" annotates="source" priority="2">App</note>
         </trans-unit>
         <trans-unit id="ThemeDescription" translate="yes" xml:space="preserve">
           <source>The basic theme for MyTagPocket.</source>
-          <target state="translated">Základní Theme pro aplikaci MyTagPocket.</target>
+          <target state="new">The basic theme for MyTagPocket.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Gui</note>
         </trans-unit>
         <trans-unit id="ThemeDescriptionExample" translate="yes" xml:space="preserve">

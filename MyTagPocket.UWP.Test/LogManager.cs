@@ -2,6 +2,7 @@
 using NLog;
 using NLog.Config;
 using NLog.Targets;
+using System;
 using System.IO;
 using Xamarin.Forms;
 
@@ -27,17 +28,18 @@ namespace MyTagPocket.UWP.Test
 #endif
       //File
       //string folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-      Windows.Storage.StorageFolder folder = Windows.Storage.ApplicationData.Current.LocalFolder;
+      string  path = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
+
       var fileInfoTarget = new FileTarget("FileInfo")
       {
-        FileName = Path.Combine(folder.Path, "Log-${shortdate}.txt"),
+        FileName = Path.Combine(path, "Log-${shortdate}.log"),
         Layout = "${longdate} ${pad:padding=5:inner=${level:uppercase=true}} ${message}  ${exception}",
         MaxArchiveFiles = 5,
         ArchiveEvery = FileArchivePeriod.Day,
       };
       var fileErrorTarget = new FileTarget("FileError")
       {
-        FileName = Path.Combine(folder.Path, "LogError-${shortdate}.txt"),
+        FileName = Path.Combine(path, "LogError-${shortdate}.log"),
         Layout = "${longdate} ${pad:padding=5:inner=${level:uppercase=true}} ${message}  ${exception}",
         MaxArchiveFiles = 5,
         ArchiveEvery = FileArchivePeriod.Day,
@@ -45,7 +47,7 @@ namespace MyTagPocket.UWP.Test
 
       var fileTraceTarget = new FileTarget("FileTrace")
       {
-        FileName = Path.Combine(folder.Path, "LogTrace-${shortdate}.txt"),
+        FileName = Path.Combine(path, "LogTrace-${shortdate}.log"),
         Layout = "${longdate} ${pad:padding=5:inner=${level:uppercase=true}} ${message}  ${exception}",
         MaxArchiveFiles = 5,
         ArchiveEvery = FileArchivePeriod.Day,

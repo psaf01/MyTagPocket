@@ -2,14 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyTagPocket.Pages.FatalError">
-    <ContentPage.Content>
-        <StackLayout
+  <ContentPage.Content>
+    <StackLayout
           BackgroundColor="#336699">
-            <Label x:Name="ErrorText"
+      <Label x:Name="ErrorText"
+                    Style="{DynamicResource ErrorLabelStyle}"
                    Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
 
-        </StackLayout>
-    </ContentPage.Content>
+    </StackLayout>
+  </ContentPage.Content>
 </ContentPage>

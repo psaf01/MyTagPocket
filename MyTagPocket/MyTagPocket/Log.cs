@@ -28,91 +28,91 @@ namespace MyTagPocket
     /// <summary>
     /// Debug
     /// </summary>
-    /// <param name="codeMethod">Code method for localization</param>
+    /// <param name="methodCode">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Agruments</param>
-    public void Debug(string codeMethod, string text, params object[] args)
+    public void Debug(string methodCode, string text, params object[] args)
     {
-      log.Debug($"{ClassCode} {codeMethod} {text}", args);
+      log.Debug($"{ClassCode} {methodCode} {text}", args);
     }
 
     /// <summary>
     /// Error
     /// </summary>
-    /// <param name="codeMethod">Code method for localization</param>
+    /// <param name="methodCode">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Arguments</param>
-    public void Error(string codeMethod, string text, params object[] args)
+    public void Error(string methodCode, string text, params object[] args)
     {
-      log.Error($"{ClassCode} {codeMethod} {text}", args);
+      log.Error($"{ClassCode} {methodCode} {text}", args);
     }
 
     /// <summary>
     /// Error
     /// </summary>
     /// <param name="ex">Exception</param>
-    /// <param name="codeMethod">Code method for localization</param>
+    /// <param name="methodCode">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Arguments</param>
-    public void Error(Exception ex, string codeMethod, string text, params object[] args)
+    public void Error(Exception ex, string methodCode, string text, params object[] args)
     {
-      log.Error(ex, $"{ClassCode} {codeMethod} {text}", args);
+      log.Error(ex, $"{ClassCode} {methodCode} {text}", args);
     }
 
     /// <summary>
     /// Fatal error
     /// </summary>
-    /// <param name="codeMethod">Code method for localization</param>
+    /// <param name="methodCode">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Arguments</param>
-    public void Fatal(string codeMethod, string text, params object[] args)
+    public void Fatal(string methodCode, string text, params object[] args)
     {
-      log.Fatal($"{ClassCode} {codeMethod} {text}", args);
+      log.Fatal($"{ClassCode} {methodCode} {text}", args);
     }
 
     /// <summary>
     /// Fatal error
     /// </summary>
     /// <param name="ex">Exception</param>
-    /// <param name="codeMethod">Code method for localization</param>
+    /// <param name="methodCode">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Arguments</param>
-    public void Fatal(Exception ex, string codeMethod, string text, params object[] args)
+    public void Fatal(Exception ex, string methodCode, string text, params object[] args)
     {
-      log.Fatal(ex, $"{ClassCode} {codeMethod} {text}", args);
+      log.Fatal(ex, $"{ClassCode} {methodCode} {text}", args);
     }
 
     /// <summary>
     /// Informatin
     /// </summary>
-    /// <param name="codeMethod">Code method for localization</param>
+    /// <param name="methodCode">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Arguments</param>
-    public void Info(string codeMethod, string text, params object[] args)
+    public void Info(string methodCode, string text, params object[] args)
     {
-      log.Info($"{ClassCode} {codeMethod} {text}", args);
+      log.Info($"{ClassCode} {methodCode} {text}", args);
     }
 
     /// <summary>
     /// Trace
     /// </summary>
-    /// <param name="codeMethod">Code method for localization</param>
+    /// <param name="methodCode">Code method for localization</param>
     /// <param name="text">Message</param>
     /// <param name="args">Arguments</param>
-    public void Trace(string codeMethod, string text, params object[] args)
+    public void Trace(string methodCode, string text, params object[] args)
     {
-      log.Trace($"{ClassCode} {codeMethod} {text}", args);
+      log.Trace($"{ClassCode} {methodCode} {text}", args);
     }
 
     /// <summary>
     /// Warning
     /// </summary>
-    /// <param name="codeMethod">Code method for localization</param>
+    /// <param name="methodCode">Code method for localization</param>
     /// <param name="text">Text message</param>
     /// <param name="args">Arument</param>
-    public void Warn(string codeMethod, string text, params object[] args)
+    public void Warn(string methodCode, string text, params object[] args)
     {
-      log.Warn($"{ClassCode} {codeMethod} {text}", args);
+      log.Warn($"{ClassCode} {methodCode} {text}", args);
     }
 
     /// <summary>

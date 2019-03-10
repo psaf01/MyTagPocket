@@ -1,19 +1,20 @@
 ﻿using MyTagPocket.CoreUtil;
 using MyTagPocket.CoreUtil.Interface;
-using MyTagPocket.UWP.CoreUtil;
+using MyTagPocket.UWP.Test.CoreUtil;
 using System;
 using System.IO;
 using Windows.Storage;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(FileHelper))]
-namespace MyTagPocket.UWP.CoreUtil
+namespace MyTagPocket.UWP.Test.CoreUtil
 {
   /// <summary>
   /// File helper for UWP application
   /// </summary>
   public class FileHelper :IFileHelper
   {
+
     /// <summary>
     /// Get local folder path
     /// </summary>
@@ -43,6 +44,10 @@ namespace MyTagPocket.UWP.CoreUtil
         case FileTypeEnum.FileType.Contents:
           folder = "contents";
           ext = "." + FileTypeEnum.CONTENTS.Ext;
+          break;
+        case FileTypeEnum.FileType.Themes:
+          folder = "themes";
+          ext = "." + FileTypeEnum.THEMES.Ext;
           break;
         default:
           folder = "temp";

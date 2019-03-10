@@ -14,12 +14,18 @@
   </resheader>
   <data name="AboutApp" xml:space="preserve">
     <value>O aplikaci</value>
-    <comment>About application</comment>
+    <comment>About</comment>
   </data>
   <data name="AppHelp" xml:space="preserve">
     <value>Nápověda</value>
+    <comment>App</comment>
   </data>
   <data name="InitAppFatalError" xml:space="preserve">
     <value>Během aplikace došlo k chybě.</value>
+    <comment>App</comment>
+  </data>
+  <data name="ThemeDescription" xml:space="preserve">
+    <value>Základní Theme pro aplikaci MyTagPocket.</value>
+    <comment>Gui</comment>
   </data>
 </root>

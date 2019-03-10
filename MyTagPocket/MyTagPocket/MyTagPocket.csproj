@@ -24,7 +24,7 @@
     <PackageReference Include="Newtonsoft.Json.Encryption" Version="2.1.0" />
     <PackageReference Include="NLog" Version="4.5.11" />
     <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
-    <PackageReference Include="Xamarin.Forms" Version="3.5.0.169047" />
+    <PackageReference Include="Xamarin.Forms" Version="3.6.0.220655" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dal\Entities\Artifacts\" />

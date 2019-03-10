@@ -12,8 +12,11 @@ namespace MyTagPocket.Storage.Entities.Themes
     /// <summary>
     /// Default baground page color
     /// </summary>
-    public string DefaultBackgroundPageColor { get; set; }
+    public string DefaultBackgroundPageColor { get; set; } = "#336699";
 
-    public string ErrorLabelColor { get; set; }
+    /// <summary>
+    /// Default error label text color
+    /// </summary>
+    public string ErrorLabelColor { get; set; } = "#A54440";
   }
 }

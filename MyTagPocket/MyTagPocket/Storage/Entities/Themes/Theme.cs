@@ -16,17 +16,17 @@ namespace MyTagPocket.Storage.Entities.Themes
     /// <summary>
     /// Name theme
     /// </summary>
-    public string Name { get; set; }
+    public string Name { get; set; } = "MyTagPocket";
 
     /// <summary>
     /// File name theme in storage
     /// </summary>
-    public string FileNameTeheme { get; set; }
+    public string FileNameTeheme { get; set; } = "MyTagPocket";
 
     /// <summary>
     /// Version theme
     /// </summary>
-    public string Version { get; set; }
+    public string Version { get; set; } = "1";
 
     /// <summary>
     /// Version theme, number. If failed during transfer from string will be version 1.
@@ -36,8 +36,7 @@ namespace MyTagPocket.Storage.Entities.Themes
     {
       get
       {
-        int version = 1;
-        int.TryParse(Version, out version);
+        int version = int.TryParse(Version, out  version) ? version : 1;
         return version;
       }
     }
@@ -45,7 +44,7 @@ namespace MyTagPocket.Storage.Entities.Themes
     /// <summary>
     /// Description theme
     /// </summary>
-    public string Description { get; set; }
+    public string Description { get; set; } = Resources.ResourceApp.ThemeDescription;
 
     /// <summary>
     /// Group Basic settings

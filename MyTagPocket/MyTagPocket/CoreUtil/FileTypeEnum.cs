@@ -98,7 +98,7 @@ namespace MyTagPocket.CoreUtil
     /// <summary>
     /// Contents notes
     /// </summary>
-    public static readonly FileTypeEnum THEMES = new FileTypeEnum(FileType.Themes, "THEMES", "cfg");
+    public static readonly FileTypeEnum THEMES = new FileTypeEnum(FileType.Themes, "THEMES", "thm");
 
   }
 }

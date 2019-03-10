@@ -86,5 +86,32 @@ namespace MyTagPocket.Resources {
                 return ResourceManager.GetString("InitAppFatalError", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test.
+        /// </summary>
+        public static string Test {
+            get {
+                return ResourceManager.GetString("Test", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The basic theme for MyTagPocket..
+        /// </summary>
+        public static string ThemeDescription {
+            get {
+                return ResourceManager.GetString("ThemeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It serves as an example of the Theme definition in the application. Changes in this file do not affect the application itself..
+        /// </summary>
+        public static string ThemeDescriptionExample {
+            get {
+                return ResourceManager.GetString("ThemeDescriptionExample", resourceCulture);
+            }
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace MyTagPocket.Dal.Upgrade
     /// <summary>
     /// Object locker for secure operations over databases
     /// </summary>
-    static object locker = new object();
+    static readonly object locker = new object();
 
     /// <summary>
     /// SQL database connection
@@ -137,9 +137,11 @@ namespace MyTagPocket.Dal.Upgrade
       try
       {
         CreateTable<Entities.TableVersion>();
-        TableVersion table = new TableVersion();
-        table.ActualVersion = actualVersion;
-        table.TableName = typeof(TableVersion).Name;
+        TableVersion table = new TableVersion
+        {
+          ActualVersion = actualVersion,
+          TableName = typeof(TableVersion).Name
+        };
         _Db.Insert(table);
       }
       catch (Exception ex)
