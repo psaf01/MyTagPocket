@@ -3,6 +3,7 @@ using MyTagPocket.CoreUtil.Interface;
 using MyTagPocket.UWP.CoreUtil;
 using System;
 using System.IO;
+using System.IO.Abstractions;
 using Windows.Storage;
 using Xamarin.Forms;
 
@@ -14,7 +15,15 @@ namespace MyTagPocket.UWP.CoreUtil
   /// </summary>
   public class FileHelper :IFileHelper
   {
-    /// <summary>
+
+    public FileHelper()
+    {
+      FileSystemStorage = new FileSystem();
+    }
+
+    public IFileSystem FileSystemStorage { get;set;}
+
+    /// <summary>Abstractions.IFileSystem
     /// Get local folder path
     /// </summary>
     /// <param name="type">File type</param>
@@ -84,6 +93,28 @@ namespace MyTagPocket.UWP.CoreUtil
     {
       string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
       return Path.Combine(path, "Contents");
+    }
+
+    /// <summary>
+    /// Save text file
+    /// </summary>
+    /// <param name="path">Full path file</param>
+    /// <param name="fileContent">Content file</param>
+    /// <returns>True = save ok</returns>
+    public void SaveFile(string path, string fileContent)
+    {
+      FileSystemStorage.File.WriteAllText(path, fileContent);
+    }
+
+    /// <summary>
+    /// Load text file
+    /// </summary>
+    /// <param name="path">Full path file</param>
+    /// <param name="fileContent">Content file</param>
+    /// <returns>True = load ok</returns>
+    public string LoadFile(string path)
+    {
+      return FileSystemStorage.File.ReadAllText(path);
     }
   }
 }

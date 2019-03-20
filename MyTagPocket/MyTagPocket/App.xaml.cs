@@ -1,4 +1,4 @@
-﻿using MyTagPocket.CoreUtil.Upgrade;
+﻿using MyTagPocket.Exceptions;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -18,36 +18,26 @@ namespace MyTagPocket
       InitializeComponent();
       try
       {
-        var upgradeApp = new UpgradeApp();
-        upgradeApp.CheckAndUpgradeStorage();
-        upgradeApp.CheckAndUpgradeDal();
+        MainPage = new Pages.HomePage();
+      }
+      catch(FatalErrorException ex)
+      {
+        Log.Fatal(methodCode, "Init app", ex);
+        MainPage = new Pages.FatalError(ex);
       }
       catch (Exception ex)
       {
         Log.Fatal(methodCode, "Init app", ex);
+        MainPage = new Pages.FatalError(MyTagPocket.Resources.ResourceApp.FatalErrorUnexpected);
       }
-      if (Device.RuntimePlatform == Device.UWP)
-      {
-        MainPage = new Pages.MainPageUwp();
-      }
-      else
-      {
-        MainPage = new Pages.MainPage();
-      }
+     
     }
 
     public App(bool test)
     {
       InitializeComponent();
-
-      if (Device.RuntimePlatform == Device.UWP)
-      {
-        MainPage = new Pages.MainPageUwp();
-      }
-      else
-      {
-        MainPage = new Pages.MainPage();
-      }
+      MainPage = new Pages.HomePage();
+     
     }
     protected override void OnStart()
     {

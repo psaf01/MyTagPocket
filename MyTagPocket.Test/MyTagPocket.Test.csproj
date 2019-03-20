@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Storage\" />
+    <PackageReference Include="System.IO.Abstractions" Version="3.1.1" />
+    <PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="3.1.1" />
   </ItemGroup>
 
   <ItemGroup>

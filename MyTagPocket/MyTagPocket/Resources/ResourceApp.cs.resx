@@ -28,4 +28,8 @@
     <value>Základní Theme pro aplikaci MyTagPocket.</value>
     <comment>Gui</comment>
   </data>
+  <data name="FatalErrorUnexpected" xml:space="preserve">
+    <value>Neočekáváná chyba v aplikaci.</value>
+    <comment>Error</comment>
+  </data>
 </root>

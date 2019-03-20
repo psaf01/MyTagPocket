@@ -2,7 +2,10 @@
 using MyTagPocket.CoreUtil.Interface;
 using MyTagPocket.UWP.Test.CoreUtil;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.IO.Abstractions;
+using System.IO.Abstractions.TestingHelpers;
 using Windows.Storage;
 using Xamarin.Forms;
 
@@ -14,6 +17,23 @@ namespace MyTagPocket.UWP.Test.CoreUtil
   /// </summary>
   public class FileHelper :IFileHelper
   {
+    const string classCode = "[9001200]";
+    public static Interface.ILogger Log = DependencyService.Get<Interface.ILogManager>().GetLog(classCode);
+
+    public IFileSystem FileSystemStorage { get; set; }
+
+    /// <summary>
+    /// Fake root application path
+    /// </summary>
+    private const string _RootTestApp = @"c:\MyTagPocket";
+
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    public FileHelper()
+    {
+      FileSystemStorage = MockFileSystemStorage.MockFileSystem;
+    }
 
     /// <summary>
     /// Get local folder path
@@ -53,13 +73,12 @@ namespace MyTagPocket.UWP.Test.CoreUtil
           folder = "temp";
           break;
       }
-      string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 
       if (String.IsNullOrEmpty(filename))
       {
-        return Path.Combine(path, folder);
+        return Path.Combine(_RootTestApp, folder);
       }
-      return Path.Combine(path, folder, $"{filename}{ext}");
+      return Path.Combine(_RootTestApp, folder, $"{filename}{ext}");
     }
       /// <summary>
       /// Get full path for application database
@@ -67,8 +86,7 @@ namespace MyTagPocket.UWP.Test.CoreUtil
       /// <returns></returns>
       public string GetPathAppDb()
     {
-      string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-      return Path.Combine(path, "MyTagPocket.db3");
+      return Path.Combine(_RootTestApp, "MyTagPocket.db3");
     }
 
     /// <summary>
@@ -77,8 +95,7 @@ namespace MyTagPocket.UWP.Test.CoreUtil
     /// <returns></returns>
     public string GetPathContentDb()
     {
-      string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-      return Path.Combine(path, GetPathContent(), "ContentList.db3");
+      return Path.Combine(_RootTestApp, GetPathContent(), "ContentList.db3");
     }
 
     /// <summary>
@@ -87,8 +104,33 @@ namespace MyTagPocket.UWP.Test.CoreUtil
     /// <returns></returns>
     public string GetPathContent()
     {
-      string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-      return Path.Combine(path, "Contents");
+      return Path.Combine(_RootTestApp, "Contents");
+    }
+
+    /// <summary>
+    /// Save text file
+    /// </summary>
+    /// <param name="path">Full path file</param>
+    /// <param name="fileContent">Content file</param>
+    /// <returns>True = save ok</returns>
+    public void SaveFile(string path, string fileContent)
+    {
+      FileSystemStorage.File.WriteAllText(path, fileContent);
+    }
+
+    /// <summary>
+    /// Load file from Mock file system
+    /// </summary>
+    /// <param name="path">Full path</param>
+    /// <param name="fileContent">Return text file content</param>
+    /// <returns>True = load OK</returns>
+    public string LoadFile(string path)
+    {
+      if (MockFileSystemStorage.MockFileSystem.FileExists(path))
+      {
+        return MockFileSystemStorage.MockFileSystem.File.ReadAllText(path);
+      }
+      return null;
     }
   }
 }

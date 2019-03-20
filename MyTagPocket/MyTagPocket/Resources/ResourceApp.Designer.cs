@@ -79,6 +79,15 @@ namespace MyTagPocket.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An unexpected error in the application.
+        /// </summary>
+        public static string FatalErrorUnexpected {
+            get {
+                return ResourceManager.GetString("FatalErrorUnexpected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred during application initialization.
         /// </summary>
         public static string InitAppFatalError {

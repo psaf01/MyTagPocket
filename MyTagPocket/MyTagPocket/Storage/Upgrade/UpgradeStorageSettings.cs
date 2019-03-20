@@ -5,6 +5,7 @@ using MyTagPocket.Storage.Upgrade.Interface;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Abstractions;
 using System.Text;
 using Xamarin.Forms;
 
@@ -13,7 +14,7 @@ namespace MyTagPocket.Storage.Upgrade
   /// <summary>
   /// Upgrade settings storage
   /// </summary>
-  public class UpgradeStorageSettings : IUpgradeStorageSettings
+  public class UpgradeStorageSettings : IUpgradeStorageBase
   {
     const string classCode = "[1000700]";
     public static MyTagPocket.Interface.ILogger Log = Xamarin.Forms.DependencyService.Get<MyTagPocket.Interface.ILogManager>().GetLog(classCode);
@@ -26,7 +27,7 @@ namespace MyTagPocket.Storage.Upgrade
       const string methodCode = "[1000701]";
       try
       {
-        UpgradeVesion();
+        //UpgradeVesion();
       }
       catch (Exception ex)
       {

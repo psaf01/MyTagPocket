@@ -125,6 +125,10 @@
     <value>Help</value>
     <comment>App</comment>
   </data>
+  <data name="FatalErrorUnexpected" xml:space="preserve">
+    <value>An unexpected error in the application</value>
+    <comment>Error</comment>
+  </data>
   <data name="InitAppFatalError" xml:space="preserve">
     <value>An error occurred during application initialization</value>
     <comment>App</comment>

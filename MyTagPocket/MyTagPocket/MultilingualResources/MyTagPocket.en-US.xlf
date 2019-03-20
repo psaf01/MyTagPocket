@@ -35,6 +35,11 @@
           <source>Test</source>
           <target state="new">Test</target>
         </trans-unit>
+        <trans-unit id="FatalErrorUnexpected" translate="yes" xml:space="preserve">
+          <source>An unexpected error in the application</source>
+          <target state="new">An unexpected error in the application</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Error</note>
+        </trans-unit>
       </group>
     </body>
   </file>

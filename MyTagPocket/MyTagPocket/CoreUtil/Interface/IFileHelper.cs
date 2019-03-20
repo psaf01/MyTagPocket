@@ -1,14 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.IO.Abstractions;
 
 namespace MyTagPocket.CoreUtil.Interface
 {
   /// <summary>
-  /// Helper for files and folders
+  /// Helper for files and folders in file system on device
   /// </summary>
   public interface IFileHelper
   {
+
+    /// <summary>
+    /// File system on device
+    /// </summary>
+    IFileSystem FileSystemStorage { get; set; }
+
     /// <summary>
     /// Get local folder path
     /// </summary>
@@ -41,5 +45,19 @@ namespace MyTagPocket.CoreUtil.Interface
     /// </summary>
     /// <returns></returns>
     string GetPathContent();
+
+    /// <summary>
+    /// Save text file
+    /// </summary>
+    /// <param name="path">Full path file</param>
+    /// <param name="fileContent">Text content file for save</param>
+    void SaveFile(string path, string fileContent);
+
+    /// <summary>
+    /// Load text file
+    /// </summary>
+    /// <param name="path">Full path file</param>
+    /// <returns>Text context</returns>
+    string LoadFile(string path);
   }
 }

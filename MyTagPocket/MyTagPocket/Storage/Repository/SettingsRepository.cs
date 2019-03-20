@@ -24,8 +24,9 @@ namespace MyTagPocket.Storage.Repository
       {
         Log.Trace(methodCode, "Save settings application");
         string jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(appGlobal);
-        string path = DependencyService.Get<IFileHelper>().GetLocalFilePath(FileTypeEnum.SETTINGS, typeof(Storage.Entities.Settings.AppGlobal).Name);
-        File.WriteAllText(path, jsonString);
+        var fileHelper = DependencyService.Get<IFileHelper>();
+        string path = fileHelper.GetLocalFilePath(FileTypeEnum.SETTINGS, typeof(AppGlobal).Name);
+        fileHelper.SaveFile(path, jsonString);
       }
       catch (Exception ex)
       {

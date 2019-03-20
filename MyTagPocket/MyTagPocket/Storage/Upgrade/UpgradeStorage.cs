@@ -11,25 +11,12 @@ namespace MyTagPocket.Storage.Upgrade
   /// <summary>
   /// Upgrade storage
   /// </summary>
-  public class UpgradeStorage : IUpgradeStorage
+  public class UpgradeStorage : IUpgradeStorageBase
   {
     const string classCode = "[1000100]";
     public static MyTagPocket.Interface.ILogger Log = Xamarin.Forms.DependencyService.Get<MyTagPocket.Interface.ILogManager>().GetLog(classCode);
-    private IUpgradeStorageContents _UpgradeStorageContents;
-    private IUpgradeStorageSettings _UpgradeStorageSettings;
     #region Public method
     
-    /// <summary>
-    /// Construktor
-    /// </summary>
-    /// <param name="upgradeStorageSettings">Upgrade settings storage</param>
-    /// <param name="upgradeStorageContents">Upgrade contents storage</param>
-    public UpgradeStorage(IUpgradeStorageSettings upgradeStorageSettings, IUpgradeStorageContents upgradeStorageContents)
-    {
-      _UpgradeStorageContents = upgradeStorageContents;
-      _UpgradeStorageSettings = upgradeStorageSettings;
-    }
-
     /// <summary>
     /// Check and if necessary upgrade storage
     /// </summary>
@@ -45,13 +32,14 @@ namespace MyTagPocket.Storage.Upgrade
           Log.Trace(methodCode, "End check. Storage actual");
           return;
         }
-        _UpgradeStorageSettings.CheckAndUpgrade();
-        _UpgradeStorageContents.CheckAndUpgrade();
+        new UpgradeStorageSettings().CheckAndUpgrade();
+        new UpgradeStorageContents().CheckAndUpgrade();
         var repoSett = new SettingsRepository();
+        //write actual version application if finished upgrade OK
         var ver = new Entities.Settings.Version();
         repoSett.Load(ver);
         ver.Ver = ver.GetActuaAssemblylVersion();
-        repoSett.Save(ver);
+        repoSett.Save(ver); 
         Log.Trace(methodCode, "End Check And Upgrade application storage");
       }
       catch(Exception ex)
@@ -80,6 +68,7 @@ namespace MyTagPocket.Storage.Upgrade
       {
         return false;
       }
+
       string pathVersion = DependencyService.Get<IFileHelper>().GetLocalFilePath(FileTypeEnum.SETTINGS, typeof(Storage.Entities.Settings.Version).Name);
       if (File.Exists(pathVersion))
       {

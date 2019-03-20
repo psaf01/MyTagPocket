@@ -41,6 +41,13 @@ namespace MyTagPocket.UWP
     protected override void OnLaunched(LaunchActivatedEventArgs e)
     {
 
+#if DEBUG
+      if (System.Diagnostics.Debugger.IsAttached)
+      {
+        this.DebugSettings.EnableFrameRateCounter = true;
+      }
+#endif
+
       Frame rootFrame = Window.Current.Content as Frame;
 
       // Do not repeat app initialization when the Window already has content,
@@ -51,12 +58,12 @@ namespace MyTagPocket.UWP
         rootFrame = new Frame();
 
         rootFrame.NavigationFailed += OnNavigationFailed;
-        
+        Xamarin.Forms.Forms.Init(e);
         if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
         {
           //TODO: Load state from previously suspended application
         }
-        Xamarin.Forms.Forms.Init(e);
+
         // Place the frame in the current Window
         Window.Current.Content = rootFrame;
       }
