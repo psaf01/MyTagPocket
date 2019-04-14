@@ -33,8 +33,8 @@ namespace MyTagPocket.Pages
             {
                 MenuItems = new ObservableCollection<HomePageMenuItem>(new[]
                 {
-                    new HomePageMenuItem { Id = 0, Title = "Page 1" },
-                    new HomePageMenuItem { Id = 1, Title = "Page 2" },
+                    new HomePageMenuItem { Id = 0, Title = "Page 1", TargetType = typeof(FatalError)},
+                    new HomePageMenuItem { Id = 1, Title = "Page 2", TargetType= typeof(Settings.UpgradePage) },
                     new HomePageMenuItem { Id = 2, Title = "Page 3" },
                     new HomePageMenuItem { Id = 3, Title = "Page 4" },
                     new HomePageMenuItem { Id = 4, Title = "Page 5" },

@@ -33,7 +33,9 @@ namespace MyTagPocket.Pages
       var item = e.SelectedItem as HomePageMenuItem;
       if (item == null)
         return;
-
+      /*if (e.SelectedItem is HomePageMenuItem item)
+        return;
+      */
       var page = (Page)Activator.CreateInstance(item.TargetType);
       page.Title = item.Title;
 
