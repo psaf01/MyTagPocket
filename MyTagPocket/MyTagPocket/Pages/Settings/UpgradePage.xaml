@@ -4,11 +4,11 @@
              x:Class="MyTagPocket.Pages.Settings.UpgradePage">
   <ContentPage.Content>
     <StackLayout VerticalOptions="Center">
-      <ActivityIndicator IsVisible="True" IsRunning="True" Color="Blue" />
+      <ActivityIndicator IsVisible="True" IsRunning="False" Color="Blue" />
       <Label Text="Upgrade MyTagPocket"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-      <ListView x:Name="CheckList">
+      <ListView x:Name="CheckList" IsPullToRefreshEnabled="True">
         <ListView.ItemTemplate>
           <DataTemplate>
             <TextCell Text="{Binding NameUpgradeItem}" />

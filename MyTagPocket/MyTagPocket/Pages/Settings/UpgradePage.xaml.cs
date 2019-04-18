@@ -22,33 +22,35 @@ namespace MyTagPocket.Pages.Settings
       CheckList.IsPullToRefreshEnabled = true;
       //Navigation.RemovePage(Navigation.NavigationStack[0]);
       checkItemList = new ObservableCollection<UpgradeInfo>();
-      UpgradeInfo info = new UpgradeInfo();
-      info.Status = UpgradeStatusEnum.NotStart;
-      info.StatusInfo = "Not started";
-      info.NameUpgradeItem = "Inicializace aktualizace 2";
-      checkItemList.Add(info);
       CheckList.ItemsSource = checkItemList;
     }
 
     protected override void OnAppearing()
     {
       base.OnAppearing();
-      //RunUpgrade();
-     
       UpgradeInfo info = new UpgradeInfo();
       info.Status = UpgradeStatusEnum.NotStart;
       info.StatusInfo = "Not started";
-      info.NameUpgradeItem = "Inicializace aktualizace";
+      info.NameUpgradeItem = "Inicializace aktualizace 3";
       checkItemList.Add(info);
       //CheckList.ItemsSource = checkItemList;
+      RunUpgrade();
     }
 
-    private void RunUpgrade()
+    private async void RunUpgrade()
     {
 
-      for (int i = 0; i < 10; i++)
+      for (int i = 3; i < 10; i++)
       {
-       
+        CheckList.BeginRefresh();
+        UpgradeInfo info = new UpgradeInfo();
+        info.Status = UpgradeStatusEnum.NotStart;
+        info.StatusInfo = "Not started";
+        info.NameUpgradeItem = $"Inicializace aktualizace {i}";
+        checkItemList.Add(info);
+        CheckList.EndRefresh();
+        //await System.Threading.Thread.Sleep(1000);
+        await Task.Delay(1000);
       }
     }
 
