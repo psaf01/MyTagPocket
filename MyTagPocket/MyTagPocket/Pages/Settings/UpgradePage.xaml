@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MyTagPocket.Pages.Settings.UpgradePage">
+             x:Class="MyTagPocket.Pages.Settings.UpgradePage"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
   <ContentPage.Content>
     <StackLayout VerticalOptions="Center">
       <ActivityIndicator IsVisible="True" IsRunning="False" Color="Blue" />
@@ -11,7 +12,12 @@
       <ListView x:Name="CheckList" IsPullToRefreshEnabled="True">
         <ListView.ItemTemplate>
           <DataTemplate>
-            <TextCell Text="{Binding NameUpgradeItem}" />
+            <ViewCell>
+              <StackLayout>
+                <ffimageloadingsvg:SvgCachedImage Source="{Binding Icon}" WidthRequest="50" HeightRequest="50"></ffimageloadingsvg:SvgCachedImage>
+                <Label Text="{Binding NameUpgradeItem}" />
+              </StackLayout>
+            </ViewCell>
           </DataTemplate>
         </ListView.ItemTemplate>
       </ListView>

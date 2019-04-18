@@ -1,10 +1,21 @@
-﻿namespace MyTagPocket.BusinessLayer.Upgrade
+﻿using FFImageLoading.Forms;
+using System;
+
+namespace MyTagPocket.BusinessLayer.Upgrade
 {
   /// <summary>
   /// Information about the application update progress
   /// </summary>
   public class UpgradeInfo
   {
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    public UpgradeInfo()
+    {
+      Status = UpgradeStatusEnum.NotStart;
+    }
+
     /// <summary>
     /// The upgrade Status
     /// </summary>
@@ -23,5 +34,16 @@
     /// Upgrade result text
     /// </summary>
     public string UpgradeResult { get; set; }
+    
+    /// <summary>
+    /// Icon 
+    /// </summary>
+    public EmbeddedResourceImageSource Icon
+    {
+      get
+      {
+        return new EmbeddedResourceImageSource(new Uri("resource://MyTagPocket.Resources.Images.spinner.svg"));
+      }
+    }
   }
 }
