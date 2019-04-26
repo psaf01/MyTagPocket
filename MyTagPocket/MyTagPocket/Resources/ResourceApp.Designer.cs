@@ -19,7 +19,7 @@ namespace MyTagPocket.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ResourceApp {
@@ -97,6 +97,42 @@ namespace MyTagPocket.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string ProcessError {
+            get {
+                return ResourceManager.GetString("ProcessError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Idle.
+        /// </summary>
+        public static string ProcessIdle {
+            get {
+                return ResourceManager.GetString("ProcessIdle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paused.
+        /// </summary>
+        public static string ProcessPaused {
+            get {
+                return ResourceManager.GetString("ProcessPaused", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Running.
+        /// </summary>
+        public static string ProcessRunning {
+            get {
+                return ResourceManager.GetString("ProcessRunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Test.
         /// </summary>
         public static string Test {
@@ -120,6 +156,105 @@ namespace MyTagPocket.Resources {
         public static string ThemeDescriptionExample {
             get {
                 return ResourceManager.GetString("ThemeDescriptionExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upgrade Database.
+        /// </summary>
+        public static string UpgradeDatabaseLabel {
+            get {
+                return ResourceManager.GetString("UpgradeDatabaseLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finished with error.
+        /// </summary>
+        public static string UpgradeStatusEndError {
+            get {
+                return ResourceManager.GetString("UpgradeStatusEndError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successfully completed.
+        /// </summary>
+        public static string UpgradeStatusEndSucces {
+            get {
+                return ResourceManager.GetString("UpgradeStatusEndSucces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not started.
+        /// </summary>
+        public static string UpgradeStatusNotStart {
+            get {
+                return ResourceManager.GetString("UpgradeStatusNotStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In Progress.
+        /// </summary>
+        public static string UpgradeStatusProgress {
+            get {
+                return ResourceManager.GetString("UpgradeStatusProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stop.
+        /// </summary>
+        public static string UpgradeStatusStop {
+            get {
+                return ResourceManager.GetString("UpgradeStatusStop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updating basic user content structures..
+        /// </summary>
+        public static string UpgradeStorageContentsDescriptionLabel {
+            get {
+                return ResourceManager.GetString("UpgradeStorageContentsDescriptionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Storage contents.
+        /// </summary>
+        public static string UpgradeStorageContentsLabel {
+            get {
+                return ResourceManager.GetString("UpgradeStorageContentsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upgrade Storage.
+        /// </summary>
+        public static string UpgradeStorageLabel {
+            get {
+                return ResourceManager.GetString("UpgradeStorageLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updating application settings and their configuration parts..
+        /// </summary>
+        public static string UpgradeStorageSettingsDescriptionLabel {
+            get {
+                return ResourceManager.GetString("UpgradeStorageSettingsDescriptionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Storage settings.
+        /// </summary>
+        public static string UpgradeStorageSettingsLabel {
+            get {
+                return ResourceManager.GetString("UpgradeStorageSettingsLabel", resourceCulture);
             }
         }
     }

@@ -40,6 +40,81 @@
           <target state="new">An unexpected error in the application</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Error</note>
         </trans-unit>
+        <trans-unit id="UpgradeStatusEndError" translate="yes" xml:space="preserve">
+          <source>Finished with error</source>
+          <target state="new">Finished with error</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStatusEndSucces" translate="yes" xml:space="preserve">
+          <source>Successfully completed</source>
+          <target state="new">Successfully completed</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStatusNotStart" translate="yes" xml:space="preserve">
+          <source>Not started</source>
+          <target state="new">Not started</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStatusProgress" translate="yes" xml:space="preserve">
+          <source>In Progress</source>
+          <target state="new">In Progress</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStatusStop" translate="yes" xml:space="preserve">
+          <source>Stop</source>
+          <target state="new">Stop</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeDatabaseLabel" translate="yes" xml:space="preserve">
+          <source>Upgrade Database</source>
+          <target state="new">Upgrade Database</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStorageContentsDescriptionLabel" translate="yes" xml:space="preserve">
+          <source>Updating basic user content structures.</source>
+          <target state="new">Updating basic user content structures.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStorageContentsLabel" translate="yes" xml:space="preserve">
+          <source>Storage contents</source>
+          <target state="new">Storage contents</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStorageLabel" translate="yes" xml:space="preserve">
+          <source>Upgrade Storage</source>
+          <target state="new">Upgrade Storage</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStorageSettingsDescriptionLabel" translate="yes" xml:space="preserve">
+          <source>Updating application settings and their configuration parts.</source>
+          <target state="new">Updating application settings and their configuration parts.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStorageSettingsLabel" translate="yes" xml:space="preserve">
+          <source>Storage settings</source>
+          <target state="new">Storage settings</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="ProcessError" translate="yes" xml:space="preserve">
+          <source>Error</source>
+          <target state="new">Error</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Process</note>
+        </trans-unit>
+        <trans-unit id="ProcessIdle" translate="yes" xml:space="preserve">
+          <source>Idle</source>
+          <target state="new">Idle</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Process</note>
+        </trans-unit>
+        <trans-unit id="ProcessPaused" translate="yes" xml:space="preserve">
+          <source>Paused</source>
+          <target state="new">Paused</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Process</note>
+        </trans-unit>
+        <trans-unit id="ProcessRunning" translate="yes" xml:space="preserve">
+          <source>Running</source>
+          <target state="new">Running</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Process</note>
+        </trans-unit>
       </group>
     </body>
   </file>

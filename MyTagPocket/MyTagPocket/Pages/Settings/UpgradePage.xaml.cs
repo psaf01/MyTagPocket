@@ -14,25 +14,29 @@ namespace MyTagPocket.Pages.Settings
   [XamlCompilation(XamlCompilationOptions.Compile)]
   public partial class UpgradePage : ContentPage
   {
-    ObservableCollection<UpgradeInfo> checkItemList;
+   
+    
 
     public UpgradePage()
     {
       InitializeComponent();
       CheckList.IsPullToRefreshEnabled = true;
       //Navigation.RemovePage(Navigation.NavigationStack[0]);
-      checkItemList = new ObservableCollection<UpgradeInfo>();
-      CheckList.ItemsSource = checkItemList;
+     
+      //CheckList.ItemsSource = _UpgradeInfoList;
     }
 
     protected override void OnAppearing()
     {
       base.OnAppearing();
+      //_StorageList.CategoryName = "STORAGE";
+     
       UpgradeInfo info = new UpgradeInfo();
       info.Status = UpgradeStatusEnum.NotStart;
       info.StatusInfo = "Not started";
-      info.NameUpgradeItem = "Inicializace aktualizace 3";
-      checkItemList.Add(info);
+      info.UpgradeItemName = "Inicializace aktualizace 3";
+      //_StorageList.UpgradeItem.Add(info);
+      //_UpgradeInfoList.Add(_StorageList);
       //CheckList.ItemsSource = checkItemList;
       RunUpgrade();
     }
@@ -40,14 +44,32 @@ namespace MyTagPocket.Pages.Settings
     private async void RunUpgrade()
     {
 
-      for (int i = 3; i < 10; i++)
+      for (int i = 3; i < 5; i++)
       {
         CheckList.BeginRefresh();
         UpgradeInfo info = new UpgradeInfo();
         info.Status = UpgradeStatusEnum.NotStart;
         info.StatusInfo = "Not started";
-        info.NameUpgradeItem = $"Inicializace aktualizace {i}";
-        checkItemList.Add(info);
+        info.UpgradeItemName = $"Inicializace aktualizace {i}";
+        
+        //_StorageList.UpgradeItem.Add(info);
+        CheckList.EndRefresh();
+        //await System.Threading.Thread.Sleep(1000);
+        await Task.Delay(1000);
+      }
+
+      //_DatabaseList.CategoryName = "DATABASE";
+     // _UpgradeInfoList.Add(_DatabaseList);
+
+      for (int i = 1; i < 5; i++)
+      {
+        CheckList.BeginRefresh();
+        UpgradeInfo info = new UpgradeInfo();
+        info.Status = UpgradeStatusEnum.NotStart;
+        info.StatusInfo = "Not started";
+        info.UpgradeItemName = $"Inicializace database {i}";
+
+       // _DatabaseList.UpgradeItem.Add(info);
         CheckList.EndRefresh();
         //await System.Threading.Thread.Sleep(1000);
         await Task.Delay(1000);

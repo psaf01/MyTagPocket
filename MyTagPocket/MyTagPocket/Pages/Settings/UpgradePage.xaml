@@ -9,13 +9,20 @@
       <Label Text="Upgrade MyTagPocket"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-      <ListView x:Name="CheckList" IsPullToRefreshEnabled="True">
+      <ListView x:Name="CheckList" IsPullToRefreshEnabled="True" IsGroupingEnabled="True">
+        <ListView.GroupHeaderTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <Label Text="{Binding CategoryName}"/>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.GroupHeaderTemplate>
         <ListView.ItemTemplate>
           <DataTemplate>
             <ViewCell>
-              <StackLayout>
+              <StackLayout Orientation="Horizontal">
                 <ffimageloadingsvg:SvgCachedImage Source="{Binding Icon}" WidthRequest="50" HeightRequest="50"></ffimageloadingsvg:SvgCachedImage>
-                <Label Text="{Binding NameUpgradeItem}" />
+                <Label Text="{Binding UpgradeItemName}" />
               </StackLayout>
             </ViewCell>
           </DataTemplate>

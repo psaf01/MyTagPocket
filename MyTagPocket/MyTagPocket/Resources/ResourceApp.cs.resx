@@ -28,8 +28,31 @@
     <value>Základní Theme pro aplikaci MyTagPocket.</value>
     <comment>Gui</comment>
   </data>
+  <data name="Test" xml:space="preserve">
+    <value>Test</value>
+  </data>
   <data name="FatalErrorUnexpected" xml:space="preserve">
     <value>Neočekáváná chyba v aplikaci.</value>
     <comment>Error</comment>
+  </data>
+  <data name="UpgradeStatusEndError" xml:space="preserve">
+    <value>Ukončeno s chybou</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStatusEndSucces" xml:space="preserve">
+    <value>Úspěšně dokončeno</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStatusNotStart" xml:space="preserve">
+    <value>Nezahájeno</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStatusProgress" xml:space="preserve">
+    <value>Probíhá</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStatusStop" xml:space="preserve">
+    <value>Zastavit</value>
+    <comment>Upgrade</comment>
   </data>
 </root>

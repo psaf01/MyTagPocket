@@ -125,6 +125,7 @@
     <SDKReference Include="TestPlatform.Universal, Version=$(UnitTestPlatformVersion)" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CoreUtil\EnumBaseTest.cs" />
     <Compile Include="CoreUtil\FileHelper.cs" />
     <Compile Include="CoreUtil\MockFileSystemStorage.cs" />
     <Compile Include="CoreUtil\TextTest.cs" />

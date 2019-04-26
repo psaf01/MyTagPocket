@@ -18,7 +18,9 @@ namespace MyTagPocket
       InitializeComponent();
       try
       {
-        MainPage = new Pages.HomePage();
+
+        MainPage = new Pages.Settings.UpgradePage();
+        //MainPage = new Pages.HomePage();
       }
       catch(FatalErrorException ex)
       {

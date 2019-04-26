@@ -1,17 +1,18 @@
 ﻿using MyTagPocket.CoreUtil;
 using MyTagPocket.CoreUtil.Interface;
 using MyTagPocket.Storage.Repository;
-using MyTagPocket.Storage.Upgrade.Interface;
+using MyTagPocket.Storage.Interface.Upgrade;
 using System;
 using System.IO;
 using Xamarin.Forms;
+using MyTagPocket.Storage.Upgrade;
 
-namespace MyTagPocket.Storage.Upgrade
+namespace MyTagPocket.BusinessLayer.Upgrade
 {
   /// <summary>
   /// Upgrade storage
   /// </summary>
-  public class UpgradeStorage : IUpgradeStorageBase
+  public class UpgradeStorage //: IUpgradeStorageBase
   {
     const string classCode = "[1000100]";
     public static MyTagPocket.Interface.ILogger Log = Xamarin.Forms.DependencyService.Get<MyTagPocket.Interface.ILogManager>().GetLog(classCode);
@@ -26,17 +27,17 @@ namespace MyTagPocket.Storage.Upgrade
       try
       {
         Log.Trace(methodCode, "Start Check And Upgrade application storage");
-        string path = DependencyService.Get<IFileHelper>().GetLocalFilePath(FileTypeEnum.SETTINGS, typeof(Storage.Entities.Settings.AppGlobal).Name);
+        //string path = DependencyService.Get<IFileHelper>().GetLocalFilePath(FileTypeEnum.SETTINGS, typeof(Storage.Entities.Settings.AppGlobal).Name);
         if(CheckActualVersion())
         {
           Log.Trace(methodCode, "End check. Storage actual");
           return;
         }
-        new UpgradeStorageSettings().CheckAndUpgrade();
+        //new UpgradeStorageSettings().CheckAndUpgrade();
         new UpgradeStorageContents().CheckAndUpgrade();
         var repoSett = new SettingsRepository();
         //write actual version application if finished upgrade OK
-        var ver = new Entities.Settings.Version();
+        var ver = new Storage.Entities.Settings.Version();
         repoSett.Load(ver);
         ver.Ver = ver.GetActuaAssemblylVersion();
         repoSett.Save(ver); 
@@ -73,12 +74,12 @@ namespace MyTagPocket.Storage.Upgrade
       if (File.Exists(pathVersion))
       {
         var setRepo = new SettingsRepository();
-        var ver = new Entities.Settings.Version();
+        var ver = new Storage.Entities.Settings.Version();
         setRepo.Load(ver);
         if (ver == null)
           return false;
 
-        var verEntity = new Entities.Settings.Version();
+        var verEntity = new Storage.Entities.Settings.Version();
         if(ver.Ver == verEntity.GetActuaAssemblylVersion())
           return true;
       }

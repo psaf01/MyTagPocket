@@ -30,7 +30,6 @@
     <PackageReference Include="Xamarin.Forms" Version="3.6.0.344457" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controls\Settings\" />
     <Folder Include="Dal\Entities\Artifacts\" />
     <Folder Include="Dal\Entities\Contents\" />
     <Folder Include="Dal\Entities\Devices\" />
@@ -47,6 +46,7 @@
     <Folder Include="Storage\Entities\Devices\" />
     <Folder Include="Storage\Entities\Links\" />
     <Folder Include="Storage\Entities\Tags\" />
+    <Folder Include="Storage\Interface\Upgrade\" />
     <Folder Include="Storage\Repository\Links\" />
     <Folder Include="Storage\Repository\Artifacts\" />
     <Folder Include="Storage\Repository\Devices\" />

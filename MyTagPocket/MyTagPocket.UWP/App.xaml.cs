@@ -1,5 +1,5 @@
-﻿using MyTagPocket.Dal.Upgrade;
-using MyTagPocket.Storage.Upgrade;
+﻿using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
 using SQLite;
 using System;
 using Windows.ApplicationModel;
@@ -102,6 +102,16 @@ namespace MyTagPocket.UWP
       var deferral = e.SuspendingOperation.GetDeferral();
       //TODO: Save application state and stop any background activity
       deferral.Complete();
+    }
+
+    /// <summary>
+    /// Start application
+    /// </summary>
+    /// <param name="sender">The source of the suspend request.</param>
+    /// <param name="e">Details about the suspend request.</param>
+    private void OnStart(object sender, SuspendingEventArgs e)
+    {
+      //AppCenter.Start("uwp=78b67993-50ed-4903-8bac-08611ab080cb;", typeof(Analytics));
     }
   }
 }

@@ -59,15 +59,15 @@ namespace MyTagPocket.UWP.Test.CoreUtil
       {
         case FileTypeEnum.FileType.Settings:
           folder = "settings";
-          ext = "." + FileTypeEnum.SETTINGS.Ext;
+          //ext = "." + FileTypeEnum.SETTINGS.Ext;
           break;
         case FileTypeEnum.FileType.Contents:
           folder = "contents";
-          ext = "." + FileTypeEnum.CONTENTS.Ext;
+          //ext = "." + FileTypeEnum.CONTENTS.Ext;
           break;
         case FileTypeEnum.FileType.Themes:
           folder = "themes";
-          ext = "." + FileTypeEnum.THEMES.Ext;
+          //ext = "." + FileTypeEnum.THEMES.Ext;
           break;
         default:
           folder = "temp";
