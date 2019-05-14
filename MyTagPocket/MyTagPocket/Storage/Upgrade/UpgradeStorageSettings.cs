@@ -4,7 +4,10 @@ using MyTagPocket.Resources;
 using MyTagPocket.Storage.Interface.Upgrade;
 using MyTagPocket.Storage.Repository;
 using System;
+using System.ComponentModel;
 using System.IO;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MyTagPocket.Storage.Upgrade
@@ -20,6 +23,7 @@ namespace MyTagPocket.Storage.Upgrade
     private IFileHelper _FileHelper;
     private ProcessStatusEnum _Status;
     private string _Result;
+    private double _Progress;
 
     /// <summary>
     /// Constructor
@@ -27,19 +31,20 @@ namespace MyTagPocket.Storage.Upgrade
     public UpgradeStorageSettings()
     {
       _FileHelper = DependencyService.Get<IFileHelper>();
-      //_Status = ProcessStatusEnum.Idle;
+      _Status = ProcessStatusEnum.IDLE;
       _Result = string.Empty;
+      _Progress = 0;
     }
 
     /// <summary>
     /// Code of process UpgradeStorageSettings
     /// </summary>
-    public string ProcessCode => "USS"; 
+    public string ProcessCode => "USS";
 
     /// <summary>
     /// Process Name
     /// </summary>
-    public string ProcessName => ResourceApp.UpgradeStorageSettingsLabel; 
+    public string ProcessName => ResourceApp.UpgradeStorageSettingsLabel;
 
     /// <summary>
     /// Process description
@@ -49,16 +54,79 @@ namespace MyTagPocket.Storage.Upgrade
     /// <summary>
     /// If the process can start
     /// </summary>
-    public bool CanRunProcess => true; 
+    public bool CanRunProcess
+    {
+      get
+      {
+        if (_Status == ProcessStatusEnum.RUNNING || _Status == ProcessStatusEnum.PAUSED)
+          return false;
+        else
+          return true;
+      }
+    }
+
 
     /// <summary>
     /// Result process
     /// </summary>
-    public string ResultProcess => _Result;
+    public string ResultProcess
+    {
+      get => _Result;
+      private set
+      {
+        _Result = value;
+        OnPropertyChanged();
+      }
+    }
 
-    public ProcessStatusEnum StatusProcess => _Status;
+    /// <summary>
+    /// Status upgrade Storage Settings
+    /// </summary>
+    public ProcessStatusEnum StatusProcess
+    {
+      get => _Status;
+      private set
+      {
+        _Status = value;
+        OnPropertyChanged();
+      }
+    }
 
-    public double Progress { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    /// <summary>
+    /// Progress
+    /// 1 = 100%
+    /// </summary>
+    public double Progress
+    {
+      get => _Progress;
+      private set
+      {
+        const string methodCode = "[1000705]";
+
+        if (value < 0 || value > 1)
+        {
+          Log.Error(methodCode, $"The value [{value}] is out of range");
+          return;
+        }
+        _Progress = value;
+        OnPropertyChanged();
+      }
+    }
+
+    /// <summary>
+    /// Property changed
+    /// </summary>
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    ///<summary>
+    /// This method is called by the Set accessor of each property.  
+    /// The CallerMemberName attribute that is applied to the optional propertyName  
+    /// parameter causes the property name of the caller to be substituted as an argument.  
+    /// </summary>
+    private void OnPropertyChanged([CallerMemberName] String propertyName = "")
+    {
+      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
 
     /// <summary>
     /// 
@@ -66,7 +134,14 @@ namespace MyTagPocket.Storage.Upgrade
     /// <returns></returns>
     public bool IsActualVersion()
     {
-      throw new NotImplementedException();
+      var setRepo = new SettingsRepository();
+
+      var verEntity = new Entities.Settings.Version();
+      setRepo.Load(verEntity);
+      if (verEntity.Ver == verEntity.GetActuaAssemblylVersion())
+        return true;
+
+      return false;
     }
 
     /// <summary>
@@ -75,44 +150,60 @@ namespace MyTagPocket.Storage.Upgrade
     public void ReInit()
     {
       const string methodCode = "[1000704]";
-      /*
-      try
-      {
-        if(_Status == ProcessStatusEnum.Runnig || _Status == ProcessStatusEnum.Paused)
-        {
-          Log.Trace(methodCode, $"Cannot start ReInit becouse is proces is {_Status.ToString()}");
-        }
-        Log.Trace(methodCode, "Reinit settings");
-        UpgradeVesion();
-      }
-      catch (Exception ex)
-      {
-        Log.Error(ex, methodCode, "Unable to finish reinit storage settings");
-      }
-      */
+      Log.Trace(methodCode, "Reinit settings");
+      Start(true);
     }
 
     /// <summary>
     /// Run upgrade storage settings
     /// </summary>
-    public bool RunProcess()
+    public void Start()
+    {
+      Start(false);
+    }
+
+    /// <summary>
+    /// Run upgrade storage settings
+    /// </summary>
+    /// <param name="reinit">True = Reinitialize storage settings</param>
+    public void Start(bool reinit = false)
     {
       const string methodCode = "[1000703]";
+
+      if (!CanRunProcess)
+      {
+        Log.Trace(methodCode, "Cannot start upgrade storage settings.", new { statusProcess = StatusProcess.Name });
+        return;
+      }
+
+      Log.Trace(methodCode, "Start upgrade storage settings");
+      Progress = 0;
+      StatusProcess = ProcessStatusEnum.RUNNING;
+
       try
       {
+
+        Progress = 0.1;
+        if (IsActualVersion() && reinit == false)
+        {
+          Progress = 1;
+          StatusProcess = ProcessStatusEnum.IDLE;
+          ResultProcess = ResourceApp.UpgradeStorageSettingsIsActual;
+          return;
+        }
+
+        Progress = 0.5;
         UpgradeVesion();
-        return true;
+        Progress = 1;
+        StatusProcess = ProcessStatusEnum.IDLE;
+        ResultProcess = ResourceApp.UpgradeStorageSettingSucces;
       }
       catch (Exception ex)
       {
         Log.Error(ex, methodCode, "Unable to finish updating storage settings");
-        return false;
+        StatusProcess = ProcessStatusEnum.ERROR;
+        ResultProcess = ResourceApp.UpgradeStorageSettingsError;
       }
-    }
-
-    public void Start()
-    {
-      throw new NotImplementedException();
     }
 
     /// <summary>
@@ -126,17 +217,22 @@ namespace MyTagPocket.Storage.Upgrade
       if (!Directory.Exists(pathFolder))
       {
         Log.Trace(methodCode, $"Create folder {pathFolder}");
-        Directory.CreateDirectory(pathFolder);
+        try
+        {
+          Directory.CreateDirectory(pathFolder);
+        }
+        catch (Exception ex)
+        {
+          Log.Error(ex, methodCode, "Cant create folder", new { path = pathFolder });
+        }
       }
+
       string pathVersion = DependencyService.Get<IFileHelper>().GetLocalFilePath(FileTypeEnum.SETTINGS, typeof(Storage.Entities.Settings.Version).Name);
-      if (File.Exists(pathVersion))
-        return;
 
       var setRepo = new SettingsRepository();
       var verEntity = new Entities.Settings.Version();
-      verEntity.Ver = "0";
+      verEntity.Ver = verEntity.GetActuaAssemblylVersion();
       setRepo.Save(verEntity);
-
     }
   }
 }

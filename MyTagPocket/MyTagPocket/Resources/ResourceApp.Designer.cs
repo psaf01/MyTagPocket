@@ -169,6 +169,42 @@ namespace MyTagPocket.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There was an error updating.
+        /// </summary>
+        public static string UpgradeInfoFinishError {
+            get {
+                return ResourceManager.GetString("UpgradeInfoFinishError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update completed successfully.
+        /// </summary>
+        public static string UpgradeInfoFinishSucces {
+            get {
+                return ResourceManager.GetString("UpgradeInfoFinishSucces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update not started.
+        /// </summary>
+        public static string UpgradeInfoNotStarted {
+            get {
+                return ResourceManager.GetString("UpgradeInfoNotStarted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update started.
+        /// </summary>
+        public static string UpgradeInfoStarted {
+            get {
+                return ResourceManager.GetString("UpgradeInfoStarted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Finished with error.
         /// </summary>
         public static string UpgradeStatusEndError {
@@ -250,11 +286,38 @@ namespace MyTagPocket.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to complete update settings.
+        /// </summary>
+        public static string UpgradeStorageSettingsError {
+            get {
+                return ResourceManager.GetString("UpgradeStorageSettingsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Storage settings is last version.
+        /// </summary>
+        public static string UpgradeStorageSettingsIsActual {
+            get {
+                return ResourceManager.GetString("UpgradeStorageSettingsIsActual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Storage settings.
         /// </summary>
         public static string UpgradeStorageSettingsLabel {
             get {
                 return ResourceManager.GetString("UpgradeStorageSettingsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update setup completed successfully.
+        /// </summary>
+        public static string UpgradeStorageSettingSucces {
+            get {
+                return ResourceManager.GetString("UpgradeStorageSettingSucces", resourceCulture);
             }
         }
     }

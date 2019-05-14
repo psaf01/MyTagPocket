@@ -12,7 +12,7 @@ namespace MyTagPocket.BusinessLayer.Interface.Upgrade
     /// <summary>
     /// The upgrade Status
     /// </summary>
-    UpgradeStatusEnum Status { get; set; }
+    UpgradeStatusEnum Status { get; }
 
     /// <summary>
     /// The upgrade status info
@@ -42,6 +42,6 @@ namespace MyTagPocket.BusinessLayer.Interface.Upgrade
     /// <summary>
     /// Gets or sets the value of the process for the progres bar.
     /// </summary>
-    double Progress { get; set; }
+    double Progress { get; }
   }
 }

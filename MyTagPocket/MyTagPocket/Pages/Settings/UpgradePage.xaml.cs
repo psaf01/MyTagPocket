@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
+﻿using MyTagPocket.BusinessLayer.Upgrade;
 using System.Threading.Tasks;
-using MyTagPocket.BusinessLayer.Upgrade;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,33 +8,48 @@ namespace MyTagPocket.Pages.Settings
   [XamlCompilation(XamlCompilationOptions.Compile)]
   public partial class UpgradePage : ContentPage
   {
-   
-    
 
+    private bool _PageIsInitialize = false;
+    /// <summary>
+    /// Constructor
+    /// </summary>
     public UpgradePage()
     {
       InitializeComponent();
       CheckList.IsPullToRefreshEnabled = true;
+      _PageIsInitialize = false;
       //Navigation.RemovePage(Navigation.NavigationStack[0]);
-     
+
       //CheckList.ItemsSource = _UpgradeInfoList;
     }
 
-    protected override void OnAppearing()
+    /// <summary>
+    /// Page upgrade is prepared 
+    /// </summary>
+    protected override async void OnAppearing()
     {
       base.OnAppearing();
-      //_StorageList.CategoryName = "STORAGE";
-     
-      UpgradeInfo info = new UpgradeInfo();
-      info.Status = UpgradeStatusEnum.NotStart;
-      info.StatusInfo = "Not started";
-      info.UpgradeItemName = "Inicializace aktualizace 3";
-      //_StorageList.UpgradeItem.Add(info);
-      //_UpgradeInfoList.Add(_StorageList);
-      //CheckList.ItemsSource = checkItemList;
-      RunUpgrade();
+      if (_PageIsInitialize)
+        return;
+
+      var upgradeApp = new UpgradeApp();
+      upgradeApp.InitUpgrade(); 
+      CheckList.ItemsSource = upgradeApp.UpgradeList;
+      await Task.Yield();
+      _ = StartUpgrade(upgradeApp);
+      _PageIsInitialize = true;
     }
 
+    private async Task StartUpgrade(UpgradeApp upgradeApp)
+    {
+      await Task.Run(() =>
+      {
+        _ = upgradeApp.StartAsync();
+      });
+    }
+    /// <summary>
+    /// Run upgrade application
+    /// </summary>
     private async void RunUpgrade()
     {
 
@@ -48,10 +57,10 @@ namespace MyTagPocket.Pages.Settings
       {
         CheckList.BeginRefresh();
         UpgradeInfo info = new UpgradeInfo();
-        info.Status = UpgradeStatusEnum.NotStart;
+        info.Status = UpgradeStatusEnum.NOTSTART;
         info.StatusInfo = "Not started";
         info.UpgradeItemName = $"Inicializace aktualizace {i}";
-        
+
         //_StorageList.UpgradeItem.Add(info);
         CheckList.EndRefresh();
         //await System.Threading.Thread.Sleep(1000);
@@ -59,17 +68,17 @@ namespace MyTagPocket.Pages.Settings
       }
 
       //_DatabaseList.CategoryName = "DATABASE";
-     // _UpgradeInfoList.Add(_DatabaseList);
+      // _UpgradeInfoList.Add(_DatabaseList);
 
       for (int i = 1; i < 5; i++)
       {
         CheckList.BeginRefresh();
         UpgradeInfo info = new UpgradeInfo();
-        info.Status = UpgradeStatusEnum.NotStart;
+        info.Status = UpgradeStatusEnum.NOTSTART;
         info.StatusInfo = "Not started";
         info.UpgradeItemName = $"Inicializace database {i}";
 
-       // _DatabaseList.UpgradeItem.Add(info);
+        //_DatabaseList.UpgradeItem.Add(info);
         CheckList.EndRefresh();
         //await System.Threading.Thread.Sleep(1000);
         await Task.Delay(1000);

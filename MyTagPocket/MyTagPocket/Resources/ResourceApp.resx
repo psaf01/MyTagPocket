@@ -200,8 +200,36 @@
     <value>Updating application settings and their configuration parts.</value>
     <comment>Upgrade</comment>
   </data>
+  <data name="UpgradeStorageSettingsError" xml:space="preserve">
+    <value>Unable to complete update settings</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStorageSettingsIsActual" xml:space="preserve">
+    <value>Storage settings is last version</value>
+    <comment>Upgrade</comment>
+  </data>
   <data name="UpgradeStorageSettingsLabel" xml:space="preserve">
     <value>Storage settings</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStorageSettingSucces" xml:space="preserve">
+    <value>Update setup completed successfully</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeInfoFinishError" xml:space="preserve">
+    <value>There was an error updating</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeInfoFinishSucces" xml:space="preserve">
+    <value>Update completed successfully</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeInfoNotStarted" xml:space="preserve">
+    <value>Update not started</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeInfoStarted" xml:space="preserve">
+    <value>Update started</value>
     <comment>Upgrade</comment>
   </data>
 </root>

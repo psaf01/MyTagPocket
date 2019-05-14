@@ -115,6 +115,41 @@
           <target state="new">Running</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Process</note>
         </trans-unit>
+        <trans-unit id="UpgradeStorageSettingsError" translate="yes" xml:space="preserve">
+          <source>Unable to complete update settings</source>
+          <target state="new">Unable to complete update settings</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStorageSettingsIsActual" translate="yes" xml:space="preserve">
+          <source>Storage settings is last version</source>
+          <target state="new">Storage settings is last version</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStorageSettingSucces" translate="yes" xml:space="preserve">
+          <source>Update setup completed successfully</source>
+          <target state="new">Update setup completed successfully</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeInfoFinishError" translate="yes" xml:space="preserve">
+          <source>There was an error updating</source>
+          <target state="new">There was an error updating</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeInfoFinishSucces" translate="yes" xml:space="preserve">
+          <source>Update completed successfully</source>
+          <target state="new">Update completed successfully</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeInfoNotStarted" translate="yes" xml:space="preserve">
+          <source>Update not started</source>
+          <target state="new">Update not started</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeInfoStarted" translate="yes" xml:space="preserve">
+          <source>Update started</source>
+          <target state="new">Update started</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
       </group>
     </body>
   </file>

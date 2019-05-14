@@ -1,12 +1,13 @@
-﻿namespace MyTagPocket.CoreUtil.Interface
+﻿using System.ComponentModel;
+
+namespace MyTagPocket.CoreUtil.Interface
 {
 
   /// <summary>
   /// Interface upgrade
   /// </summary>
-  public interface IProcess
+  public interface IProcess : INotifyPropertyChanged
   {
-
     /// <summary>
     /// Process code for internal processing
     /// </summary>
@@ -39,6 +40,7 @@
 
     /// <summary>
     /// Gets or sets the value of the process for the progres bar.
+    /// 1.0 = 100%
     /// </summary>
     double Progress { get; }
 

@@ -1,21 +1,19 @@
-﻿using System;
+﻿using MyTagPocket.Storage.Repository;
+using MyTagPocket.Storage.Upgrade;
+using System;
 using System.Collections.ObjectModel;
-using System.IO.Abstractions;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MyTagPocket.BusinessLayer.Upgrade
 {
   /// <summary>
   /// Check and upgrade application
   /// </summary>
-  public class UpgradeApp
+  public class UpgradeApp : IAsyncResult, IDisposable
   {
     const string classCode = "[1001300]";
     public static MyTagPocket.Interface.ILogger Log = Xamarin.Forms.DependencyService.Get<MyTagPocket.Interface.ILogManager>().GetLog(classCode);
-
-    /// <summary>
-    /// File system
-    /// </summary>
-    private IFileSystem _FileSystem;
 
     /// <summary>
     /// List of sections to update
@@ -35,10 +33,8 @@ namespace MyTagPocket.BusinessLayer.Upgrade
     /// <summary>
     /// Constructor
     /// </summary>
-    /// <param name="storageFileSystem">File System</param>
-    public UpgradeApp(IFileSystem fileSystem)
+    public UpgradeApp()
     {
-      _FileSystem = fileSystem;
       _StorageList = new UpgradeInfoList();
       _DatabaseIndexList = new UpgradeInfoList();
       _UpgradeInfoList = new ObservableCollection<UpgradeInfoList>();
@@ -85,29 +81,43 @@ namespace MyTagPocket.BusinessLayer.Upgrade
       }
     }
 
+    public object AsyncState => throw new NotImplementedException();
+
+    public WaitHandle AsyncWaitHandle => throw new NotImplementedException();
+
+    public bool CompletedSynchronously => throw new NotImplementedException();
+
+    public bool IsCompleted => throw new NotImplementedException();
+
     /// <summary>
     /// Check actual version application
     /// </summary>
     /// <returns>Tru = actual version</returns>
     public bool ActualVersionApp()
     {
-      //TODO: Add code for check actual version
-      return false;
+      //Check storage repository on actual version
+      var setRepo = new SettingsRepository();
+      var verEntity = new Storage.Entities.Settings.Version();
+      setRepo.Load(verEntity);
+      if (verEntity.Ver != verEntity.GetActuaAssemblylVersion())
+        return false;
+
+      //TODO: Check database is actual version
+      return true;
     }
 
     /// <summary>
-    /// Check version and upgrade storage
+    /// Start upgrade application
     /// </summary>
-    [Obsolete]
-    public void CheckAndUpgradeStorage()
+    public async Task StartAsync()
     {
-      const string methodCode = "[1001301]";
-      Log.Trace(methodCode, "Start Check and upgrade storage");
-      //var upgradeStorageContents = new UpgradeStorageContents(_FileSystem);
-      //var upgradeStorageSettings = new UpgradeStorageSettings(_FileSystem);
-      //var upgradeStorage = new UpgradeStorage(upgradeStorageSettings, upgradeStorageContents);
-      //upgradeStorage.CheckAndUpgrade();
-      Log.Trace(methodCode, "End Check and upgrade storage");
+      await Task.Run(() =>
+      {
+        foreach (var item in _UpgradeInfoList)
+        {
+          item.Start();
+        }
+      });
     }
 
     /// <summary>
@@ -128,6 +138,15 @@ namespace MyTagPocket.BusinessLayer.Upgrade
     {
       const string methodCode = "[1001304]";
       Log.Trace(methodCode, "Upgrade Initialize storage index item list");
+      Log.Trace(methodCode, "Add to upgrade list Storage update");
+      var storageSettings = new UpgradeStorageSettings();
+      var infoStorageSettings = new UpgradeInfo(storageSettings);
+      _StorageList.Add(infoStorageSettings);
+    }
+
+    public void Dispose()
+    {
+      throw new NotImplementedException();
     }
   }
 }
