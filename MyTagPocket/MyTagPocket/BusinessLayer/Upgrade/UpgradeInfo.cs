@@ -34,6 +34,7 @@ namespace MyTagPocket.BusinessLayer.Upgrade
       _UpgradeItemName = upgradeItem.ProcessName;
       _Progress = 0;
       _StatusInfo = Resources.ResourceApp.UpgradeInfoNotStarted;
+      _UpgradeItem.PropertyChanged += new PropertyChangedEventHandler(UpgradeInfoItemPropertyChanged);
     }
 
     /// <summary>

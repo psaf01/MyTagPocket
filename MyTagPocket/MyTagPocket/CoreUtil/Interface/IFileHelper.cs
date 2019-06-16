@@ -18,7 +18,7 @@ namespace MyTagPocket.CoreUtil.Interface
     /// </summary>
     /// <param name="type">File type</param>
     /// <returns>Full path folder</returns>
-    string GetLocalFolderPath(FileTypeEnum type);
+    string GetLocalFolderPath(DataTypeEnum type);
 
     /// <summary>
     /// Get local file path
@@ -26,7 +26,7 @@ namespace MyTagPocket.CoreUtil.Interface
     /// <param name="type">File type</param>
     /// <param name="filename">File name</param>
     /// <returns>Full path file</returns>
-    string GetLocalFilePath(FileTypeEnum type, string filename);
+    string GetLocalFilePath(DataTypeEnum type, string filename);
 
     /// <summary>
     /// Get full path for content database
@@ -59,5 +59,11 @@ namespace MyTagPocket.CoreUtil.Interface
     /// <param name="path">Full path file</param>
     /// <returns>Text context</returns>
     string LoadFile(string path);
+
+    /// <summary>
+    /// Delete file
+    /// </summary>
+    /// <param name="path">Full path file</param>
+    void DeleteFile(string path);
   }
 }

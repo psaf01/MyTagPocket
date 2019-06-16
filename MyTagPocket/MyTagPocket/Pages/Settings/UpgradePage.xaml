@@ -20,9 +20,14 @@
         <ListView.ItemTemplate>
           <DataTemplate>
             <ViewCell>
-              <StackLayout Orientation="Horizontal">
-                <ffimageloadingsvg:SvgCachedImage Source="{Binding Icon}" WidthRequest="50" HeightRequest="50"></ffimageloadingsvg:SvgCachedImage>
+              <StackLayout>
+                <StackLayout Orientation="Horizontal">
+                <ffimageloadingsvg:SvgCachedImage Source="{Binding Icon}" WidthRequest="30" HeightRequest="30"></ffimageloadingsvg:SvgCachedImage>
                 <Label Text="{Binding UpgradeItemName}" />
+                </StackLayout>
+                <StackLayout>
+                  <ProgressBar Progress="{Binding Progress}" />
+                </StackLayout>
               </StackLayout>
             </ViewCell>
           </DataTemplate>

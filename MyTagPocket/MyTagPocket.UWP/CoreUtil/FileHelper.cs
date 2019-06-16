@@ -28,7 +28,7 @@ namespace MyTagPocket.UWP.CoreUtil
     /// </summary>
     /// <param name="type">File type</param>
     /// <returns>Full path folder</returns>
-    public string GetLocalFolderPath(FileTypeEnum type)
+    public string GetLocalFolderPath(DataTypeEnum type)
     {
       return GetLocalFilePath(type, null);
     }
@@ -39,17 +39,17 @@ namespace MyTagPocket.UWP.CoreUtil
     /// <param name="fileType">FileType</param>
     /// <param name="filename">File name</param>
     /// <returns>Full path file. If File name null or empty return Full path folder</returns>
-    public string GetLocalFilePath(FileTypeEnum fileType, string filename)
+    public string GetLocalFilePath(DataTypeEnum fileType, string filename)
     {
       string folder = string.Empty;
       string ext = string.Empty;
       switch (fileType.Value)
       {
-        case FileTypeEnum.FileType.Settings:
+        case DataTypeEnum.DataType.Settings:
           folder = "settings";
           //ext = "." + FileTypeEnum.SETTINGS.Ext;
           break;
-        case FileTypeEnum.FileType.Contents:
+        case DataTypeEnum.DataType.Contents:
           folder = "contents";
           //ext = "." + FileTypeEnum.CONTENTS.Ext;
           break;

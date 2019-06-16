@@ -22,36 +22,32 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="Newtonsoft.Json.Encryption" Version="2.1.0" />
-    <PackageReference Include="NLog" Version="4.6.3" />
+    <PackageReference Include="NLog" Version="4.6.4" />
     <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
-    <PackageReference Include="System.IO.Abstractions" Version="4.2.10" />
-    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.9.961" />
-    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.9.961" />
-    <PackageReference Include="Xamarin.Forms" Version="3.6.0.344457" />
+    <PackageReference Include="System.IO.Abstractions" Version="6.0.1" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms" Version="4.0.0.482894" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Dal\Entities\Artifacts\" />
-    <Folder Include="Dal\Entities\Contents\" />
-    <Folder Include="Dal\Entities\Devices\" />
-    <Folder Include="Dal\Entities\Links\" />
-    <Folder Include="Dal\Entities\Tags\" />
-    <Folder Include="Dal\Repository\Artifacts\" />
-    <Folder Include="Dal\Repository\Devices\" />
-    <Folder Include="Dal\Repository\Links\" />
-    <Folder Include="Dal\Repository\Tags\" />
-    <Folder Include="Dal\Upgrade\v1\" />
+    <Folder Include="Repository\Dal\Entities\Artifacts\" />
+    <Folder Include="Repository\Dal\Entities\Contents\" />
+    <Folder Include="Repository\Dal\Entities\Devices\" />
+    <Folder Include="Repository\Dal\Entities\Links\" />
+    <Folder Include="Repository\Dal\Entities\Tags\" />
+    <Folder Include="Repository\Dal\Repository\Artifacts\" />
+    <Folder Include="Repository\Dal\Repository\Devices\" />
+    <Folder Include="Repository\Dal\Repository\Links\" />
+    <Folder Include="Repository\Dal\Repository\Tags\" />
+    <Folder Include="Repository\Dal\Upgrade\v1\" />
     <Folder Include="MultilingualResources\" />
-    <Folder Include="Storage\Entities\Artifacts\" />
-    <Folder Include="Storage\Entities\Contents\" />
-    <Folder Include="Storage\Entities\Devices\" />
-    <Folder Include="Storage\Entities\Links\" />
-    <Folder Include="Storage\Entities\Tags\" />
-    <Folder Include="Storage\Interface\Upgrade\" />
-    <Folder Include="Storage\Repository\Links\" />
-    <Folder Include="Storage\Repository\Artifacts\" />
-    <Folder Include="Storage\Repository\Devices\" />
-    <Folder Include="Storage\Repository\Tags\" />
-    <Folder Include="Storage\Upgrade\v1\" />
+    <Folder Include="Repository\File\Entities\Artifacts\" />
+    <Folder Include="Repository\File\Entities\Contents\" />
+    <Folder Include="Repository\File\Entities\Devices\" />
+    <Folder Include="Repository\File\Entities\Links\" />
+    <Folder Include="Repository\File\Entities\Tags\" />
+    <Folder Include="Repository\File\Interface\Upgrade\" />
+    <Folder Include="Repository\File\Upgrade\v1\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Pages\HomePageMenuItem.cs">

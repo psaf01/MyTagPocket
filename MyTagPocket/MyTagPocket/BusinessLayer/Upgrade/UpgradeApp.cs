@@ -96,9 +96,9 @@ namespace MyTagPocket.BusinessLayer.Upgrade
     public bool ActualVersionApp()
     {
       //Check storage repository on actual version
-      var setRepo = new SettingsRepository();
-      var verEntity = new Storage.Entities.Settings.Version();
-      setRepo.Load(verEntity);
+      var setRepo = new Repository.FileRepository();
+      var verEntity = new Repository.File.Entities.Settings.Version();
+      setRepo.Load<Repository.File.Entities.Settings.Version>(verEntity);
       if (verEntity.Ver != verEntity.GetActuaAssemblylVersion())
         return false;
 
@@ -128,6 +128,7 @@ namespace MyTagPocket.BusinessLayer.Upgrade
     {
       const string methodCode = "[1001303]";
       Log.Trace(methodCode, "Upgrade Initialize database index item list");
+      var  
     }
 
     /// <summary>
@@ -139,9 +140,14 @@ namespace MyTagPocket.BusinessLayer.Upgrade
       const string methodCode = "[1001304]";
       Log.Trace(methodCode, "Upgrade Initialize storage index item list");
       Log.Trace(methodCode, "Add to upgrade list Storage update");
+
       var storageSettings = new UpgradeStorageSettings();
       var infoStorageSettings = new UpgradeInfo(storageSettings);
       _StorageList.Add(infoStorageSettings);
+
+      var storageContents = new UpgradeStorageContents();
+      var infoStorageContents = new UpgradeInfo(storageContents);
+      _StorageList.Add(infoStorageContents);
     }
 
     public void Dispose()

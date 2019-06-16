@@ -13,8 +13,8 @@ namespace MyTagPocket.Test.CoreUtil
     /// <returns></returns>
     public ResultTest ObjectSameTest()
     {
-      var testValue = MyTagPocket.CoreUtil.FileTypeEnum.SETTINGS;
-      var expextedValue = MyTagPocket.CoreUtil.FileTypeEnum.SETTINGS;
+      var testValue = MyTagPocket.CoreUtil.DataTypeEnum.SETTINGS;
+      var expextedValue = MyTagPocket.CoreUtil.DataTypeEnum.SETTINGS;
 
       if (testValue == expextedValue)
         return new ResultTest(true);
@@ -28,8 +28,8 @@ namespace MyTagPocket.Test.CoreUtil
     /// <returns></returns>
     public ResultTest ObjectDiferentTest()
     {
-      var testValue = MyTagPocket.CoreUtil.FileTypeEnum.SETTINGS;
-      var expextedValue = MyTagPocket.CoreUtil.FileTypeEnum.THEMES;
+      var testValue = MyTagPocket.CoreUtil.DataTypeEnum.SETTINGS;
+      var expextedValue = MyTagPocket.CoreUtil.DataTypeEnum.THEMES;
 
       if (testValue != expextedValue)
         return new ResultTest(true);
@@ -43,7 +43,7 @@ namespace MyTagPocket.Test.CoreUtil
     /// <returns></returns>
     public ResultTest ObjectListTest()
     {
-      var testValue = MyTagPocket.CoreUtil.FileTypeEnum.ToList();
+      var testValue = MyTagPocket.CoreUtil.DataTypeEnum.ToList();
       if (testValue == null || testValue.Count < 1)
         return new ResultTest(false, $"Objects not list teestValue=[{testValue}]");
       else
@@ -56,8 +56,8 @@ namespace MyTagPocket.Test.CoreUtil
     /// <returns></returns>
     public ResultTest ObjectSearchInList()
     {
-      var testResult = MyTagPocket.CoreUtil.FileTypeEnum.ValueOf("SETTINGS");
-      var testExpected = MyTagPocket.CoreUtil.FileTypeEnum.SETTINGS;
+      var testResult = MyTagPocket.CoreUtil.DataTypeEnum.ValueOf("SETTINGS");
+      var testExpected = MyTagPocket.CoreUtil.DataTypeEnum.SETTINGS;
       if (testResult == testExpected)
         return new ResultTest(true);
       else

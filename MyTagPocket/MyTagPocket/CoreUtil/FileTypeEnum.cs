@@ -1,25 +1,31 @@
-﻿using System;
-using static MyTagPocket.CoreUtil.FileTypeEnum;
+﻿using static MyTagPocket.CoreUtil.DataTypeEnum;
 
 namespace MyTagPocket.CoreUtil
 {
   /// <summary>
-  /// File type MyPocketType
+  /// Data type MyPocketType
   /// </summary>
-  public sealed class FileTypeEnum : EnumBase<FileTypeEnum, string, FileType, string>
+  public sealed class DataTypeEnum : EnumBase<DataTypeEnum, string, DataType, string>
   {
     /// <summary>
     /// Constructor
     /// </summary>
-    /// <param name="name">Name type of file</param>
-    /// <param name="valueEnum">File type</param>
-    /// <param name="fileExtension">fileExtension</param>
-    private FileTypeEnum(string name, FileType valueEnum, string fileExtension) : base(name, valueEnum, fileExtension)
+    /// <param name="name">Name type of data</param>
+    /// <param name="valueEnum">Data type</param>
+    /// <param name="codeDataType">Code data type</param>
+    private DataTypeEnum(string name, DataType valueEnum, string codeDataType) : base(name, valueEnum, codeDataType)
     {
     }
 
-    public enum FileType
+    /// <summary>
+    /// Data type
+    /// </summary>
+    public enum DataType
     {
+      /// <summary>
+      /// A unique or unclassifiable type
+      /// </summary>
+      Unclassified,
       /// <summary>
       /// Application settings
       /// </summary>
@@ -35,17 +41,26 @@ namespace MyTagPocket.CoreUtil
     }
 
     /// <summary>
+    /// A unique or unclassifiable type
+    /// </summary>
+    public static readonly DataTypeEnum UNCLASSIFIED = new DataTypeEnum("UNCLASSIFIED", DataType.Settings, "mtp");
+    /// <summary>
     /// Application settings
     /// </summary>
-    public static readonly FileTypeEnum SETTINGS= new FileTypeEnum("SETTINGS", FileType.Settings, "cfg");
+    public static readonly DataTypeEnum SETTINGS = new DataTypeEnum("SETTINGS", DataType.Settings, "cfg");
     /// <summary>
     /// Contents notes
     /// </summary>
-    public static readonly FileTypeEnum CONTENTS = new FileTypeEnum("CONTENTS", FileType.Contents, "data");
-    
+    public static readonly DataTypeEnum CONTENTS = new DataTypeEnum("CONTENTS", DataType.Contents, "mtp");
+
+    /// <summary>
+    /// TAG
+    /// </summary>
+    public static readonly DataTypeEnum TAG = new DataTypeEnum("TAG", DataType.Contents, "mtp");
+
     /// <summary>
     /// Contents notes
     /// </summary>
-    public static readonly FileTypeEnum THEMES = new FileTypeEnum("THEMES", FileType.Themes, "thm");
+    public static readonly DataTypeEnum THEMES = new DataTypeEnum("THEMES", DataType.Themes, "thm");
   }
 }
