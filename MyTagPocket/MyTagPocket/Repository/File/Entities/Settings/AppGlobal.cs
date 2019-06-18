@@ -1,4 +1,7 @@
-﻿namespace MyTagPocket.Storage.Entities.Settings
+﻿using MyTagPocket.CoreUtil;
+using MyTagPocket.Repository.File.Entities;
+
+namespace MyTagPocket.Storage.Entities.Settings
 {
   /// <summary>
   /// Global setting application
@@ -9,7 +12,7 @@
     /// <summary>
     /// Constructor
     /// </summary>
-    public AppGlobal() : base(CoreUtil.DataTypeEnum.SETTINGS)
+    public AppGlobal() : base(CoreUtil.DataTypeEnum.SETTINGS, SystemEntityGuidConst.AppGlobal, EncryptTypeEnum.NONE)
     { }
 
     /// <summary>

@@ -142,8 +142,8 @@ namespace MyTagPocket.Dal.Upgrade
       }
       catch (Exception ex)
       {
-        Log.Fatal(methodCode, $"Contents Cant CheckAndUpgrade [{typeof(TableVersion).Name}] Exception [{ex.Message}]", ex);
-        throw new Exception($"Contents Cant CheckAndUpgrade [{typeof(TableVersion).Name}]");
+        Log.Fatal(methodCode, $"Contents cannot CheckAndUpgrade [{typeof(TableVersion).Name}] Exception [{ex.Message}]", ex);
+        throw new Exception($"Contents cannot CheckAndUpgrade [{typeof(TableVersion).Name}]");
       }
     }
 

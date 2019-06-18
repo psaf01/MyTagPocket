@@ -1,5 +1,4 @@
-﻿using MyTagPocket.Storage.Repository;
-using MyTagPocket.Storage.Upgrade;
+﻿using MyTagPocket.Storage.Upgrade;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading;
@@ -98,7 +97,7 @@ namespace MyTagPocket.BusinessLayer.Upgrade
       //Check storage repository on actual version
       var setRepo = new Repository.FileRepository();
       var verEntity = new Repository.File.Entities.Settings.Version();
-      setRepo.Load<Repository.File.Entities.Settings.Version>(verEntity);
+      //setRepo.Load<Repository.File.Entities.Settings.Version>(verEntity);
       if (verEntity.Ver != verEntity.GetActuaAssemblylVersion())
         return false;
 
@@ -128,7 +127,7 @@ namespace MyTagPocket.BusinessLayer.Upgrade
     {
       const string methodCode = "[1001303]";
       Log.Trace(methodCode, "Upgrade Initialize database index item list");
-      var  
+      //var  
     }
 
     /// <summary>
@@ -141,7 +140,7 @@ namespace MyTagPocket.BusinessLayer.Upgrade
       Log.Trace(methodCode, "Upgrade Initialize storage index item list");
       Log.Trace(methodCode, "Add to upgrade list Storage update");
 
-      var storageSettings = new UpgradeStorageSettings();
+      var storageSettings = new UpgradeFileEntitiesSettings();
       var infoStorageSettings = new UpgradeInfo(storageSettings);
       _StorageList.Add(infoStorageSettings);
 

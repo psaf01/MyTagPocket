@@ -1,4 +1,8 @@
-﻿using System;
+﻿using MyTagPocket.CoreUtil;
+using MyTagPocket.Repository;
+using MyTagPocket.Repository.File.Entities.Themes;
+using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MyTagPocket.Gui.Themes
@@ -15,36 +19,40 @@ namespace MyTagPocket.Gui.Themes
     /// <summary>
     /// Initialize actual theme 
     /// </summary>
-    public void InitializeTheme()
+    public async Task InitializeTheme()
     {
-      Storage.Entities.Themes.Theme theme = new Storage.Entities.Themes.Theme
+      //TODO: Make choose theme 
+      Theme theme = new Theme(SystemEntityGuidConst.ThemeBasicSettings);
+      await Task.Run(() =>
       {
-        FileNameTeheme = ""
-      };
-      new Storage.Repository.ThemeRepository().Load(theme);
-
+        new FileRepository().Load(theme);
+      });
       ErrorLabelStyle(theme);
     }
 
     /// <summary>
     /// Create sample theme and save to Storage
     /// </summary>
-    public bool CreateSampleTheme()
+    public async Task CreateSampleTheme()
     {
       const string methodCode = "[1001802]";
       Log.Trace(methodCode, "Create sample theme");
-      Storage.Entities.Themes.Theme theme = new Storage.Entities.Themes.Theme
+     
+      await Task.Run(() =>
       {
-        Description = Resources.ResourceApp.ThemeDescriptionExample,
-        Name = "SampleTheme"
-      };
-      return new Storage.Repository.ThemeRepository().Save(theme);
+        Theme theme = new Theme(SystemEntityGuidConst.ThemeBasicSettings)
+        {
+          Description = Resources.ResourceApp.ThemeDescriptionExample,
+          Name = "SampleTheme"
+        };
+        new FileRepository().Save(theme);
+      });
     }
     /// <summary>
     /// Save theme to actual resources of application
     /// </summary>
     /// <param name="theme">Theme for setting</param>
-    public void SaveToResource(Storage.Entities.Themes.Theme theme)
+    public void SaveToResource(Theme theme)
     {
       ErrorLabelStyle(theme);
     }
@@ -54,7 +62,7 @@ namespace MyTagPocket.Gui.Themes
     /// </summary>
     /// <param name="theme"></param>
     /// <param name="setFromResources">True = Load from Resources and set to object, False = Load from object and set to Resources</param>
-    private void ErrorLabelStyle(Storage.Entities.Themes.Theme theme)
+    private void ErrorLabelStyle(Theme theme)
     {
       const string methodCode = "[1001801]";
       string styleName = "ErrorLabelStyle";

@@ -12,9 +12,9 @@ using Xamarin.Forms;
 namespace MyTagPocket.Storage.Upgrade
 {
   /// <summary>
-  /// Upgrade settings storage
+  /// Upgrade settings file storage
   /// </summary>
-  public class UpgradeStorageSettings : IUpgradeStorageBase
+  public class UpgradeFileEntitiesSettings : IUpgradeFileEntitiesBase
   {
     const string classCode = "[1000700]";
     public static MyTagPocket.Interface.ILogger Log = Xamarin.Forms.DependencyService.Get<MyTagPocket.Interface.ILogManager>().GetLog(classCode);
@@ -27,7 +27,7 @@ namespace MyTagPocket.Storage.Upgrade
     /// <summary>
     /// Constructor
     /// </summary>
-    public UpgradeStorageSettings()
+    public UpgradeFileEntitiesSettings()
     {
       _FileHelper = DependencyService.Get<IFileHelper>();
       _Status = ProcessStatusEnum.IDLE;
@@ -133,10 +133,12 @@ namespace MyTagPocket.Storage.Upgrade
     /// <returns></returns>
     public bool IsActualVersion()
     {
+
       var setRepo = new Repository.FileRepository();
 
       var verEntity = new Repository.File.Entities.Settings.Version();
-      setRepo.Load<Repository.File.Entities.Settings.Version>(verEntity);
+      var task = setRepo.Load(verEntity);
+      Task.WaitAll(task);
       if (verEntity.Ver == verEntity.GetActuaAssemblylVersion())
         return true;
 
@@ -192,7 +194,7 @@ namespace MyTagPocket.Storage.Upgrade
         }
 
         Progress = 0.5;
-        UpgradeVesion();
+        UpgradeVersion();
         Progress = 1;
         StatusProcess = ProcessStatusEnum.IDLE;
         ResultProcess = ResourceApp.UpgradeStorageSettingSucces;
@@ -208,30 +210,32 @@ namespace MyTagPocket.Storage.Upgrade
     /// <summary>
     /// Upgrade application version
     /// </summary>
-    private void UpgradeVesion()
+    private async Task UpgradeVersion()
     {
       const string methodCode = "[1000702]";
-
-      string pathFolder = DependencyService.Get<IFileHelper>().GetLocalFilePath(DataTypeEnum.SETTINGS, null);
-      if (!Directory.Exists(pathFolder))
+      return Task.Run(() =>
       {
-        Log.Trace(methodCode, $"Create folder {pathFolder}");
-        try
+        string pathFolder = DependencyService.Get<IFileHelper>().GetLocalFilePath(DataTypeEnum.SETTINGS, null);
+        if (!Directory.Exists(pathFolder))
         {
-          Directory.CreateDirectory(pathFolder);
+          Log.Trace(methodCode, $"Create folder {pathFolder}");
+          try
+          {
+            Directory.CreateDirectory(pathFolder);
+          }
+          catch (Exception ex)
+          {
+            Log.Error(ex, methodCode, "Cant create folder", new { path = pathFolder });
+          }
         }
-        catch (Exception ex)
-        {
-          Log.Error(ex, methodCode, "Cant create folder", new { path = pathFolder });
-        }
-      }
 
-      string pathVersion = DependencyService.Get<IFileHelper>().GetLocalFilePath(DataTypeEnum.SETTINGS, typeof(Storage.Entities.Settings.Version).Name);
+        string pathVersion = DependencyService.Get<IFileHelper>().GetLocalFilePath(DataTypeEnum.SETTINGS, typeof(Storage.Entities.Settings.Version).Name);
 
-      var setRepo = new Repository.FileRepository();
-      var verEntity = new Repository.File.Entities.Settings.Version();
-      verEntity.Ver = verEntity.GetActuaAssemblylVersion();
-      setRepo.Save(verEntity);
+        var setRepo = new Repository.FileRepository();
+        var verEntity = new Repository.File.Entities.Settings.Version();
+        verEntity.Ver = verEntity.GetActuaAssemblylVersion();
+        setRepo.Save(verEntity);
+      });
     }
   }
 }

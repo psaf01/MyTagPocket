@@ -13,12 +13,6 @@ namespace MyTagPocket.Repository.File.Entities
     /// <summary>
     /// Type Entity
     /// </summary>
-    private DataTypeEnum _DataTypeEntity;
-
-    /// <summary>
-    /// ID entity. Unique code for Entity
-    /// </summary>
-    private string _IdEntity;
 
     /// <summary>
     /// Define encrypt entity
@@ -36,17 +30,17 @@ namespace MyTagPocket.Repository.File.Entities
     /// Constructor
     /// </summary>
     /// <param name="dataTypeEntities">Data type entity</param>
-    /// <param name="id">ID entity. Unique code</param>
-    public FileEntityBase(DataTypeEnum dataTypeEntities, string id, EncryptTypeEnum encrypt)
+    /// <param name="idEntity">ID entity. Unique code</param>
+    public FileEntityBase(DataTypeEnum dataTypeEntities, string entityId, EncryptTypeEnum encrypt)
     {
-      _DataTypeEntity = dataTypeEntities;
+      TypeEntity = dataTypeEntities;
       _Encrypt = encrypt;
-      _IdEntity = id;
+      EntityId = entityId;
 
-      if (_IdEntity == null)
+      if (EntityId == null)
       {
         //create new ID
-        _IdEntity = $"{_DataTypeEntity.Name.Substring(0, 1)}{DateTime.Now.ToString("YYYYMMDD")}{Guid.NewGuid().ToString()}";
+        EntityId = Guid.NewGuid().ToString();
       }
 
     }
@@ -56,13 +50,18 @@ namespace MyTagPocket.Repository.File.Entities
     /// <summary>
     /// Identification entity
     /// </summary>
-    public string IdEntity { get => _IdEntity; set => _IdEntity = value; }
+   public  string EntityId { get; set; }
+
+    /// <summary>
+    /// Identification commit
+    /// </summary>
+    public string CommitId { get; set; }
 
     /// <summary>
     /// Get type entity
     /// </summary>
     /// <returns>Data type entity</returns>
-    public DataTypeEnum TypeEntity { get => _DataTypeEntity; set => _DataTypeEntity = value; }
+    public DataTypeEnum TypeEntity { get; set; }
 
     /// <summary>
     /// Entity created when
@@ -90,9 +89,9 @@ namespace MyTagPocket.Repository.File.Entities
     public virtual string Hash { get; set; }
 
     /// <summary>
-    /// Version entity in history
+    /// File encrypt
     /// </summary>
-    public long VersionObject { get; set; }
+    public EncryptTypeEnum Encrypt { get => _Encrypt; set => _Encrypt = value; }
     #endregion Public property   
 
     #region Public method
@@ -103,15 +102,6 @@ namespace MyTagPocket.Repository.File.Entities
     public virtual string GetActualHash()
     {
       return GetHashCode().ToString();
-    }
-
-    /// <summary>
-    /// Get type encrypt entity
-    /// </summary>
-    /// <returns>Encrypt entity</returns>
-    public EncryptTypeEnum GetEncrypt()
-    {
-      return _Encrypt;
     }
     #endregion Public method
 

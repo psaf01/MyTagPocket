@@ -1,16 +1,16 @@
-﻿using Newtonsoft.Json;
-using System.Text;
+﻿using MyTagPocket.Repository.File.Entities;
+using Newtonsoft.Json;
 
-namespace MyTagPocket.Storage.Entities.Themes
+namespace MyTagPocket.Repository.File.Entities.Themes
 {
   /// <summary>
   /// Definition theme for GUI
   /// </summary>
   public class Theme : FileEntityBase
   {
-    public Theme() : base(CoreUtil.DataTypeEnum.THEMES)
+    public Theme(string entityId) : base(CoreUtil.DataTypeEnum.THEMES, entityId, CoreUtil.EncryptTypeEnum.NONE)
     {
-      BasicSetting = new BasicSettings();
+      BasicSetting = new ThemeBasicSettings();
     }
 
     /// <summary>
@@ -36,7 +36,7 @@ namespace MyTagPocket.Storage.Entities.Themes
     {
       get
       {
-        int version = int.TryParse(Version, out  version) ? version : 1;
+        int version = int.TryParse(Version, out version) ? version : 1;
         return version;
       }
     }
@@ -49,6 +49,6 @@ namespace MyTagPocket.Storage.Entities.Themes
     /// <summary>
     /// Group Basic settings
     /// </summary>
-    public BasicSettings BasicSetting { get; set; } 
+    public ThemeBasicSettings BasicSetting { get; set; }
   }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Linq.Expressions;
 
 namespace MyTagPocket.Repository.Dal.Interface
@@ -8,113 +10,83 @@ namespace MyTagPocket.Repository.Dal.Interface
   /// Interface Generic repository
   /// </summary>
   /// <typeparam name="T">Table</typeparam>
-  public interface IDalRepository<T>
-    where T : new()
+  public interface IDalRepository<T> where T : class, new()
   {
     /// <summary>
     /// Get all records
     /// </summary>
-    /// <param name="navigationProperties">Navigation properties</param>
-    /// <returns>List records</returns>
-    IList<T> GetAll(params Expression<Func<T, object>>[] navigationProperties);
-
-    /// <summary>
-    /// Get list records
-    /// </summary>
-    /// <param name="where">Where conditions</param>
-    /// <param name="navigationProperties">Navigation properties</param>
-    /// <returns>List records</returns>
-    IList<T> GetList(Func<T, bool> where, params Expression<Func<T, object>>[] navigationProperties);
-
-    /// <summary>
-    /// Get single record
-    /// </summary>
-    /// <param name="where">Where conditions</param>
-    /// <param name="navigationProperties">Navigation properties</param>
-    /// <returns>Record</returns>
-    T GetSingle(Func<T, bool> where, params Expression<Func<T, object>>[] navigationProperties);
-
-    /// <summary>
-    /// Add new object
-    /// </summary>
-    /// <param name="obj">Object</param>
     /// <returns></returns>
-    int Add(T obj);
+    Task<List<T>> Get();
+
+    /// <summary>
+    /// Get records
+    /// </summary>
+    /// <typeparam name="TValue">Entity</typeparam>
+    /// <param name="predicate">Predicate </param>
+    /// <param name="orderBy">Order</param>
+    /// <returns></returns>
+    Task<List<T>> Get<TValue>(Expression<Func<T, bool>> predicate = null, Expression<Func<T, TValue>> orderBy = null);
+
+    /// <summary>
+    /// Get record
+    /// </summary>
+    /// <param name="predicate">Predicate</param>
+    /// <returns></returns>
+    Task<T> Get(Expression<Func<T, bool>> predicate);
+
+    /// <summary>
+    /// Get record
+    /// </summary>
+    /// <param name="id">Identificate record</param>
+    /// <returns></returns>
+    Task<T> Get(long id);
+
+    /// <summary>
+    /// Queryable(
+    /// </summary>
+    /// <returns>Queryable(</returns>
+    SQLite.AsyncTableQuery<T> AsQueryable();
 
     /// <summary>
     /// Add new objects
     /// </summary>
     /// <param name="objets">List objects</param>
-    /// <returns>Added new objects</returns>
-    IList<T> Add(IList<T> objets);
-
-    /// <summary>
-    /// Get object 
-    /// </summary>
-    /// <param name="objectId">Object Identificator</param>
-    /// <returns></returns>
-    T GetByObjectId(string objectId);
-
-    /// <summary>
-    /// Get object
-    /// </summary>
-    /// <param name="id">Identificator</param>
-    /// <returns></returns>
-    T GetById(object id);
+    /// <returns>Identificaton new objects</returns>
+    Task<long> Insert(T obj);
 
     /// <summary>
     /// Update object
     /// </summary>
-    /// <param name="obj">Object</param>
-    /// <returns>Identificator</returns>
-    int Update(T obj);
+    /// <param name="entity">Object</param>
+    /// <returns>Identification object</returns>
+    Task<long> Update(T obj);
 
     /// <summary>
-    /// Update objects
+    /// Delete object to trash
     /// </summary>
-    /// <param name="objects">List objects</param>
-    /// <returns>Update objects</returns>
-    IList<T> Update(IList<T> objects);
+    /// <param name="obj">Entity instance</param>
+    /// <returns></returns>
+    Task<long> Delete(T obj);
 
     /// <summary>
     /// Delete object to trash
     /// </summary>
     /// <param name="id">Identificator</param>
     /// <returns></returns>
-    int Delete(object id);
+    Task<long> Delete(long id);
 
     /// <summary>
-    /// Delete object from trash. Not recovery.
+    /// Get actual version table
     /// </summary>
-    /// <param name="id"></param>
-    void DeleteTrash(object id);
+    /// <param name="tableName">Table name</param>
+    /// <returns>Version table</returns>
+    int GetVersion(string tableName);
 
     /// <summary>
-    /// Delete objects from trash. Not recovery.
+    /// Get actual version object table
     /// </summary>
-    /// <param name="objects"></param>
-    void DeleteTrash(IList<T> objects);
-    /// <summary>
-    /// Delete objects
-    /// </summary>
-    /// <param name="objects">List objects</param>
-    /// <returns></returns>
-    IList<T> Delete(IList<T> objects);
-
-    /// <summary>
-    /// Delete all objects
-    /// </summary>
-    /// <returns></returns>
-    void DeleteAll();
-
-    /// <summary>
-    /// Delete all objects from trash
-    /// </summary>
-    void DeleteAllTrash();
-
-    /// <summary>
-    /// Actual version table of Entities
-    /// </summary>
-    int VersionTableEntity { get; }
+    /// <typeparam name="T">Entity table</typeparam>
+    /// <returns>Version table</returns>
+    int GetVersion(T obj);
   }
 }

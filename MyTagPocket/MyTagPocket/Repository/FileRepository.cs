@@ -4,6 +4,7 @@ using MyTagPocket.Repository.File.Interface;
 using MyTagPocket.Repository.Interface;
 using System;
 using Xamarin.Forms;
+using System.Threading.Tasks;
 
 namespace MyTagPocket.Repository
 {
@@ -29,15 +30,14 @@ namespace MyTagPocket.Repository
     /// </summary>
     /// <typeparam name="T">Entity type</typeparam>
     /// <param name="entity">Instance entity</param>
-    public void Load(IFileEntityBase entity)
+    public async Task Load(IFileEntityBase entity)
     {
       const string methodCode = "[1002402]";
       try
       {
         Log.Trace(methodCode, $"Load {nameof(entity)}");
-
-        string path = _FileHelper.GetLocalFilePath(entity.GetTypeEntity(), entity.GetIdEntity());
-        string jsonString = _FileHelper.LoadFile(path);
+        string path = _FileHelper.GetLocalFilePath(entity.TypeEntity, entity.EntityId);
+        string jsonString = await _FileHelper.LoadFile(path);
         //Newtonsoft.Json.JsonConvert.DeserializeObject()
         entity = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonString) as dynamic;
       }
@@ -53,20 +53,40 @@ namespace MyTagPocket.Repository
     /// </summary>
     /// <typeparam name="T">Entity type</typeparam>
     /// <param name="entity">Instance entity</param>
-    public void Save(IFileEntityBase entity)
+    public async Task Save(IFileEntityBase entity)
     {
       const string methodCode = "[1002401]";
       try
       {
         Log.Trace(methodCode, $"Save {nameof(entity)}");
         string jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(entity);
-        string path = _FileHelper.GetLocalFilePath(entity.GetTypeEntity(), entity.GetIdEntity());
-        _FileHelper.SaveFile(path, jsonString);
+        string path = _FileHelper.GetLocalFilePath(entity.TypeEntity, entity.EntityId);
+        await _FileHelper.SaveFile(path, jsonString);
       }
       catch (Exception ex)
       {
         Log.Error(ex, methodCode, $"Cant Save {nameof(entity)}");
       }
+    }
+
+    /// <summary>
+    /// Not implement
+    /// </summary>
+    /// <param name="entity"></param>
+    /// <returns></returns>
+    public Task SaveToArchive(IFileEntityBase entity)
+    {
+      throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// Not implement
+    /// </summary>
+    /// <param name="entity"></param>
+    /// <returns></returns>
+    public Task Delete(IFileEntityBase entity)
+    {
+      throw new NotImplementedException();
     }
   }
 }

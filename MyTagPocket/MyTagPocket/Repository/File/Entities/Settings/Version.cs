@@ -1,16 +1,17 @@
-﻿using System.Reflection;
+﻿using MyTagPocket.CoreUtil;
+using System.Reflection;
 
 namespace MyTagPocket.Repository.File.Entities.Settings
 {
   /// <summary>
   /// Version application
   /// </summary>
-  public class Version : FileEntityBase
+  public class Version : VersionBase
   {
     /// <summary>
     /// Constructor
     /// </summary>
-    public Version () : base(CoreUtil.DataTypeEnum.SETTINGS, "v", CoreUtil.EncryptTypeEnum.NONE)
+    public Version() : base(DataTypeEnum.SETTINGS, SystemEntityGuidConst.SettingsVersion)
     { }
 
     #region Public attributest

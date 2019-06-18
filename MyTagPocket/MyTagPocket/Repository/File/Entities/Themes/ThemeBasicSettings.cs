@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MyTagPocket.CoreUtil;
+using MyTagPocket.Repository.File.Entities;
 
-namespace MyTagPocket.Storage.Entities.Themes
+namespace MyTagPocket.Repository.File.Entities.Themes
 {
   /// <summary>
   /// Basic properties theme settings 
   /// </summary>
-  public class BasicSettings : FileEntityBase
+  public class ThemeBasicSettings : FileEntityBase
   {
     /// <summary>
     /// Constructor
     /// </summary>
-    public BasicSettings () : base(CoreUtil.DataTypeEnum.SETTINGS)
-    {}
+    public ThemeBasicSettings() : base(CoreUtil.DataTypeEnum.SETTINGS, SystemEntityGuidConst.ThemeBasicSettings, EncryptTypeEnum.NONE)
+    { }
 
     /// <summary>
     /// Default baground page color

@@ -2,11 +2,9 @@
 using MyTagPocket.CoreUtil.Interface;
 using MyTagPocket.UWP.Test.CoreUtil;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.IO.Abstractions;
-using System.IO.Abstractions.TestingHelpers;
-using Windows.Storage;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(FileHelper))]
@@ -15,7 +13,7 @@ namespace MyTagPocket.UWP.Test.CoreUtil
   /// <summary>
   /// File helper for UWP application
   /// </summary>
-  public class FileHelper :IFileHelper
+  public class FileHelper : IFileHelper
   {
     const string classCode = "[9001200]";
     public static Interface.ILogger Log = DependencyService.Get<Interface.ILogManager>().GetLog(classCode);
@@ -80,11 +78,11 @@ namespace MyTagPocket.UWP.Test.CoreUtil
       }
       return Path.Combine(_RootTestApp, folder, $"{filename}{ext}");
     }
-      /// <summary>
-      /// Get full path for application database
-      /// </summary>
-      /// <returns></returns>
-      public string GetPathAppDb()
+    /// <summary>
+    /// Get full path for application database
+    /// </summary>
+    /// <returns></returns>
+    public string GetPathAppDb()
     {
       return Path.Combine(_RootTestApp, "MyTagPocket.db3");
     }
@@ -113,9 +111,12 @@ namespace MyTagPocket.UWP.Test.CoreUtil
     /// <param name="path">Full path file</param>
     /// <param name="fileContent">Content file</param>
     /// <returns>True = save ok</returns>
-    public void SaveFile(string path, string fileContent)
+    public async Task SaveFile(string path, string fileContent)
     {
-      FileSystemStorage.File.WriteAllText(path, fileContent);
+      await Task.Run(() =>
+      {
+        FileSystemStorage.File.WriteAllText(path, fileContent);
+      });
     }
 
     /// <summary>
@@ -124,13 +125,34 @@ namespace MyTagPocket.UWP.Test.CoreUtil
     /// <param name="path">Full path</param>
     /// <param name="fileContent">Return text file content</param>
     /// <returns>True = load OK</returns>
-    public string LoadFile(string path)
+    public async Task<string> LoadFile(string path)
     {
-      if (MockFileSystemStorage.MockFileSystem.FileExists(path))
+      string result = null;
+      await Task.Run(() =>
       {
-        return MockFileSystemStorage.MockFileSystem.File.ReadAllText(path);
-      }
-      return null;
+        if (MockFileSystemStorage.MockFileSystem.FileExists(path))
+        {
+          result = MockFileSystemStorage.MockFileSystem.File.ReadAllText(path);
+        }
+      });
+      return result;
+    }
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
+    public async Task DeleteFile(string path)
+    {
+      await Task.Run(() =>
+      {
+        if (MockFileSystemStorage.MockFileSystem.FileExists(path))
+        {
+          MockFileSystemStorage.MockFileSystem.File.Delete(path);
+        }
+      });
     }
   }
 }

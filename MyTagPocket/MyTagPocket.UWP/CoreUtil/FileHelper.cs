@@ -4,6 +4,7 @@ using MyTagPocket.UWP.CoreUtil;
 using System;
 using System.IO;
 using System.IO.Abstractions;
+using System.Threading.Tasks;
 using Windows.Storage;
 using Xamarin.Forms;
 
@@ -101,7 +102,7 @@ namespace MyTagPocket.UWP.CoreUtil
     /// <param name="path">Full path file</param>
     /// <param name="fileContent">Content file</param>
     /// <returns>True = save ok</returns>
-    public void SaveFile(string path, string fileContent)
+    public async Task SaveFile(string path, string fileContent)
     {
       FileSystemStorage.File.WriteAllText(path, fileContent);
     }
@@ -112,9 +113,14 @@ namespace MyTagPocket.UWP.CoreUtil
     /// <param name="path">Full path file</param>
     /// <param name="fileContent">Content file</param>
     /// <returns>True = load ok</returns>
-    public string LoadFile(string path)
+    public async Task<string> LoadFile(string path)
     {
       return FileSystemStorage.File.ReadAllText(path);
+    }
+
+    public async Task DeleteFile(string path)
+    {
+      FileSystemStorage.File.Delete(path);
     }
   }
 }

@@ -1,4 +1,5 @@
 ﻿using System.IO.Abstractions;
+using System.Threading.Tasks;
 
 namespace MyTagPocket.CoreUtil.Interface
 {
@@ -51,19 +52,19 @@ namespace MyTagPocket.CoreUtil.Interface
     /// </summary>
     /// <param name="path">Full path file</param>
     /// <param name="fileContent">Text content file for save</param>
-    void SaveFile(string path, string fileContent);
+    Task SaveFile(string path, string fileContent);
 
     /// <summary>
     /// Load text file
     /// </summary>
     /// <param name="path">Full path file</param>
     /// <returns>Text context</returns>
-    string LoadFile(string path);
+    Task<string> LoadFile(string path);
 
     /// <summary>
     /// Delete file
     /// </summary>
     /// <param name="path">Full path file</param>
-    void DeleteFile(string path);
+    Task DeleteFile(string path);
   }
 }

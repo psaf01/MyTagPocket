@@ -3,9 +3,9 @@
 namespace MyTagPocket.Storage.Interface.Upgrade
 {
   /// <summary>
-  /// Base interface upgrade storage
+  /// Base interface upgrade file storage
   /// </summary>
-  public interface IUpgradeStorageBase: IProcess
+  public interface IUpgradeFileEntitiesBase: IProcess
   {
     /// <summary>
     /// Check actual version

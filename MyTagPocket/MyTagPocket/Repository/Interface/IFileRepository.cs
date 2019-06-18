@@ -1,4 +1,5 @@
 ﻿using MyTagPocket.Repository.File.Interface;
+using System.Threading.Tasks;
 
 namespace MyTagPocket.Repository.Interface
 {
@@ -10,15 +11,25 @@ namespace MyTagPocket.Repository.Interface
     /// <summary>
     /// Save entity to respository
     /// </summary>
-    /// <typeparam name="T">Entity type</typeparam>
     /// <param name="entity">Entity instance</param>
-    void Save(IFileEntityBase entity);
+    Task Save(IFileEntityBase entity);
 
     /// <summary>
-    /// Load antity from repository
+    /// Load entity from repository
     /// </summary>
-    /// <typeparam name="T">Entity type</typeparam>
     /// <param name="entity">Entity instance</param>
-    void Load(IFileEntityBase entity);
+    Task Load(IFileEntityBase entity);
+
+    /// <summary>
+    /// Delete entity from repository
+    /// </summary>
+    /// <param name="entity">Entity instance</param>
+    Task Delete(IFileEntityBase entity);
+
+    /// <summary>
+    /// Save entity to archive
+    /// </summary>
+    /// <param name="entity">Entity instance</param>
+    Task SaveToArchive(IFileEntityBase entity);
   }
 }

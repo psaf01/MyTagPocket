@@ -6,6 +6,7 @@ using MyTagPocket.Storage.Interface.Upgrade;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MyTagPocket.Storage.Upgrade
@@ -13,7 +14,7 @@ namespace MyTagPocket.Storage.Upgrade
   /// <summary>
   /// Upgrade contents storage
   /// </summary>
-  public class UpgradeStorageContents : IUpgradeStorageBase
+  public class UpgradeStorageContents : IUpgradeFileEntitiesBase
   {
     const string classCode = "[1002300]";
     public static MyTagPocket.Interface.ILogger Log = Xamarin.Forms.DependencyService.Get<MyTagPocket.Interface.ILogManager>().GetLog(classCode);
@@ -126,14 +127,15 @@ namespace MyTagPocket.Storage.Upgrade
     /// 
     /// </summary>
     /// <returns></returns>
-    public bool IsActualVersion()
+    public async bool IsActualVersion()
     {
+      bool result = false;
       var setRepo = new FileRepository();
 
-      var verEntity = new Entities.Settings.Version();
-      setRepo.Load<Entities.Settings.Version>(verEntity);
-      if (verEntity.Ver == verEntity.GetActuaAssemblylVersion())
-        return true;
+        var verEntity = new Repository.File.Entities.Settings.Version();
+        await setRepo.Load(verEntity);
+        if (verEntity.Ver == verEntity.GetActuaAssemblylVersion())
+          result= true;
 
       return false;
     }

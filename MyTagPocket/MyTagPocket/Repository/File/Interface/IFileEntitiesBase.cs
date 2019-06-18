@@ -11,7 +11,12 @@ namespace MyTagPocket.Repository.File.Interface
     /// <summary>
     /// Identification entity
     /// </summary>
-    string IdEntity { get; set; }
+    string EntityId { get; set; }
+
+    /// <summary>
+    /// Identification commit
+    /// </summary>
+    string CommitId { get; set; }
 
     /// <summary>
     /// Get type entity
@@ -42,11 +47,17 @@ namespace MyTagPocket.Repository.File.Interface
     /// Hash entity
     /// </summary>
     string Hash { get; set; }
-    
+
+    /// <summary>
+    /// Encrypt file
+    /// </summary>
+    EncryptTypeEnum Encrypt { get; set; }
+
     /// <summary>
     /// Get actual hash from entity 
     /// </summary>
     /// <returns></returns>
     string GetActualHash();
+
   }
 }
