@@ -6,7 +6,8 @@ namespace MyTagPocket.Repository.File.Entities.Settings
   /// <summary>
   /// Version application
   /// </summary>
-  public class Version : VersionBase
+  [FileVersion(1)]
+  public class Version : VersionBase<Version>
   {
     /// <summary>
     /// Constructor
@@ -15,21 +16,9 @@ namespace MyTagPocket.Repository.File.Entities.Settings
     { }
 
     #region Public attributest
-    /// <summary>
-    /// Version
-    /// </summary>
-    public string Ver { get; set; }
     #endregion Public atributes
 
     #region Public method
-    /// <summary>
-    /// Actual version application asembly
-    /// </summary>
-    /// <returns></returns>
-    public string GetActuaAssemblylVersion()
-    {
-      return $"{Assembly.GetExecutingAssembly().GetName().Version.Major}.{Assembly.GetExecutingAssembly().GetName().Version.Minor}";
-    }
     #endregion Public method
   }
 }

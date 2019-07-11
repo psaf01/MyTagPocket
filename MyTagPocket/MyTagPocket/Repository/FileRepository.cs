@@ -30,22 +30,26 @@ namespace MyTagPocket.Repository
     /// </summary>
     /// <typeparam name="T">Entity type</typeparam>
     /// <param name="entity">Instance entity</param>
-    public async Task Load(IFileEntityBase entity)
+    public Task<T> LoadAsync<T>(IFileEntityBase<T> entity)
     {
-      const string methodCode = "[1002402]";
-      try
-      {
-        Log.Trace(methodCode, $"Load {nameof(entity)}");
-        string path = _FileHelper.GetLocalFilePath(entity.TypeEntity, entity.EntityId);
-        string jsonString = await _FileHelper.LoadFile(path);
-        //Newtonsoft.Json.JsonConvert.DeserializeObject()
-        entity = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonString) as dynamic;
-      }
-      catch (Exception ex)
-      {
-        Log.Error(ex, methodCode, $"Cant Save {nameof(entity)}");
-        entity = default;
-      }
+      return Task.Run(() =>
+     {
+
+       const string methodCode = "[1002402]";
+       try
+       {
+         Log.Trace(methodCode, $"Load [{entity.TypeEntity.Name}] ID [{entity.EntityId}]");
+         string path = _FileHelper.GetLocalFilePath(entity.TypeEntity, entity.EntityId);
+         string jsonString = _FileHelper.LoadFile(path);
+         T result = entity.DeserializeJson(jsonString);
+         return result;
+       }
+       catch (Exception ex)
+       {
+         Log.Error(ex, methodCode, $"Cant load file type [{entity.TypeEntity.Name}] ID [{entity.EntityId}]");
+        throw new Exception("Cant load file");
+       }
+     });
     }
 
     /// <summary>
@@ -53,28 +57,31 @@ namespace MyTagPocket.Repository
     /// </summary>
     /// <typeparam name="T">Entity type</typeparam>
     /// <param name="entity">Instance entity</param>
-    public async Task Save(IFileEntityBase entity)
+    public async Task SaveAsync<T>(IFileEntityBase<T> entity)
     {
-      const string methodCode = "[1002401]";
-      try
+      await Task.Run(() =>
       {
-        Log.Trace(methodCode, $"Save {nameof(entity)}");
-        string jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(entity);
-        string path = _FileHelper.GetLocalFilePath(entity.TypeEntity, entity.EntityId);
-        await _FileHelper.SaveFile(path, jsonString);
-      }
-      catch (Exception ex)
-      {
-        Log.Error(ex, methodCode, $"Cant Save {nameof(entity)}");
-      }
+        const string methodCode = "[1002401]";
+        try
+        {
+          Log.Trace(methodCode, $"Save file [{entity.TypeEntity.Name}] ID [{entity.EntityId}]");
+          string jsonString = entity.SerializeJson();
+          string path = _FileHelper.GetLocalFilePath(entity.TypeEntity, entity.EntityId);
+          _FileHelper.SaveFile(path, jsonString);
+        }
+        catch (Exception ex)
+        {
+          Log.Error(ex, methodCode, $"Cant Save  [{entity.TypeEntity.Name}] ID [{entity.EntityId}]");
+        }
+      });
     }
 
     /// <summary>
     /// Not implement
     /// </summary>
     /// <param name="entity"></param>
-    /// <returns></returns>
-    public Task SaveToArchive(IFileEntityBase entity)
+    /// <returns>Save to archive</returns>
+    public Task SaveToArchiveAsync<T>(IFileEntityBase<T> entity)
     {
       throw new NotImplementedException();
     }
@@ -83,8 +90,31 @@ namespace MyTagPocket.Repository
     /// Not implement
     /// </summary>
     /// <param name="entity"></param>
+    /// <returns>Delete entity</returns>
+    public async Task DeleteAsync<T>(IFileEntityBase<T> entity)
+    {
+      await Task.Run(() =>
+      {
+        const string methodCode = "[1002403]";
+        try
+        {
+          Log.Trace(methodCode, $"Delete file [{entity.TypeEntity.Name}] ID [{entity.EntityId}]");
+          string path = _FileHelper.GetLocalFilePath(entity.TypeEntity, entity.EntityId);
+          _FileHelper.DeleteFile(path);
+        }
+        catch (Exception ex)
+        {
+          Log.Error(ex, methodCode, $"Cant Delete  [{entity.TypeEntity.Name}] ID [{entity.EntityId}]");
+        }
+      });
+    }
+
+    /// <summary>
+    /// Load entity from archive
+    /// </summary>
+    /// <param name="entity"></param>
     /// <returns></returns>
-    public Task Delete(IFileEntityBase entity)
+    public Task<IFileEntityBase<T>> LoadArchiveAsync<T>(IFileEntityBase<T> entity)
     {
       throw new NotImplementedException();
     }

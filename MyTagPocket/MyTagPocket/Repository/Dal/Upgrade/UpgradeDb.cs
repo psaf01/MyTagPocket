@@ -33,7 +33,7 @@ namespace MyTagPocket.Dal.Upgrade
     /// <param name="fileHelper">File helper for acces file storage</param>
     public UpgradeDb()
     {
-      _Db = new SQLiteConnection(DependencyService.Get<IFileHelper>().GetPathAppDb());
+      //_Db = new SQLiteConnection(DependencyService.Get<IFileHelper>().GetPathAppDb());
     }
     #endregion Constructor
 

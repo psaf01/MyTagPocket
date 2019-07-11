@@ -6,7 +6,7 @@ namespace MyTagPocket.Repository.File.Entities.Themes
   /// <summary>
   /// Basic properties theme settings 
   /// </summary>
-  public class ThemeBasicSettings : FileEntityBase
+  public class ThemeBasicSettings : FileEntityBase<ThemeBasicSettings>
   {
     /// <summary>
     /// Constructor

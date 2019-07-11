@@ -12,24 +12,34 @@ namespace MyTagPocket.Repository.Interface
     /// Save entity to respository
     /// </summary>
     /// <param name="entity">Entity instance</param>
-    Task Save(IFileEntityBase entity);
+    /// <returns>Async Task</returns>
+    Task SaveAsync<T>(IFileEntityBase<T> entity);
 
     /// <summary>
     /// Load entity from repository
     /// </summary>
     /// <param name="entity">Entity instance</param>
-    Task Load(IFileEntityBase entity);
+    /// <typeparam name="T">Entity type</typeparam>
+    /// <returns>Entity base from repository</returns>
+    Task<T> LoadAsync<T>(IFileEntityBase<T> entity);
 
     /// <summary>
     /// Delete entity from repository
     /// </summary>
     /// <param name="entity">Entity instance</param>
-    Task Delete(IFileEntityBase entity);
+    Task DeleteAsync<T>(IFileEntityBase<T> entity);
 
     /// <summary>
     /// Save entity to archive
     /// </summary>
     /// <param name="entity">Entity instance</param>
-    Task SaveToArchive(IFileEntityBase entity);
+    Task SaveToArchiveAsync<T>(IFileEntityBase<T> entity);
+
+    /// <summary>
+    /// Load entity from archive
+    /// </summary>
+    /// <param name="entity"></param>
+    /// <returns></returns>
+    Task<IFileEntityBase<T>> LoadArchiveAsync<T>(IFileEntityBase<T> entity);
   }
 }

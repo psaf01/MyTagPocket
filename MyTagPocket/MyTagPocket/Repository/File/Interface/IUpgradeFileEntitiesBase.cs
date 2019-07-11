@@ -11,7 +11,7 @@ namespace MyTagPocket.Storage.Interface.Upgrade
     /// Check actual version
     /// </summary>
     /// <returns>True = actual version</returns>
-    bool IsActualVersion();
+    bool IsActual();
 
     /// <summary>
     /// Reinitialize storage modul

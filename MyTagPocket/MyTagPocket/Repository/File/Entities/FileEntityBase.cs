@@ -7,7 +7,7 @@ namespace MyTagPocket.Repository.File.Entities
   /// <summary>
   /// Base Entities
   /// </summary>
-  public class FileEntityBase : IFileEntityBase
+  public class FileEntityBase<T> : IFileEntityBase<T>
   {
     #region Private variable
     /// <summary>
@@ -26,6 +26,7 @@ namespace MyTagPocket.Repository.File.Entities
     #endregion Private variable
 
     #region Constructor
+
     /// <summary>
     /// Constructor
     /// </summary>
@@ -103,6 +104,29 @@ namespace MyTagPocket.Repository.File.Entities
     {
       return GetHashCode().ToString();
     }
+
+    /// <summary>
+    /// Deserialice JSON string to file entity
+    /// </summary>
+    /// <param name="jsonString">JSON</param>
+    /// <returns>File Entity</returns>
+    public virtual T DeserializeJson(string jsonString)
+    {
+      return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(jsonString);
+    }
+    
+    
+
+    /// <summary>
+    /// Serialize file entity to json string
+    /// </summary>
+    /// <typeparam name="T">File entity</typeparam>
+    /// <returns>JSON string</returns>
+    public string SerializeJson()
+    {
+      return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+    }
+
     #endregion Public method
 
     #region Private method

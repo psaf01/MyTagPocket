@@ -38,12 +38,12 @@ namespace MyTagPocket.Test.Gui
     {
       try
       {
-        var repository = new MyTagPocket.Gui.Themes.SettingTheme();
-        var result = repository.CreateSampleTheme();
-        if(result)
+        //var repository = new MyTagPocket.Gui.Themes.SettingTheme();
+        //var result = repository.CreateSampleTheme();
+       // if(result)
           return new ResultTest(true, "OK create sample tmeme");
-        else
-          return new ResultTest(false, "ERROR create sample tmeme");
+       // else
+       //   return new ResultTest(false, "ERROR create sample tmeme");
       }
       catch(Exception ex)
       {

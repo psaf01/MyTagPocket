@@ -6,7 +6,7 @@ namespace MyTagPocket.Repository.File.Interface
   /// <summary>
   /// Interface file entities base for
   /// </summary>
-  public interface IFileEntityBase
+  public interface IFileEntityBase<T>
   {
     /// <summary>
     /// Identification entity
@@ -59,5 +59,18 @@ namespace MyTagPocket.Repository.File.Interface
     /// <returns></returns>
     string GetActualHash();
 
+    /// <summary>
+    /// Deserialice JSON string to file entity
+    /// </summary>
+    /// <param name="jsonString">JSON</param>
+    /// <returns>File Entity</returns>
+    T DeserializeJson(string jsonString);
+
+    /// <summary>
+    /// Serialize file entity to json string
+    /// </summary>
+    /// <typeparam name="T">File entity</typeparam>
+    /// <returns>JSON string</returns>
+    string SerializeJson();
   }
 }

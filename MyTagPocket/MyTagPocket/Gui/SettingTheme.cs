@@ -25,7 +25,7 @@ namespace MyTagPocket.Gui.Themes
       Theme theme = new Theme(SystemEntityGuidConst.ThemeBasicSettings);
       await Task.Run(() =>
       {
-        new FileRepository().Load(theme);
+        new FileRepository().LoadAsync(theme);
       });
       ErrorLabelStyle(theme);
     }
@@ -33,20 +33,16 @@ namespace MyTagPocket.Gui.Themes
     /// <summary>
     /// Create sample theme and save to Storage
     /// </summary>
-    public async Task CreateSampleTheme()
+    public void CreateSampleTheme()
     {
       const string methodCode = "[1001802]";
       Log.Trace(methodCode, "Create sample theme");
-     
-      await Task.Run(() =>
-      {
-        Theme theme = new Theme(SystemEntityGuidConst.ThemeBasicSettings)
+            Theme theme = new Theme(SystemEntityGuidConst.ThemeBasicSettings)
         {
           Description = Resources.ResourceApp.ThemeDescriptionExample,
           Name = "SampleTheme"
         };
-        new FileRepository().Save(theme);
-      });
+        new FileRepository().SaveAsync(theme);
     }
     /// <summary>
     /// Save theme to actual resources of application

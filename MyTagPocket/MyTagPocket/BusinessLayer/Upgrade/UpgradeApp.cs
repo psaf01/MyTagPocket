@@ -1,4 +1,5 @@
-﻿using MyTagPocket.Storage.Upgrade;
+﻿using MyTagPocket.Repository.File.Upgrade;
+using MyTagPocket.Storage.Upgrade;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading;
@@ -9,7 +10,7 @@ namespace MyTagPocket.BusinessLayer.Upgrade
   /// <summary>
   /// Check and upgrade application
   /// </summary>
-  public class UpgradeApp : IAsyncResult, IDisposable
+  public class UpgradeApp : UpgradeFileBase, IAsyncResult, IDisposable
   {
     const string classCode = "[1001300]";
     public static MyTagPocket.Interface.ILogger Log = Xamarin.Forms.DependencyService.Get<MyTagPocket.Interface.ILogManager>().GetLog(classCode);
@@ -89,20 +90,15 @@ namespace MyTagPocket.BusinessLayer.Upgrade
     public bool IsCompleted => throw new NotImplementedException();
 
     /// <summary>
-    /// Check actual version application
+    /// 
     /// </summary>
-    /// <returns>Tru = actual version</returns>
-    public bool ActualVersionApp()
+    /// <returns></returns>
+    public bool IsActual()
     {
-      //Check storage repository on actual version
       var setRepo = new Repository.FileRepository();
       var verEntity = new Repository.File.Entities.Settings.Version();
-      //setRepo.Load<Repository.File.Entities.Settings.Version>(verEntity);
-      if (verEntity.Ver != verEntity.GetActuaAssemblylVersion())
-        return false;
-
-      //TODO: Check database is actual version
-      return true;
+      setRepo.LoadAsync(verEntity);
+      return IsActualVersion(verEntity);
     }
 
     /// <summary>

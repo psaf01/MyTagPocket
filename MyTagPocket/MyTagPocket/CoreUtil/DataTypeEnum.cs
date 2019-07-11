@@ -37,7 +37,7 @@ namespace MyTagPocket.CoreUtil
       /// <summary>
       /// Theme application
       /// </summary>
-      Themes
+      Themes,
     }
 
     /// <summary>
@@ -62,5 +62,7 @@ namespace MyTagPocket.CoreUtil
     /// Contents notes
     /// </summary>
     public static readonly DataTypeEnum THEMES = new DataTypeEnum("THEMES", DataType.Themes, "thm");
+
+    //public static readonly DataTypeEnum 
   }
 }

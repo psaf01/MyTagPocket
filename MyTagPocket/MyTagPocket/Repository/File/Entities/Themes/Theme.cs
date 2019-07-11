@@ -6,7 +6,7 @@ namespace MyTagPocket.Repository.File.Entities.Themes
   /// <summary>
   /// Definition theme for GUI
   /// </summary>
-  public class Theme : FileEntityBase
+  public class Theme : FileEntityBase<Theme>
   {
     public Theme(string entityId) : base(CoreUtil.DataTypeEnum.THEMES, entityId, CoreUtil.EncryptTypeEnum.NONE)
     {

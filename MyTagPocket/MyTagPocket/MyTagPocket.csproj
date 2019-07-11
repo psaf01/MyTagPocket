@@ -24,10 +24,10 @@
     <PackageReference Include="Newtonsoft.Json.Encryption" Version="2.1.0" />
     <PackageReference Include="NLog" Version="4.6.5" />
     <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
-    <PackageReference Include="System.IO.Abstractions" Version="6.0.7" />
+    <PackageReference Include="System.IO.Abstractions" Version="6.0.15" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.Forms" Version="4.0.0.497661" />
+    <PackageReference Include="Xamarin.Forms" Version="4.1.0.581479" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repository\Dal\Entities\Artifacts\" />
@@ -46,9 +46,7 @@
     <Folder Include="Repository\File\Upgrade\v1\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Pages\HomePageMenuItem.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Update="Pages\HomePageMenuItem.cs" />
     <Compile Update="Resources\ResourceApp.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

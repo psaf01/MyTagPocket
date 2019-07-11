@@ -2,6 +2,7 @@
 using MyTagPocket.CoreUtil.Interface;
 using MyTagPocket.UWP.CoreUtil;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Abstractions;
 using System.Threading.Tasks;
@@ -14,15 +15,22 @@ namespace MyTagPocket.UWP.CoreUtil
   /// <summary>
   /// File helper for UWP application
   /// </summary>
-  public class FileHelper :IFileHelper
+  public class FileHelper : IFileHelper
   {
+    /// <summary>
+    /// Encoding file
+    /// </summary>
+    private System.Text.Encoding _Encoding = System.Text.Encoding.UTF8;
 
     public FileHelper()
     {
       FileSystemStorage = new FileSystem();
     }
 
-    public IFileSystem FileSystemStorage { get;set;}
+    /// <summary>
+    /// File system on device
+    /// </summary>
+    public IFileSystem FileSystemStorage { get; set; }
 
     /// <summary>Abstractions.IFileSystem
     /// Get local folder path
@@ -37,7 +45,7 @@ namespace MyTagPocket.UWP.CoreUtil
     /// <summary>
     /// Get local file path
     /// </summary>
-    /// <param name="fileType">FileType</param>
+    /// <param name="fileType">File of type</param>
     /// <param name="filename">File name</param>
     /// <returns>Full path file. If File name null or empty return Full path folder</returns>
     public string GetLocalFilePath(DataTypeEnum fileType, string filename)
@@ -48,11 +56,11 @@ namespace MyTagPocket.UWP.CoreUtil
       {
         case DataTypeEnum.DataType.Settings:
           folder = "settings";
-          //ext = "." + FileTypeEnum.SETTINGS.Ext;
+          ext = DataTypeEnum.SETTINGS.LocalizedName;
           break;
         case DataTypeEnum.DataType.Contents:
           folder = "contents";
-          //ext = "." + FileTypeEnum.CONTENTS.Ext;
+          ext = DataTypeEnum.CONTENTS.LocalizedName;
           break;
         default:
           folder = "temp";
@@ -64,36 +72,7 @@ namespace MyTagPocket.UWP.CoreUtil
       {
         return Path.Combine(path, folder);
       }
-      return Path.Combine(path, folder, $"{filename}{ext}");
-    }
-      /// <summary>
-      /// Get full path for application database
-      /// </summary>
-      /// <returns></returns>
-      public string GetPathAppDb()
-    {
-      string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-      return Path.Combine(path, "MyTagPocket.db3");
-    }
-
-    /// <summary>
-    /// Get full path for content database
-    /// </summary>
-    /// <returns></returns>
-    public string GetPathContentDb()
-    {
-      string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-      return Path.Combine(path, GetPathContent(), "ContentList.db3");
-    }
-
-    /// <summary>
-    /// Get path for Contents files
-    /// </summary>
-    /// <returns></returns>
-    public string GetPathContent()
-    {
-      string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-      return Path.Combine(path, "Contents");
+      return Path.Combine(path, folder, $"{filename}.{ext}");
     }
 
     /// <summary>
@@ -101,24 +80,46 @@ namespace MyTagPocket.UWP.CoreUtil
     /// </summary>
     /// <param name="path">Full path file</param>
     /// <param name="fileContent">Content file</param>
-    /// <returns>True = save ok</returns>
-    public async Task SaveFile(string path, string fileContent)
+    public void SaveFile(string path, string fileContent)
     {
-      FileSystemStorage.File.WriteAllText(path, fileContent);
+      FileSystemStorage.File.WriteAllText(path, fileContent, _Encoding);
+    }
+
+    /// <summary>
+    /// Save all lines to file
+    /// </summary>
+    /// <param name="path">Full path to file</param>
+    /// <param name="fileContent">Collection of strings</param>
+    public void SaveFileLines(string path, IEnumerable<string> fileContent)
+    {
+      FileSystemStorage.File.WriteAllLines(path, fileContent, _Encoding);
     }
 
     /// <summary>
     /// Load text file
     /// </summary>
     /// <param name="path">Full path file</param>
-    /// <param name="fileContent">Content file</param>
-    /// <returns>True = load ok</returns>
-    public async Task<string> LoadFile(string path)
+    /// <returns>string from file</returns>
+    public string LoadFile(string path)
     {
-      return FileSystemStorage.File.ReadAllText(path);
+      return FileSystemStorage.File.ReadAllText(path,_Encoding);
     }
 
-    public async Task DeleteFile(string path)
+    /// <summary>
+    /// Load all lines from file tu collection
+    /// </summary>
+    /// <param name="path">Full path to file</param>
+    /// <returns>Lines from file</returns>
+    public IEnumerable<string> LoadFileLines(string path)
+    {
+      return FileSystemStorage.File.ReadLines(path, _Encoding);
+    }
+
+    /// <summary>
+    /// Delete file
+    /// </summary>
+    /// <param name="path">Full path to file</param>
+    public void DeleteFile(string path)
     {
       FileSystemStorage.File.Delete(path);
     }

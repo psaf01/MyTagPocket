@@ -1,6 +1,7 @@
 ﻿using MyTagPocket.CoreUtil;
 using MyTagPocket.CoreUtil.Interface;
 using MyTagPocket.Repository;
+using MyTagPocket.Repository.File.Upgrade;
 using MyTagPocket.Resources;
 using MyTagPocket.Storage.Interface.Upgrade;
 using System;
@@ -14,7 +15,7 @@ namespace MyTagPocket.Storage.Upgrade
   /// <summary>
   /// Upgrade contents storage
   /// </summary>
-  public class UpgradeStorageContents : IUpgradeFileEntitiesBase
+  public class UpgradeStorageContents : UpgradeFileBase, IUpgradeFileEntitiesBase
   {
     const string classCode = "[1002300]";
     public static MyTagPocket.Interface.ILogger Log = Xamarin.Forms.DependencyService.Get<MyTagPocket.Interface.ILogManager>().GetLog(classCode);
@@ -124,20 +125,15 @@ namespace MyTagPocket.Storage.Upgrade
     }
 
     /// <summary>
-    /// 
+    /// Check actual version Contents
     /// </summary>
     /// <returns></returns>
-    public async bool IsActualVersion()
-    {
+    public  bool IsActual()
+    {;
       bool result = false;
       var setRepo = new FileRepository();
-
-        var verEntity = new Repository.File.Entities.Settings.Version();
-        await setRepo.Load(verEntity);
-        if (verEntity.Ver == verEntity.GetActuaAssemblylVersion())
-          result= true;
-
-      return false;
+      var verEntity = new Repository.File.Entities.Contents.Version();
+      return IsActualVersion(verEntity);
     }
 
     /// <summary>
@@ -176,7 +172,7 @@ namespace MyTagPocket.Storage.Upgrade
       {
 
         Progress = 0.1;
-        if (IsActualVersion() && reinit == false)
+        if (IsActual() && reinit == false)
         {
           Progress = 1;
           StatusProcess = ProcessStatusEnum.IDLE;

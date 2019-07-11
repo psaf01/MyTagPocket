@@ -2,6 +2,7 @@
 using MyTagPocket.CoreUtil.Interface;
 using MyTagPocket.UWP.Test.CoreUtil;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Abstractions;
 using System.Threading.Tasks;
@@ -18,6 +19,14 @@ namespace MyTagPocket.UWP.Test.CoreUtil
     const string classCode = "[9001200]";
     public static Interface.ILogger Log = DependencyService.Get<Interface.ILogManager>().GetLog(classCode);
 
+    /// <summary>
+    /// Encoding file
+    /// </summary>
+    private System.Text.Encoding _Encoding = System.Text.Encoding.UTF8;
+
+    /// <summary>
+    /// File system on device
+    /// </summary>
     public IFileSystem FileSystemStorage { get; set; }
 
     /// <summary>
@@ -30,10 +39,13 @@ namespace MyTagPocket.UWP.Test.CoreUtil
     /// </summary>
     public FileHelper()
     {
-      FileSystemStorage = MockFileSystemStorage.MockFileSystem;
+      if (MockFileSystemStorage.UseMockFileSystem)
+        FileSystemStorage = MockFileSystemStorage.MockFileSystem;
+      else
+        FileSystemStorage = new FileSystem();
     }
 
-    /// <summary>
+    /// <summary>Abstractions.IFileSystem
     /// Get local folder path
     /// </summary>
     /// <param name="type">File type</param>
@@ -46,7 +58,7 @@ namespace MyTagPocket.UWP.Test.CoreUtil
     /// <summary>
     /// Get local file path
     /// </summary>
-    /// <param name="fileType">FileType</param>
+    /// <param name="fileType">File of type</param>
     /// <param name="filename">File name</param>
     /// <returns>Full path file. If File name null or empty return Full path folder</returns>
     public string GetLocalFilePath(DataTypeEnum fileType, string filename)
@@ -57,52 +69,27 @@ namespace MyTagPocket.UWP.Test.CoreUtil
       {
         case DataTypeEnum.DataType.Settings:
           folder = "settings";
-          //ext = "." + FileTypeEnum.SETTINGS.Ext;
+          ext = DataTypeEnum.SETTINGS.LocalizedName;
           break;
         case DataTypeEnum.DataType.Contents:
           folder = "contents";
-          //ext = "." + FileTypeEnum.CONTENTS.Ext;
-          break;
-        case DataTypeEnum.DataType.Themes:
-          folder = "themes";
-          //ext = "." + FileTypeEnum.THEMES.Ext;
+          ext = DataTypeEnum.CONTENTS.LocalizedName;
           break;
         default:
           folder = "temp";
           break;
       }
+      string path = string.Empty;
+      if (MockFileSystemStorage.UseMockFileSystem)
+        path = _RootTestApp;
+      else
+        path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 
       if (String.IsNullOrEmpty(filename))
       {
-        return Path.Combine(_RootTestApp, folder);
+        return Path.Combine(path, folder);
       }
-      return Path.Combine(_RootTestApp, folder, $"{filename}{ext}");
-    }
-    /// <summary>
-    /// Get full path for application database
-    /// </summary>
-    /// <returns></returns>
-    public string GetPathAppDb()
-    {
-      return Path.Combine(_RootTestApp, "MyTagPocket.db3");
-    }
-
-    /// <summary>
-    /// Get full path for content database
-    /// </summary>
-    /// <returns></returns>
-    public string GetPathContentDb()
-    {
-      return Path.Combine(_RootTestApp, GetPathContent(), "ContentList.db3");
-    }
-
-    /// <summary>
-    /// Get path for Contents files
-    /// </summary>
-    /// <returns></returns>
-    public string GetPathContent()
-    {
-      return Path.Combine(_RootTestApp, "Contents");
+      return Path.Combine(path, folder, $"{filename}.{ext}");
     }
 
     /// <summary>
@@ -110,49 +97,48 @@ namespace MyTagPocket.UWP.Test.CoreUtil
     /// </summary>
     /// <param name="path">Full path file</param>
     /// <param name="fileContent">Content file</param>
-    /// <returns>True = save ok</returns>
-    public async Task SaveFile(string path, string fileContent)
+    public void SaveFile(string path, string fileContent)
     {
-      await Task.Run(() =>
-      {
-        FileSystemStorage.File.WriteAllText(path, fileContent);
-      });
+      FileSystemStorage.File.WriteAllText(path, fileContent, _Encoding);
     }
 
     /// <summary>
-    /// Load file from Mock file system
+    /// Save all lines to file
     /// </summary>
-    /// <param name="path">Full path</param>
-    /// <param name="fileContent">Return text file content</param>
-    /// <returns>True = load OK</returns>
-    public async Task<string> LoadFile(string path)
+    /// <param name="path">Full path to file</param>
+    /// <param name="fileContent">Collection of strings</param>
+    public void SaveFileLines(string path, IEnumerable<string> fileContent)
     {
-      string result = null;
-      await Task.Run(() =>
-      {
-        if (MockFileSystemStorage.MockFileSystem.FileExists(path))
-        {
-          result = MockFileSystemStorage.MockFileSystem.File.ReadAllText(path);
-        }
-      });
-      return result;
+      FileSystemStorage.File.WriteAllLines(path, fileContent, _Encoding);
     }
 
+    /// <summary>
+    /// Load text file
+    /// </summary>
+    /// <param name="path">Full path file</param>
+    /// <returns>string from file</returns>
+    public string LoadFile(string path)
+    {
+      return FileSystemStorage.File.ReadAllText(path, _Encoding);
+    }
 
     /// <summary>
-    /// 
+    /// Load all lines from file tu collection
     /// </summary>
-    /// <param name="path"></param>
-    /// <returns></returns>
-    public async Task DeleteFile(string path)
+    /// <param name="path">Full path to file</param>
+    /// <returns>Lines from file</returns>
+    public IEnumerable<string> LoadFileLines(string path)
     {
-      await Task.Run(() =>
-      {
-        if (MockFileSystemStorage.MockFileSystem.FileExists(path))
-        {
-          MockFileSystemStorage.MockFileSystem.File.Delete(path);
-        }
-      });
+      return FileSystemStorage.File.ReadLines(path, _Encoding);
+    }
+
+    /// <summary>
+    /// Delete file
+    /// </summary>
+    /// <param name="path">Full path to file</param>
+    public void DeleteFile(string path)
+    {
+      FileSystemStorage.File.Delete(path);
     }
   }
 }

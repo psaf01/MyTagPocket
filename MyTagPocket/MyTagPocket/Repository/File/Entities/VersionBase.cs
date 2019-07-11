@@ -1,4 +1,6 @@
 ﻿using MyTagPocket.CoreUtil;
+using MyTagPocket.Repository.File.Interface;
+using Newtonsoft.Json;
 using System.Reflection;
 
 namespace MyTagPocket.Repository.File.Entities
@@ -6,7 +8,7 @@ namespace MyTagPocket.Repository.File.Entities
   /// <summary>
   /// Version application
   /// </summary>
-  public class VersionBase : FileEntityBase
+  public class VersionBase<T> : FileEntityBase<T>, IVersion
   {
     /// <summary>
     /// Constructor
@@ -18,7 +20,8 @@ namespace MyTagPocket.Repository.File.Entities
     /// <summary>
     /// Version
     /// </summary>
-    public string Ver { get; set; }
+    [JsonProperty("v")]
+    public int Version { get; set; }
     #endregion Public atributes
 
     #region Public method

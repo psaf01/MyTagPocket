@@ -5,7 +5,8 @@ namespace MyTagPocket.Repository.File.Entities.Themes
   /// <summary>
   /// Version application
   /// </summary>
-  public class Version : VersionBase
+  [FileVersion(1)]
+  public class Version : VersionBase<Version>
   {
     /// <summary>
     /// Constructor
@@ -14,10 +15,6 @@ namespace MyTagPocket.Repository.File.Entities.Themes
     { }
 
     #region Public attributest
-    /// <summary>
-    /// Version
-    /// </summary>
-    public string Ver { get; set; }
     #endregion Public atributes
 
     #region Public method

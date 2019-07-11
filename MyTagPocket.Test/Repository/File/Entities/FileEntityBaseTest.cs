@@ -1,8 +1,6 @@
 ﻿using MyTagPocket.CoreUtil;
 using MyTagPocket.Repository.File.Entities;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MyTagPocket.Test.Repository.File.Entities
 {
@@ -17,11 +15,17 @@ namespace MyTagPocket.Test.Repository.File.Entities
     {
       try
       {
-        DataTypeEnum dataType = DataTypeEnum.CONTENTS;
-        string id = null;
-        EncryptTypeEnum encrypt = EncryptTypeEnum.NONE;
-        var entity = new FileEntityBase(dataType, id, encrypt);
-        return new ResultTest(true);
+        int testValue = 5;
+        var testEntity = new MyTagPocket.Repository.File.Entities.Contents.Version();
+        testEntity.Version = testValue;
+        string testJson = testEntity.SerializeJson();
+        var resultTest = new MyTagPocket.Repository.File.Entities.Contents.Version();
+        var test = resultTest.DeserializeJson(testJson);
+        bool result = false;
+        if (test.Version == testEntity.Version)
+          result = true;
+        //var entity = new FileEntityBase(dataType, id, encrypt);
+        return new ResultTest(result);
 
       }
       catch (Exception ex)
