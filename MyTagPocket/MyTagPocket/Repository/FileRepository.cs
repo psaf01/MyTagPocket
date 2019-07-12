@@ -83,6 +83,7 @@ namespace MyTagPocket.Repository
     /// <returns>Save to archive</returns>
     public Task SaveToArchiveAsync<T>(IFileEntityBase<T> entity)
     {
+      //System.IO.Compression.ZipArchive()
       throw new NotImplementedException();
     }
 

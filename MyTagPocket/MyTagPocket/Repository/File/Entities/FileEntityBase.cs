@@ -110,7 +110,7 @@ namespace MyTagPocket.Repository.File.Entities
     /// </summary>
     /// <param name="jsonString">JSON</param>
     /// <returns>File Entity</returns>
-    public virtual T DeserializeJson(string jsonString)
+    public  T DeserializeJson(string jsonString)
     {
       return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(jsonString);
     }
