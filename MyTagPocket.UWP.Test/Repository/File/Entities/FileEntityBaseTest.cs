@@ -1,4 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MyTagPocket.UWP.Test.CoreUtil;
+using System;
+using System.IO;
 
 namespace MyTagPocket.UWP.Test.Repository.File.Entities
 {
@@ -16,7 +19,18 @@ namespace MyTagPocket.UWP.Test.Repository.File.Entities
     [TestMethod]
     public void InitializeContentsFileEntityBase()
     {
-      var result = _FileEntityBaseTest.InitializeContentsFileEntityBase();
+      var result = _FileEntityBaseTest.SerilizationDeserializationJsonTest();
+      Assert.IsTrue(result.Result, result.Message);
+    }
+
+    [TestMethod]
+    public void SaveCompressDecompresTest()
+    {
+      MockFileSystemStorage.UseMockFileSystem = false;
+      var xx = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+
+      xx = Path.Combine(xx, "test.arc");
+      var result = _FileEntityBaseTest.SaveCompressDecompresTest(xx);
       Assert.IsTrue(result.Result, result.Message);
     }
   }

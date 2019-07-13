@@ -1,13 +1,8 @@
-﻿using MyTagPocket.CoreUtil;
-using MyTagPocket.CoreUtil.Interface;
+﻿using MyTagPocket.CoreUtil.Interface;
 using MyTagPocket.Repository.File;
 using MyTagPocket.UWP.CoreUtil;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.IO.Abstractions;
-using System.Threading.Tasks;
-using Windows.Storage;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(FileHelper))]
@@ -35,8 +30,8 @@ namespace MyTagPocket.UWP.CoreUtil
     /// </summary>
     public FileHelper()
     {
-        FileSystemStorage = new FileSystem();
-        ApplicationDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+      FileSystemStorage = new FileSystem();
+      ApplicationDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
     }
   }
 }

@@ -38,6 +38,14 @@ namespace MyTagPocket.CoreUtil
       /// Theme application
       /// </summary>
       Themes,
+      /// <summary>
+      /// Compress archive content 
+      /// </summary>
+      Archive,
+      /// <summary>
+      /// History archive content. Information about stored individual contents in the ARC file is stored here
+      /// </summary>
+      History
     }
 
     /// <summary>
@@ -63,6 +71,14 @@ namespace MyTagPocket.CoreUtil
     /// </summary>
     public static readonly DataTypeEnum THEMES = new DataTypeEnum("THEMES", DataType.Themes, "thm");
 
-    //public static readonly DataTypeEnum 
+    /// <summary>
+    /// Compress Archive contents
+    /// </summary>
+    public static readonly DataTypeEnum ARCHIVE = new DataTypeEnum("ARCHIVE", DataType.Archive, "arc");
+
+    /// <summary>
+    /// History archive content. Information about stored individual contents in the ARC file is stored here
+    /// </summary>
+    public static readonly DataTypeEnum HISTORY = new DataTypeEnum("HISTORY", DataType.History, "hst");
   }
 }

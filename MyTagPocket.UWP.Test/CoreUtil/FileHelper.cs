@@ -1,11 +1,8 @@
-﻿using MyTagPocket.CoreUtil;
-using MyTagPocket.CoreUtil.Interface;
+﻿using MyTagPocket.CoreUtil.Interface;
 using MyTagPocket.Repository.File;
 using MyTagPocket.UWP.Test.CoreUtil;
 using System;
-using System.Collections.Generic;
 using System.IO.Abstractions;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(FileHelper))]

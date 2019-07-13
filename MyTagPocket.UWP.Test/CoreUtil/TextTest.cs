@@ -11,5 +11,12 @@ namespace MyTagPocket.UWP.Test.CoreUtil
       var result = new MyTagPocket.Test.CoreUtil.TextTest().ConvertAsciiOkTest();
       Assert.IsTrue(result.Result, result.Message);
     }
+
+    [TestMethod]
+    public void CompressDecompressStringTest()
+    {
+      var result = new MyTagPocket.Test.CoreUtil.TextTest().CompressDecompressStringTest();
+      Assert.IsTrue(result.Result, result.Message);
+    }
   }
 }

@@ -1,18 +1,17 @@
 ﻿using MyTagPocket.CoreUtil;
-using MyTagPocket.CoreUtil.Interface;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.IO.Abstractions;
-using System.Text;
-using Xamarin.Forms;
 
 namespace MyTagPocket.Repository.File
 {
   /// <summary>
   /// Base file helper for all systems
   /// </summary>
-  public class FileHelperBase 
+  public class FileHelperBase
   {
+    #region Private Properties
     const string classCode = "[1002700]";
     public static MyTagPocket.Interface.ILogger Log = Xamarin.Forms.DependencyService.Get<MyTagPocket.Interface.ILogManager>().GetLog(classCode);
 
@@ -30,17 +29,22 @@ namespace MyTagPocket.Repository.File
     /// Encoding file
     /// </summary>
     private System.Text.Encoding _Encoding = System.Text.Encoding.UTF8;
+    #endregion Private Properties
 
+    #region Public Properties
     /// <summary>
     /// File system on device
     /// </summary>
-    public IFileSystem FileSystemStorage {get => _FileSystemStorage; set =>  _FileSystemStorage = value;}
+    public IFileSystem FileSystemStorage { get => _FileSystemStorage; set => _FileSystemStorage = value; }
 
     /// <summary>
     /// Root path for application file data
     /// </summary>
     public string ApplicationDataPath { get => _ApplicationDataPath; set => _ApplicationDataPath = value; }
 
+    #endregion Public Properties
+
+    #region Public Method
     /// <summary>
     /// Constructor
     /// </summary>
@@ -88,7 +92,7 @@ namespace MyTagPocket.Repository.File
 
       if (String.IsNullOrEmpty(filename))
       {
-        return  _FileSystemStorage.Path.Combine(_ApplicationDataPath,folder);
+        return _FileSystemStorage.Path.Combine(_ApplicationDataPath, folder);
       }
 
       return _FileSystemStorage.Path.Combine(_ApplicationDataPath, folder, $"{filename}.{ext}");
@@ -101,7 +105,7 @@ namespace MyTagPocket.Repository.File
     /// <param name="fileContent">Content file</param>
     public virtual void SaveFile(string path, string fileContent)
     {
-      FileSystemStorage.File.WriteAllText(path, fileContent, _Encoding);
+      _FileSystemStorage.File.WriteAllText(path, fileContent, _Encoding);
     }
 
     /// <summary>
@@ -111,8 +115,33 @@ namespace MyTagPocket.Repository.File
     /// <param name="fileContent">Collection of strings</param>
     public virtual void SaveFileLines(string path, IEnumerable<string> fileContent)
     {
-      FileSystemStorage.File.WriteAllLines(path, fileContent, _Encoding);
+      _FileSystemStorage.File.WriteAllLines(path, fileContent, _Encoding);
     }
+
+    /// <summary>
+    /// Add text to file
+    /// </summary>
+    /// <param name="path">Full path to file</param>
+    /// <param name="content">Text</param>
+    public virtual void SaveAppendToFile(string path, string content)
+    {
+      _FileSystemStorage.File.AppendAllText(path, content, _Encoding);
+    }
+
+    /// <summary>
+    /// Add binary data to file 
+    /// </summary>
+    /// <param name="path">Full path to file</param>
+    /// <param name="content">Content</param>
+    public virtual void SaveAppendToFile(string path, byte[] content)
+    {
+      using (var FS = _FileSystemStorage.FileStream.Create(path, _FileSystemStorage.File.Exists(path) ? FileMode.Append : FileMode.OpenOrCreate, FileAccess.Write))
+      {
+        FS.Write(content, 0, content.Length);
+        FS.Close();
+      }
+    }
+
 
     /// <summary>
     /// Load text file
@@ -131,7 +160,29 @@ namespace MyTagPocket.Repository.File
     /// <returns>Lines from file</returns>
     public virtual IEnumerable<string> LoadFileLines(string path)
     {
-      return FileSystemStorage.File.ReadLines(path, _Encoding);
+      return _FileSystemStorage.File.ReadLines(path, _Encoding);
+    }
+
+    /// <summary>
+    /// Load contet from file
+    /// </summary>
+    /// <param name="path">Full path to file</param>
+    /// <param name="startPosition">Position from where to start reading</param>
+    /// <param name="lengthContent">Length of content to be read</param>
+    /// <returns></returns>
+    public virtual byte[] LoadContentFromFile(string path, int startPosition, int lengthContent)
+    {
+      byte[] result;
+      using (BinaryReader b = new BinaryReader(_FileSystemStorage.File.Open(path, FileMode.Open)))
+      {
+        // Seek to our required position.
+        b.BaseStream.Seek(startPosition, SeekOrigin.Begin);
+
+        // Read the next 2000 bytes.
+        result = b.ReadBytes(lengthContent);
+      }
+
+      return result;
     }
 
     /// <summary>
@@ -142,5 +193,10 @@ namespace MyTagPocket.Repository.File
     {
       FileSystemStorage.File.Delete(path);
     }
+    #endregion Public Metdhod
+
+    #region Private Method
+
+    #endregion Private Method
   }
 }

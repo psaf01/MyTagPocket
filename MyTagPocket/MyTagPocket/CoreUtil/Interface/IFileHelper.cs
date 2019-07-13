@@ -45,6 +45,20 @@ namespace MyTagPocket.CoreUtil.Interface
     void SaveFileLines(string path, IEnumerable<string> fileContent);
 
     /// <summary>
+    /// Add text to file
+    /// </summary>
+    /// <param name="path">Full path to file</param>
+    /// <param name="content">Text</param>
+    void SaveAppendToFile(string path, string content);
+
+    /// <summary>
+    /// Add binary data to file 
+    /// </summary>
+    /// <param name="path">Full path to file</param>
+    /// <param name="content">Content</param>
+    void SaveAppendToFile(string path, byte[] content);
+
+    /// <summary>
     /// Load text file
     /// </summary>
     /// <param name="path">Full path file</param>
@@ -58,6 +72,15 @@ namespace MyTagPocket.CoreUtil.Interface
     /// <param name="path">Full path to file</param>
     /// <returns>Lines from file</returns>
     IEnumerable<string> LoadFileLines(string path);
+
+    /// <summary>
+    /// Load contet from file
+    /// </summary>
+    /// <param name="path">Full path to file</param>
+    /// <param name="startPosition">Position from where to start reading</param>
+    /// <param name="lengthContent">Length of content to be read</param>
+    /// <returns></returns>
+    byte[] LoadContentFromFile(string path, int startPosition, int lengthContent);
 
     /// <summary>
     /// Delete file

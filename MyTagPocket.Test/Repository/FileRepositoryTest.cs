@@ -1,10 +1,5 @@
-﻿using MyTagPocket.CoreUtil;
-using MyTagPocket.Repository;
-using MyTagPocket.Repository.File.Interface;
+﻿using MyTagPocket.Repository;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyTagPocket.Test.Repository
 {
@@ -31,7 +26,7 @@ namespace MyTagPocket.Test.Repository
         bool result = false;
         if (version.Version == testVersion.Version)
           result = true;
-        if(!result)
+        if (!result)
           return new ResultTest(result);
 
         repository.DeleteAsync<MyTagPocket.Repository.File.Entities.Settings.Version>(testVersion).Wait();
