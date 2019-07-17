@@ -41,7 +41,11 @@ namespace MyTagPocket.Repository.File.Entities
       if (EntityId == null)
       {
         //create new ID
-        EntityId = Guid.NewGuid().ToString();
+        EntityId = Guid.NewGuid().ToString("N");
+        CreatedWhen = DateTime.UtcNow;
+        UpdatedWhen = CreatedWhen;
+        CreatedWho = UserConst.System;
+        UpdatedWho = CreatedWho;
       }
 
     }
@@ -110,7 +114,7 @@ namespace MyTagPocket.Repository.File.Entities
     /// </summary>
     /// <param name="jsonString">JSON</param>
     /// <returns>File Entity</returns>
-    public  T DeserializeJson(string jsonString)
+    public T DeserializeJson(string jsonString)
     {
       return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(jsonString);
     }

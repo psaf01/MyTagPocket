@@ -67,6 +67,18 @@ namespace MyTagPocket.Repository.File
     /// <summary>
     /// Get local file path
     /// </summary>
+    /// <param name="fileTypeValue">Idnetification file type</param>
+    /// <param name="filename">File name</param>
+    /// <returns>Full path file. If File name null or empty return Full path folder</returns>
+    public virtual string GetLocalFilePath(string fileTypeValue, string filename)
+    {
+      var fileType = DataTypeEnum.ValueOf(fileTypeValue);
+      return GetLocalFilePath(fileType, filename);
+    }
+
+    /// <summary>
+    /// Get local file path
+    /// </summary>
     /// <param name="fileType">File of type</param>
     /// <param name="filename">File name</param>
     /// <returns>Full path file. If File name null or empty return Full path folder</returns>
@@ -142,6 +154,25 @@ namespace MyTagPocket.Repository.File
       }
     }
 
+    /// <summary>
+    /// Check exists the file
+    /// </summary>
+    /// <param name="path">Full path to the file</param>
+    /// <returns></returns>
+    public virtual bool FileExists(string path)
+    {
+      return FileSystemStorage.File.Exists(path);
+    }
+
+    /// <summary>
+    /// Check exists the folder
+    /// </summary>
+    /// <param name="path">Full path to the folder</param>
+    /// <returns></returns>
+    public virtual bool FolderExists(string path)
+    {
+      return FileSystemStorage.Directory.Exists(path);
+    }
 
     /// <summary>
     /// Load text file

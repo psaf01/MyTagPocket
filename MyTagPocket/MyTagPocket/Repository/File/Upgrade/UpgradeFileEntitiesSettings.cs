@@ -227,7 +227,7 @@ namespace MyTagPocket.Storage.Upgrade
       var setRepo = new Repository.FileRepository();
       var verEntity = new Repository.File.Entities.Settings.Version();
       verEntity.Version = GetVersionFileFromEntity(verEntity); ;
-      setRepo.SaveAsync(verEntity);
+      setRepo.SaveAsync(verEntity, false).Wait();
     }
   }
 }

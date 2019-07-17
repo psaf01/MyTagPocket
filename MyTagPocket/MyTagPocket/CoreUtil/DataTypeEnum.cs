@@ -35,6 +35,10 @@ namespace MyTagPocket.CoreUtil
       /// </summary>
       Contents,
       /// <summary>
+      /// TAG
+      /// </summary>
+      Tag,
+      /// <summary>
       /// Theme application
       /// </summary>
       Themes,

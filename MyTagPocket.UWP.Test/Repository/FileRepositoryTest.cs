@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MyTagPocket.Test;
+using MyTagPocket.UWP.Test.CoreUtil;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,15 @@ namespace MyTagPocket.UWP.Test.Repository
     public void FileSaveLoadDeleteTest()
     {
       var result = _FileRepositoryTest.FileSaveLoadDeleteTest();
+      Assert.IsTrue(result.Result, result.Message);
+
+    }
+
+    [TestMethod]
+    public void FileSaveLoadArchiveContentTest()
+    {
+      MockFileSystemStorage.UseMockFileSystem = false;
+      var result = _FileRepositoryTest.FileSaveLoadArchiveContentTest();
       Assert.IsTrue(result.Result, result.Message);
 
     }

@@ -59,6 +59,20 @@ namespace MyTagPocket.CoreUtil.Interface
     void SaveAppendToFile(string path, byte[] content);
 
     /// <summary>
+    /// Check exists the file
+    /// </summary>
+    /// <param name="path">Full path to the file</param>
+    /// <returns></returns>
+    bool FileExists(string path);
+
+    /// <summary>
+    /// Check exists the folder
+    /// </summary>
+    /// <param name="path">Full path to the folder</param>
+    /// <returns></returns>
+    bool FolderExists(string path);
+
+    /// <summary>
     /// Load text file
     /// </summary>
     /// <param name="path">Full path file</param>

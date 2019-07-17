@@ -1,4 +1,5 @@
 ﻿using MyTagPocket.Repository.File.Interface;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MyTagPocket.Repository.Interface
@@ -9,11 +10,12 @@ namespace MyTagPocket.Repository.Interface
   public interface IFileRepository
   {
     /// <summary>
-    /// Save entity to respository
+    /// Load entity from file system
     /// </summary>
-    /// <param name="entity">Entity instance</param>
-    /// <returns>Async Task</returns>
-    Task SaveAsync<T>(IFileEntityBase<T> entity);
+    /// <typeparam name="T">Entity type</typeparam>
+    /// <param name="entity">Instance entity</param>
+    /// <param name="toArchive">Save entity to archive too</param>
+    Task SaveAsync<T>(IFileEntityBase<T> entity, bool toArchive);
 
     /// <summary>
     /// Load entity from repository
@@ -24,16 +26,25 @@ namespace MyTagPocket.Repository.Interface
     Task<T> LoadAsync<T>(IFileEntityBase<T> entity);
 
     /// <summary>
+    /// Load entity file from archive
+    /// </summary>
+    /// <typeparam name="T">Entity type</typeparam>
+    /// <param name="fileInfo">Info about file from history</param>
+    Task<T> LoadFromArchivAsync<T>(IFileHistoryInfo fileInfo);
+
+    /// <summary>
+    /// Load history save of file entity
+    /// </summary>
+    /// <typeparam name="T">Type File entity</typeparam>
+    /// <param name="entity">Entity object</param>
+    /// <returns>List of file entity history</returns>
+    Task<IEnumerable<IFileHistoryInfo>> LoadHistory<T>(IFileEntityBase<T> entity);
+
+    /// <summary>
     /// Delete entity from repository
     /// </summary>
     /// <param name="entity">Entity instance</param>
     Task DeleteAsync<T>(IFileEntityBase<T> entity);
-
-    /// <summary>
-    /// Save entity to archive
-    /// </summary>
-    /// <param name="entity">Entity instance</param>
-    Task SaveToArchiveAsync<T>(IFileEntityBase<T> entity);
 
     /// <summary>
     /// Load entity from archive

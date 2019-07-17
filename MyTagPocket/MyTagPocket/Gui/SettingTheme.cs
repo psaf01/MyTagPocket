@@ -42,7 +42,8 @@ namespace MyTagPocket.Gui.Themes
           Description = Resources.ResourceApp.ThemeDescriptionExample,
           Name = "SampleTheme"
         };
-        new FileRepository().SaveAsync(theme);
+      var repo = new FileRepository();
+      repo.SaveAsync<Theme>(theme,false).Wait();
     }
     /// <summary>
     /// Save theme to actual resources of application
