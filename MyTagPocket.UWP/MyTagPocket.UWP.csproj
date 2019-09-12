@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MyTagPocket.UWP</RootNamespace>
     <AssemblyName>MyTagPocket.UWP</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
+    <DefaultLanguage>en</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
@@ -131,6 +131,12 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.AppCenter.Analytics">
+      <Version>2.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AppCenter.Crashes">
+      <Version>2.1.1</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.9" />
     <PackageReference Include="Microsoft.UI.Xaml">
       <Version>2.2.190830001</Version>
@@ -138,7 +144,7 @@
     <PackageReference Include="NLog">
       <Version>4.6.7</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.778463" />
     <PackageReference Include="Prism.Unity.Forms" Version="7.2.0.1367" />
   </ItemGroup>
   <ItemGroup>

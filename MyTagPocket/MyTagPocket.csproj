@@ -8,7 +8,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <NeutralLanguage>en-US</NeutralLanguage>
+    <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE</DefineConstants>
@@ -18,8 +18,10 @@
     <Warning Text="$(MSBuildProjectFile) is Multilingual build enabled, but the Multilingual App Toolkit is unavailable during the build. If building with Visual Studio, please check to ensure that toolkit is properly installed." />
   </Target>
   <ItemGroup>
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.1.1" />
     <PackageReference Include="NLog" Version="4.6.7" />
-    <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.778463" />
     <PackageReference Include="Prism.Unity.Forms" Version="7.2.0.1367" />
   </ItemGroup>
   <ItemGroup>
