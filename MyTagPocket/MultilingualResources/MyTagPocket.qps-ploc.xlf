@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="qps-ploc" original="MYTAGPOCKET/RESOURCES/RESOURCEAPP.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.6901.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="MYTAGPOCKET/RESOURCES/RESOURCEAPP.RESX" datatype="resx">
+        <trans-unit id="AboutApp" translate="yes" xml:space="preserve">
+          <source>About</source>
+          <target state="final">About</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">About</note>
+        </trans-unit>
+        <trans-unit id="AppHelp" translate="yes" xml:space="preserve">
+          <source>Help</source>
+          <target state="final">Help</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">App</note>
+        </trans-unit>
+        <trans-unit id="InitAppFatalError" translate="yes" xml:space="preserve">
+          <source>An error occurred during application initialization</source>
+          <target state="final">An error occurred during application initialization</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">App</note>
+        </trans-unit>
+        <trans-unit id="ThemeDescription" translate="yes" xml:space="preserve">
+          <source>The basic theme for MyTagPocket.</source>
+          <target state="new">The basic theme for MyTagPocket.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Gui</note>
+        </trans-unit>
+        <trans-unit id="ThemeDescriptionExample" translate="yes" xml:space="preserve">
+          <source>It serves as an example of the Theme definition in the application. Changes in this file do not affect the application itself.</source>
+          <target state="new">It serves as an example of the Theme definition in the application. Changes in this file do not affect the application itself.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Gui</note>
+        </trans-unit>
+        <trans-unit id="Test" translate="yes" xml:space="preserve">
+          <source>Test</source>
+          <target state="new">Test</target>
+        </trans-unit>
+        <trans-unit id="FatalErrorUnexpected" translate="yes" xml:space="preserve">
+          <source>An unexpected error in the application</source>
+          <target state="new">An unexpected error in the application</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Error</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStatusEndError" translate="yes" xml:space="preserve">
+          <source>Finished with error</source>
+          <target state="new">Finished with error</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStatusEndSucces" translate="yes" xml:space="preserve">
+          <source>Successfully completed</source>
+          <target state="new">Successfully completed</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStatusNotStart" translate="yes" xml:space="preserve">
+          <source>Not started</source>
+          <target state="new">Not started</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStatusProgress" translate="yes" xml:space="preserve">
+          <source>In Progress</source>
+          <target state="new">In Progress</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStatusStop" translate="yes" xml:space="preserve">
+          <source>Stop</source>
+          <target state="new">Stop</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeDatabaseLabel" translate="yes" xml:space="preserve">
+          <source>Upgrade Database</source>
+          <target state="new">Upgrade Database</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStorageContentsDescriptionLabel" translate="yes" xml:space="preserve">
+          <source>Updating basic user content structures.</source>
+          <target state="new">Updating basic user content structures.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStorageContentsLabel" translate="yes" xml:space="preserve">
+          <source>Storage contents</source>
+          <target state="new">Storage contents</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStorageLabel" translate="yes" xml:space="preserve">
+          <source>Upgrade Storage</source>
+          <target state="new">Upgrade Storage</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStorageSettingsDescriptionLabel" translate="yes" xml:space="preserve">
+          <source>Updating application settings and their configuration parts.</source>
+          <target state="new">Updating application settings and their configuration parts.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStorageSettingsLabel" translate="yes" xml:space="preserve">
+          <source>Storage settings</source>
+          <target state="new">Storage settings</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="ProcessError" translate="yes" xml:space="preserve">
+          <source>Error</source>
+          <target state="new">Error</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Process</note>
+        </trans-unit>
+        <trans-unit id="ProcessIdle" translate="yes" xml:space="preserve">
+          <source>Idle</source>
+          <target state="new">Idle</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Process</note>
+        </trans-unit>
+        <trans-unit id="ProcessPaused" translate="yes" xml:space="preserve">
+          <source>Paused</source>
+          <target state="new">Paused</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Process</note>
+        </trans-unit>
+        <trans-unit id="ProcessRunning" translate="yes" xml:space="preserve">
+          <source>Running</source>
+          <target state="new">Running</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Process</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStorageSettingsError" translate="yes" xml:space="preserve">
+          <source>Unable to complete update settings</source>
+          <target state="new">Unable to complete update settings</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStorageSettingsIsActual" translate="yes" xml:space="preserve">
+          <source>Storage settings is last version</source>
+          <target state="new">Storage settings is last version</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStorageSettingSucces" translate="yes" xml:space="preserve">
+          <source>Update setup completed successfully</source>
+          <target state="new">Update setup completed successfully</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeInfoFinishError" translate="yes" xml:space="preserve">
+          <source>There was an error updating</source>
+          <target state="new">There was an error updating</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeInfoFinishSucces" translate="yes" xml:space="preserve">
+          <source>Update completed successfully</source>
+          <target state="new">Update completed successfully</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeInfoNotStarted" translate="yes" xml:space="preserve">
+          <source>Update not started</source>
+          <target state="new">Update not started</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeInfoStarted" translate="yes" xml:space="preserve">
+          <source>Update started</source>
+          <target state="new">Update started</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>
