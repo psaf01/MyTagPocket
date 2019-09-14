@@ -21,6 +21,7 @@ namespace MyTagPocket.UWP
     public void RegisterTypes(IContainerRegistry containerRegistry)
     {
       containerRegistry.Register(typeof(ILogManager), typeof(LogManager_UWP));
+      containerRegistry.Register(typeof(IFileHelper), typeof(FileHelper_UWP));
     }
   }
 }

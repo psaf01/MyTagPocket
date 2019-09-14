@@ -10,6 +10,6 @@
     /// <summary>
     /// Last used class code
     /// </summary>
-    private const string ClassCode = "[1002800]";
+    private const string ClassCode = "[1002900]";
     }
 }
