@@ -33,7 +33,7 @@ namespace MyTagPocket.CoreUtil
     /// <param name="args">Agruments</param>
     public void Debug(string methodCode, string text, params object[] args)
     {
-      log.Debug($"{ClassCode} {methodCode} {text}", args);
+      log.Debug("{@ClassCode} {@methodCode} " + text, ClassCode, methodCode, args);
     }
 
     /// <summary>
@@ -44,7 +44,7 @@ namespace MyTagPocket.CoreUtil
     /// <param name="args">Arguments</param>
     public void Error(string methodCode, string text, params object[] args)
     {
-      log.Error($"{ClassCode} {methodCode} {text}", args);
+      log.Error("{@ClassCode} {@methodCode} {text}", ClassCode, methodCode, args);
     }
 
     /// <summary>
@@ -90,7 +90,8 @@ namespace MyTagPocket.CoreUtil
     /// <param name="args">Arguments</param>
     public void Info(string methodCode, string text, params object[] args)
     {
-      log.Info($"{ClassCode} {methodCode} {text}", args);
+
+      log.Info("{@methodCode} " + text, methodCode, args);
     }
 
     /// <summary>

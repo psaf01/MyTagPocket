@@ -28,6 +28,11 @@ namespace MyTagPocket.ViewModels
     {
       const string methodCode = "[1002801]";
       Log.Trace(methodCode, $"Init");
+      var testA = "testvalue";
+      var testB = 100;
+      Log.Debug(methodCode, $"Init debug testA=[{testA}] testB=[{testB}]", testA, testB);
+      Log.Info(methodCode, $"Init debug testA=[{testA}] testB=[{testB}]", testA, testB);
+
       _navigationService = navigationService;
       _canNavigate = false;
       

@@ -3,6 +3,9 @@ using MyTagPocket.UWP.CoreUtil;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
+using NLog.Targets.Seq;
+using NLog.Targets.Wrappers;
+using System.Collections.Generic;
 using System.IO;
 using Xamarin.Forms;
 
@@ -18,15 +21,50 @@ namespace MyTagPocket.UWP.CoreUtil
     /// </summary>
     public LogManager_UWP()
     {
-      var config = new LoggingConfiguration();
+      var config = NLog.LogManager.Configuration;
+      if (config == null)
+        config = new LoggingConfiguration();
       //Debuger
 #if DEBUG
-      var debugerTarget = new DebuggerTarget("Debugger")
+      Windows.Storage.StorageFolder folder = Windows.Storage.ApplicationData.Current.LocalFolder;
+
+      var debugerTarget = new DebuggerTarget("FileTrace")
       {
-        Layout = @"${date:format=HH\:mm\:ss} | ${pad:padding=5:inner=${level:uppercase=true}} | ${message} | ${exception}"
+        Layout = @"${shortdate} | ${pad:padding=5:inner=${level:uppercase=true}} | ${gdc:item=device} |  ${message} | ${exception}"
       };
+
       config.AddTarget(debugerTarget);
+
+      var fileTraceTarget = new FileTarget("FileTrace")
+      {
+        FileName = Path.Combine(folder.Path, @"log", "Trace-${shortdate}.txt"),
+        Layout = "${longdate} ${pad:padding=5:inner=${level:uppercase=true}} ${gdc:item=device} ${message}  ${exception}",
+        MaxArchiveFiles = 5,
+        ArchiveEvery = FileArchivePeriod.Day,
+      };
+      config.AddTarget(fileTraceTarget);
+      config.LoggingRules.Add(new LoggingRule("*", LogLevel.Trace, fileTraceTarget));
+
+      var deviceProperty = new SeqPropertyItem()
+      {
+        Name = "Device",
+        Value = "${gdc:item=device}",
+        As = "device"
+      };
+      var seqSubTarget = new SeqTarget()
+      {
+        ServerUrl = "http://localhost:5341",
+        Name = "Seq",
+        ApiKey=""
+      };
+      seqSubTarget.Properties.Add(deviceProperty);
+      var seqTarget = new BufferingTargetWrapper(seqSubTarget, 1000, 2000);
+      seqTarget.Name = "seq";
+      config.AddTarget(seqTarget);
+      config.LoggingRules.Add(new LoggingRule("*", LogLevel.Trace, seqTarget));
+
 #endif
+      /*
       //File
       //string folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
       Windows.Storage.StorageFolder folder = Windows.Storage.ApplicationData.Current.LocalFolder;
@@ -70,7 +108,10 @@ namespace MyTagPocket.UWP.CoreUtil
 #if DEBUG
       config.AddRuleForAllLevels(debugerTarget);
 #endif
+      */
       NLog.LogManager.Configuration = config;
+
+      NLog.GlobalDiagnosticsContext.Set("device", "TESTPC");
     }
 
     /// <summary>
@@ -90,7 +131,7 @@ namespace MyTagPocket.UWP.CoreUtil
 
       //config.AddRuleForAllLevels(consoleTarget);
       var logger = NLog.LogManager.GetLogger(fileName);
-      return new Log(logger);
+      return new Log(logger) { ClassCode = classCode };
     }
   }
 }
