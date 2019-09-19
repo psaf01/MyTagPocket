@@ -26,105 +26,119 @@ namespace MyTagPocket.CoreUtil
     }
 
     /// <summary>
-    /// Debug
+    /// Informatin
     /// </summary>
-    /// <param name="methodCode">Code method for localization</param>
-    /// <param name="text">Message</param>
-    /// <param name="args">Agruments</param>
-    public void Debug(string methodCode, string text, params object[] args)
-    {
-      log.Debug("{@ClassCode} {@methodCode} " + text, ClassCode, methodCode, args);
-    }
-
-    /// <summary>
-    /// Error
-    /// </summary>
-    /// <param name="methodCode">Code method for localization</param>
+    /// <param name="methodCode">Code method for localization in source</param>
     /// <param name="text">Message</param>
     /// <param name="args">Arguments</param>
-    public void Error(string methodCode, string text, params object[] args)
+    public void Info(string methodCode, string text, params object[] args)
     {
-      log.Error("{@ClassCode} {@methodCode} {text}", ClassCode, methodCode, args);
-    }
-
-    /// <summary>
-    /// Error
-    /// </summary>
-    /// <param name="ex">Exception</param>
-    /// <param name="methodCode">Code method for localization</param>
-    /// <param name="text">Message</param>
-    /// <param name="args">Arguments</param>
-    public void Error(Exception ex, string methodCode, string text, params object[] args)
-    {
-      log.Error(ex, $"{ClassCode} {methodCode} {text}", args);
-    }
-
-    /// <summary>
-    /// Fatal error
-    /// </summary>
-    /// <param name="methodCode">Code method for localization</param>
-    /// <param name="text">Message</param>
-    /// <param name="args">Arguments</param>
-    public void Fatal(string methodCode, string text, params object[] args)
-    {
-      log.Fatal($"{ClassCode} {methodCode} {text}", args);
-    }
-
-    /// <summary>
-    /// Fatal error
-    /// </summary>
-    /// <param name="ex">Exception</param>
-    /// <param name="methodCode">Code method for localization</param>
-    /// <param name="text">Message</param>
-    /// <param name="args">Arguments</param>
-    public void Fatal(Exception ex, string methodCode, string text, params object[] args)
-    {
-      log.Fatal(ex, $"{ClassCode} {methodCode} {text}", args);
+      log.Info("{@methodCode} " + text, ClassCode + methodCode, args);
     }
 
     /// <summary>
     /// Informatin
     /// </summary>
     /// <param name="methodCode">Code method for localization</param>
+    /// <param name="type">Data type</param>
     /// <param name="text">Message</param>
     /// <param name="args">Arguments</param>
-    public void Info(string methodCode, string text, params object[] args)
+    public void Info(string methodCode, DataTypeEnum type, string text, params object[] args)
     {
-
-      log.Info("{@methodCode} " + text, methodCode, args);
-    }
-
-    /// <summary>
-    /// Trace
-    /// </summary>
-    /// <param name="methodCode">Code method for localization</param>
-    /// <param name="text">Message</param>
-    /// <param name="args">Arguments</param>
-    public void Trace(string methodCode, string text, params object[] args)
-    {
-      log.Trace($"{ClassCode} {methodCode} {text}", args);
-    }
-
-    /// <summary>
-    /// Warning
-    /// </summary>
-    /// <param name="methodCode">Code method for localization</param>
-    /// <param name="text">Text message</param>
-    /// <param name="args">Arument</param>
-    public void Warn(string methodCode, string text, params object[] args)
-    {
-      log.Warn($"{ClassCode} {methodCode} {text}", args);
+      log.Info("{@methodCode} {@dataType} " + text, ClassCode + methodCode, type.Name, args);
     }
 
     /// <summary>
     /// Audit
     /// </summary>
-    /// <param name="id">Identification object (GUID)</param>
-    /// <param name="text">Message</param>
-    /// <param name="args">Aguments</param>
-    public void Audit(string id, string text, params object[] args)
+    /// <param name="auditCode">Audit code</param>
+    /// <param name="type">Data type</param>
+    /// <param name="args">Values</param>
+    public void Audit(string auditCode, DataTypeEnum type, params object[] values)
     {
-      log.Info($"{ClassCode} [0000000] {id} {string.Format(text, args)}");
+      
+      //log.Info($"{ClassCode} [0000000] {id} {string.Format(text, args)}");
+    }
+
+    /// <summary>
+    /// Debug
+    /// </summary>
+    /// <param name="methodCode">Code method for localization in source</param>
+    /// <param name="text">Message</param>
+    /// <param name="args">Arguments</param>
+    public void Debug(string methodCode, string text, params object[] args)
+    {
+      log.Debug("{@methodCode} " + text, ClassCode + methodCode, args);
+    }
+
+    /// <summary>
+    /// Error
+    /// </summary>
+    /// </summary>
+    /// <param name="methodCode">Code method for localization in source</param>
+    /// <param name="text">Message</param>
+    /// <param name="args">Arguments</param>
+    public void Error(string methodCode, string text, params object[] args)
+    {
+      log.Error("{@methodCode} " + text, ClassCode + methodCode, args);
+    }
+
+    /// <summary>
+    /// Error
+    /// </summary>
+    /// <param name="ex">Exception</param>
+    /// <param name="methodCode">Code method for localization in source</param>
+    /// <param name="text">Message</param>
+    /// <param name="args">Arguments</param>
+    public void Error(Exception ex, string methodCode, string text, params object[] args)
+    {
+      log.Error(ex, "{@methodCode} " + text, ClassCode + methodCode, args);
+    }
+
+    /// <summary>
+    /// Fatal error
+    /// </summary>
+    /// <param name="methodCode">Code method for localization in source</param>
+    /// <param name="text">Message</param>
+    /// <param name="args">Arguments</param>
+    public void Fatal(string methodCode, string text, params object[] args)
+    {
+      log.Fatal("{@methodCode} " + text, ClassCode + methodCode, args);
+    }
+
+    /// <summary>
+    /// Fatal error
+    /// </summary>
+    /// <param name="ex">Exception</param>
+    /// <param name="methodCode">Code method for localization in source</param>
+    /// <param name="text">Message</param>
+    /// <param name="args">Arguments</param>
+    public void Fatal(Exception ex, string methodCode, string text, params object[] args)
+    {
+      log.Fatal(ex, "{@methodCode} " + text, ClassCode + methodCode, args);
+    }
+
+    /// <summary>
+    /// Trace
+    /// </summary>
+    /// </summary>
+    /// <param name="methodCode">Code method for localization in source</param>
+    /// <param name="text">Message</param>
+    /// <param name="args">Arguments</param>
+    public void Trace(string methodCode, string text, params object[] args)
+    {
+      log.Trace("{@methodCode} " + text, ClassCode + methodCode, args);
+    }
+
+    /// <summary>
+    /// Warning
+    /// </summary>
+    /// <param name="methodCode">Code method for localization in source</param>
+    /// <param name="text">Message</param>
+    /// <param name="args">Arguments</param>
+    public void Warn(string methodCode, string text, params object[] args)
+    {
+      log.Warn("{@methodCode} " + text, ClassCode + methodCode, args);
     }
   }
 }
