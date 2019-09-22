@@ -11,7 +11,7 @@ namespace MyTagPocket.Repository.File.Entities.Themes
     /// <summary>
     /// Constructor
     /// </summary>
-    public Version() : base(DataTypeEnum.CONTENTS, SystemEntityGuidConst.ThemesVersion)
+    public Version() : base(DataTypeEnum.Contents, SystemEntityGuidConst.ThemesVersion)
     { }
 
     #region Public attributest

@@ -55,34 +55,34 @@ namespace MyTagPocket.CoreUtil
     /// <summary>
     /// A unique or unclassifiable type
     /// </summary>
-    public static readonly DataTypeEnum UNCLASSIFIED = new DataTypeEnum("UNCLASSIFIED", DataType.Settings, "mtp");
+    public static readonly DataTypeEnum Unclassified = new DataTypeEnum("Unclassified", DataType.Settings, "mtp");
     /// <summary>
     /// Application settings
     /// </summary>
-    public static readonly DataTypeEnum SETTINGS = new DataTypeEnum("SETTINGS", DataType.Settings, "cfg");
+    public static readonly DataTypeEnum Settings = new DataTypeEnum("Settings", DataType.Settings, "cfg");
     /// <summary>
     /// Contents notes
     /// </summary>
-    public static readonly DataTypeEnum CONTENTS = new DataTypeEnum("CONTENTS", DataType.Contents, "mtp");
+    public static readonly DataTypeEnum Contents = new DataTypeEnum("Contents", DataType.Contents, "mtp");
 
     /// <summary>
     /// TAG
     /// </summary>
-    public static readonly DataTypeEnum TAG = new DataTypeEnum("TAG", DataType.Contents, "mtp");
+    public static readonly DataTypeEnum Tag = new DataTypeEnum("Tag", DataType.Contents, "mtp");
 
     /// <summary>
     /// Contents notes
     /// </summary>
-    public static readonly DataTypeEnum THEMES = new DataTypeEnum("THEMES", DataType.Themes, "thm");
+    public static readonly DataTypeEnum Themes = new DataTypeEnum("Themes", DataType.Themes, "thm");
 
     /// <summary>
     /// Compress Archive contents
     /// </summary>
-    public static readonly DataTypeEnum ARCHIVE = new DataTypeEnum("ARCHIVE", DataType.Archive, "arc");
+    public static readonly DataTypeEnum Archive = new DataTypeEnum("Archive", DataType.Archive, "arc");
 
     /// <summary>
     /// History archive content. Information about stored individual contents in the ARC file is stored here
     /// </summary>
-    public static readonly DataTypeEnum HISTORY = new DataTypeEnum("HISTORY", DataType.History, "hst");
+    public static readonly DataTypeEnum History = new DataTypeEnum("History", DataType.History, "hst");
   }
 }

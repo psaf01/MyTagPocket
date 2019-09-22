@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-  <file datatype="xml" source-language="en-US" target-language="cs" original="MYTAGPOCKET/RESOURCES/RESOURCEAPP.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+  <file datatype="xml" source-language="en" target-language="cs" original="MYTAGPOCKET/RESOURCES/RESOURCEAPP.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
     <header>
       <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.6901.0" tool-company="Microsoft" />
     </header>
@@ -149,6 +149,26 @@
           <source>Update started</source>
           <target state="new">Update started</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="ExceptionCantLoadFile" translate="yes" xml:space="preserve">
+          <source>Can't load file.</source>
+          <target state="new">Can't load file.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Exception</note>
+        </trans-unit>
+        <trans-unit id="ExceptionCantDeleteFile" translate="yes" xml:space="preserve">
+          <source>Can't delete file.</source>
+          <target state="new">Can't delete file.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Exception</note>
+        </trans-unit>
+        <trans-unit id="ExceptionCantLoadFileFromArchive" translate="yes" xml:space="preserve">
+          <source>Can't load file from archive.</source>
+          <target state="new">Can't load file from archive.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Exception</note>
+        </trans-unit>
+        <trans-unit id="ExceptionCantSaveFileToArchive" translate="yes" xml:space="preserve">
+          <source>Can't save file to archive.</source>
+          <target state="new">Can't save file to archive.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Exception</note>
         </trans-unit>
       </group>
     </body>

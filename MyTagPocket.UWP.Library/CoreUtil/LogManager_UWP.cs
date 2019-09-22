@@ -1,15 +1,12 @@
 ﻿using MyTagPocket.CoreUtil;
-using MyTagPocket.UWP.CoreUtil;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
 using NLog.Targets.Seq;
 using NLog.Targets.Wrappers;
-using System.Collections.Generic;
 using System.IO;
-using Xamarin.Forms;
 
-namespace MyTagPocket.UWP.CoreUtil
+namespace MyTagPocket.UWP.Library.CoreUtil
 {
   /// <summary>
   /// Log Manager for OS UWP
@@ -55,7 +52,7 @@ namespace MyTagPocket.UWP.CoreUtil
       {
         ServerUrl = "http://localhost:5341",
         Name = "Seq",
-        ApiKey=""
+        ApiKey = ""
       };
       seqSubTarget.Properties.Add(deviceProperty);
       var seqTarget = new BufferingTargetWrapper(seqSubTarget, 1000, 2000);

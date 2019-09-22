@@ -1,7 +1,8 @@
 ﻿using MyTagPocket.CoreUtil.Interface;
-using MyTagPocket.UWP.CoreUtil;
+using MyTagPocket.UWP.Library.CoreUtil;
 using Prism;
 using Prism.Ioc;
+using Unity.Injection;
 
 namespace MyTagPocket.UWP
 {
@@ -15,13 +16,12 @@ namespace MyTagPocket.UWP
       LoadApplication(new MyTagPocket.App(new UwpInitializer()));
     }
   }
-
   public class UwpInitializer : IPlatformInitializer
   {
     public void RegisterTypes(IContainerRegistry containerRegistry)
     {
-      containerRegistry.Register(typeof(ILogManager), typeof(LogManager_UWP));
-      containerRegistry.Register(typeof(IFileHelper), typeof(FileHelper_UWP));
+      containerRegistry.Register<ILogManager, LogManager_UWP>();
+      containerRegistry.Register<IFileHelper, FileHelper_UWP>();
     }
   }
 }

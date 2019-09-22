@@ -12,7 +12,7 @@ namespace MyTagPocket.Storage.Entities.Settings
     /// <summary>
     /// Constructor
     /// </summary>
-    public AppGlobal() : base(CoreUtil.DataTypeEnum.SETTINGS, SystemEntityGuidConst.AppGlobal, EncryptTypeEnum.NONE)
+    public AppGlobal() : base(CoreUtil.DataTypeEnum.Settings, SystemEntityGuidConst.AppGlobal, EncryptTypeEnum.NONE)
     { }
 
     /// <summary>

@@ -37,7 +37,7 @@
     <PackageReference Include="Prism.Plugin.Logging.AppCenter" Version="7.2.0.616" />
     <PackageReference Include="Prism.Plugin.Logging.Common" Version="7.2.0.616" />
     <PackageReference Include="System.IO.Abstractions" Version="6.0.32" />
-    <PackageReference Include="Xamarin.Forms" Version="4.2.0.778463" />
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.815419" />
     <PackageReference Include="Prism.Unity.Forms" Version="7.2.0.1367" />
   </ItemGroup>
   <ItemGroup>

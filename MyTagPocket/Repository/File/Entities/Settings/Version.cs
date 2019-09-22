@@ -12,7 +12,7 @@ namespace MyTagPocket.Repository.File.Entities.Settings
     /// <summary>
     /// Constructor
     /// </summary>
-    public Version() : base(DataTypeEnum.SETTINGS, SystemEntityGuidConst.SettingsVersion)
+    public Version() : base(DataTypeEnum.Settings, SystemEntityGuidConst.SettingsVersion)
     { }
 
     #region Public attributest

@@ -12,8 +12,6 @@ namespace MyTagPocket.Repository.File
   public class FileHelperBase
   {
     #region Private Properties
-    const string classCode = "[1002700]";
-    public static CoreUtil.Interface.ILogger Log = Xamarin.Forms.DependencyService.Get<CoreUtil.Interface.ILogManager>().GetLog(classCode);
 
     /// <summary>
     /// Root path for application file data
@@ -90,11 +88,11 @@ namespace MyTagPocket.Repository.File
       {
         case DataTypeEnum.DataType.Settings:
           folder = "settings";
-          ext = DataTypeEnum.SETTINGS.LocalizedName;
+          ext = DataTypeEnum.Settings.LocalizedName;
           break;
         case DataTypeEnum.DataType.Contents:
           folder = "contents";
-          ext = DataTypeEnum.CONTENTS.LocalizedName;
+          ext = DataTypeEnum.Contents.LocalizedName;
           break;
         default:
           folder = "temp";

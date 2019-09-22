@@ -99,8 +99,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CoreUtil\FileHelper_UWP.cs" />
-    <Compile Include="CoreUtil\LogManager_UWP.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -172,13 +170,19 @@
     <PackageReference Include="System.IO.Abstractions">
       <Version>6.0.32</Version>
     </PackageReference>
+    <PackageReference Include="Prism.Unity.Forms" Version="7.2.0.1367" />
     <PackageReference Include="Xamarin.Essentials">
       <Version>1.3.1</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.2.0.778463" />
-    <PackageReference Include="Prism.Unity.Forms" Version="7.2.0.1367" />
+    <PackageReference Include="Xamarin.Forms">
+      <Version>4.2.0.815419</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MyTagPocket.UWP.Library\MyTagPocket.UWP.Library.csproj">
+      <Project>{fb3f24cb-514f-4259-a8c1-19aad9ba8394}</Project>
+      <Name>MyTagPocket.UWP.Library</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyTagPocket\MyTagPocket.csproj">
       <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
       <Name>MyTagPocket</Name>

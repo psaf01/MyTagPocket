@@ -232,4 +232,20 @@
     <value>Update started</value>
     <comment>Upgrade</comment>
   </data>
+  <data name="ExceptionCantLoadFile" xml:space="preserve">
+    <value>Can't load file.</value>
+    <comment>Exception</comment>
+  </data>
+  <data name="ExceptionCantDeleteFile" xml:space="preserve">
+    <value>Can't delete file.</value>
+    <comment>Exception</comment>
+  </data>
+  <data name="ExceptionCantLoadFileFromArchive" xml:space="preserve">
+    <value>Can't load file from archive.</value>
+    <comment>Exception</comment>
+  </data>
+  <data name="ExceptionCantSaveFileToArchive" xml:space="preserve">
+    <value>Can't save file to archive.</value>
+    <comment>Exception</comment>
+  </data>
 </root>

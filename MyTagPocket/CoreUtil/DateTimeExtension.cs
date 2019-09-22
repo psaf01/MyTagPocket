@@ -8,7 +8,7 @@ namespace MyTagPocket.CoreUtil
   /// </summary>
   public static class DateTimeExtension
   {
-    private const string DATEFORMAT = "yyyyMMddHHmmssff";
+    private const string dateFormat = "yyyyMMddHHmmssff";
     /// <summary>
     /// Convert date time to standard text
     /// </summary>
@@ -16,7 +16,7 @@ namespace MyTagPocket.CoreUtil
     /// <returns></returns>
     public static string ConvertToText(this DateTime obj)
     {
-      return obj.ToString(DATEFORMAT);
+      return obj.ToString(dateFormat);
     }
 
     /// <summary>
@@ -28,7 +28,7 @@ namespace MyTagPocket.CoreUtil
     {
       if (obj == null || obj.Length != 16)
         throw new Exception("Corupt convert string to date time");
-      return DateTime.ParseExact(obj, DATEFORMAT, CultureInfo.InvariantCulture);
+      return DateTime.ParseExact(obj, dateFormat, CultureInfo.InvariantCulture);
     }
   }
 }

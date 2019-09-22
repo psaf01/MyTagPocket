@@ -1,4 +1,5 @@
 ﻿using MyTagPocket.CoreUtil.Interface;
+using MyTagPocket.Repository;
 using Prism.Navigation;
 
 namespace MyTagPocket.ViewModels.Contents
@@ -19,10 +20,15 @@ namespace MyTagPocket.ViewModels.Contents
     /// If navigate on other pages
     /// </summary>
     bool _canNavigate;
+    private IFileHelper _fileHelper;
 
-    public ContentListPageViewModel(INavigationService navigationService, ILogManager logManager) : base(logManager, ClassCode)
+    public ContentListPageViewModel(INavigationService navigationService, ILogManager logManager, IFileHelper fileHelper) : base(logManager, ClassCode)
     {
       const string METHODCODE = "M01";
+      Log.Info(METHODCODE, "Show first page");
+      var repository = new FileRepository(logManager, fileHelper);
+      repository.SaveAsync(new MyTagPocket.Repository.File.Entities.Settings.Version(), false);
+      _fileHelper = fileHelper;
       _navigationService = navigationService;
       _canNavigate = false;
     }

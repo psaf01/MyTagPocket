@@ -79,6 +79,42 @@ namespace MyTagPocket.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t delete file..
+        /// </summary>
+        public static string ExceptionCantDeleteFile {
+            get {
+                return ResourceManager.GetString("ExceptionCantDeleteFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t load file..
+        /// </summary>
+        public static string ExceptionCantLoadFile {
+            get {
+                return ResourceManager.GetString("ExceptionCantLoadFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t load file from archive..
+        /// </summary>
+        public static string ExceptionCantLoadFileFromArchive {
+            get {
+                return ResourceManager.GetString("ExceptionCantLoadFileFromArchive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t save file to archive..
+        /// </summary>
+        public static string ExceptionCantSaveFileToArchive {
+            get {
+                return ResourceManager.GetString("ExceptionCantSaveFileToArchive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An unexpected error in the application.
         /// </summary>
         public static string FatalErrorUnexpected {

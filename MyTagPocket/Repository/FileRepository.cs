@@ -1,16 +1,16 @@
 ﻿using MyTagPocket.CoreUtil;
+using MyTagPocket.CoreUtil.Exceptions;
 using MyTagPocket.CoreUtil.Interface;
+using MyTagPocket.Repository.File;
+using MyTagPocket.Repository.File.Entities.Contents;
 using MyTagPocket.Repository.File.Interface;
 using MyTagPocket.Repository.Interface;
+using MyTagPocket.Resources;
 using System;
-using Xamarin.Forms;
-using System.Threading.Tasks;
-using System.Text;
-using MyTagPocket.Repository.File;
 using System.Collections.Generic;
 using System.Linq;
-using MyTagPocket.Repository.File.Entities;
-using MyTagPocket.Repository.File.Entities.Contents;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace MyTagPocket.Repository
 {
@@ -19,18 +19,29 @@ namespace MyTagPocket.Repository
   /// </summary>
   public class FileRepository : IFileRepository
   {
-    const string classCode = "[1002400]";
-    public static ILogger Log = Xamarin.Forms.DependencyService.Get<ILogManager>().GetLog(classCode);
-    private IFileHelper _FileHelper;
+    /// <summary>
+    /// Identifikation class for localization code
+    /// <see cref="_ClassCodeLast.cs"/>
+    /// </summary>
+    const string classCode = "C10024";
+
+    /// <summary>
+    /// Logger instance
+    /// </summary>
+    public static ILogger Log;
+
+    private IFileHelper fileHelper;
 
     /// <summary>
     /// Constructor
     /// </summary>
-    public FileRepository()
+    /// <param name="logManager">Log manager</param>
+    /// <param name="fileHelper">File helper</param>
+    public FileRepository(ILogManager logManager, IFileHelper fileHelper)
     {
-      _FileHelper = DependencyService.Get<IFileHelper>();
+      Log = logManager.GetLog(classCode);
+      this.fileHelper = fileHelper;
     }
-
     /// <summary>
     /// Save entity to file system
     /// </summary>
@@ -40,19 +51,19 @@ namespace MyTagPocket.Repository
     {
       return Task.Run(() =>
      {
-       const string methodCode = "[1002402]";
+       const string methodCode = "M02";
        try
        {
          Log.Trace(methodCode, $"Load [{entity.TypeEntity.Name}] ID [{entity.EntityId}]");
-         string path = _FileHelper.GetLocalFilePath(entity.TypeEntity, entity.EntityId);
-         string jsonString = _FileHelper.LoadFile(path);
+         string path = fileHelper.GetLocalFilePath(entity.TypeEntity, entity.EntityId);
+         string jsonString = fileHelper.LoadFile(path);
          T result = entity.DeserializeJson(jsonString);
          return result;
        }
        catch (Exception ex)
        {
-         Log.Error(ex, methodCode, $"Cant load file type [{entity.TypeEntity.Name}] ID [{entity.EntityId}]");
-         throw new Exception($"Cant load file type");
+         Log.Error(ex, methodCode, "Cant load file TypeEntity={@entity.TypeEntity.Name}] EntityId={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
+         throw new FileSystemException(ResourceApp.ExceptionCantLoadFile);
        }
      });
     }
@@ -66,38 +77,38 @@ namespace MyTagPocket.Repository
     {
       return Task.Run(() =>
       {
-        const string methodCode = "[1002404]";
+        const string methodCode = "M04";
         try
         {
           if (string.IsNullOrEmpty(fileInfo.CommitId))
           {
-            throw new Exception("Cant load file from archive becouse CommitId is empty");
+            throw new FileSystemException(ResourceApp.ExceptionCantLoadFileFromArchive);
           }
 
-          Log.Trace(methodCode, $"Load feom archive [{fileInfo.FileType}] ID [{fileInfo.FileId}] commit [{fileInfo.CommitId}]");
+          Log.Trace(methodCode, "Load from archive {@FileType} ID={@FileId} commit={@CommitId}", fileInfo.FileType, fileInfo.FileId, fileInfo.CommitId);
           var entityType = DataTypeEnum.ValueOf(fileInfo.FileType);
-          string path = _FileHelper.GetLocalFilePath(entityType, fileInfo.FileId);
-          string archivePath = System.IO.Path.ChangeExtension(path, DataTypeEnum.ARCHIVE.LocalizedName);
-          var archiveContent = _FileHelper.LoadContentFromFile(archivePath, fileInfo.StartPosition, fileInfo.LengthContent);
+          string path = fileHelper.GetLocalFilePath(entityType, fileInfo.FileId);
+          string archivePath = System.IO.Path.ChangeExtension(path, DataTypeEnum.Archive.LocalizedName);
+          var archiveContent = fileHelper.LoadContentFromFile(archivePath, fileInfo.StartPosition, fileInfo.LengthContent);
 
           var contentJson = Text.DecompressToString(archiveContent, Encoding.UTF8);
           IFileEntityBase<T> entity;
-          switch(entityType.Value)
+          switch (entityType.Value)
           {
             case DataTypeEnum.DataType.Contents:
               entity = (IFileEntityBase<T>)new Content();
               break;
             default:
-              Log.Error(methodCode, $"Cant recognize type file for load from archive type [{fileInfo.FileType}] file ID [{fileInfo.FileId}]");
-              throw new Exception($"Cant load file from archive");
+              Log.Error(methodCode, "Cant recognize type file for load from archive type={@FileType} file ID={@FileId}", fileInfo.FileType, fileInfo.FileId);
+              throw new FileSystemException(ResourceApp.ExceptionCantLoadFileFromArchive);
           }
           T result = entity.DeserializeJson(contentJson);
           return result;
         }
         catch (Exception ex)
         {
-          Log.Error(ex, methodCode, $"Cant load file from archive type [{fileInfo.FileId}] file ID [{fileInfo.FileId}]");
-          throw new Exception($"Cant load file from archive");
+          Log.Error(ex, methodCode, "Cant load file from archive type={@FileType} file ID {@FileId}", fileInfo.FileType, fileInfo.FileId);
+          throw new Exception(ResourceApp.ExceptionCantLoadFileFromArchive);
         }
       });
     }
@@ -112,13 +123,13 @@ namespace MyTagPocket.Repository
     {
       return await Task.Run(() =>
       {
-        const string methodCode = "[1002405]";
+        const string methodCode = "M05";
         try
         {
-          Log.Trace(methodCode, $"Load history file [{entity.TypeEntity.Name}] ID [{entity.EntityId}]");
-          string path = _FileHelper.GetLocalFilePath(entity.TypeEntity, entity.EntityId);
-          var pathHistory = System.IO.Path.ChangeExtension(path, DataTypeEnum.HISTORY.LocalizedName);
-          var historyJson = _FileHelper.LoadFileLines(pathHistory);
+          Log.Trace(methodCode, "Load history entity={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
+          string path = fileHelper.GetLocalFilePath(entity.TypeEntity, entity.EntityId);
+          var pathHistory = System.IO.Path.ChangeExtension(path, DataTypeEnum.History.LocalizedName);
+          var historyJson = fileHelper.LoadFileLines(pathHistory);
           var result = new List<IFileHistoryInfo>();
           int startPosition = 0;
           foreach (var str in historyJson)
@@ -133,8 +144,8 @@ namespace MyTagPocket.Repository
         }
         catch (Exception ex)
         {
-          Log.Error(ex, methodCode, $"Cant Save  [{entity.TypeEntity.Name}] ID [{entity.EntityId}]");
-          throw new Exception("Cant load histor filey");
+          Log.Error(ex, methodCode, "Cant Save={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
+          throw new FileSystemException(ResourceApp.ExceptionCantSaveFileToArchive);
         }
       });
     }
@@ -149,15 +160,15 @@ namespace MyTagPocket.Repository
     {
       await Task.Run(() =>
       {
-        const string methodCode = "[1002401]";
+        const string methodCode = "M01";
         try
         {
-          Log.Trace(methodCode, $"Save file [{entity.TypeEntity.Name}] ID [{entity.EntityId}]");
+          Log.Trace(methodCode, "Save entity={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
           entity.UpdatedWhen = DateTime.UtcNow;
           entity.CommitId = Guid.NewGuid().ToString("N");
           string jsonString = entity.SerializeJson();
-          string path = _FileHelper.GetLocalFilePath(entity.TypeEntity, entity.EntityId);
-          _FileHelper.SaveFile(path, jsonString);
+          string path = fileHelper.GetLocalFilePath(entity.TypeEntity, entity.EntityId);
+          fileHelper.SaveFile(path, jsonString);
           if (!toArchive)
             return;
 
@@ -170,47 +181,45 @@ namespace MyTagPocket.Repository
           infoSave.LengthContent = compress.Length;
           infoSave.FileType = entity.TypeEntity.Name;
           string jsonHistory = Newtonsoft.Json.JsonConvert.SerializeObject(infoSave);
-          var historyFile = System.IO.Path.ChangeExtension(path, DataTypeEnum.HISTORY.LocalizedName);
-          var archiveFile = System.IO.Path.ChangeExtension(path, DataTypeEnum.ARCHIVE.LocalizedName);
+          var historyFile = System.IO.Path.ChangeExtension(path, DataTypeEnum.History.LocalizedName);
+          var archiveFile = System.IO.Path.ChangeExtension(path, DataTypeEnum.Archive.LocalizedName);
           //TODO: Refactoring - transaction
-          if (_FileHelper.FileExists(historyFile))
+          if (fileHelper.FileExists(historyFile))
             jsonHistory = string.Concat("\n", jsonHistory);
 
-          _FileHelper.SaveAppendToFile(historyFile, jsonHistory);
-          _FileHelper.SaveAppendToFile(archiveFile, compress);
+          fileHelper.SaveAppendToFile(historyFile, jsonHistory);
+          fileHelper.SaveAppendToFile(archiveFile, compress);
         }
         catch (Exception ex)
         {
-          Log.Error(ex, methodCode, $"Cant Save  [{entity.TypeEntity.Name}] ID [{entity.EntityId}]");
           throw ex;
         }
       });
     }
 
     /// <summary>
-    /// Not implement
+    /// Delete entity 
     /// </summary>
-    /// <param name="entity"></param>
-    /// <returns>Delete entity</returns>
+    /// <param name="entity">Entity</param>
     public async Task DeleteAsync<T>(IFileEntityBase<T> entity)
     {
       await Task.Run(() =>
       {
-        const string methodCode = "[1002403]";
+        const string methodCode = "M03";
         try
         {
-          Log.Trace(methodCode, $"Delete file [{entity.TypeEntity.Name}] ID [{entity.EntityId}]");
-          string path = _FileHelper.GetLocalFilePath(entity.TypeEntity, entity.EntityId);
-          _FileHelper.DeleteFile(path);
+          Log.Trace(methodCode, "Delete file={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
+          string path = fileHelper.GetLocalFilePath(entity.TypeEntity, entity.EntityId);
+          fileHelper.DeleteFile(path);
           //Delete the archive
           switch (entity.TypeEntity.Value)
           {
             case DataTypeEnum.DataType.Contents:
             case DataTypeEnum.DataType.Tag:
-              var pathArchive = System.IO.Path.ChangeExtension(path, DataTypeEnum.ARCHIVE.LocalizedName);
-              _FileHelper.DeleteFile(pathArchive);
-              var pathHistory = System.IO.Path.ChangeExtension(path, DataTypeEnum.HISTORY.LocalizedName);
-              _FileHelper.DeleteFile(pathHistory);
+              var pathArchive = System.IO.Path.ChangeExtension(path, DataTypeEnum.Archive.LocalizedName);
+              fileHelper.DeleteFile(pathArchive);
+              var pathHistory = System.IO.Path.ChangeExtension(path, DataTypeEnum.History.LocalizedName);
+              fileHelper.DeleteFile(pathHistory);
               break;
             default:
               break;
@@ -218,7 +227,8 @@ namespace MyTagPocket.Repository
         }
         catch (Exception ex)
         {
-          Log.Error(ex, methodCode, $"Cant Delete  [{entity.TypeEntity.Name}] ID [{entity.EntityId}]");
+          Log.Error(ex, methodCode, "Cant Delete={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
+          throw new FileSystemException(ResourceApp.ExceptionCantDeleteFile);
         }
       });
     }

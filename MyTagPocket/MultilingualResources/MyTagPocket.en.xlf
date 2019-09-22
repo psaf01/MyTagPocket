@@ -150,6 +150,26 @@
           <target state="new">Update started</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
+        <trans-unit id="ExceptionCantLoadFile" translate="yes" xml:space="preserve">
+          <source>Can't load file.</source>
+          <target state="new">Can't load file.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Exception</note>
+        </trans-unit>
+        <trans-unit id="ExceptionCantDeleteFile" translate="yes" xml:space="preserve">
+          <source>Can't delete file.</source>
+          <target state="new">Can't delete file.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Exception</note>
+        </trans-unit>
+        <trans-unit id="ExceptionCantLoadFileFromArchive" translate="yes" xml:space="preserve">
+          <source>Can't load file from archive.</source>
+          <target state="new">Can't load file from archive.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Exception</note>
+        </trans-unit>
+        <trans-unit id="ExceptionCantSaveFileToArchive" translate="yes" xml:space="preserve">
+          <source>Can't save file to archive.</source>
+          <target state="new">Can't save file to archive.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Exception</note>
+        </trans-unit>
       </group>
     </body>
   </file>
