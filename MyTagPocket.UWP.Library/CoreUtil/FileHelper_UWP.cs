@@ -2,7 +2,6 @@
 using MyTagPocket.Repository.File;
 using System;
 using System.IO.Abstractions;
-using Unity; 
 
 namespace MyTagPocket.UWP.Library.CoreUtil
 {

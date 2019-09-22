@@ -9,7 +9,7 @@ namespace MyTagPocket.CoreUtil
   /// </summary>
   public class Log : Interface.ILogger
   {
-    private Logger log;
+    private NLog.Logger log;
 
     /// <summary>
     /// Class code
@@ -20,7 +20,7 @@ namespace MyTagPocket.CoreUtil
     /// Instance log
     /// </summary>
     /// <param name="log"></param>
-    public Log(Logger log)
+    public Log(NLog.Logger log)
     {
       this.log = log;
     }
@@ -33,7 +33,7 @@ namespace MyTagPocket.CoreUtil
     /// <param name="args">Arguments</param>
     public void Info(string methodCode, string text, params object[] args)
     {
-      log.Info("{@methodCode} " + text, ClassCode + methodCode, args);
+      log.WithProperty("MethodCode", ClassCode + methodCode).Info(text, args);
     }
 
     /// <summary>
@@ -45,7 +45,7 @@ namespace MyTagPocket.CoreUtil
     /// <param name="args">Arguments</param>
     public void Info(string methodCode, DataTypeEnum type, string text, params object[] args)
     {
-      log.Info("{@methodCode} {@dataType} " + text, ClassCode + methodCode, type.Name, args);
+      log.WithProperty("MethodCode", ClassCode + methodCode).Info(text, args);
     }
 
     /// <summary>
@@ -68,7 +68,7 @@ namespace MyTagPocket.CoreUtil
     /// <param name="args">Arguments</param>
     public void Debug(string methodCode, string text, params object[] args)
     {
-      log.Debug("{@methodCode} " + text, ClassCode + methodCode, args);
+      log.WithProperty("MethodCode", ClassCode + methodCode).Debug(text, args);
     }
 
     /// <summary>
@@ -80,7 +80,7 @@ namespace MyTagPocket.CoreUtil
     /// <param name="args">Arguments</param>
     public void Error(string methodCode, string text, params object[] args)
     {
-      log.Error("{@methodCode} " + text, ClassCode + methodCode, args);
+      log.WithProperty("MethodCode", ClassCode + methodCode).Error(text, args);
     }
 
     /// <summary>
@@ -92,7 +92,7 @@ namespace MyTagPocket.CoreUtil
     /// <param name="args">Arguments</param>
     public void Error(Exception ex, string methodCode, string text, params object[] args)
     {
-      log.Error(ex, "{@methodCode} " + text, ClassCode + methodCode, args);
+      log.WithProperty("MethodCode", ClassCode + methodCode).Error(ex, text, args);
     }
 
     /// <summary>
@@ -103,7 +103,7 @@ namespace MyTagPocket.CoreUtil
     /// <param name="args">Arguments</param>
     public void Fatal(string methodCode, string text, params object[] args)
     {
-      log.Fatal("{@methodCode} " + text, ClassCode + methodCode, args);
+      log.WithProperty("MethodCode", ClassCode + methodCode).Fatal(text, args);
     }
 
     /// <summary>
@@ -115,7 +115,7 @@ namespace MyTagPocket.CoreUtil
     /// <param name="args">Arguments</param>
     public void Fatal(Exception ex, string methodCode, string text, params object[] args)
     {
-      log.Fatal(ex, "{@methodCode} " + text, ClassCode + methodCode, args);
+      log.WithProperty("MethodCode", ClassCode + methodCode).Fatal(ex, text, args);
     }
 
     /// <summary>
@@ -127,7 +127,7 @@ namespace MyTagPocket.CoreUtil
     /// <param name="args">Arguments</param>
     public void Trace(string methodCode, string text, params object[] args)
     {
-      log.Trace("{@methodCode} " + text, ClassCode + methodCode, args);
+      log.WithProperty("MethodCode", ClassCode + methodCode).Trace(text, args);
     }
 
     /// <summary>
@@ -138,7 +138,7 @@ namespace MyTagPocket.CoreUtil
     /// <param name="args">Arguments</param>
     public void Warn(string methodCode, string text, params object[] args)
     {
-      log.Warn("{@methodCode} " + text, ClassCode + methodCode, args);
+      log.WithProperty("MethodCode", ClassCode + methodCode).Warn(text, args);
     }
   }
 }

@@ -4,7 +4,7 @@
   /// <summary>
   /// System Entity GUID for
   /// </summary>
-  static class SystemEntityGuidConst
+  public static class SystemEntityGuidConst
   {
     /// <summary>
     /// Application global setting

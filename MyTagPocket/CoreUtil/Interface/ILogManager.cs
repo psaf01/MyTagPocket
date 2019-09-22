@@ -12,5 +12,10 @@
     /// <param name="callerFilePath">Pat to log file</param>
     /// <returns>Logger</returns>
     ILogger GetLog(string classCode, [System.Runtime.CompilerServices.CallerFilePath]string callerFilePath = "");
+
+    /// <summary>
+    /// Flush buffer
+    /// </summary>
+    void FlushBuffer();
   }
 }

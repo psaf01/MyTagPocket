@@ -27,7 +27,7 @@ namespace MyTagPocket.UWP.Library.CoreUtil
 
       var debugerTarget = new DebuggerTarget("FileTrace")
       {
-        Layout = @"${shortdate} | ${pad:padding=5:inner=${level:uppercase=true}} | ${gdc:item=device} |  ${message} | ${exception}"
+        Layout = @"${shortdate} | ${pad:padding=5:inner=${level:uppercase=true}} | ${gdc:item=device} | ${event-properties:MethodCode} | ${message} | ${exception}"
       };
 
       config.AddTarget(debugerTarget);
@@ -35,7 +35,7 @@ namespace MyTagPocket.UWP.Library.CoreUtil
       var fileTraceTarget = new FileTarget("FileTrace")
       {
         FileName = Path.Combine(folder.Path, @"log", "Trace-${shortdate}.txt"),
-        Layout = "${longdate} ${pad:padding=5:inner=${level:uppercase=true}} ${gdc:item=device} ${message}  ${exception}",
+        Layout = "${longdate} ${pad:padding=5:inner=${level:uppercase=true}} ${gdc:item=device} ${event-properties:MethodCode} ${message}  ${exception}",
         MaxArchiveFiles = 5,
         ArchiveEvery = FileArchivePeriod.Day,
       };
@@ -48,6 +48,12 @@ namespace MyTagPocket.UWP.Library.CoreUtil
         Value = "${gdc:item=device}",
         As = "device"
       };
+      var methodCodeProperty = new SeqPropertyItem()
+      {
+        Name = "MethodCode",
+        Value = "${event-properties:MethodCode} ",
+        As = "methodCode"
+      };
       var seqSubTarget = new SeqTarget()
       {
         ServerUrl = "http://localhost:5341",
@@ -59,6 +65,7 @@ namespace MyTagPocket.UWP.Library.CoreUtil
       seqTarget.Name = "seq";
       config.AddTarget(seqTarget);
       config.LoggingRules.Add(new LoggingRule("*", LogLevel.Trace, seqTarget));
+      
 
 #endif
       /*
@@ -127,8 +134,16 @@ namespace MyTagPocket.UWP.Library.CoreUtil
       }
 
       //config.AddRuleForAllLevels(consoleTarget);
-      var logger = NLog.LogManager.GetLogger(fileName);
+      var logger = LogManager.GetLogger(fileName);
       return new Log(logger) { ClassCode = classCode };
+    }
+
+    /// <summary>
+    /// Flush buffer
+    /// </summary>
+    public void FlushBuffer()
+    {
+      NLog.LogManager.Flush();
     }
   }
 }

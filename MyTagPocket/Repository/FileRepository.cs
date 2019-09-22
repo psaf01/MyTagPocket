@@ -54,7 +54,7 @@ namespace MyTagPocket.Repository
        const string methodCode = "M02";
        try
        {
-         Log.Trace(methodCode, $"Load [{entity.TypeEntity.Name}] ID [{entity.EntityId}]");
+         Log.Trace(methodCode, "Load Entity={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
          string path = fileHelper.GetLocalFilePath(entity.TypeEntity, entity.EntityId);
          string jsonString = fileHelper.LoadFile(path);
          T result = entity.DeserializeJson(jsonString);
@@ -126,7 +126,7 @@ namespace MyTagPocket.Repository
         const string methodCode = "M05";
         try
         {
-          Log.Trace(methodCode, "Load history entity={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
+          Log.Trace(methodCode, "Load history Entity={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
           string path = fileHelper.GetLocalFilePath(entity.TypeEntity, entity.EntityId);
           var pathHistory = System.IO.Path.ChangeExtension(path, DataTypeEnum.History.LocalizedName);
           var historyJson = fileHelper.LoadFileLines(pathHistory);
@@ -163,7 +163,7 @@ namespace MyTagPocket.Repository
         const string methodCode = "M01";
         try
         {
-          Log.Trace(methodCode, "Save entity={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
+          Log.Trace(methodCode, "Save Entity={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
           entity.UpdatedWhen = DateTime.UtcNow;
           entity.CommitId = Guid.NewGuid().ToString("N");
           string jsonString = entity.SerializeJson();
@@ -192,6 +192,7 @@ namespace MyTagPocket.Repository
         }
         catch (Exception ex)
         {
+          Log.Error(ex, methodCode, "Cant Save Entity={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
           throw ex;
         }
       });
@@ -208,7 +209,7 @@ namespace MyTagPocket.Repository
         const string methodCode = "M03";
         try
         {
-          Log.Trace(methodCode, "Delete file={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
+          Log.Trace(methodCode, "Delete Entity={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
           string path = fileHelper.GetLocalFilePath(entity.TypeEntity, entity.EntityId);
           fileHelper.DeleteFile(path);
           //Delete the archive

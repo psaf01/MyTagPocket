@@ -14,6 +14,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using static MyTagPocket.UWP.TEST.Xamarin.Forms.Mocks.MockForms;
 using MyTagPocket.UWP.TEST.Mocks;
+using System.IO.Abstractions;
+using Moq;
+using MyTagPocket.UWP.Test.Mocks;
 
 namespace MyTagPocket.UWP.TEST.Repository
 {
@@ -39,18 +42,14 @@ namespace MyTagPocket.UWP.TEST.Repository
       IUnityContainer myContainer = new UnityContainer();
       myContainer.RegisterType<MockResourcesProvider>();
       myContainer.RegisterType<MockDeserializer>();
-      //DependencyService.Register<MockResourcesProvider>();
-      //DependencyService.Register<MockDeserializer>();
-      //MyTagPocket.UWP.TEST.Xamarin.Forms.Mocks.MockForms.Init();
-      //var app = new ApplicationMock();
-      
-      //Assert.NotNull(app);
-
-      myContainer.RegisterType<IFileHelper, MyTagPocket.UWP.Library.CoreUtil.FileHelper_UWP>();
+     
+      myContainer.RegisterType<IFileHelper, FileHelper_UWP>();
       myContainer.RegisterType<ILogManager, LogManager_UWP>();
       var logManager = myContainer.Resolve<LogManager_UWP>();
       var fileHelper = myContainer.Resolve<FileHelper_UWP>();
-      var repository = new MyTagPocket.Repository.FileRepository(logManager, fileHelper);
+      //NLog.GlobalDiagnosticsContext.Set("user", "UnitTest");
+      fileHelper.FileSystemStorage = MockFileSystemStorage.MockFileSystem;
+      var repository = new FileRepository(logManager, fileHelper);
       int testValue = 5;
       var version = new MyTagPocket.Repository.File.Entities.Settings.Version();
       var testVersion = new MyTagPocket.Repository.File.Entities.Settings.Version();
@@ -58,11 +57,14 @@ namespace MyTagPocket.UWP.TEST.Repository
       version.Version = testValue;
 
       repository.SaveAsync(version, false).Wait();
-      testVersion = repository.LoadAsync<MyTagPocket.Repository.File.Entities.Settings.Version>(testVersion).Result;
+      testVersion = repository.LoadAsync(testVersion).Result;
 
       Assert.True(version.Version == testVersion.Version, "Entity not identical");
 
-      repository.DeleteAsync<MyTagPocket.Repository.File.Entities.Settings.Version>(testVersion).Wait();
+      repository.DeleteAsync(testVersion).Wait();
+      logManager.FlushBuffer();
     }
+
+   
   }
 }
