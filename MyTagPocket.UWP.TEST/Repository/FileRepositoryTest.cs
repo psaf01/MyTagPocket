@@ -1,22 +1,11 @@
-﻿using MyTagPocket.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Prism;
-using Xunit;
-using Unity;
-using MyTagPocket.Repository.Interface;
-using MyTagPocket.CoreUtil.Interface;
+﻿using MyTagPocket.CoreUtil.Interface;
+using MyTagPocket.Repository;
 using MyTagPocket.UWP.Library.CoreUtil;
-using Xamarin.Forms;
-using Xamarin.Forms.Internals;
-using static MyTagPocket.UWP.TEST.Xamarin.Forms.Mocks.MockForms;
-using MyTagPocket.UWP.TEST.Mocks;
-using System.IO.Abstractions;
-using Moq;
 using MyTagPocket.UWP.Test.Mocks;
+using Unity;
+using Xamarin.Forms;
+using Xunit;
+using static MyTagPocket.UWP.TEST.Xamarin.Forms.Mocks.MockForms;
 
 namespace MyTagPocket.UWP.TEST.Repository
 {
@@ -42,12 +31,12 @@ namespace MyTagPocket.UWP.TEST.Repository
       IUnityContainer myContainer = new UnityContainer();
       myContainer.RegisterType<MockResourcesProvider>();
       myContainer.RegisterType<MockDeserializer>();
-     
+
       myContainer.RegisterType<IFileHelper, FileHelper_UWP>();
       myContainer.RegisterType<ILogManager, LogManager_UWP>();
       var logManager = myContainer.Resolve<LogManager_UWP>();
       var fileHelper = myContainer.Resolve<FileHelper_UWP>();
-      //NLog.GlobalDiagnosticsContext.Set("user", "UnitTest");
+      NLog.GlobalDiagnosticsContext.Set("user", "UnitTest");
       fileHelper.FileSystemStorage = MockFileSystemStorage.MockFileSystem;
       var repository = new FileRepository(logManager, fileHelper);
       int testValue = 5;
@@ -65,6 +54,6 @@ namespace MyTagPocket.UWP.TEST.Repository
       logManager.FlushBuffer();
     }
 
-   
+
   }
 }

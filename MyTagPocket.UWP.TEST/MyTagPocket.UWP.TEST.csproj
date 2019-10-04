@@ -91,6 +91,7 @@
   <ItemGroup>
     <Compile Include="Mocks\ApplicationMock.cs" />
     <Compile Include="Mocks\MockFileSystemStorage.cs" />
+    <Compile Include="Repository\SecureRepositoryTest.cs" />
     <Compile Include="Xamarin.Forms.Mocks\MockForms.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App.xaml.cs">

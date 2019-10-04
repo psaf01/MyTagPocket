@@ -20,143 +20,143 @@
     <value>Help</value>
     <comment>App</comment>
   </data>
+  <data name="FatalErrorUnexpected" xml:space="preserve">
+    <value>An unexpected error in the application</value>
+    <comment>Error</comment>
+  </data>
   <data name="InitAppFatalError" xml:space="preserve">
     <value>An error occurred during application initialization</value>
     <comment>App</comment>
   </data>
-  <data name="ThemeDescription" xml:space="preserve">
-    <value>[8BD28][!!_Тђè ъàšîĉ τħęmé ƒòř ΜÿŤáģΡóċĸéτ._!!]</value>
-    <comment>Gui</comment>
-  </data>
-  <data name="ThemeDescriptionExample" xml:space="preserve">
-    <value>[EAE86][!!_Ìţ şèѓνéś ãŝ âй ê×ãмрĺê õƒ тћè Τħèmê ðęƒįηìťìõη íή ťђê ãρрłįćàťìôή. Ċĥãηġèś ìи ţĥîš ƒíĺé ďò ηòţ àƒƒęćτ тђè âрρłìċâťíõй ìτşéľƒ._!!]</value>
-    <comment>Gui</comment>
-  </data>
-  <data name="Test" xml:space="preserve">
-    <value>[1B09A][!!_Ťèŝτ_!!]</value>
-  </data>
-  <data name="FatalErrorUnexpected" xml:space="preserve">
-    <value>[B8085][!!_Ãη µиèхрęćтéđ èřŕôŕ îη ťћę ãрþļíčàтįóή_!!]</value>
-    <comment>Error</comment>
-  </data>
-  <data name="UpgradeStatusEndError" xml:space="preserve">
-    <value>[D7C72][!!_₣îηíśĥéð ẃíтђ êřŕõř_!!]</value>
-    <comment>Upgrade</comment>
-  </data>
-  <data name="UpgradeStatusEndSucces" xml:space="preserve">
-    <value>[0D85E][!!_ŚûĉčęŝşƒµłļУ ĉòmрľéτéđ_!!]</value>
-    <comment>Upgrade</comment>
-  </data>
-  <data name="UpgradeStatusNotStart" xml:space="preserve">
-    <value>[03FB4][!!_Ñòт šтãřтèď_!!]</value>
-    <comment>Upgrade</comment>
-  </data>
-  <data name="UpgradeStatusProgress" xml:space="preserve">
-    <value>[A26D3][!!_Ìη Рřõĝŕęśŝ_!!]</value>
-    <comment>Upgrade</comment>
-  </data>
-  <data name="UpgradeStatusStop" xml:space="preserve">
-    <value>[CD650][!!_Ŝţóþ_!!]</value>
-    <comment>Upgrade</comment>
-  </data>
-  <data name="UpgradeDatabaseLabel" xml:space="preserve">
-    <value>[80333][!!_Ûρģřàðè Ðàтãвâśę_!!]</value>
-    <comment>Upgrade</comment>
-  </data>
-  <data name="UpgradeStorageContentsDescriptionLabel" xml:space="preserve">
-    <value>[AD616][!!_Ûрðãтíηģ ьáşíč ùśęŕ ċôήτęήţ šťŕúčťûѓéš._!!]</value>
-    <comment>Upgrade</comment>
-  </data>
-  <data name="UpgradeStorageContentsLabel" xml:space="preserve">
-    <value>[CD3F6][!!_Şтóŕáģę ćõйťèиţŝ_!!]</value>
-    <comment>Upgrade</comment>
-  </data>
-  <data name="UpgradeStorageLabel" xml:space="preserve">
-    <value>[42860][!!_Ûρġŕáďè Śтòѓãĝę_!!]</value>
-    <comment>Upgrade</comment>
-  </data>
-  <data name="UpgradeStorageSettingsDescriptionLabel" xml:space="preserve">
-    <value>[A55E2][!!_Ûþďâţìηģ àþþĺíċàтìòй şęţţìηĝŝ áйð ţħęíŕ ċóиƒîġûѓâţîôи þâŗтŝ._!!]</value>
-    <comment>Upgrade</comment>
-  </data>
-  <data name="UpgradeStorageSettingsLabel" xml:space="preserve">
-    <value>[29512][!!_Śτòѓâğê śèτţíηġş_!!]</value>
-    <comment>Upgrade</comment>
-  </data>
   <data name="ProcessError" xml:space="preserve">
-    <value>[404CC][!!_Êŗѓõѓ_!!]</value>
+    <value>Error</value>
     <comment>Process</comment>
   </data>
   <data name="ProcessIdle" xml:space="preserve">
-    <value>[23261][!!_Íďĺę_!!]</value>
+    <value>Idle</value>
     <comment>Process</comment>
   </data>
   <data name="ProcessPaused" xml:space="preserve">
-    <value>[E1C9D][!!_Рáûśéð_!!]</value>
+    <value>Paused</value>
     <comment>Process</comment>
   </data>
   <data name="ProcessRunning" xml:space="preserve">
-    <value>[AA5AC][!!_Ŕµийìήğ_!!]</value>
+    <value>Running</value>
     <comment>Process</comment>
   </data>
+  <data name="Test" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="ThemeDescription" xml:space="preserve">
+    <value>The basic theme for MyTagPocket.</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="ThemeDescriptionExample" xml:space="preserve">
+    <value>It serves as an example of the Theme definition in the application. Changes in this file do not affect the application itself.</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="UpgradeDatabaseLabel" xml:space="preserve">
+    <value>Upgrade Database</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStatusEndError" xml:space="preserve">
+    <value>Finished with error</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStatusEndSucces" xml:space="preserve">
+    <value>Successfully completed</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStatusNotStart" xml:space="preserve">
+    <value>Not started</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStatusProgress" xml:space="preserve">
+    <value>In Progress</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStatusStop" xml:space="preserve">
+    <value>Stop</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStorageContentsDescriptionLabel" xml:space="preserve">
+    <value>Updating basic user content structures.</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStorageContentsLabel" xml:space="preserve">
+    <value>Storage contents</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStorageLabel" xml:space="preserve">
+    <value>Upgrade Storage</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStorageSettingsDescriptionLabel" xml:space="preserve">
+    <value>Updating application settings and their configuration parts.</value>
+    <comment>Upgrade</comment>
+  </data>
   <data name="UpgradeStorageSettingsError" xml:space="preserve">
-    <value>[F33EC][!!_Üηâъľé ţò ĉõмþĺêтê ùþďáţè śéţтįηğŝ_!!]</value>
+    <value>Unable to complete update settings</value>
     <comment>Upgrade</comment>
   </data>
   <data name="UpgradeStorageSettingsIsActual" xml:space="preserve">
-    <value>[AA41A][!!_Šтõѓáĝę şéţťîйĝş įŝ łãŝţ νéřśíõи_!!]</value>
+    <value>Storage settings is last version</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStorageSettingsLabel" xml:space="preserve">
+    <value>Storage settings</value>
     <comment>Upgrade</comment>
   </data>
   <data name="UpgradeStorageSettingSucces" xml:space="preserve">
-    <value>[BCD4A][!!_Úρðáţè śéţµþ ċómρľèτèð šûĉċêŝŝƒûĺĺý_!!]</value>
+    <value>Update setup completed successfully</value>
     <comment>Upgrade</comment>
   </data>
   <data name="UpgradeInfoFinishError" xml:space="preserve">
-    <value>[56D84][!!_Ťћęřè ẅãş àη èŗŕòŗ ùþďàťîήģ_!!]</value>
+    <value>There was an error updating</value>
     <comment>Upgrade</comment>
   </data>
   <data name="UpgradeInfoFinishSucces" xml:space="preserve">
-    <value>[B651A][!!_Úþðâţè ćôмρľéтèđ śùćċêšşƒµľłÿ_!!]</value>
+    <value>Update completed successfully</value>
     <comment>Upgrade</comment>
   </data>
   <data name="UpgradeInfoNotStarted" xml:space="preserve">
-    <value>[0D030][!!_Ûρðàтę йôţ şťáѓţêđ_!!]</value>
+    <value>Update not started</value>
     <comment>Upgrade</comment>
   </data>
   <data name="UpgradeInfoStarted" xml:space="preserve">
-    <value>[F85FF][!!_Ûрďãţé šťâŗťéð_!!]</value>
+    <value>Update started</value>
     <comment>Upgrade</comment>
   </data>
   <data name="ExceptionCantLoadFile" xml:space="preserve">
-    <value>[F9916][!!_Ċàή'ţ łòãđ ƒìľé._!!]</value>
+    <value>Can't load file.</value>
     <comment>Exception</comment>
   </data>
   <data name="ExceptionCantDeleteFile" xml:space="preserve">
-    <value>[EF27A][!!_Ĉáή'ť ďêłêтè ƒíłé._!!]</value>
+    <value>Can't delete file.</value>
     <comment>Exception</comment>
   </data>
   <data name="ExceptionCantLoadFileFromArchive" xml:space="preserve">
-    <value>[0BAFA][!!_Čâй'ţ ļõâð ƒìĺè ƒŕóм ãŕćђįνè._!!]</value>
+    <value>Can't load file from archive.</value>
     <comment>Exception</comment>
   </data>
   <data name="ExceptionCantSaveFileToArchive" xml:space="preserve">
-    <value>[1ABF8][!!_Čãи'т śáνé ƒíļé ťô ãѓćħíνè._!!]</value>
+    <value>Can't save file to archive.</value>
     <comment>Exception</comment>
   </data>
   <data name="ErrorCantReadSecure" xml:space="preserve">
-    <value>[4D9EE][!!_Üηâьļę ţõ ŗèтѓìéνę ďáтá ƒřõм šêċµřè ŝτõřàģè._!!]</value>
+    <value>Unable to retrieve data from secure storage.</value>
     <comment>SecureRepository</comment>
   </data>
   <data name="ErrorCantSaveSecure" xml:space="preserve">
-    <value>[A3AF5][!!_Üήãъļę тó ŝáνé ďâтâ τô šèćµřę šţõŕàģè._!!]</value>
+    <value>Unable to save data to secure storage.</value>
     <comment>SecureRepository</comment>
   </data>
   <data name="ErrorDeleteAllItemSecure" xml:space="preserve">
-    <value>[67CB0][!!_Ùиãвłę ţó ðęļêтè đâτà ƒřóm šéćûŗê śтôѓàğê._!!]</value>
+    <value>Unable to delete data from secure storage.</value>
     <comment>SecureRepository</comment>
   </data>
   <data name="ErrorDeleteItemSecure" xml:space="preserve">
-    <value>[F9CAB][!!_Úήáьłę тò đéļéţê đãţã ƒѓôm şéĉùŗé şťôŗáğè._!!]</value>
+    <value>Unable to delete data from secure storage.</value>
     <comment>SecureRepository</comment>
   </data>
 </root>

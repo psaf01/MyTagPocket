@@ -35,7 +35,7 @@ namespace MyTagPocket.UWP.Library.CoreUtil
       var fileTraceTarget = new FileTarget("FileTrace")
       {
         FileName = Path.Combine(folder.Path, @"log", "Trace-${shortdate}.txt"),
-        Layout = "${longdate} ${pad:padding=5:inner=${level:uppercase=true}} ${gdc:item=device} ${event-properties:MethodCode} ${message}  ${exception}",
+        Layout = "${longdate} ${pad:padding=5:inner=${level:uppercase=true}} ${gdc:item=device} ${gdc:item=user} ${event-properties:MethodCode} ${message}  ${exception}",
         MaxArchiveFiles = 5,
         ArchiveEvery = FileArchivePeriod.Day,
       };
@@ -48,6 +48,13 @@ namespace MyTagPocket.UWP.Library.CoreUtil
         Value = "${gdc:item=device}",
         As = "device"
       };
+      var userProperty = new SeqPropertyItem()
+      {
+        Name = "User",
+        Value = "${gdc:item=user}",
+        As = "user"
+      };
+
       var methodCodeProperty = new SeqPropertyItem()
       {
         Name = "MethodCode",
@@ -61,6 +68,9 @@ namespace MyTagPocket.UWP.Library.CoreUtil
         ApiKey = ""
       };
       seqSubTarget.Properties.Add(deviceProperty);
+      seqSubTarget.Properties.Add(userProperty);
+      seqSubTarget.Properties.Add(methodCodeProperty);
+
       var seqTarget = new BufferingTargetWrapper(seqSubTarget, 1000, 2000);
       seqTarget.Name = "seq";
       config.AddTarget(seqTarget);

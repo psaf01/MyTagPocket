@@ -63,7 +63,7 @@ namespace MyTagPocket.Repository
        catch (Exception ex)
        {
          Log.Error(ex, methodCode, "Cant load file TypeEntity={@entity.TypeEntity.Name}] EntityId={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
-         throw new FileSystemException(ResourceApp.ExceptionCantLoadFile);
+         throw new ErrorException(ResourceApp.ExceptionCantLoadFile);
        }
      });
     }
@@ -82,7 +82,7 @@ namespace MyTagPocket.Repository
         {
           if (string.IsNullOrEmpty(fileInfo.CommitId))
           {
-            throw new FileSystemException(ResourceApp.ExceptionCantLoadFileFromArchive);
+            throw new ErrorException(ResourceApp.ExceptionCantLoadFileFromArchive);
           }
 
           Log.Trace(methodCode, "Load from archive {@FileType} ID={@FileId} commit={@CommitId}", fileInfo.FileType, fileInfo.FileId, fileInfo.CommitId);
@@ -100,7 +100,7 @@ namespace MyTagPocket.Repository
               break;
             default:
               Log.Error(methodCode, "Cant recognize type file for load from archive type={@FileType} file ID={@FileId}", fileInfo.FileType, fileInfo.FileId);
-              throw new FileSystemException(ResourceApp.ExceptionCantLoadFileFromArchive);
+              throw new ErrorException(ResourceApp.ExceptionCantLoadFileFromArchive);
           }
           T result = entity.DeserializeJson(contentJson);
           return result;
@@ -145,7 +145,7 @@ namespace MyTagPocket.Repository
         catch (Exception ex)
         {
           Log.Error(ex, methodCode, "Cant Save={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
-          throw new FileSystemException(ResourceApp.ExceptionCantSaveFileToArchive);
+          throw new ErrorException(ResourceApp.ExceptionCantSaveFileToArchive);
         }
       });
     }
@@ -229,7 +229,7 @@ namespace MyTagPocket.Repository
         catch (Exception ex)
         {
           Log.Error(ex, methodCode, "Cant Delete={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
-          throw new FileSystemException(ResourceApp.ExceptionCantDeleteFile);
+          throw new ErrorException(ResourceApp.ExceptionCantDeleteFile);
         }
       });
     }

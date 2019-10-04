@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-  <file datatype="xml" source-language="en" target-language="qps-ploc" original="MYTAGPOCKET/RESOURCES/RESOURCEAPP.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+  <file datatype="xml" source-language="en" target-language="en-US" original="MYTAGPOCKET/RESOURCES/RESOURCEAPP.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
     <header>
-      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.6901.0" tool-company="Microsoft" />
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.6914.0" tool-company="Microsoft" />
     </header>
     <body>
       <group id="MYTAGPOCKET/RESOURCES/RESOURCEAPP.RESX" datatype="resx">
@@ -16,178 +16,178 @@
           <target state="final">Help</target>
           <note from="MultilingualBuild" annotates="source" priority="2">App</note>
         </trans-unit>
+        <trans-unit id="FatalErrorUnexpected" translate="yes" xml:space="preserve">
+          <source>An unexpected error in the application</source>
+          <target state="final">An unexpected error in the application</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Error</note>
+        </trans-unit>
         <trans-unit id="InitAppFatalError" translate="yes" xml:space="preserve">
           <source>An error occurred during application initialization</source>
           <target state="final">An error occurred during application initialization</target>
           <note from="MultilingualBuild" annotates="source" priority="2">App</note>
         </trans-unit>
-        <trans-unit id="ThemeDescription" translate="yes" xml:space="preserve">
-          <source>The basic theme for MyTagPocket.</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[8BD28][!!_Тђè ъàšîĉ τħęmé ƒòř ΜÿŤáģΡóċĸéτ._!!]</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Gui</note>
-        </trans-unit>
-        <trans-unit id="ThemeDescriptionExample" translate="yes" xml:space="preserve">
-          <source>It serves as an example of the Theme definition in the application. Changes in this file do not affect the application itself.</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[EAE86][!!_Ìţ şèѓνéś ãŝ âй ê×ãмрĺê õƒ тћè Τħèmê ðęƒįηìťìõη íή ťђê ãρрłįćàťìôή. Ċĥãηġèś ìи ţĥîš ƒíĺé ďò ηòţ àƒƒęćτ тђè âрρłìċâťíõй ìτşéľƒ._!!]</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Gui</note>
-        </trans-unit>
-        <trans-unit id="Test" translate="yes" xml:space="preserve">
-          <source>Test</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[1B09A][!!_Ťèŝτ_!!]</target>
-        </trans-unit>
-        <trans-unit id="FatalErrorUnexpected" translate="yes" xml:space="preserve">
-          <source>An unexpected error in the application</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[B8085][!!_Ãη µиèхрęćтéđ èřŕôŕ îη ťћę ãрþļíčàтįóή_!!]</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Error</note>
-        </trans-unit>
-        <trans-unit id="UpgradeStatusEndError" translate="yes" xml:space="preserve">
-          <source>Finished with error</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[D7C72][!!_₣îηíśĥéð ẃíтђ êřŕõř_!!]</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
-        </trans-unit>
-        <trans-unit id="UpgradeStatusEndSucces" translate="yes" xml:space="preserve">
-          <source>Successfully completed</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[0D85E][!!_ŚûĉčęŝşƒµłļУ ĉòmрľéτéđ_!!]</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
-        </trans-unit>
-        <trans-unit id="UpgradeStatusNotStart" translate="yes" xml:space="preserve">
-          <source>Not started</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[03FB4][!!_Ñòт šтãřтèď_!!]</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
-        </trans-unit>
-        <trans-unit id="UpgradeStatusProgress" translate="yes" xml:space="preserve">
-          <source>In Progress</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[A26D3][!!_Ìη Рřõĝŕęśŝ_!!]</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
-        </trans-unit>
-        <trans-unit id="UpgradeStatusStop" translate="yes" xml:space="preserve">
-          <source>Stop</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[CD650][!!_Ŝţóþ_!!]</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
-        </trans-unit>
-        <trans-unit id="UpgradeDatabaseLabel" translate="yes" xml:space="preserve">
-          <source>Upgrade Database</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[80333][!!_Ûρģřàðè Ðàтãвâśę_!!]</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
-        </trans-unit>
-        <trans-unit id="UpgradeStorageContentsDescriptionLabel" translate="yes" xml:space="preserve">
-          <source>Updating basic user content structures.</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[AD616][!!_Ûрðãтíηģ ьáşíč ùśęŕ ċôήτęήţ šťŕúčťûѓéš._!!]</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
-        </trans-unit>
-        <trans-unit id="UpgradeStorageContentsLabel" translate="yes" xml:space="preserve">
-          <source>Storage contents</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[CD3F6][!!_Şтóŕáģę ćõйťèиţŝ_!!]</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
-        </trans-unit>
-        <trans-unit id="UpgradeStorageLabel" translate="yes" xml:space="preserve">
-          <source>Upgrade Storage</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[42860][!!_Ûρġŕáďè Śтòѓãĝę_!!]</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
-        </trans-unit>
-        <trans-unit id="UpgradeStorageSettingsDescriptionLabel" translate="yes" xml:space="preserve">
-          <source>Updating application settings and their configuration parts.</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[A55E2][!!_Ûþďâţìηģ àþþĺíċàтìòй şęţţìηĝŝ áйð ţħęíŕ ċóиƒîġûѓâţîôи þâŗтŝ._!!]</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
-        </trans-unit>
-        <trans-unit id="UpgradeStorageSettingsLabel" translate="yes" xml:space="preserve">
-          <source>Storage settings</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[29512][!!_Śτòѓâğê śèτţíηġş_!!]</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
-        </trans-unit>
         <trans-unit id="ProcessError" translate="yes" xml:space="preserve">
           <source>Error</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[404CC][!!_Êŗѓõѓ_!!]</target>
+          <target state="final">Error</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Process</note>
         </trans-unit>
         <trans-unit id="ProcessIdle" translate="yes" xml:space="preserve">
           <source>Idle</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[23261][!!_Íďĺę_!!]</target>
+          <target state="final">Idle</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Process</note>
         </trans-unit>
         <trans-unit id="ProcessPaused" translate="yes" xml:space="preserve">
           <source>Paused</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[E1C9D][!!_Рáûśéð_!!]</target>
+          <target state="final">Paused</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Process</note>
         </trans-unit>
         <trans-unit id="ProcessRunning" translate="yes" xml:space="preserve">
           <source>Running</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[AA5AC][!!_Ŕµийìήğ_!!]</target>
+          <target state="final">Running</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Process</note>
+        </trans-unit>
+        <trans-unit id="Test" translate="yes" xml:space="preserve">
+          <source>Test</source>
+          <target state="final">Test</target>
+        </trans-unit>
+        <trans-unit id="ThemeDescription" translate="yes" xml:space="preserve">
+          <source>The basic theme for MyTagPocket.</source>
+          <target state="final">The basic theme for MyTagPocket.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Gui</note>
+        </trans-unit>
+        <trans-unit id="ThemeDescriptionExample" translate="yes" xml:space="preserve">
+          <source>It serves as an example of the Theme definition in the application. Changes in this file do not affect the application itself.</source>
+          <target state="final">It serves as an example of the Theme definition in the application. Changes in this file do not affect the application itself.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Gui</note>
+        </trans-unit>
+        <trans-unit id="UpgradeDatabaseLabel" translate="yes" xml:space="preserve">
+          <source>Upgrade Database</source>
+          <target state="final">Upgrade Database</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStatusEndError" translate="yes" xml:space="preserve">
+          <source>Finished with error</source>
+          <target state="final">Finished with error</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStatusEndSucces" translate="yes" xml:space="preserve">
+          <source>Successfully completed</source>
+          <target state="final">Successfully completed</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStatusNotStart" translate="yes" xml:space="preserve">
+          <source>Not started</source>
+          <target state="final">Not started</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStatusProgress" translate="yes" xml:space="preserve">
+          <source>In Progress</source>
+          <target state="final">In Progress</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStatusStop" translate="yes" xml:space="preserve">
+          <source>Stop</source>
+          <target state="final">Stop</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStorageContentsDescriptionLabel" translate="yes" xml:space="preserve">
+          <source>Updating basic user content structures.</source>
+          <target state="final">Updating basic user content structures.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStorageContentsLabel" translate="yes" xml:space="preserve">
+          <source>Storage contents</source>
+          <target state="final">Storage contents</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStorageLabel" translate="yes" xml:space="preserve">
+          <source>Upgrade Storage</source>
+          <target state="final">Upgrade Storage</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStorageSettingsDescriptionLabel" translate="yes" xml:space="preserve">
+          <source>Updating application settings and their configuration parts.</source>
+          <target state="final">Updating application settings and their configuration parts.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeStorageSettingsError" translate="yes" xml:space="preserve">
           <source>Unable to complete update settings</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[F33EC][!!_Üηâъľé ţò ĉõмþĺêтê ùþďáţè śéţтįηğŝ_!!]</target>
+          <target state="final">Unable to complete update settings</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeStorageSettingsIsActual" translate="yes" xml:space="preserve">
           <source>Storage settings is last version</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[AA41A][!!_Šтõѓáĝę şéţťîйĝş įŝ łãŝţ νéřśíõи_!!]</target>
+          <target state="final">Storage settings is last version</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
+        </trans-unit>
+        <trans-unit id="UpgradeStorageSettingsLabel" translate="yes" xml:space="preserve">
+          <source>Storage settings</source>
+          <target state="final">Storage settings</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeStorageSettingSucces" translate="yes" xml:space="preserve">
           <source>Update setup completed successfully</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[BCD4A][!!_Úρðáţè śéţµþ ċómρľèτèð šûĉċêŝŝƒûĺĺý_!!]</target>
+          <target state="final">Update setup completed successfully</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeInfoFinishError" translate="yes" xml:space="preserve">
           <source>There was an error updating</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[56D84][!!_Ťћęřè ẅãş àη èŗŕòŗ ùþďàťîήģ_!!]</target>
+          <target state="final">There was an error updating</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeInfoFinishSucces" translate="yes" xml:space="preserve">
           <source>Update completed successfully</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[B651A][!!_Úþðâţè ćôмρľéтèđ śùćċêšşƒµľłÿ_!!]</target>
+          <target state="final">Update completed successfully</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeInfoNotStarted" translate="yes" xml:space="preserve">
           <source>Update not started</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[0D030][!!_Ûρðàтę йôţ şťáѓţêđ_!!]</target>
+          <target state="final">Update not started</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeInfoStarted" translate="yes" xml:space="preserve">
           <source>Update started</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[F85FF][!!_Ûрďãţé šťâŗťéð_!!]</target>
+          <target state="final">Update started</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="ExceptionCantLoadFile" translate="yes" xml:space="preserve">
           <source>Can't load file.</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[F9916][!!_Ċàή'ţ łòãđ ƒìľé._!!]</target>
+          <target state="final">Can't load file.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Exception</note>
         </trans-unit>
         <trans-unit id="ExceptionCantDeleteFile" translate="yes" xml:space="preserve">
           <source>Can't delete file.</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[EF27A][!!_Ĉáή'ť ďêłêтè ƒíłé._!!]</target>
+          <target state="final">Can't delete file.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Exception</note>
         </trans-unit>
         <trans-unit id="ExceptionCantLoadFileFromArchive" translate="yes" xml:space="preserve">
           <source>Can't load file from archive.</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[0BAFA][!!_Čâй'ţ ļõâð ƒìĺè ƒŕóм ãŕćђįνè._!!]</target>
+          <target state="final">Can't load file from archive.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Exception</note>
         </trans-unit>
         <trans-unit id="ExceptionCantSaveFileToArchive" translate="yes" xml:space="preserve">
           <source>Can't save file to archive.</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[1ABF8][!!_Čãи'т śáνé ƒíļé ťô ãѓćħíνè._!!]</target>
+          <target state="final">Can't save file to archive.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Exception</note>
         </trans-unit>
         <trans-unit id="ErrorCantReadSecure" translate="yes" xml:space="preserve">
           <source>Unable to retrieve data from secure storage.</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[4D9EE][!!_Üηâьļę ţõ ŗèтѓìéνę ďáтá ƒřõм šêċµřè ŝτõřàģè._!!]</target>
+          <target state="final">Unable to retrieve data from secure storage.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">SecureRepository</note>
         </trans-unit>
         <trans-unit id="ErrorCantSaveSecure" translate="yes" xml:space="preserve">
           <source>Unable to save data to secure storage.</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[A3AF5][!!_Üήãъļę тó ŝáνé ďâтâ τô šèćµřę šţõŕàģè._!!]</target>
+          <target state="final">Unable to save data to secure storage.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">SecureRepository</note>
         </trans-unit>
         <trans-unit id="ErrorDeleteAllItemSecure" translate="yes" xml:space="preserve">
           <source>Unable to delete data from secure storage.</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[67CB0][!!_Ùиãвłę ţó ðęļêтè đâτà ƒřóm šéćûŗê śтôѓàğê._!!]</target>
+          <target state="final">Unable to delete data from secure storage.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">SecureRepository</note>
         </trans-unit>
         <trans-unit id="ErrorDeleteItemSecure" translate="yes" xml:space="preserve">
           <source>Unable to delete data from secure storage.</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[F9CAB][!!_Úήáьłę тò đéļéţê đãţã ƒѓôm şéĉùŗé şťôŗáğè._!!]</target>
+          <target state="final">Unable to delete data from secure storage.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">SecureRepository</note>
         </trans-unit>
       </group>

@@ -79,6 +79,42 @@ namespace MyTagPocket.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to retrieve data from secure storage..
+        /// </summary>
+        public static string ErrorCantReadSecure {
+            get {
+                return ResourceManager.GetString("ErrorCantReadSecure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to save data to secure storage..
+        /// </summary>
+        public static string ErrorCantSaveSecure {
+            get {
+                return ResourceManager.GetString("ErrorCantSaveSecure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to delete data from secure storage..
+        /// </summary>
+        public static string ErrorDeleteAllItemSecure {
+            get {
+                return ResourceManager.GetString("ErrorDeleteAllItemSecure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to delete data from secure storage..
+        /// </summary>
+        public static string ErrorDeleteItemSecure {
+            get {
+                return ResourceManager.GetString("ErrorDeleteItemSecure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can&apos;t delete file..
         /// </summary>
         public static string ExceptionCantDeleteFile {

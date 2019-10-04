@@ -170,6 +170,26 @@
           <target state="new">Can't save file to archive.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Exception</note>
         </trans-unit>
+        <trans-unit id="ErrorCantReadSecure" translate="yes" xml:space="preserve">
+          <source>Unable to retrieve data from secure storage.</source>
+          <target state="new">Unable to retrieve data from secure storage.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">SecureRepository</note>
+        </trans-unit>
+        <trans-unit id="ErrorCantSaveSecure" translate="yes" xml:space="preserve">
+          <source>Unable to save data to secure storage.</source>
+          <target state="new">Unable to save data to secure storage.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">SecureRepository</note>
+        </trans-unit>
+        <trans-unit id="ErrorDeleteAllItemSecure" translate="yes" xml:space="preserve">
+          <source>Unable to delete data from secure storage.</source>
+          <target state="new">Unable to delete data from secure storage.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">SecureRepository</note>
+        </trans-unit>
+        <trans-unit id="ErrorDeleteItemSecure" translate="yes" xml:space="preserve">
+          <source>Unable to delete data from secure storage.</source>
+          <target state="new">Unable to delete data from secure storage.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">SecureRepository</note>
+        </trans-unit>
       </group>
     </body>
   </file>

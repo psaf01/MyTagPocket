@@ -67,7 +67,7 @@
         </trans-unit>
         <trans-unit id="UpgradeDatabaseLabel" translate="yes" xml:space="preserve">
           <source>Upgrade Database</source>
-          <target state="new">Upgrade Database</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Upgradovat databázi</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeStorageContentsDescriptionLabel" translate="yes" xml:space="preserve">
@@ -92,27 +92,27 @@
         </trans-unit>
         <trans-unit id="UpgradeStorageSettingsLabel" translate="yes" xml:space="preserve">
           <source>Storage settings</source>
-          <target state="new">Storage settings</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Nastavení úložiště</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="ProcessError" translate="yes" xml:space="preserve">
           <source>Error</source>
-          <target state="new">Error</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">PŘI.CHYBĚ</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Process</note>
         </trans-unit>
         <trans-unit id="ProcessIdle" translate="yes" xml:space="preserve">
           <source>Idle</source>
-          <target state="new">Idle</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Nečinná</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Process</note>
         </trans-unit>
         <trans-unit id="ProcessPaused" translate="yes" xml:space="preserve">
           <source>Paused</source>
-          <target state="new">Paused</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Pozastaveno</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Process</note>
         </trans-unit>
         <trans-unit id="ProcessRunning" translate="yes" xml:space="preserve">
           <source>Running</source>
-          <target state="new">Running</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Spuštěno</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Process</note>
         </trans-unit>
         <trans-unit id="UpgradeStorageSettingsError" translate="yes" xml:space="preserve">
@@ -137,7 +137,7 @@
         </trans-unit>
         <trans-unit id="UpgradeInfoFinishSucces" translate="yes" xml:space="preserve">
           <source>Update completed successfully</source>
-          <target state="new">Update completed successfully</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Aktualizace byla úspěšně dokončena.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeInfoNotStarted" translate="yes" xml:space="preserve">
@@ -147,7 +147,7 @@
         </trans-unit>
         <trans-unit id="UpgradeInfoStarted" translate="yes" xml:space="preserve">
           <source>Update started</source>
-          <target state="new">Update started</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Zahájení aktualizace...</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="ExceptionCantLoadFile" translate="yes" xml:space="preserve">
@@ -169,6 +169,26 @@
           <source>Can't save file to archive.</source>
           <target state="new">Can't save file to archive.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Exception</note>
+        </trans-unit>
+        <trans-unit id="ErrorCantReadSecure" translate="yes" xml:space="preserve">
+          <source>Unable to retrieve data from secure storage.</source>
+          <target state="new">Unable to retrieve data from secure storage.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">SecureRepository</note>
+        </trans-unit>
+        <trans-unit id="ErrorCantSaveSecure" translate="yes" xml:space="preserve">
+          <source>Unable to save data to secure storage.</source>
+          <target state="new">Unable to save data to secure storage.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">SecureRepository</note>
+        </trans-unit>
+        <trans-unit id="ErrorDeleteAllItemSecure" translate="yes" xml:space="preserve">
+          <source>Unable to delete data from secure storage.</source>
+          <target state="new">Unable to delete data from secure storage.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">SecureRepository</note>
+        </trans-unit>
+        <trans-unit id="ErrorDeleteItemSecure" translate="yes" xml:space="preserve">
+          <source>Unable to delete data from secure storage.</source>
+          <target state="new">Unable to delete data from secure storage.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">SecureRepository</note>
         </trans-unit>
       </group>
     </body>

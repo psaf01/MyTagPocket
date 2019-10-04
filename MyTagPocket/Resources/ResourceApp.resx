@@ -248,4 +248,20 @@
     <value>Can't save file to archive.</value>
     <comment>Exception</comment>
   </data>
+  <data name="ErrorCantReadSecure" xml:space="preserve">
+    <value>Unable to retrieve data from secure storage.</value>
+    <comment>SecureRepository</comment>
+  </data>
+  <data name="ErrorCantSaveSecure" xml:space="preserve">
+    <value>Unable to save data to secure storage.</value>
+    <comment>SecureRepository</comment>
+  </data>
+  <data name="ErrorDeleteAllItemSecure" xml:space="preserve">
+    <value>Unable to delete data from secure storage.</value>
+    <comment>SecureRepository</comment>
+  </data>
+  <data name="ErrorDeleteItemSecure" xml:space="preserve">
+    <value>Unable to delete data from secure storage.</value>
+    <comment>SecureRepository</comment>
+  </data>
 </root>
