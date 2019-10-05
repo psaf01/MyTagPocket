@@ -25,12 +25,30 @@ namespace MyTagPocket.CoreUtil
       /// <summary>
       /// None encrypt
       /// </summary>
-      None
+      None,
+      /// <summary>
+      /// HASH SHA 512
+      /// </summary>
+      Sha512,
+      /// <summary>
+      /// AES
+      /// </summary>
+      Aes
     }
 
     /// <summary>
     /// A unique or unclassifiable type
     /// </summary>
-    public static readonly EncryptTypeEnum NONE = new EncryptTypeEnum("NONE", EncryptType.None, "O");
+    public static readonly EncryptTypeEnum None = new EncryptTypeEnum("NONE", EncryptType.None, "O");
+
+    /// <summary>
+    /// SHA512 hash
+    /// </summary>
+    public static readonly EncryptTypeEnum Sha512 = new EncryptTypeEnum("SHA512", EncryptType.Sha512, "1");
+
+    /// <summary>
+    /// AES 
+    /// </summary>
+    public static readonly EncryptTypeEnum Aes = new EncryptTypeEnum("AES", EncryptType.Aes, "2");
   }
 }

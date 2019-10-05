@@ -1,23 +1,9 @@
-﻿using MyTagPocket.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Prism;
-using Xunit;
-using Unity;
-using MyTagPocket.Repository.Interface;
-using MyTagPocket.CoreUtil.Interface;
-using MyTagPocket.UWP.Library.CoreUtil;
-using Xamarin.Forms;
-using Xamarin.Forms.Internals;
-using static MyTagPocket.UWP.TEST.Xamarin.Forms.Mocks.MockForms;
-using MyTagPocket.UWP.TEST.Mocks;
-using System.IO.Abstractions;
-using Moq;
-using MyTagPocket.UWP.Test.Mocks;
+﻿using MyTagPocket.CoreUtil.Interface;
+using MyTagPocket.Repository;
 using MyTagPocket.Repository.Secure;
+using MyTagPocket.UWP.Library.CoreUtil;
+using Unity;
+using Xunit;
 
 namespace MyTagPocket.UWP.TEST.Repository
 {

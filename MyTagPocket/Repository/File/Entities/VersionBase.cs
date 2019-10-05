@@ -13,7 +13,7 @@ namespace MyTagPocket.Repository.File.Entities
     /// <summary>
     /// Constructor
     /// </summary>
-    public VersionBase(DataTypeEnum dataType, string guid) : base(dataType, guid, EncryptTypeEnum.NONE)
+    public VersionBase(DataTypeEnum dataType, string guid) : base(dataType, guid, EncryptTypeEnum.None)
     { }
 
     #region Public attributest

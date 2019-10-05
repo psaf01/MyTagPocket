@@ -11,7 +11,7 @@ namespace MyTagPocket.Repository.File.Entities.Contents
     /// <summary>
     /// Constructor
     /// </summary>
-    public Content() : base(DataTypeEnum.Contents, null, EncryptTypeEnum.NONE)
+    public Content() : base(DataTypeEnum.Contents, null, EncryptTypeEnum.None)
     { }
 
     #region Public attributest

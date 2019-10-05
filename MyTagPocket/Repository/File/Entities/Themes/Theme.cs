@@ -8,7 +8,7 @@ namespace MyTagPocket.Repository.File.Entities.Themes
   /// </summary>
   public class Theme : FileEntityBase<Theme>
   {
-    public Theme(string entityId) : base(CoreUtil.DataTypeEnum.Themes, entityId, CoreUtil.EncryptTypeEnum.NONE)
+    public Theme(string entityId) : base(CoreUtil.DataTypeEnum.Themes, entityId, CoreUtil.EncryptTypeEnum.None)
     {
       BasicSetting = new ThemeBasicSettings();
     }
