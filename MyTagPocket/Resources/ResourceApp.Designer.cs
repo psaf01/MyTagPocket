@@ -151,6 +151,24 @@ namespace MyTagPocket.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to determine the file identifier required to save..
+        /// </summary>
+        public static string ExceptionDalRepositorySaveFileIdFileEmpty {
+            get {
+                return ResourceManager.GetString("ExceptionDalRepositorySaveFileIdFileEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to determine the file name required to save..
+        /// </summary>
+        public static string ExceptionDalRepositorySaveFileName {
+            get {
+                return ResourceManager.GetString("ExceptionDalRepositorySaveFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An unexpected error in the application.
         /// </summary>
         public static string FatalErrorUnexpected {

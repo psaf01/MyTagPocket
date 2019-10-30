@@ -264,4 +264,12 @@
     <value>Unable to delete data from secure storage.</value>
     <comment>SecureRepository</comment>
   </data>
+  <data name="ExceptionDalRepositorySaveFileIdFileEmpty" xml:space="preserve">
+    <value>Unable to determine the file identifier required to save.</value>
+    <comment>DalRepository</comment>
+  </data>
+  <data name="ExceptionDalRepositorySaveFileName" xml:space="preserve">
+    <value>Unable to determine the file name required to save.</value>
+    <comment>DalRepository</comment>
+  </data>
 </root>

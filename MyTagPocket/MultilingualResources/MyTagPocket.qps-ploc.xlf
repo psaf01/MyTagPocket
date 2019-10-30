@@ -190,6 +190,16 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">[F9CAB][!!_Úήáьłę тò đéļéţê đãţã ƒѓôm şéĉùŗé şťôŗáğè._!!]</target>
           <note from="MultilingualBuild" annotates="source" priority="2">SecureRepository</note>
         </trans-unit>
+        <trans-unit id="ExceptionDalRepositorySaveFileIdFileEmpty" translate="yes" xml:space="preserve">
+          <source>Unable to determine the file identifier required to save.</source>
+          <target state="new">Unable to determine the file identifier required to save.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">DalRepository</note>
+        </trans-unit>
+        <trans-unit id="ExceptionDalRepositorySaveFileName" translate="yes" xml:space="preserve">
+          <source>Unable to determine the file name required to save.</source>
+          <target state="new">Unable to determine the file name required to save.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">DalRepository</note>
+        </trans-unit>
       </group>
     </body>
   </file>

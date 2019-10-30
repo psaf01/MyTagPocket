@@ -92,6 +92,7 @@
     <Compile Include="CoreUtil\SecurityTest.cs" />
     <Compile Include="Mocks\ApplicationMock.cs" />
     <Compile Include="Mocks\MockFileSystemStorage.cs" />
+    <Compile Include="Repository\File\DiffMatchPatchTest.cs" />
     <Compile Include="Repository\SecureRepositoryTest.cs" />
     <Compile Include="Xamarin.Forms.Mocks\MockForms.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
