@@ -30,7 +30,7 @@ namespace MyTagPocket.UWP.TEST.Repository.File
 
       //restore
       var altT3ToT2Patch = dmp.patch_fromText(patchT3toT2text);
-      var altT2 = dmp.patch_apply(altT3ToT2Patch, t3)[0].ToString(); // .get(0) in Java I think           
+      var altT2 = dmp.patch_apply(altT3ToT2Patch, t3)[0].ToString();            
       Assert.Equal(t2, altT2);
 
       var altT2ToT1Patch = dmp.patch_fromText(patchT2toT1text);

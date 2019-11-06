@@ -1,6 +1,7 @@
-﻿using static MyTagPocket.CoreUtil.FileTypeEnum;
+﻿using MyTagPocket.CoreUtil;
+using static MyTagPocket.Repository.File.FileTypeEnum;
 
-namespace MyTagPocket.CoreUtil
+namespace MyTagPocket.Repository.File
 {
   /// <summary>
   /// File type

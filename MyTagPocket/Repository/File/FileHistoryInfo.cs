@@ -1,4 +1,5 @@
 ﻿using MyTagPocket.Repository.File.Interface;
+using Newtonsoft.Json;
 
 namespace MyTagPocket.Repository.File
 {
@@ -9,39 +10,82 @@ namespace MyTagPocket.Repository.File
   {
     #region Properties
     /// <summary>
+    /// Version object file history info
+    /// </summary>
+    [JsonProperty("v")]
+    public int Version { get; set; }
+
+    /// <summary>
     /// GUID file
     /// </summary>
+    [JsonProperty("fid")]
     public string FileId { get; set; }
+
+    /// <summary>
+    /// GUID folder
+    /// </summary>
+    [JsonProperty("flid")]
+    public string FolderId { get; set; }
 
     /// <summary>
     /// File type 
     /// </summary>
+    [JsonProperty("ft")]
     public string FileType { get; set; }
 
     /// <summary>
     /// GUID Commit
     /// </summary>
+    [JsonProperty("cit")]
     public string CommitId { get; set; }
 
     /// <summary>
     /// Create date commit
     /// </summary>
-    public string CreateDate { get; set; }
+    [JsonProperty("cd")]
+    public string CreatedDate { get; set; }
 
     /// <summary>
     /// Start position content binary in archive file
     /// </summary>
+    [JsonProperty("sp")]
     public int StartPosition { get; set; }
 
     /// <summary>
     /// Length content
     /// </summary>
+    [JsonProperty("lc")]
     public int LengthContent { get; set; }
 
     /// <summary>
-    /// Entity update who
+    /// Entity update who Fullname
     /// </summary>
-    public string CreatedWho { get; set; }
+    [JsonProperty("cwf")]
+    public string CreatedWhoFullname { get; set; }
+
+    /// <summary>
+    /// Entity update who e-mail
+    /// </summary>
+    [JsonProperty("cwe")]
+    public string CreatedWhoEmail { get; set; }
+
+    /// <summary>
+    /// Identification who created
+    /// </summary>
+    [JsonProperty("cwi")]
+    public string CreatedWhoId { get; set; }
+
+    /// <summary>
+    /// Name of device
+    /// </summary>
+    [JsonProperty("cdn")]
+    public string CreatedOnDeviceName { get; set; }
+
+    /// <summary>
+    /// Identification 
+    /// </summary>
+    [JsonProperty("cdi")]
+    public string CreatedOnDeviceId { get; set; }
     #endregion Properties
 
     #region Public Method
@@ -52,7 +96,7 @@ namespace MyTagPocket.Repository.File
     /// <returns>File Entity</returns>
     public FileHistoryInfo DeserializeJson(string jsonString)
     {
-      return Newtonsoft.Json.JsonConvert.DeserializeObject<FileHistoryInfo>(jsonString);
+      return JsonConvert.DeserializeObject<FileHistoryInfo>(jsonString);
     }
     #endregion Public Method
   }

@@ -200,6 +200,11 @@
           <target state="new">Unable to determine the file name required to save.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">DalRepository</note>
         </trans-unit>
+        <trans-unit id="FileNotCompatible" translate="yes" xml:space="preserve">
+          <source>The loaded file is not valid.</source>
+          <target state="new">The loaded file is not valid.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">File</note>
+        </trans-unit>
       </group>
     </body>
   </file>

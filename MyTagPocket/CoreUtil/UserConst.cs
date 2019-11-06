@@ -12,6 +12,6 @@ namespace MyTagPocket.CoreUtil
     /// <summary>
     /// System user
     /// </summary>
-    public const string System = "SYSTEM";
+    public static readonly string MyTagPocket = "dd";
   }
 }

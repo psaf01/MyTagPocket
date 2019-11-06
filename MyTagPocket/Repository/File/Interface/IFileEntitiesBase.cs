@@ -1,4 +1,6 @@
 ﻿using MyTagPocket.CoreUtil;
+using MyTagPocket.Repository.File.Entities.Devices;
+using MyTagPocket.Repository.File.Entities.Users;
 using System;
 
 namespace MyTagPocket.Repository.File.Interface
@@ -9,12 +11,27 @@ namespace MyTagPocket.Repository.File.Interface
   public interface IFileEntityBase<T>
   {
     /// <summary>
-    /// Identification entity
+    /// version of the class/entity definition structure
+    /// </summary>
+    int Version { get; set; }
+
+    /// <summary>
+    /// Identification entity GUID
     /// </summary>
     string EntityId { get; set; }
 
     /// <summary>
-    /// Identification commit
+    /// Identification folder GUID
+    /// </summary>
+    string FolderId { get; set; }
+
+    /// <summary>
+    /// Full path to file with name
+    /// </summary>
+    string FullPathFile { get; set; }
+
+    /// <summary>
+    /// Identification commit GUID
     /// </summary>
     string CommitId { get; set; }
 
@@ -26,22 +43,32 @@ namespace MyTagPocket.Repository.File.Interface
     /// <summary>
     /// Entity created when
     /// </summary>
-    DateTime CreatedWhen { get; set; }
+    DateTimeOffset CreatedWhen { get; set; }
 
     /// <summary>
     /// Entity updated when
     /// </summary>
-    DateTime UpdatedWhen { get; set; }
+    DateTimeOffset UpdatedWhen { get; set; }
 
     /// <summary>
-    /// Entity update who
+    /// Entity update who GUID
     /// </summary>
-    string CreatedWho { get; set; }
+    UserBasicInfo CreatedWho { get; set; }
 
     /// <summary>
-    /// Entity updated who
+    /// Entity updated who GUID
     /// </summary>
-    string UpdatedWho { get; set; }
+    UserBasicInfo UpdatedWho { get; set; }
+
+    /// <summary>
+    /// On which device the object was created GUID
+    /// </summary>
+    DeviceBasicInfo CreatedDevice { get; set; }
+
+    /// <summary>
+    /// On which device the object was updated GUID
+    /// </summary>
+    DeviceBasicInfo UpdatedDevice { get; set; }
 
     /// <summary>
     /// Hash entity
@@ -52,12 +79,6 @@ namespace MyTagPocket.Repository.File.Interface
     /// Encrypt file
     /// </summary>
     EncryptTypeEnum Encrypt { get; set; }
-
-    /// <summary>
-    /// Get actual hash from entity 
-    /// </summary>
-    /// <returns></returns>
-    string GetActualHash();
 
     /// <summary>
     /// Deserialice JSON string to file entity

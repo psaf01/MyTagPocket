@@ -29,11 +29,11 @@ namespace MyTagPocket.CoreUtil
       /// <summary>
       /// Application settings
       /// </summary>
-      Settings,
+      Setting,
       /// <summary>
-      /// Contents notes
+      /// Package
       /// </summary>
-      Contents,
+      Package,
       /// <summary>
       /// TAG
       /// </summary>
@@ -41,7 +41,7 @@ namespace MyTagPocket.CoreUtil
       /// <summary>
       /// Theme application
       /// </summary>
-      Themes,
+      Theme,
       /// <summary>
       /// Compress archive content 
       /// </summary>
@@ -49,31 +49,39 @@ namespace MyTagPocket.CoreUtil
       /// <summary>
       /// History archive content. Information about stored individual contents in the ARC file is stored here
       /// </summary>
-      History
+      History,
+      /// <summary>
+      /// Device
+      /// </summary>
+      Device,
+      /// <summary>
+      /// User
+      /// </summary>
+      User
     }
 
     /// <summary>
     /// A unique or unclassifiable type
     /// </summary>
-    public static readonly DataTypeEnum Unclassified = new DataTypeEnum("Unclassified", DataType.Settings, "mtp");
+    public static readonly DataTypeEnum Unclassified = new DataTypeEnum("Unclassified", DataType.Setting, "mtp");
     /// <summary>
     /// Application settings
     /// </summary>
-    public static readonly DataTypeEnum Settings = new DataTypeEnum("Settings", DataType.Settings, "cfg");
+    public static readonly DataTypeEnum Setting = new DataTypeEnum("Setting", DataType.Setting, "cfg");
     /// <summary>
     /// Contents notes
     /// </summary>
-    public static readonly DataTypeEnum Contents = new DataTypeEnum("Contents", DataType.Contents, "mtp");
+    public static readonly DataTypeEnum Package = new DataTypeEnum("Package", DataType.Package, "pck");
 
     /// <summary>
     /// TAG
     /// </summary>
-    public static readonly DataTypeEnum Tag = new DataTypeEnum("Tag", DataType.Contents, "mtp");
+    public static readonly DataTypeEnum Tag = new DataTypeEnum("Tag", DataType.Tag, "tag");
 
     /// <summary>
     /// Contents notes
     /// </summary>
-    public static readonly DataTypeEnum Themes = new DataTypeEnum("Themes", DataType.Themes, "thm");
+    public static readonly DataTypeEnum Theme = new DataTypeEnum("Themes", DataType.Theme, "thm");
 
     /// <summary>
     /// Compress Archive contents
@@ -84,5 +92,17 @@ namespace MyTagPocket.CoreUtil
     /// History archive content. Information about stored individual contents in the ARC file is stored here
     /// </summary>
     public static readonly DataTypeEnum History = new DataTypeEnum("History", DataType.History, "hst");
+
+    /// <summary>
+    /// Device. Information about device
+    /// </summary>
+    public static readonly DataTypeEnum Device = new DataTypeEnum("Device", DataType.Device, "dvc");
+
+    /// <summary>
+    /// User. Information about user
+    /// </summary>
+    public static readonly DataTypeEnum User = new DataTypeEnum("User", DataType.User, "usr");
+
+
   }
 }

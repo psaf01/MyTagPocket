@@ -1,5 +1,8 @@
 ﻿using MyTagPocket.CoreUtil;
+using MyTagPocket.Repository.File.Entities.Devices;
+using MyTagPocket.Repository.File.Entities.Users;
 using MyTagPocket.Repository.File.Interface;
+using Newtonsoft.Json;
 using System;
 
 namespace MyTagPocket.Repository.File.Entities
@@ -10,20 +13,8 @@ namespace MyTagPocket.Repository.File.Entities
   public class FileEntityBase<T> : IFileEntityBase<T>
   {
     #region Private variable
-    /// <summary>
-    /// Type Entity
-    /// </summary>
-
-    /// <summary>
-    /// Define encrypt entity
-    /// </summary>
-    private EncryptTypeEnum _Encrypt;
-
-    /// <summary>
-    /// Hash entity
-    /// </summary>
-    private string _Hash;
-    #endregion Private variable
+  
+   #endregion Private variable
 
     #region Constructor
 
@@ -32,71 +23,111 @@ namespace MyTagPocket.Repository.File.Entities
     /// </summary>
     /// <param name="dataTypeEntities">Data type entity</param>
     /// <param name="idEntity">ID entity. Unique code</param>
-    public FileEntityBase(DataTypeEnum dataTypeEntities, string entityId, EncryptTypeEnum encrypt)
+    public FileEntityBase(DataTypeEnum dataTypeEntities, string entityId, EncryptTypeEnum encrypt, int version)
     {
       TypeEntity = dataTypeEntities;
-      _Encrypt = encrypt;
+      Encrypt = encrypt;
       EntityId = entityId;
+      Version = version;
 
       if (EntityId == null)
       {
         //create new ID
         EntityId = Guid.NewGuid().ToString("N");
-        CreatedWhen = DateTime.UtcNow;
+        CreatedWhen = DateTimeOffset.Now;
         UpdatedWhen = CreatedWhen;
-        CreatedWho = UserConst.System;
+        CreatedWho = new UserBasicInfo();
         UpdatedWho = CreatedWho;
       }
-
     }
     #endregion Constructor
 
     #region Public property
+
+    /// <summary>
+    /// version of the class/entity definition structure
+    /// </summary>
+    [JsonProperty("v")]
+    public int Version { get; set; }
+
     /// <summary>
     /// Identification entity
     /// </summary>
-   public  string EntityId { get; set; }
+    [JsonProperty("eid")]
+    public string EntityId { get; set; }
+
+    /// <summary>
+    /// Identification folder GUID
+    /// </summary>
+    [JsonProperty("fid")]
+    public string FolderId { get; set; }
+
+    /// <summary>
+    /// Full path to file with name
+    /// </summary>
+    [JsonIgnore]
+    public string FullPathFile { get; set; }
 
     /// <summary>
     /// Identification commit
     /// </summary>
+    [JsonProperty("cid")]
     public string CommitId { get; set; }
 
     /// <summary>
     /// Get type entity
     /// </summary>
     /// <returns>Data type entity</returns>
+    [JsonProperty("te")]
     public DataTypeEnum TypeEntity { get; set; }
 
     /// <summary>
     /// Entity created when
     /// </summary>
-    public DateTime CreatedWhen { get; set; }
+    [JsonProperty("cw")]
+    public DateTimeOffset CreatedWhen { get; set; }
 
     /// <summary>
     /// Entity updated when
     /// </summary>
-    public DateTime UpdatedWhen { get; set; }
+    [JsonProperty("uw")]
+    public DateTimeOffset UpdatedWhen { get; set; }
 
     /// <summary>
     /// Entity update who
     /// </summary>
-    public string CreatedWho { get; set; }
+    [JsonProperty("cwh")]
+    public UserBasicInfo CreatedWho { get; set; }
 
     /// <summary>
     /// Entity updated who
     /// </summary>
-    public string UpdatedWho { get; set; }
+    [JsonProperty("uwh")]
+    public UserBasicInfo UpdatedWho { get; set; }
+
+    /// <summary>
+    /// On which device the object was created GUID
+    /// </summary>
+    [JsonProperty("cd")]
+    public DeviceBasicInfo CreatedDevice { get; set; }
+
+    /// <summary>
+    /// On which device the object was updated GUID
+    /// </summary>
+    [JsonProperty("ud")]
+    public DeviceBasicInfo UpdatedDevice { get; set; }
 
     /// <summary>
     /// Hash entity
     /// </summary>
+    [JsonProperty("h")]
     public virtual string Hash { get; set; }
 
     /// <summary>
     /// File encrypt
     /// </summary>
-    public EncryptTypeEnum Encrypt { get => _Encrypt; set => _Encrypt = value; }
+    [JsonProperty("e")]
+    public EncryptTypeEnum Encrypt { get; set; }
     #endregion Public property   
 
     #region Public method
@@ -104,9 +135,9 @@ namespace MyTagPocket.Repository.File.Entities
     /// Get actual hash from entity 
     /// </summary>
     /// <returns></returns>
-    public virtual string GetActualHash()
+    public override int GetHashCode()
     {
-      return GetHashCode().ToString();
+      return Version.GetHashCode() ^ UpdatedWhen.GetHashCode() ^ UpdatedWho.GetHashCode() ^ EntityId.GetHashCode();
     }
 
     /// <summary>
@@ -118,8 +149,6 @@ namespace MyTagPocket.Repository.File.Entities
     {
       return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(jsonString);
     }
-    
-    
 
     /// <summary>
     /// Serialize file entity to json string

@@ -178,6 +178,15 @@ namespace MyTagPocket.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The loaded file is not valid..
+        /// </summary>
+        public static string FileNotCompatible {
+            get {
+                return ResourceManager.GetString("FileNotCompatible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred during application initialization.
         /// </summary>
         public static string InitAppFatalError {

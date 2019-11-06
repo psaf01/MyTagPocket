@@ -61,11 +61,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BusinessLayer\" />
     <Folder Include="MultilingualResources\" />
     <Folder Include="Repository\Dal\Entities\" />
     <Folder Include="Repository\Dal\Interface\" />
-    <Folder Include="Repository\File\Entities\" />
     <Folder Include="Repository\File\Interface\" />
     <Folder Include="Resources\Images\" />
   </ItemGroup>

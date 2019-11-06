@@ -31,18 +31,21 @@ namespace MyTagPocket.UWP.TEST.Repository
       NLog.GlobalDiagnosticsContext.Set("user", "UnitTest");
       fileHelper.FileSystemStorage = MockFileSystemStorage.MockFileSystem;
       var repository = new FileRepository(logManager, fileHelper);
-      int testValue = 5;
-      var version = new MyTagPocket.Repository.File.Entities.Settings.Version();
-      var testVersion = new MyTagPocket.Repository.File.Entities.Settings.Version();
+      var device = new MyTagPocket.Repository.File.Entities.Devices.Device();
+      device.Name = "Test device";
+      device.FolderId = "2d2740d9ac634bed83050879ce0a1018";
 
-      version.Version = testValue;
+      repository.SaveAsync(device, null).Wait();
+      MyTagPocket.Repository.File.Entities.Devices.Device testDevice = repository.LoadAsync(device).Result;
 
-      repository.SaveAsync(version, false).Wait();
-      testVersion = repository.LoadAsync(testVersion).Result;
+      Assert.Equal(device.Hash, testDevice.Hash);
+      Assert.Equal(device.EntityId, testDevice.EntityId);
+      Assert.Equal(device.CreatedWhen, testDevice.CreatedWhen);
+      Assert.Equal(device.CommitId, testDevice.CommitId);
+      Assert.Equal(device.Name, testDevice.Name);
+      Assert.Equal(device.Version, testDevice.Version);
 
-      Assert.True(version.Version == testVersion.Version, "Entity not identical");
-
-      repository.DeleteAsync(testVersion).Wait();
+      repository.DeleteAsync(device).Wait();
       logManager.FlushBuffer();
     }
 

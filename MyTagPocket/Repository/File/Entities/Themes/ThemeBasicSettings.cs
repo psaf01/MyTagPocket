@@ -11,7 +11,7 @@ namespace MyTagPocket.Repository.File.Entities.Themes
     /// <summary>
     /// Constructor
     /// </summary>
-    public ThemeBasicSettings() : base(CoreUtil.DataTypeEnum.Settings, SystemEntityGuidConst.ThemeBasicSettings, EncryptTypeEnum.None)
+    public ThemeBasicSettings() : base(CoreUtil.DataTypeEnum.Setting, SystemEntityGuidConst.ThemeBasicSettings, EncryptTypeEnum.None, 1)
     { }
 
     /// <summary>

@@ -8,7 +8,7 @@ namespace MyTagPocket.Repository.File.Entities.Themes
   /// </summary>
   public class Theme : FileEntityBase<Theme>
   {
-    public Theme(string entityId) : base(CoreUtil.DataTypeEnum.Themes, entityId, CoreUtil.EncryptTypeEnum.None)
+    public Theme(string entityId) : base(CoreUtil.DataTypeEnum.Theme, entityId, CoreUtil.EncryptTypeEnum.None, 1)
     {
       BasicSetting = new ThemeBasicSettings();
     }
@@ -22,24 +22,6 @@ namespace MyTagPocket.Repository.File.Entities.Themes
     /// File name theme in storage
     /// </summary>
     public string FileNameTeheme { get; set; } = "MyTagPocket";
-
-    /// <summary>
-    /// Version theme
-    /// </summary>
-    public string Version { get; set; } = "1";
-
-    /// <summary>
-    /// Version theme, number. If failed during transfer from string will be version 1.
-    /// </summary>
-    [JsonIgnore]
-    public int VersionInt
-    {
-      get
-      {
-        int version = int.TryParse(Version, out version) ? version : 1;
-        return version;
-      }
-    }
 
     /// <summary>
     /// Description theme

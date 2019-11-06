@@ -15,7 +15,7 @@ namespace MyTagPocket.Repository.Interface
     /// <typeparam name="T">Entity type</typeparam>
     /// <param name="entity">Instance entity</param>
     /// <param name="toArchive">Save entity to archive too</param>
-    Task SaveAsync<T>(IFileEntityBase<T> entity, bool toArchive);
+    Task SaveAsync<T>(IFileEntityBase<T> entityNew, IFileEntityBase<T> entityOld);
 
     /// <summary>
     /// Load entity from repository

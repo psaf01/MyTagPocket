@@ -272,4 +272,8 @@
     <value>Unable to determine the file name required to save.</value>
     <comment>DalRepository</comment>
   </data>
+  <data name="FileNotCompatible" xml:space="preserve">
+    <value>The loaded file is not valid.</value>
+    <comment>File</comment>
+  </data>
 </root>

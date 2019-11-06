@@ -2,7 +2,9 @@
 using MyTagPocket.CoreUtil.Exceptions;
 using MyTagPocket.CoreUtil.Interface;
 using MyTagPocket.Repository.File;
-using MyTagPocket.Repository.File.Entities.Contents;
+using MyTagPocket.Repository.File.DiffMatchPatch;
+using MyTagPocket.Repository.File.Entities;
+using MyTagPocket.Repository.File.Entities.Packages;
 using MyTagPocket.Repository.File.Interface;
 using MyTagPocket.Repository.Interface;
 using MyTagPocket.Resources;
@@ -55,10 +57,17 @@ namespace MyTagPocket.Repository
        try
        {
          Log.Trace(methodCode, "Load Entity={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
-         string path = fileHelper.GetLocalFilePath(entity.TypeEntity, entity.EntityId);
+         string path = fileHelper.GetLocalFilePath(entity.TypeEntity, entity.FolderId, entity.EntityId);
+
          string jsonString = fileHelper.LoadFile(path);
+         int versionExpect = entity.Version;
          T result = entity.DeserializeJson(jsonString);
-         return result;
+
+         if (result is IFileEntityBase<T>)
+           return result;
+
+         Log.Error(methodCode, "File is not compatible in format MyTagPocket. TypeEntity={@entity.TypeEntity.Name}] EntityId={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
+         throw new ErrorException(ResourceApp.ExceptionCantLoadFile);
        }
        catch (Exception ex)
        {
@@ -87,7 +96,7 @@ namespace MyTagPocket.Repository
 
           Log.Trace(methodCode, "Load from archive {@FileType} ID={@FileId} commit={@CommitId}", fileInfo.FileType, fileInfo.FileId, fileInfo.CommitId);
           var entityType = DataTypeEnum.ValueOf(fileInfo.FileType);
-          string path = fileHelper.GetLocalFilePath(entityType, fileInfo.FileId);
+          string path = fileHelper.GetLocalFilePath(entityType, fileInfo.FolderId, fileInfo.FileId);
           string archivePath = System.IO.Path.ChangeExtension(path, DataTypeEnum.Archive.LocalizedName);
           var archiveContent = fileHelper.LoadContentFromFile(archivePath, fileInfo.StartPosition, fileInfo.LengthContent);
 
@@ -95,8 +104,8 @@ namespace MyTagPocket.Repository
           IFileEntityBase<T> entity;
           switch (entityType.Value)
           {
-            case DataTypeEnum.DataType.Contents:
-              entity = (IFileEntityBase<T>)new Content();
+            case DataTypeEnum.DataType.Package:
+              entity = (IFileEntityBase<T>)new Package();
               break;
             default:
               Log.Error(methodCode, "Cant recognize type file for load from archive type={@FileType} file ID={@FileId}", fileInfo.FileType, fileInfo.FileId);
@@ -127,7 +136,7 @@ namespace MyTagPocket.Repository
         try
         {
           Log.Trace(methodCode, "Load history Entity={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
-          string path = fileHelper.GetLocalFilePath(entity.TypeEntity, entity.EntityId);
+          string path = fileHelper.GetLocalFilePath(entity.TypeEntity, entity.FolderId, entity.EntityId);
           var pathHistory = System.IO.Path.ChangeExtension(path, DataTypeEnum.History.LocalizedName);
           var historyJson = fileHelper.LoadFileLines(pathHistory);
           var result = new List<IFileHistoryInfo>();
@@ -156,30 +165,41 @@ namespace MyTagPocket.Repository
     /// <typeparam name="T">Entity type</typeparam>
     /// <param name="entity">Instance entity</param>
     /// <param name="toArchive">Save entity to archive too</param>
-    public async Task SaveAsync<T>(IFileEntityBase<T> entity, bool toArchive)
+    public async Task SaveAsync<T>(IFileEntityBase<T> entityNew, IFileEntityBase<T> entityOld)
     {
       await Task.Run(() =>
       {
         const string methodCode = "M01";
         try
         {
-          Log.Trace(methodCode, "Save Entity={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
-          entity.UpdatedWhen = DateTime.UtcNow;
-          entity.CommitId = Guid.NewGuid().ToString("N");
-          string jsonString = entity.SerializeJson();
-          string path = fileHelper.GetLocalFilePath(entity.TypeEntity, entity.EntityId);
-          fileHelper.SaveFile(path, jsonString);
-          if (!toArchive)
+          Log.Trace(methodCode, "Save Entity={@TypeEntity} ID={@EntityId}", entityNew.TypeEntity.Name, entityNew.EntityId);
+          entityNew.UpdatedWhen = DateTimeOffset.Now;
+          entityNew.CommitId = Guid.NewGuid().ToString("N");
+          entityNew.Hash = entityNew.GetHashCode().ToString();
+          string jsonStringNew = entityNew.SerializeJson();
+          string path = fileHelper.GetLocalFilePath(entityNew.TypeEntity, entityNew.FolderId, entityNew.EntityId);
+          fileHelper.SaveFile(path, jsonStringNew);
+          entityNew.FullPathFile = path;
+          if (entityOld == null)
             return;
 
-          var compress = Text.Compress(jsonString, Encoding.UTF8);
+          var dmp = new diff_match_patch();
+          string jsonStringOld = entityOld.SerializeJson();
+          var newToOld = dmp.patch_make(jsonStringNew, jsonStringOld);
+          var patch = dmp.patch_toText(newToOld);
+          var compress = Text.Compress(patch, Encoding.UTF8);
           var infoSave = new FileHistoryInfo();
-          infoSave.FileId = entity.EntityId;
-          infoSave.CommitId = entity.CommitId;
-          infoSave.CreateDate = entity.UpdatedWhen.ConvertToText();
-          infoSave.CreatedWho = entity.UpdatedWho;
+          infoSave.FileId = entityNew.EntityId;
+          infoSave.FolderId = entityNew.FolderId;
+          infoSave.CommitId = entityNew.CommitId;
+          infoSave.CreatedDate = entityNew.UpdatedWhen.ConvertToText();
+          infoSave.CreatedWhoFullname = entityNew.UpdatedWho.FullName;
+          infoSave.CreatedWhoEmail = entityNew.UpdatedWho.Email;
+          infoSave.CreatedWhoId = entityNew.UpdatedWho.EntityId;
+          infoSave.CreatedOnDeviceName = entityNew.UpdatedDevice.Name;
+          infoSave.CreatedOnDeviceId = entityNew.UpdatedDevice.EntityId;
           infoSave.LengthContent = compress.Length;
-          infoSave.FileType = entity.TypeEntity.Name;
+          infoSave.FileType = entityNew.TypeEntity.Name;
           string jsonHistory = Newtonsoft.Json.JsonConvert.SerializeObject(infoSave);
           var historyFile = System.IO.Path.ChangeExtension(path, DataTypeEnum.History.LocalizedName);
           var archiveFile = System.IO.Path.ChangeExtension(path, DataTypeEnum.Archive.LocalizedName);
@@ -192,7 +212,7 @@ namespace MyTagPocket.Repository
         }
         catch (Exception ex)
         {
-          Log.Error(ex, methodCode, "Cant Save Entity={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
+          Log.Error(ex, methodCode, "Cant Save Entity={@TypeEntity} ID={@EntityId}", entityNew.TypeEntity.Name, entityNew.EntityId);
           throw ex;
         }
       });
@@ -210,12 +230,12 @@ namespace MyTagPocket.Repository
         try
         {
           Log.Trace(methodCode, "Delete Entity={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
-          string path = fileHelper.GetLocalFilePath(entity.TypeEntity, entity.EntityId);
+          string path = fileHelper.GetLocalFilePath(entity.TypeEntity, entity.FolderId, entity.EntityId);
           fileHelper.DeleteFile(path);
           //Delete the archive
           switch (entity.TypeEntity.Value)
           {
-            case DataTypeEnum.DataType.Contents:
+            case DataTypeEnum.DataType.Package:
             case DataTypeEnum.DataType.Tag:
               var pathArchive = System.IO.Path.ChangeExtension(path, DataTypeEnum.Archive.LocalizedName);
               fileHelper.DeleteFile(pathArchive);

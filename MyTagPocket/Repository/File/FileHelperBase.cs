@@ -59,53 +59,65 @@ namespace MyTagPocket.Repository.File
     /// <returns>Full path folder</returns>
     public virtual string GetLocalFolderPath(DataTypeEnum type)
     {
-      return GetLocalFilePath(type, null);
+      return GetLocalFilePath(type, null, null);
     }
 
     /// <summary>
     /// Get local file path
     /// </summary>
     /// <param name="fileTypeValue">Idnetification file type</param>
+    /// <param name="subFolder">Generic subfolder</param>
     /// <param name="filename">File name</param>
     /// <returns>Full path file. If File name null or empty return Full path folder</returns>
-    public virtual string GetLocalFilePath(string fileTypeValue, string filename)
+    public virtual string GetLocalFilePath(string fileTypeValue, string subFolder, string filename)
     {
       var fileType = DataTypeEnum.ValueOf(fileTypeValue);
-      return GetLocalFilePath(fileType, filename);
+      return GetLocalFilePath(fileType, subFolder, filename);
     }
 
     /// <summary>
     /// Get local file path
     /// </summary>
     /// <param name="fileType">File of type</param>
+    /// <param name="subFolder">Generic subfolder</param>
     /// <param name="filename">File name</param>
     /// <returns>Full path file. If File name null or empty return Full path folder</returns>
-    public virtual string GetLocalFilePath(DataTypeEnum fileType, string filename)
+    public virtual string GetLocalFilePath(DataTypeEnum fileType, string subFolder, string filename)
     {
-      string folder = string.Empty;
       string ext = string.Empty;
+      string folder;
       switch (fileType.Value)
       {
-        case DataTypeEnum.DataType.Settings:
+        case DataTypeEnum.DataType.Setting:
           folder = "settings";
-          ext = DataTypeEnum.Settings.LocalizedName;
+          ext = DataTypeEnum.Setting.LocalizedName;
           break;
-        case DataTypeEnum.DataType.Contents:
+        case DataTypeEnum.DataType.Package:
           folder = "contents";
-          ext = DataTypeEnum.Contents.LocalizedName;
+          ext = DataTypeEnum.Package.LocalizedName;
+          break;
+        case DataTypeEnum.DataType.Device:
+          folder = "devices";
+          ext = DataTypeEnum.Device.LocalizedName;
+          break;
+        case DataTypeEnum.DataType.User:
+          folder = "users";
+          ext = DataTypeEnum.User.LocalizedName;
           break;
         default:
           folder = "temp";
           break;
       }
 
+      var folderFile =  fileSystemStorage.Path.Combine(applicationDataPath, folder);
+      
+      if (string.IsNullOrEmpty(filename))
+        return folderFile;
 
-      if (String.IsNullOrEmpty(filename))
-      {
-        return fileSystemStorage.Path.Combine(applicationDataPath, folder);
-      }
+      if (string.IsNullOrEmpty(subFolder))
+        return fileSystemStorage.Path.Combine(folderFile, $"{filename}.{ext}");
 
-      return fileSystemStorage.Path.Combine(applicationDataPath, folder, $"{filename}.{ext}");
+      return fileSystemStorage.Path.Combine(folderFile, subFolder, $"{filename}.{ext}");
     }
 
     /// <summary>
@@ -115,6 +127,10 @@ namespace MyTagPocket.Repository.File
     /// <param name="fileContent">Content file</param>
     public virtual void SaveFile(string path, string fileContent)
     {
+      var folder = fileSystemStorage.Path.GetDirectoryName(path);
+      if (!fileSystemStorage.Directory.Exists(folder))
+        fileSystemStorage.Directory.CreateDirectory(folder);
+
       fileSystemStorage.File.WriteAllText(path, fileContent, encoding);
     }
 

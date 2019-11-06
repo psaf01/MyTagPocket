@@ -1,8 +1,7 @@
-﻿using Prism;
-using Prism.Ioc;
-using MyTagPocket.ViewModels;
+﻿using MyTagPocket.ViewModels;
 using MyTagPocket.Views;
-using Xamarin.Forms;
+using Prism;
+using Prism.Ioc;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]

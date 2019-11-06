@@ -27,7 +27,7 @@ namespace MyTagPocket.ViewModels.Contents
       const string METHODCODE = "M01";
       Log.Info(METHODCODE, "Show first page");
       var repository = new FileRepository(logManager, fileHelper);
-      repository.SaveAsync(new MyTagPocket.Repository.File.Entities.Settings.Version(), false);
+      //repository.SaveAsync(new MyTagPocket.Repository.File.Entities.Settings.Version(), false);
       _fileHelper = fileHelper;
       _navigationService = navigationService;
       _canNavigate = false;
