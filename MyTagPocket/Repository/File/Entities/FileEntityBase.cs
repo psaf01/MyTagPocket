@@ -157,7 +157,9 @@ namespace MyTagPocket.Repository.File.Entities
     /// <returns>JSON string</returns>
     public string SerializeJson()
     {
-      return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+      //JsonSerializerSettings jsSettings = new JsonSerializerSettings();
+      //jsSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+      return Newtonsoft.Json.JsonConvert.SerializeObject(this);//, jsSettings);
     }
 
     #endregion Public method

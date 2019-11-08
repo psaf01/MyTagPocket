@@ -69,6 +69,13 @@ namespace MyTagPocket.CoreUtil.Interface
     void SaveAppendToFile(string path, byte[] content);
 
     /// <summary>
+    /// Add text lines to file
+    /// </summary>
+    /// <param name="path">Full path to file</param>
+    /// <param name="content">Text</param>
+    void SaveAppendAllLineToFile(string path, IEnumerable<string> content);
+
+    /// <summary>
     /// Check exists the file
     /// </summary>
     /// <param name="path">Full path to the file</param>

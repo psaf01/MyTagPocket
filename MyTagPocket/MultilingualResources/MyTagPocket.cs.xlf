@@ -205,6 +205,10 @@
           <target state="new">The loaded file is not valid.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">File</note>
         </trans-unit>
+        <trans-unit id="ExceptionCantLoadFileHistory" translate="yes" xml:space="preserve">
+          <source>Cant load file history</source>
+          <target state="new">Cant load file history</target>
+        </trans-unit>
       </group>
     </body>
   </file>

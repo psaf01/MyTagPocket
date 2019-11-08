@@ -96,7 +96,23 @@ namespace MyTagPocket.Repository.File
     /// <returns>File Entity</returns>
     public FileHistoryInfo DeserializeJson(string jsonString)
     {
-      return JsonConvert.DeserializeObject<FileHistoryInfo>(jsonString);
+      //JsonSerializerSettings jsSettings = new JsonSerializerSettings();
+      //jsSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+      //jsSettings.StringEscapeHandling = StringEscapeHandling.EscapeNonAscii;
+      return JsonConvert.DeserializeObject<FileHistoryInfo>(jsonString);//, jsSettings);
+    }
+
+    /// <summary>
+    /// Serialize file entity to json string
+    /// </summary>
+    /// <typeparam name="T">File entity</typeparam>
+    /// <returns>JSON string</returns>
+    public string SerializeJson()
+    {
+      //JsonSerializerSettings jsSettings = new JsonSerializerSettings();
+      //jsSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+      //jsSettings.StringEscapeHandling = StringEscapeHandling.EscapeNonAscii;
+      return Newtonsoft.Json.JsonConvert.SerializeObject(this);//, jsSettings);
     }
     #endregion Public Method
   }

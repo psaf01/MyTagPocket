@@ -142,6 +142,15 @@ namespace MyTagPocket.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cant load file history.
+        /// </summary>
+        public static string ExceptionCantLoadFileHistory {
+            get {
+                return ResourceManager.GetString("ExceptionCantLoadFileHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can&apos;t save file to archive..
         /// </summary>
         public static string ExceptionCantSaveFileToArchive {

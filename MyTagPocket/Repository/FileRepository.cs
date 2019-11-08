@@ -3,13 +3,14 @@ using MyTagPocket.CoreUtil.Exceptions;
 using MyTagPocket.CoreUtil.Interface;
 using MyTagPocket.Repository.File;
 using MyTagPocket.Repository.File.DiffMatchPatch;
-using MyTagPocket.Repository.File.Entities;
 using MyTagPocket.Repository.File.Entities.Packages;
 using MyTagPocket.Repository.File.Interface;
 using MyTagPocket.Repository.Interface;
 using MyTagPocket.Resources;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -81,7 +82,8 @@ namespace MyTagPocket.Repository
     /// Load entity file from archive
     /// </summary>
     /// <typeparam name="T">Entity type</typeparam>
-    /// <param name="fileInfo">Info about file from history</param>
+    /// <param name="fileInfo">Fistory file to restore</param>
+    /// <param name="fileHistory">File with full history</param>
     public Task<T> LoadFromArchivAsync<T>(IFileHistoryInfo fileInfo)
     {
       return Task.Run(() =>
@@ -98,20 +100,56 @@ namespace MyTagPocket.Repository
           var entityType = DataTypeEnum.ValueOf(fileInfo.FileType);
           string path = fileHelper.GetLocalFilePath(entityType, fileInfo.FolderId, fileInfo.FileId);
           string archivePath = System.IO.Path.ChangeExtension(path, DataTypeEnum.Archive.LocalizedName);
-          var archiveContent = fileHelper.LoadContentFromFile(archivePath, fileInfo.StartPosition, fileInfo.LengthContent);
+          string historyPath = System.IO.Path.ChangeExtension(path, DataTypeEnum.History.LocalizedName);
+          var archives = LoadHistoryFile(historyPath);
+          var dmp = new diff_match_patch();
+          bool readPatch = false;
+          var storage = fileHelper.FileSystemStorage;
+          List<string> patches = new List<string>();
+          long startPosition = 0;
+          using (BinaryReader b = new BinaryReader(storage.File.Open(archivePath, FileMode.Open)))
+          {
+            foreach (var archiv in archives)
+            {
+              //var  = dmp.patch_fromText(patch);
+              if (archiv.CommitId == fileInfo.CommitId)
+                readPatch = true;
+              if (!readPatch)
+              {
+                startPosition += archiv.LengthContent;
+                continue;
+              }
+              // Seek to our required position.
+              b.BaseStream.Seek(startPosition, SeekOrigin.Begin);
+              byte[] contentBytes = b.ReadBytes(archiv.LengthContent);
+              startPosition += archiv.LengthContent;
+              var patch = Text.DecompressToString(contentBytes, Encoding.UTF8);
+              patches.Add(patch);
+            }
+          }
+          string restore = storage.File.ReadAllText(path);
+          //restore old file
+          string restoreContent = (string)restore.Clone();
+          for (int i = patches.Count - 1; i >= 0; i--)
+          {
+            var restorePatch = dmp.patch_fromText(patches[i]);
+            restoreContent = dmp.patch_apply(restorePatch, restoreContent)[0].ToString();
+          }
 
-          var contentJson = Text.DecompressToString(archiveContent, Encoding.UTF8);
           IFileEntityBase<T> entity;
           switch (entityType.Value)
           {
             case DataTypeEnum.DataType.Package:
               entity = (IFileEntityBase<T>)new Package();
               break;
+            case DataTypeEnum.DataType.Device:
+              entity = (IFileEntityBase <T>) new File.Entities.Devices.Device();
+              break;
             default:
               Log.Error(methodCode, "Cant recognize type file for load from archive type={@FileType} file ID={@FileId}", fileInfo.FileType, fileInfo.FileId);
               throw new ErrorException(ResourceApp.ExceptionCantLoadFileFromArchive);
           }
-          T result = entity.DeserializeJson(contentJson);
+          T result = entity.DeserializeJson(restoreContent);//contentJson);
           return result;
         }
         catch (Exception ex)
@@ -128,7 +166,7 @@ namespace MyTagPocket.Repository
     /// <typeparam name="T">Type File entity</typeparam>
     /// <param name="entity">Entity object</param>
     /// <returns>List of file entity history</returns>
-    public async Task<IEnumerable<IFileHistoryInfo>> LoadHistory<T>(IFileEntityBase<T> entity)
+    public async Task<IEnumerable<IFileHistoryInfo>> LoadHistoryAsync<T>(IFileEntityBase<T> entity)
     {
       return await Task.Run(() =>
       {
@@ -138,23 +176,12 @@ namespace MyTagPocket.Repository
           Log.Trace(methodCode, "Load history Entity={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
           string path = fileHelper.GetLocalFilePath(entity.TypeEntity, entity.FolderId, entity.EntityId);
           var pathHistory = System.IO.Path.ChangeExtension(path, DataTypeEnum.History.LocalizedName);
-          var historyJson = fileHelper.LoadFileLines(pathHistory);
-          var result = new List<IFileHistoryInfo>();
-          int startPosition = 0;
-          foreach (var str in historyJson)
-          {
-            var info = new FileHistoryInfo();
-            info = info.DeserializeJson(str);
-            info.StartPosition = startPosition;
-            result.Add(info);
-            startPosition += info.LengthContent;
-          }
-          return result.AsEnumerable();
+          return LoadHistoryFile(pathHistory).AsEnumerable();
         }
         catch (Exception ex)
         {
-          Log.Error(ex, methodCode, "Cant Save={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
-          throw new ErrorException(ResourceApp.ExceptionCantSaveFileToArchive);
+          Log.Error(ex, methodCode, "Cant load type={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
+          throw new ErrorException(ResourceApp.ExceptionCantLoadFileHistory);
         }
       });
     }
@@ -193,21 +220,20 @@ namespace MyTagPocket.Repository
           infoSave.FolderId = entityNew.FolderId;
           infoSave.CommitId = entityNew.CommitId;
           infoSave.CreatedDate = entityNew.UpdatedWhen.ConvertToText();
-          infoSave.CreatedWhoFullname = entityNew.UpdatedWho.FullName;
-          infoSave.CreatedWhoEmail = entityNew.UpdatedWho.Email;
-          infoSave.CreatedWhoId = entityNew.UpdatedWho.EntityId;
-          infoSave.CreatedOnDeviceName = entityNew.UpdatedDevice.Name;
-          infoSave.CreatedOnDeviceId = entityNew.UpdatedDevice.EntityId;
+          infoSave.CreatedWhoFullname = entityNew.UpdatedWho?.FullName;
+          infoSave.CreatedWhoEmail = entityNew.UpdatedWho?.Email;
+          infoSave.CreatedWhoId = entityNew.UpdatedWho?.EntityId;
+          infoSave.CreatedOnDeviceName = entityNew.UpdatedDevice?.Name;
+          infoSave.CreatedOnDeviceId = entityNew.UpdatedDevice?.EntityId;
           infoSave.LengthContent = compress.Length;
           infoSave.FileType = entityNew.TypeEntity.Name;
-          string jsonHistory = Newtonsoft.Json.JsonConvert.SerializeObject(infoSave);
+          string jsonHistory = infoSave.SerializeJson();
+          int h = jsonHistory.Length;
           var historyFile = System.IO.Path.ChangeExtension(path, DataTypeEnum.History.LocalizedName);
           var archiveFile = System.IO.Path.ChangeExtension(path, DataTypeEnum.Archive.LocalizedName);
           //TODO: Refactoring - transaction
-          if (fileHelper.FileExists(historyFile))
-            jsonHistory = string.Concat("\n", jsonHistory);
-
           fileHelper.SaveAppendToFile(historyFile, jsonHistory);
+          fileHelper.SaveAppendToFile(historyFile, Environment.NewLine);
           fileHelper.SaveAppendToFile(archiveFile, compress);
         }
         catch (Exception ex)
@@ -262,6 +288,28 @@ namespace MyTagPocket.Repository
     public Task<IFileEntityBase<T>> LoadArchiveAsync<T>(IFileEntityBase<T> entity)
     {
       throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// Load history file
+    /// </summary>
+    /// <param name="path">Full path to history</param>
+    /// <returns>List history</returns>
+    private List<IFileHistoryInfo> LoadHistoryFile(string path)
+    {
+      var historyJson = fileHelper.LoadFileLines(path);
+
+      var result = new List<IFileHistoryInfo>();
+      int startPosition = 0;
+      foreach (var str in historyJson)
+      {
+        var info = new FileHistoryInfo();
+        info = info.DeserializeJson(str);
+        info.StartPosition = startPosition;
+        result.Add(info);
+        startPosition += info.LengthContent;
+      }
+      return result;
     }
   }
 }

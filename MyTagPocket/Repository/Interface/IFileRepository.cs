@@ -38,19 +38,20 @@ namespace MyTagPocket.Repository.Interface
     /// <typeparam name="T">Type File entity</typeparam>
     /// <param name="entity">Entity object</param>
     /// <returns>List of file entity history</returns>
-    Task<IEnumerable<IFileHistoryInfo>> LoadHistory<T>(IFileEntityBase<T> entity);
+    Task<IEnumerable<IFileHistoryInfo>> LoadHistoryAsync<T>(IFileEntityBase<T> entity);
 
     /// <summary>
     /// Delete entity from repository
     /// </summary>
     /// <param name="entity">Entity instance</param>
     Task DeleteAsync<T>(IFileEntityBase<T> entity);
-
+/*
     /// <summary>
     /// Load entity from archive
     /// </summary>
     /// <param name="entity"></param>
     /// <returns></returns>
     Task<IFileEntityBase<T>> LoadArchiveAsync<T>(IFileEntityBase<T> entity);
+    */
   }
 }

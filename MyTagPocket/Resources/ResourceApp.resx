@@ -276,4 +276,7 @@
     <value>The loaded file is not valid.</value>
     <comment>File</comment>
   </data>
+  <data name="ExceptionCantLoadFileHistory" xml:space="preserve">
+    <value>Cant load file history</value>
+  </data>
 </root>

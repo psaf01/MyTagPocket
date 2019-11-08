@@ -104,6 +104,14 @@ namespace MyTagPocket.Repository.File
           folder = "users";
           ext = DataTypeEnum.User.LocalizedName;
           break;
+        case DataTypeEnum.DataType.History:
+          folder = "history";
+          ext = DataTypeEnum.History.LocalizedName;
+          break;
+        case DataTypeEnum.DataType.Archive:
+          folder = "Archive";
+          ext = DataTypeEnum.Archive.LocalizedName;
+          break;
         default:
           folder = "temp";
           break;
@@ -151,7 +159,17 @@ namespace MyTagPocket.Repository.File
     /// <param name="content">Text</param>
     public virtual void SaveAppendToFile(string path, string content)
     {
-      fileSystemStorage.File.AppendAllText(path, content, encoding);
+      fileSystemStorage.File.AppendAllText(path, content);//, encoding);
+    }
+
+    /// <summary>
+    /// Add text lines to file
+    /// </summary>
+    /// <param name="path">Full path to file</param>
+    /// <param name="content">Text</param>
+    public virtual void SaveAppendAllLineToFile(string path, IEnumerable<string> content)
+    {
+      fileSystemStorage.File.AppendAllLines(path, content, encoding);
     }
 
     /// <summary>
@@ -222,8 +240,6 @@ namespace MyTagPocket.Repository.File
       {
         // Seek to our required position.
         b.BaseStream.Seek(startPosition, SeekOrigin.Begin);
-
-        // Read the next 2000 bytes.
         result = b.ReadBytes(lengthContent);
       }
 
