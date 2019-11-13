@@ -1,8 +1,7 @@
-﻿using MyTagPocket.CoreUtil.Interface;
+﻿using MyTagPocket.CoreUtil.Interfaces;
 using MyTagPocket.UWP.Library.CoreUtil;
 using Prism;
 using Prism.Ioc;
-using Unity.Injection;
 
 namespace MyTagPocket.UWP
 {

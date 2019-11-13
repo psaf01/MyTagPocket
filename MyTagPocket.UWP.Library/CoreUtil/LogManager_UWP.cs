@@ -11,7 +11,7 @@ namespace MyTagPocket.UWP.Library.CoreUtil
   /// <summary>
   /// Log Manager for OS UWP
   /// </summary>
-  public class LogManager_UWP : MyTagPocket.CoreUtil.Interface.ILogManager
+  public class LogManager_UWP : MyTagPocket.CoreUtil.Interfaces.ILogManager
   {
     /// <summary>
     /// Constructor
@@ -134,7 +134,7 @@ namespace MyTagPocket.UWP.Library.CoreUtil
     /// <param name="classCode">Class code for localization</param>
     /// <param name="callerFilePath"></param>
     /// <returns></returns>
-    public MyTagPocket.CoreUtil.Interface.ILogger GetLog(string classCode, [System.Runtime.CompilerServices.CallerFilePath] string callerFilePath = "")
+    public MyTagPocket.CoreUtil.Interfaces.ILogger GetLog(string classCode, [System.Runtime.CompilerServices.CallerFilePath] string callerFilePath = "")
     {
       string fileName = callerFilePath;
 

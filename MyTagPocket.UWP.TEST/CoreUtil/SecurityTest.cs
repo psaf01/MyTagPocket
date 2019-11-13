@@ -1,6 +1,4 @@
-﻿using MyTagPocket.CoreUtil.Interface;
-using MyTagPocket.Repository;
-using MyTagPocket.Repository.Secure;
+﻿using MyTagPocket.CoreUtil.Interfaces;
 using MyTagPocket.UWP.Library.CoreUtil;
 using Unity;
 using Xunit;

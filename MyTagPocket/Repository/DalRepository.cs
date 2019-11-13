@@ -2,7 +2,7 @@
 {
   using LiteDB;
   using MyTagPocket.CoreUtil.Exceptions;
-  using MyTagPocket.Repository.Interface;
+  using MyTagPocket.Repository.Interfaces;
   using MyTagPocket.Resources;
   using System.IO;
 

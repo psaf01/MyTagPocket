@@ -1,13 +1,6 @@
-﻿using MyTagPocket.CoreUtil.Interface;
-using MyTagPocket.Repository;
-using MyTagPocket.UWP.Library.CoreUtil;
-using MyTagPocket.UWP.Test.Mocks;
-using Unity;
-using Xamarin.Forms;
-using Xunit;
-using static MyTagPocket.UWP.TEST.Xamarin.Forms.Mocks.MockForms;
-using MyTagPocket.Repository.File.DiffMatchPatch;
+﻿using MyTagPocket.Repository.Files.DiffMatchPatch;
 using System.Collections.Generic;
+using Xunit;
 
 namespace MyTagPocket.UWP.TEST.Repository.File
 {

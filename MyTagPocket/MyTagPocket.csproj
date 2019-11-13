@@ -19,11 +19,11 @@
   </Target>
   <ItemGroup>
     <Compile Remove="Repository\Dal\Upgrade\**" />
-    <Compile Remove="Repository\File\Upgrade\**" />
+    <Compile Remove="Repository\Files\Upgrade\**" />
     <EmbeddedResource Remove="Repository\Dal\Upgrade\**" />
-    <EmbeddedResource Remove="Repository\File\Upgrade\**" />
+    <EmbeddedResource Remove="Repository\Files\Upgrade\**" />
     <None Remove="Repository\Dal\Upgrade\**" />
-    <None Remove="Repository\File\Upgrade\**" />
+    <None Remove="Repository\Files\Upgrade\**" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="LiteDB" Version="4.1.4" />
@@ -61,11 +61,14 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Models\Devices\" />
+    <Folder Include="Models\Users\" />
     <Folder Include="MultilingualResources\" />
     <Folder Include="Repository\Dal\Entities\" />
     <Folder Include="Repository\Dal\Interface\" />
-    <Folder Include="Repository\File\Interface\" />
     <Folder Include="Resources\Images\" />
+    <Folder Include="Services\Interface\" />
+    <Folder Include="ViewModels\Users\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Resources\ResourceApp.Designer.cs">

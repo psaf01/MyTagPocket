@@ -11,7 +11,7 @@ namespace MyTagPocket.CoreUtil
   public static class Text
   {
     const string classCode = "[1001700]";
-    public static Interface.ILogger Log = Xamarin.Forms.DependencyService.Get<Interface.ILogManager>().GetLog(classCode);
+    public static Interfaces.ILogger Log = Xamarin.Forms.DependencyService.Get<Interfaces.ILogManager>().GetLog(classCode);
 
     /// <summary>
     /// Convert string to Ascii text

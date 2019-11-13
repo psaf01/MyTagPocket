@@ -1,6 +1,6 @@
 ﻿using MyTagPocket.CoreUtil.Exceptions;
-using MyTagPocket.CoreUtil.Interface;
-using MyTagPocket.Repository.Interface;
+using MyTagPocket.CoreUtil.Interfaces;
+using MyTagPocket.Repository.Interfaces;
 using MyTagPocket.Repository.Secure;
 using MyTagPocket.Resources;
 using System;

@@ -1,5 +1,5 @@
-﻿using MyTagPocket.CoreUtil.Interface;
-using MyTagPocket.Repository.File;
+﻿using MyTagPocket.CoreUtil.Interfaces;
+using MyTagPocket.Repository.Files;
 using System;
 using System.IO.Abstractions;
 

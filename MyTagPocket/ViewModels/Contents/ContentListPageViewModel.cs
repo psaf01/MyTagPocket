@@ -1,4 +1,4 @@
-﻿using MyTagPocket.CoreUtil.Interface;
+﻿using MyTagPocket.CoreUtil.Interfaces;
 using MyTagPocket.Repository;
 using Prism.Navigation;
 

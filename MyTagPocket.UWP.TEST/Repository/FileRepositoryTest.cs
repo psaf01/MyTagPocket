@@ -1,7 +1,7 @@
-﻿using MyTagPocket.CoreUtil.Interface;
+﻿using MyTagPocket.CoreUtil.Interfaces;
 using MyTagPocket.Repository;
-using MyTagPocket.Repository.File;
-using MyTagPocket.Repository.File.Interface;
+using MyTagPocket.Repository.Files;
+using MyTagPocket.Repository.Files.Interfaces;
 using MyTagPocket.UWP.Library.CoreUtil;
 using MyTagPocket.UWP.Test.Mocks;
 using Unity;
@@ -33,12 +33,12 @@ namespace MyTagPocket.UWP.TEST.Repository
       NLog.GlobalDiagnosticsContext.Set("user", "UnitTest");
       fileHelper.FileSystemStorage = MockFileSystemStorage.MockFileSystem;
       var repository = new FileRepository(logManager, fileHelper);
-      var device = new MyTagPocket.Repository.File.Entities.Devices.Device();
+      var device = new MyTagPocket.Repository.Files.Entities.Devices.Device();
       device.Name = "Test device ěščřžýáíé";
       device.FolderId = "2d2740d9ac634bed83050879ce0a1018";
 
       repository.SaveAsync(device, null).Wait();
-      MyTagPocket.Repository.File.Entities.Devices.Device testDevice = repository.LoadAsync(device).Result;
+      MyTagPocket.Repository.Files.Entities.Devices.Device testDevice = repository.LoadAsync(device).Result;
 
       Assert.Equal(device.Hash, testDevice.Hash);
       Assert.Equal(device.EntityId, testDevice.EntityId);
@@ -71,10 +71,10 @@ namespace MyTagPocket.UWP.TEST.Repository
       NLog.GlobalDiagnosticsContext.Set("user", "UnitTest");
       fileHelper.FileSystemStorage = MockFileSystemStorage.MockFileSystem;
       var repository = new FileRepository(logManager, fileHelper);
-      var device1 = new MyTagPocket.Repository.File.Entities.Devices.Device();
+      var device1 = new MyTagPocket.Repository.Files.Entities.Devices.Device();
       device1.Name = "1 Test device ěščřžýáíé";
       device1.FolderId = "2d2740d9ac634bed83050879ce0a1018";
-      device1.UpdatedWho = new MyTagPocket.Repository.File.Entities.Users.UserBasicInfo()
+      device1.UpdatedWho = new MyTagPocket.Repository.Files.Entities.Users.UserBasicInfo()
       {
         Email = "1test@test.com",
         EntityId = "1",
@@ -84,7 +84,7 @@ namespace MyTagPocket.UWP.TEST.Repository
 
       var device2 = repository.LoadAsync(device1).Result;
       device2.Name = "2 Test device";
-      device2.UpdatedWho = new MyTagPocket.Repository.File.Entities.Users.UserBasicInfo()
+      device2.UpdatedWho = new MyTagPocket.Repository.Files.Entities.Users.UserBasicInfo()
       {
         Email = "2test@test.com",
         EntityId = "2",
@@ -94,7 +94,7 @@ namespace MyTagPocket.UWP.TEST.Repository
 
       var device3 = repository.LoadAsync(device2).Result;
       device3.Name = "3 Test device";
-      device3.UpdatedWho = new MyTagPocket.Repository.File.Entities.Users.UserBasicInfo()
+      device3.UpdatedWho = new MyTagPocket.Repository.Files.Entities.Users.UserBasicInfo()
       {
         Email = "3test@test.cz",
         EntityId = "3",
@@ -104,7 +104,7 @@ namespace MyTagPocket.UWP.TEST.Repository
 
       var device4 = repository.LoadAsync(device2).Result;
       device4.Name = "4 Test device";
-      device3.UpdatedWho = new MyTagPocket.Repository.File.Entities.Users.UserBasicInfo()
+      device3.UpdatedWho = new MyTagPocket.Repository.Files.Entities.Users.UserBasicInfo()
       {
         Email = "4test@test.cz",
         EntityId = "4",
@@ -136,11 +136,11 @@ namespace MyTagPocket.UWP.TEST.Repository
         count++;
       }
 
-      var restoreDevice1 = repository.LoadFromArchivAsync<MyTagPocket.Repository.File.Entities.Devices.Device>(restore1).Result;
+      var restoreDevice1 = repository.LoadFromArchivAsync<MyTagPocket.Repository.Files.Entities.Devices.Device>(restore1).Result;
       Assert.Equal(device1.Name, restoreDevice1.Name);
-      var restoreDevice2 = repository.LoadFromArchivAsync<MyTagPocket.Repository.File.Entities.Devices.Device>(restore2).Result;
+      var restoreDevice2 = repository.LoadFromArchivAsync<MyTagPocket.Repository.Files.Entities.Devices.Device>(restore2).Result;
       Assert.Equal(device2.Name, restoreDevice2.Name);
-      var restoreDevice3 = repository.LoadFromArchivAsync<MyTagPocket.Repository.File.Entities.Devices.Device>(restore3).Result;
+      var restoreDevice3 = repository.LoadFromArchivAsync<MyTagPocket.Repository.Files.Entities.Devices.Device>(restore3).Result;
       Assert.Equal(device3.Name, restoreDevice3.Name);
 
     }

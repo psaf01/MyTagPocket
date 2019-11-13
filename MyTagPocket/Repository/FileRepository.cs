@@ -1,13 +1,12 @@
 ﻿using MyTagPocket.CoreUtil;
 using MyTagPocket.CoreUtil.Exceptions;
-using MyTagPocket.CoreUtil.Interface;
-using MyTagPocket.Repository.File;
-using MyTagPocket.Repository.File.DiffMatchPatch;
-using MyTagPocket.Repository.File.Entities.Packages;
-using MyTagPocket.Repository.File.Interface;
-using MyTagPocket.Repository.Interface;
+using MyTagPocket.CoreUtil.Interfaces;
+using MyTagPocket.Repository.Files;
+using MyTagPocket.Repository.Files.DiffMatchPatch;
+using MyTagPocket.Repository.Files.Entities.Packages;
+using MyTagPocket.Repository.Files.Interfaces;
+using MyTagPocket.Repository.Interfaces;
 using MyTagPocket.Resources;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -143,7 +142,7 @@ namespace MyTagPocket.Repository
               entity = (IFileEntityBase<T>)new Package();
               break;
             case DataTypeEnum.DataType.Device:
-              entity = (IFileEntityBase <T>) new File.Entities.Devices.Device();
+              entity = (IFileEntityBase<T>)new Files.Entities.Devices.Device();
               break;
             default:
               Log.Error(methodCode, "Cant recognize type file for load from archive type={@FileType} file ID={@FileId}", fileInfo.FileType, fileInfo.FileId);
