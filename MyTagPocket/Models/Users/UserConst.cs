@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MyTagPocket.CoreUtil
+﻿namespace MyTagPocket.Models.Users
 {
   /// <summary>
   /// Constant of users
@@ -12,6 +8,6 @@ namespace MyTagPocket.CoreUtil
     /// <summary>
     /// System user
     /// </summary>
-    public static readonly string MyTagPocket = "dd";
+    public static readonly string SystemUserGuid = "dd";
   }
 }

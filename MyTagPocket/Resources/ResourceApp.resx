@@ -279,4 +279,52 @@
   <data name="ExceptionCantLoadFileHistory" xml:space="preserve">
     <value>Cant load file history</value>
   </data>
+  <data name="TypeDeviceUwp" xml:space="preserve">
+    <value>PC</value>
+    <comment>TypeDeviceEnum</comment>
+  </data>
+  <data name="FileNameArchive" xml:space="preserve">
+    <value>Archive</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameAuditDb" xml:space="preserve">
+    <value>Audit database</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameDevice" xml:space="preserve">
+    <value>Device</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameHistory" xml:space="preserve">
+    <value>History</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameMainDb" xml:space="preserve">
+    <value>MyTagPocket database</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNamePackage" xml:space="preserve">
+    <value>Package</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameSetting" xml:space="preserve">
+    <value>Setting</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameTag" xml:space="preserve">
+    <value>Tag</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameTheme" xml:space="preserve">
+    <value>Theme</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameUnclassified" xml:space="preserve">
+    <value>Unclassified</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameUser" xml:space="preserve">
+    <value>User</value>
+    <comment>FileType</comment>
+  </data>
 </root>

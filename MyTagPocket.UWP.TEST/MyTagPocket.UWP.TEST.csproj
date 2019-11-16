@@ -8,7 +8,6 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MyTagPocket.UWP.TEST</RootNamespace>
     <AssemblyName>MyTagPocket.UWP.TEST</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.18362.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
@@ -88,10 +87,18 @@
     <Prefer32Bit>true</Prefer32Bit>
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
+  <PropertyGroup Label="MultilingualAppToolkit">
+    <MultilingualAppToolkitVersion>4.0</MultilingualAppToolkitVersion>
+    <MultilingualFallbackLanguage>en</MultilingualFallbackLanguage>
+    <TranslationReport Condition="'$(Configuration)' == 'Release'">true</TranslationReport>
+    <SuppressPseudoWarning Condition="'$(Configuration)' == 'Debug'">true</SuppressPseudoWarning>
+  </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AppGlobalTest.cs" />
     <Compile Include="CoreUtil\SecurityTest.cs" />
     <Compile Include="Mocks\ApplicationMock.cs" />
     <Compile Include="Mocks\MockFileSystemStorage.cs" />
+    <Compile Include="Mocks\MockSettingRepository.cs" />
     <Compile Include="Repository\File\DiffMatchPatchTest.cs" />
     <Compile Include="Repository\SecureRepositoryTest.cs" />
     <Compile Include="Xamarin.Forms.Mocks\MockForms.cs" />

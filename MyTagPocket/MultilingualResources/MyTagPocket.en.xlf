@@ -8,206 +8,280 @@
       <group id="MYTAGPOCKET/RESOURCES/RESOURCEAPP.RESX" datatype="resx">
         <trans-unit id="AboutApp" translate="yes" xml:space="preserve">
           <source>About</source>
-          <target state="new">About</target>
+          <target state="final">About</target>
           <note from="MultilingualBuild" annotates="source" priority="2">About</note>
         </trans-unit>
         <trans-unit id="AppHelp" translate="yes" xml:space="preserve">
           <source>Help</source>
-          <target state="new">Help</target>
+          <target state="final">Help</target>
           <note from="MultilingualBuild" annotates="source" priority="2">App</note>
         </trans-unit>
         <trans-unit id="FatalErrorUnexpected" translate="yes" xml:space="preserve">
           <source>An unexpected error in the application</source>
-          <target state="new">An unexpected error in the application</target>
+          <target state="final">An unexpected error in the application</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Error</note>
         </trans-unit>
         <trans-unit id="InitAppFatalError" translate="yes" xml:space="preserve">
           <source>An error occurred during application initialization</source>
-          <target state="new">An error occurred during application initialization</target>
+          <target state="final">An error occurred during application initialization</target>
           <note from="MultilingualBuild" annotates="source" priority="2">App</note>
         </trans-unit>
         <trans-unit id="ProcessError" translate="yes" xml:space="preserve">
           <source>Error</source>
-          <target state="new">Error</target>
+          <target state="final">Error</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Process</note>
         </trans-unit>
         <trans-unit id="ProcessIdle" translate="yes" xml:space="preserve">
           <source>Idle</source>
-          <target state="new">Idle</target>
+          <target state="final">Idle</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Process</note>
         </trans-unit>
         <trans-unit id="ProcessPaused" translate="yes" xml:space="preserve">
           <source>Paused</source>
-          <target state="new">Paused</target>
+          <target state="final">Paused</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Process</note>
         </trans-unit>
         <trans-unit id="ProcessRunning" translate="yes" xml:space="preserve">
           <source>Running</source>
-          <target state="new">Running</target>
+          <target state="final">Running</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Process</note>
         </trans-unit>
         <trans-unit id="Test" translate="yes" xml:space="preserve">
           <source>Test</source>
-          <target state="new">Test</target>
+          <target state="final">Test</target>
         </trans-unit>
         <trans-unit id="ThemeDescription" translate="yes" xml:space="preserve">
           <source>The basic theme for MyTagPocket.</source>
-          <target state="new">The basic theme for MyTagPocket.</target>
+          <target state="final">The basic theme for MyTagPocket.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Gui</note>
         </trans-unit>
         <trans-unit id="ThemeDescriptionExample" translate="yes" xml:space="preserve">
           <source>It serves as an example of the Theme definition in the application. Changes in this file do not affect the application itself.</source>
-          <target state="new">It serves as an example of the Theme definition in the application. Changes in this file do not affect the application itself.</target>
+          <target state="final">It serves as an example of the Theme definition in the application. Changes in this file do not affect the application itself.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Gui</note>
         </trans-unit>
         <trans-unit id="UpgradeDatabaseLabel" translate="yes" xml:space="preserve">
           <source>Upgrade Database</source>
-          <target state="new">Upgrade Database</target>
+          <target state="final">Upgrade Database</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeStatusEndError" translate="yes" xml:space="preserve">
           <source>Finished with error</source>
-          <target state="new">Finished with error</target>
+          <target state="final">Finished with error</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeStatusEndSucces" translate="yes" xml:space="preserve">
           <source>Successfully completed</source>
-          <target state="new">Successfully completed</target>
+          <target state="final">Successfully completed</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeStatusNotStart" translate="yes" xml:space="preserve">
           <source>Not started</source>
-          <target state="new">Not started</target>
+          <target state="final">Not started</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeStatusProgress" translate="yes" xml:space="preserve">
           <source>In Progress</source>
-          <target state="new">In Progress</target>
+          <target state="final">In Progress</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeStatusStop" translate="yes" xml:space="preserve">
           <source>Stop</source>
-          <target state="new">Stop</target>
+          <target state="final">Stop</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeStorageContentsDescriptionLabel" translate="yes" xml:space="preserve">
           <source>Updating basic user content structures.</source>
-          <target state="new">Updating basic user content structures.</target>
+          <target state="final">Updating basic user content structures.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeStorageContentsLabel" translate="yes" xml:space="preserve">
           <source>Storage contents</source>
-          <target state="new">Storage contents</target>
+          <target state="final">Storage contents</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeStorageLabel" translate="yes" xml:space="preserve">
           <source>Upgrade Storage</source>
-          <target state="new">Upgrade Storage</target>
+          <target state="final">Upgrade Storage</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeStorageSettingsDescriptionLabel" translate="yes" xml:space="preserve">
           <source>Updating application settings and their configuration parts.</source>
-          <target state="new">Updating application settings and their configuration parts.</target>
+          <target state="final">Updating application settings and their configuration parts.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeStorageSettingsError" translate="yes" xml:space="preserve">
           <source>Unable to complete update settings</source>
-          <target state="new">Unable to complete update settings</target>
+          <target state="final">Unable to complete update settings</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeStorageSettingsIsActual" translate="yes" xml:space="preserve">
           <source>Storage settings is last version</source>
-          <target state="new">Storage settings is last version</target>
+          <target state="final">Storage settings is last version</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeStorageSettingsLabel" translate="yes" xml:space="preserve">
           <source>Storage settings</source>
-          <target state="new">Storage settings</target>
+          <target state="final">Storage settings</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeStorageSettingSucces" translate="yes" xml:space="preserve">
           <source>Update setup completed successfully</source>
-          <target state="new">Update setup completed successfully</target>
+          <target state="final">Update setup completed successfully</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeInfoFinishError" translate="yes" xml:space="preserve">
           <source>There was an error updating</source>
-          <target state="new">There was an error updating</target>
+          <target state="final">There was an error updating</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeInfoFinishSucces" translate="yes" xml:space="preserve">
           <source>Update completed successfully</source>
-          <target state="new">Update completed successfully</target>
+          <target state="final">Update completed successfully</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeInfoNotStarted" translate="yes" xml:space="preserve">
           <source>Update not started</source>
-          <target state="new">Update not started</target>
+          <target state="final">Update not started</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="UpgradeInfoStarted" translate="yes" xml:space="preserve">
           <source>Update started</source>
-          <target state="new">Update started</target>
+          <target state="final">Update started</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Upgrade</note>
         </trans-unit>
         <trans-unit id="ExceptionCantLoadFile" translate="yes" xml:space="preserve">
           <source>Can't load file.</source>
-          <target state="new">Can't load file.</target>
+          <target state="final">Can't load file.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Exception</note>
         </trans-unit>
         <trans-unit id="ExceptionCantDeleteFile" translate="yes" xml:space="preserve">
           <source>Can't delete file.</source>
-          <target state="new">Can't delete file.</target>
+          <target state="final">Can't delete file.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Exception</note>
         </trans-unit>
         <trans-unit id="ExceptionCantLoadFileFromArchive" translate="yes" xml:space="preserve">
           <source>Can't load file from archive.</source>
-          <target state="new">Can't load file from archive.</target>
+          <target state="final">Can't load file from archive.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Exception</note>
         </trans-unit>
         <trans-unit id="ExceptionCantSaveFileToArchive" translate="yes" xml:space="preserve">
           <source>Can't save file to archive.</source>
-          <target state="new">Can't save file to archive.</target>
+          <target state="final">Can't save file to archive.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Exception</note>
         </trans-unit>
         <trans-unit id="ErrorCantReadSecure" translate="yes" xml:space="preserve">
           <source>Unable to retrieve data from secure storage.</source>
-          <target state="new">Unable to retrieve data from secure storage.</target>
+          <target state="final">Unable to retrieve data from secure storage.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">SecureRepository</note>
         </trans-unit>
         <trans-unit id="ErrorCantSaveSecure" translate="yes" xml:space="preserve">
           <source>Unable to save data to secure storage.</source>
-          <target state="new">Unable to save data to secure storage.</target>
+          <target state="final">Unable to save data to secure storage.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">SecureRepository</note>
         </trans-unit>
         <trans-unit id="ErrorDeleteAllItemSecure" translate="yes" xml:space="preserve">
           <source>Unable to delete data from secure storage.</source>
-          <target state="new">Unable to delete data from secure storage.</target>
+          <target state="final">Unable to delete data from secure storage.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">SecureRepository</note>
         </trans-unit>
         <trans-unit id="ErrorDeleteItemSecure" translate="yes" xml:space="preserve">
           <source>Unable to delete data from secure storage.</source>
-          <target state="new">Unable to delete data from secure storage.</target>
+          <target state="final">Unable to delete data from secure storage.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">SecureRepository</note>
         </trans-unit>
         <trans-unit id="ExceptionDalRepositorySaveFileIdFileEmpty" translate="yes" xml:space="preserve">
           <source>Unable to determine the file identifier required to save.</source>
-          <target state="new">Unable to determine the file identifier required to save.</target>
+          <target state="final">Unable to determine the file identifier required to save.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">DalRepository</note>
         </trans-unit>
         <trans-unit id="ExceptionDalRepositorySaveFileName" translate="yes" xml:space="preserve">
           <source>Unable to determine the file name required to save.</source>
-          <target state="new">Unable to determine the file name required to save.</target>
+          <target state="final">Unable to determine the file name required to save.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">DalRepository</note>
         </trans-unit>
         <trans-unit id="FileNotCompatible" translate="yes" xml:space="preserve">
           <source>The loaded file is not valid.</source>
-          <target state="new">The loaded file is not valid.</target>
+          <target state="final">The loaded file is not valid.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">File</note>
         </trans-unit>
         <trans-unit id="ExceptionCantLoadFileHistory" translate="yes" xml:space="preserve">
           <source>Cant load file history</source>
-          <target state="new">Cant load file history</target>
+          <target state="final">Cant load file history</target>
+        </trans-unit>
+        <trans-unit id="TypeDeviceUwp" translate="yes" xml:space="preserve">
+          <source>PC</source>
+          <target state="final">PC</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TypeDeviceEnum</note>
+        </trans-unit>
+        <trans-unit id="FileNameArchive" translate="yes" xml:space="preserve">
+          <source>Archive</source>
+          <target state="final">Archive</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">FileType</note>
+        </trans-unit>
+        <trans-unit id="FileNameAuditDb" translate="yes" xml:space="preserve">
+          <source>Audit database</source>
+          <target state="final">Audit database</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">FileType</note>
+        </trans-unit>
+        <trans-unit id="FileNameDevice" translate="yes" xml:space="preserve">
+          <source>Device</source>
+          <target state="final">Device</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">FileType</note>
+        </trans-unit>
+        <trans-unit id="FileNameHistory" translate="yes" xml:space="preserve">
+          <source>History</source>
+          <target state="final">History</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">FileType</note>
+        </trans-unit>
+        <trans-unit id="FileNameMainDb" translate="yes" xml:space="preserve">
+          <source>MyTagPocket database</source>
+          <target state="final">MyTagPocket database</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">FileType</note>
+        </trans-unit>
+        <trans-unit id="FileNamePackage" translate="yes" xml:space="preserve">
+          <source>Package</source>
+          <target state="final">Package</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">FileType</note>
+        </trans-unit>
+        <trans-unit id="FileNameSetting" translate="yes" xml:space="preserve">
+          <source>Setting</source>
+          <target state="final">Setting</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">FileType</note>
+        </trans-unit>
+        <trans-unit id="FileNameTag" translate="yes" xml:space="preserve">
+          <source>Tag</source>
+          <target state="final">Tag</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">FileType</note>
+        </trans-unit>
+        <trans-unit id="FileNameTheme" translate="yes" xml:space="preserve">
+          <source>Theme</source>
+          <target state="final">Theme</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">FileType</note>
+        </trans-unit>
+        <trans-unit id="FileNameUnclassified" translate="yes" xml:space="preserve">
+          <source>Unclassified</source>
+          <target state="final">Unclassified</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">FileType</note>
+        </trans-unit>
+        <trans-unit id="FileNameUser" translate="yes" xml:space="preserve">
+          <source>User</source>
+          <target state="final">User</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">FileType</note>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+  <file datatype="xml" source-language="en" target-language="en" original="MYTAGPOCKET/RESOURCES/AUDIT.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.6914.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="MYTAGPOCKET/RESOURCES/AUDIT.RESX" datatype="resx">
+        <trans-unit id="DvcCreate" translate="yes" xml:space="preserve">
+          <source>Create device {0}</source>
+          <target state="final">Create device {0}</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Device</note>
         </trans-unit>
       </group>
     </body>

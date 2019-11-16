@@ -90,27 +90,37 @@ namespace MyTagPocket.Repository.Files
       {
         case DataTypeEnum.DataType.Setting:
           folder = "settings";
-          ext = DataTypeEnum.Setting.LocalizedName;
+          ext = DataTypeEnum.Setting.FileExtension;
           break;
         case DataTypeEnum.DataType.Package:
           folder = "contents";
-          ext = DataTypeEnum.Package.LocalizedName;
+          ext = DataTypeEnum.Package.FileExtension;
           break;
         case DataTypeEnum.DataType.Device:
           folder = "devices";
-          ext = DataTypeEnum.Device.LocalizedName;
+          ext = DataTypeEnum.Device.FileExtension;
           break;
         case DataTypeEnum.DataType.User:
           folder = "users";
-          ext = DataTypeEnum.User.LocalizedName;
+          ext = DataTypeEnum.User.FileExtension;
           break;
         case DataTypeEnum.DataType.History:
           folder = "history";
-          ext = DataTypeEnum.History.LocalizedName;
+          ext = DataTypeEnum.History.FileExtension;
           break;
         case DataTypeEnum.DataType.Archive:
           folder = "Archive";
-          ext = DataTypeEnum.Archive.LocalizedName;
+          ext = DataTypeEnum.Archive.FileExtension;
+          break;
+        case DataTypeEnum.DataType.Db:
+          folder = "db";
+          ext = DataTypeEnum.Db.FileExtension;
+          filename = DataTypeEnum.Db.Name;
+          break;
+        case DataTypeEnum.DataType.Audit:
+          folder = "db";
+          ext = DataTypeEnum.Audit.FileExtension;
+          filename = DataTypeEnum.Audit.Name;
           break;
         default:
           folder = "temp";

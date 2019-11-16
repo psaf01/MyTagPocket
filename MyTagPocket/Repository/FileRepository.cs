@@ -44,6 +44,17 @@ namespace MyTagPocket.Repository
       Log = logManager.GetLog(classCode);
       this.fileHelper = fileHelper;
     }
+
+    /// <summary>
+    /// Get path on file system
+    /// </summary>
+    /// <param name="type">Data type</param>
+    /// <returns>Full path to file</returns>
+    public string GetPath(DataTypeEnum type)
+    {
+      return fileHelper.GetLocalFolderPath(type);
+    }
+
     /// <summary>
     /// Save entity to file system
     /// </summary>

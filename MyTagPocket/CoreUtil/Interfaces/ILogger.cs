@@ -13,6 +13,12 @@ namespace MyTagPocket.CoreUtil.Interfaces
     string ClassCode { get; set; }
 
     /// <summary>
+    /// Initialize logger for first time
+    /// </summary>
+    /// <param name="fileHelper">File helper</param>
+    void InitializeLog();
+
+    /// <summary>
     /// Informatin
     /// </summary>
     /// <param name="methodCode">Code method for localization in source</param>
@@ -32,19 +38,22 @@ namespace MyTagPocket.CoreUtil.Interfaces
     /// <summary>
     /// Audit
     /// </summary>
+    /// <param name="fileHelper">File helper</param>
     /// <param name="auditCode">Audit code</param>
     /// <param name="type">Data type</param>
-    /// <param name="args">Values</param>
-    void Audit(string auditCode, DataTypeEnum type, params object[] values);
+    /// <param name="deviceGuid">GUID device</param>
+    /// <param name="userGuid">GUID user</param>
+    /// <param name="values">Values parameters</param>
+    void Audit(string auditCode, DataTypeEnum type, string deviceGuid, string userGuid, params string[] values);
 
-    /// <summary>
-    /// Debug
-    /// </summary>
-    /// <param name="methodCode">Code method for localization in source</param>
-    /// <param name="type">Data type</param>
-    /// <param name="text">Message</param>
-    /// <param name="args">Arguments</param>
-    void Debug(string methodCode, string text, params object[] args);
+      /// <summary>
+      /// Debug
+      /// </summary>
+      /// <param name="methodCode">Code method for localization in source</param>
+      /// <param name="type">Data type</param>
+      /// <param name="text">Message</param>
+      /// <param name="args">Arguments</param>
+      void Debug(string methodCode, string text, params object[] args);
 
     /// <summary>
     /// Error

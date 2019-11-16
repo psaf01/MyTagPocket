@@ -12,4 +12,214 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutApp" xml:space="preserve">
+    <value>About</value>
+    <comment>About</comment>
+  </data>
+  <data name="AppHelp" xml:space="preserve">
+    <value>Help</value>
+    <comment>App</comment>
+  </data>
+  <data name="FatalErrorUnexpected" xml:space="preserve">
+    <value>An unexpected error in the application</value>
+    <comment>Error</comment>
+  </data>
+  <data name="InitAppFatalError" xml:space="preserve">
+    <value>An error occurred during application initialization</value>
+    <comment>App</comment>
+  </data>
+  <data name="ProcessError" xml:space="preserve">
+    <value>Error</value>
+    <comment>Process</comment>
+  </data>
+  <data name="ProcessIdle" xml:space="preserve">
+    <value>Idle</value>
+    <comment>Process</comment>
+  </data>
+  <data name="ProcessPaused" xml:space="preserve">
+    <value>Paused</value>
+    <comment>Process</comment>
+  </data>
+  <data name="ProcessRunning" xml:space="preserve">
+    <value>Running</value>
+    <comment>Process</comment>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="ThemeDescription" xml:space="preserve">
+    <value>The basic theme for MyTagPocket.</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="ThemeDescriptionExample" xml:space="preserve">
+    <value>It serves as an example of the Theme definition in the application. Changes in this file do not affect the application itself.</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="UpgradeDatabaseLabel" xml:space="preserve">
+    <value>Upgrade Database</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStatusEndError" xml:space="preserve">
+    <value>Finished with error</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStatusEndSucces" xml:space="preserve">
+    <value>Successfully completed</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStatusNotStart" xml:space="preserve">
+    <value>Not started</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStatusProgress" xml:space="preserve">
+    <value>In Progress</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStatusStop" xml:space="preserve">
+    <value>Stop</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStorageContentsDescriptionLabel" xml:space="preserve">
+    <value>Updating basic user content structures.</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStorageContentsLabel" xml:space="preserve">
+    <value>Storage contents</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStorageLabel" xml:space="preserve">
+    <value>Upgrade Storage</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStorageSettingsDescriptionLabel" xml:space="preserve">
+    <value>Updating application settings and their configuration parts.</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStorageSettingsError" xml:space="preserve">
+    <value>Unable to complete update settings</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStorageSettingsIsActual" xml:space="preserve">
+    <value>Storage settings is last version</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStorageSettingsLabel" xml:space="preserve">
+    <value>Storage settings</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStorageSettingSucces" xml:space="preserve">
+    <value>Update setup completed successfully</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeInfoFinishError" xml:space="preserve">
+    <value>There was an error updating</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeInfoFinishSucces" xml:space="preserve">
+    <value>Update completed successfully</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeInfoNotStarted" xml:space="preserve">
+    <value>Update not started</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeInfoStarted" xml:space="preserve">
+    <value>Update started</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="ExceptionCantLoadFile" xml:space="preserve">
+    <value>Can't load file.</value>
+    <comment>Exception</comment>
+  </data>
+  <data name="ExceptionCantDeleteFile" xml:space="preserve">
+    <value>Can't delete file.</value>
+    <comment>Exception</comment>
+  </data>
+  <data name="ExceptionCantLoadFileFromArchive" xml:space="preserve">
+    <value>Can't load file from archive.</value>
+    <comment>Exception</comment>
+  </data>
+  <data name="ExceptionCantSaveFileToArchive" xml:space="preserve">
+    <value>Can't save file to archive.</value>
+    <comment>Exception</comment>
+  </data>
+  <data name="ErrorCantReadSecure" xml:space="preserve">
+    <value>Unable to retrieve data from secure storage.</value>
+    <comment>SecureRepository</comment>
+  </data>
+  <data name="ErrorCantSaveSecure" xml:space="preserve">
+    <value>Unable to save data to secure storage.</value>
+    <comment>SecureRepository</comment>
+  </data>
+  <data name="ErrorDeleteAllItemSecure" xml:space="preserve">
+    <value>Unable to delete data from secure storage.</value>
+    <comment>SecureRepository</comment>
+  </data>
+  <data name="ErrorDeleteItemSecure" xml:space="preserve">
+    <value>Unable to delete data from secure storage.</value>
+    <comment>SecureRepository</comment>
+  </data>
+  <data name="ExceptionDalRepositorySaveFileIdFileEmpty" xml:space="preserve">
+    <value>Unable to determine the file identifier required to save.</value>
+    <comment>DalRepository</comment>
+  </data>
+  <data name="ExceptionDalRepositorySaveFileName" xml:space="preserve">
+    <value>Unable to determine the file name required to save.</value>
+    <comment>DalRepository</comment>
+  </data>
+  <data name="FileNotCompatible" xml:space="preserve">
+    <value>The loaded file is not valid.</value>
+    <comment>File</comment>
+  </data>
+  <data name="ExceptionCantLoadFileHistory" xml:space="preserve">
+    <value>Cant load file history</value>
+  </data>
+  <data name="TypeDeviceUwp" xml:space="preserve">
+    <value>PC</value>
+    <comment>TypeDeviceEnum</comment>
+  </data>
+  <data name="FileNameArchive" xml:space="preserve">
+    <value>Archive</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameAuditDb" xml:space="preserve">
+    <value>Audit database</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameDevice" xml:space="preserve">
+    <value>Device</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameHistory" xml:space="preserve">
+    <value>History</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameMainDb" xml:space="preserve">
+    <value>MyTagPocket database</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNamePackage" xml:space="preserve">
+    <value>Package</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameSetting" xml:space="preserve">
+    <value>Setting</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameTag" xml:space="preserve">
+    <value>Tag</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameTheme" xml:space="preserve">
+    <value>Theme</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameUnclassified" xml:space="preserve">
+    <value>Unclassified</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameUser" xml:space="preserve">
+    <value>User</value>
+    <comment>FileType</comment>
+  </data>
 </root>

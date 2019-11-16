@@ -13,11 +13,13 @@ namespace MyTagPocket.UWP.Library.CoreUtil
   /// </summary>
   public class LogManager_UWP : MyTagPocket.CoreUtil.Interfaces.ILogManager
   {
+    private MyTagPocket.CoreUtil.Interfaces.IFileHelper fileHelper;
     /// <summary>
     /// Constructor
     /// </summary>
     public LogManager_UWP()
     {
+      fileHelper = new FileHelper_UWP();
       var config = NLog.LogManager.Configuration;
       if (config == null)
         config = new LoggingConfiguration();
@@ -145,7 +147,7 @@ namespace MyTagPocket.UWP.Library.CoreUtil
 
       //config.AddRuleForAllLevels(consoleTarget);
       var logger = LogManager.GetLogger(fileName);
-      return new Log(logger) { ClassCode = classCode };
+      return new Log(logger, fileHelper) { ClassCode = classCode };
     }
 
     /// <summary>

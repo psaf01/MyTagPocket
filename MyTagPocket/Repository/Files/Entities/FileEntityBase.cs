@@ -10,7 +10,7 @@ namespace MyTagPocket.Repository.Files.Entities
   /// <summary>
   /// Base Entities
   /// </summary>
-  public class FileEntityBase<T> : IFileEntityBase<T>
+  public abstract class FileEntityBase<T> : IFileEntityBase<T>
   {
     #region Private variable
   

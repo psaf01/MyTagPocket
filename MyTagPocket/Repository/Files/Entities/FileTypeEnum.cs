@@ -1,12 +1,12 @@
 ﻿using MyTagPocket.CoreUtil;
-using static MyTagPocket.Repository.Files.FileTypeEnum;
+using static MyTagPocket.Repository.Files.DeviceTypeEnum;
 
 namespace MyTagPocket.Repository.Files
 {
   /// <summary>
   /// File type
   /// </summary>
-  public sealed class FileTypeEnum : EnumBase<FileTypeEnum, string, FileType, string>
+  public sealed class DeviceTypeEnum : EnumBase<DeviceTypeEnum, string, FileType, string>
   {
     /// <summary>
     /// Constructor
@@ -14,7 +14,7 @@ namespace MyTagPocket.Repository.Files
     /// <param name="name">Name type of data</param>
     /// <param name="valueEnum">File type</param>
     /// <param name="codeEncrypt">Code file</param>
-    private FileTypeEnum(string name, FileType valueEnum, string codeFile) : base(name, valueEnum, codeFile)
+    private DeviceTypeEnum(string name, FileType valueEnum, string codeFile) : base(name, valueEnum, codeFile)
     {
     }
 
@@ -37,6 +37,6 @@ namespace MyTagPocket.Repository.Files
     /// <summary>
     /// A unique or unclassifiable type
     /// </summary>
-    public static readonly FileTypeEnum Txt = new FileTypeEnum("Txt", FileType.Txt, "txt");
+    public static readonly DeviceTypeEnum Txt = new DeviceTypeEnum("Txt", FileType.Txt, "txt");
   }
 }

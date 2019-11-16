@@ -26,6 +26,11 @@
     <None Remove="Repository\Files\Upgrade\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="MultilingualResources\MyTagPocket.cs.xlf" />
+    <None Remove="MultilingualResources\MyTagPocket.en.xlf" />
+    <None Remove="MultilingualResources\MyTagPocket.qps-ploc.xlf" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="LiteDB" Version="4.1.4" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.1.1" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.1.1" />
@@ -43,6 +48,26 @@
     <PackageReference Include="Prism.Unity.Forms" Version="7.2.0.1367" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Audit.qps-ploc.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Audit.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Audit.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ResourceApp.cs.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ResourceApp.en.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ResourceApp.qps-ploc.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\ResourceApp.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceApp.Designer.cs</LastGenOutput>
@@ -61,16 +86,26 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\Devices\" />
-    <Folder Include="Models\Users\" />
-    <Folder Include="MultilingualResources\" />
-    <Folder Include="Repository\Dal\Entities\" />
-    <Folder Include="Repository\Dal\Interface\" />
     <Folder Include="Resources\Images\" />
     <Folder Include="Services\Interface\" />
     <Folder Include="ViewModels\Users\" />
   </ItemGroup>
   <ItemGroup>
+    <XliffResource Include="MultilingualResources\MyTagPocket.en.xlf"></XliffResource>
+    <XliffResource Include="MultilingualResources\MyTagPocket.cs.xlf"></XliffResource>
+    <XliffResource Include="MultilingualResources\MyTagPocket.qps-ploc.xlf"></XliffResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Audit.Designer.cs">
+      <DependentUpon>Audit.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Resources\ResourceApp.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

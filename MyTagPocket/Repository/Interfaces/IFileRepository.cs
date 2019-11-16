@@ -1,4 +1,5 @@
-﻿using MyTagPocket.Repository.Files.Interfaces;
+﻿using MyTagPocket.CoreUtil;
+using MyTagPocket.Repository.Files.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,6 +10,13 @@ namespace MyTagPocket.Repository.Interfaces
   /// </summary>
   public interface IFileRepository
   {
+    /// <summary>
+    /// Get path on file system
+    /// </summary>
+    /// <param name="type">Data type</param>
+    /// <returns>Full path to file</returns>
+    string GetPath(DataTypeEnum type);
+
     /// <summary>
     /// Load entity from file system
     /// </summary>

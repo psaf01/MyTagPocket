@@ -28,6 +28,10 @@
     <value>Základní Theme pro aplikaci MyTagPocket.</value>
     <comment>Gui</comment>
   </data>
+  <data name="ThemeDescriptionExample" xml:space="preserve">
+    <value>Slouží jako příklad definice tématu v aplikaci. Změny v tomto souboru neovlivní samotnou aplikaci.</value>
+    <comment>Gui</comment>
+  </data>
   <data name="Test" xml:space="preserve">
     <value>Test</value>
   </data>
@@ -59,12 +63,28 @@
     <value>Upgradovat databázi</value>
     <comment>Upgrade</comment>
   </data>
+  <data name="UpgradeStorageContentsDescriptionLabel" xml:space="preserve">
+    <value>Probíhá aktualizace základních struktur obsahu uživatele.</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStorageContentsLabel" xml:space="preserve">
+    <value>Obsah úložiště</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStorageLabel" xml:space="preserve">
+    <value>Aktualizace úložiště</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStorageSettingsDescriptionLabel" xml:space="preserve">
+    <value>Aktualizace nastavení aplikace a jejich konfiguračních částí.</value>
+    <comment>Upgrade</comment>
+  </data>
   <data name="UpgradeStorageSettingsLabel" xml:space="preserve">
     <value>Nastavení úložiště</value>
     <comment>Upgrade</comment>
   </data>
   <data name="ProcessError" xml:space="preserve">
-    <value>PŘI.CHYBĚ</value>
+    <value>Chyba</value>
     <comment>Process</comment>
   </data>
   <data name="ProcessIdle" xml:space="preserve">
@@ -79,12 +99,127 @@
     <value>Spuštěno</value>
     <comment>Process</comment>
   </data>
+  <data name="UpgradeStorageSettingsError" xml:space="preserve">
+    <value>Nelze dokončit nastavení aktualizace.</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStorageSettingsIsActual" xml:space="preserve">
+    <value>Nastavení úložiště je na poslední verzi.</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeStorageSettingSucces" xml:space="preserve">
+    <value>Aktualizace byla úspěšně dokončena.</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeInfoFinishError" xml:space="preserve">
+    <value>Při aktualizaci došlo k chybě</value>
+    <comment>Upgrade</comment>
+  </data>
   <data name="UpgradeInfoFinishSucces" xml:space="preserve">
     <value>Aktualizace byla úspěšně dokončena.</value>
     <comment>Upgrade</comment>
   </data>
-  <data name="UpgradeInfoStarted" xml:space="preserve">
-    <value>Zahájení aktualizace...</value>
+  <data name="UpgradeInfoNotStarted" xml:space="preserve">
+    <value>Aktualizace nebyla zahájena.</value>
     <comment>Upgrade</comment>
+  </data>
+  <data name="UpgradeInfoStarted" xml:space="preserve">
+    <value>Zahájení aktualizace</value>
+    <comment>Upgrade</comment>
+  </data>
+  <data name="ExceptionCantLoadFile" xml:space="preserve">
+    <value>Soubor nelze načíst.</value>
+    <comment>Exception</comment>
+  </data>
+  <data name="ExceptionCantDeleteFile" xml:space="preserve">
+    <value>Soubor nelze odstranit.</value>
+    <comment>Exception</comment>
+  </data>
+  <data name="ExceptionCantLoadFileFromArchive" xml:space="preserve">
+    <value>Nelze načíst soubor z archivu.</value>
+    <comment>Exception</comment>
+  </data>
+  <data name="ExceptionCantSaveFileToArchive" xml:space="preserve">
+    <value>Soubor nelze uložit do archivu.</value>
+    <comment>Exception</comment>
+  </data>
+  <data name="ErrorCantReadSecure" xml:space="preserve">
+    <value>Nelze načíst data ze zabezpečeného úložiště.</value>
+    <comment>SecureRepository</comment>
+  </data>
+  <data name="ErrorCantSaveSecure" xml:space="preserve">
+    <value>Nelze uložit data do zabezpečeného úložiště.</value>
+    <comment>SecureRepository</comment>
+  </data>
+  <data name="ErrorDeleteAllItemSecure" xml:space="preserve">
+    <value>Nelze odstranit data ze zabezpečeného úložiště.</value>
+    <comment>SecureRepository</comment>
+  </data>
+  <data name="ErrorDeleteItemSecure" xml:space="preserve">
+    <value>Nelze odstranit data ze zabezpečeného úložiště.</value>
+    <comment>SecureRepository</comment>
+  </data>
+  <data name="ExceptionDalRepositorySaveFileIdFileEmpty" xml:space="preserve">
+    <value>Nelze určit identifikátor souboru potřebný k uložení.</value>
+    <comment>DalRepository</comment>
+  </data>
+  <data name="ExceptionDalRepositorySaveFileName" xml:space="preserve">
+    <value>Nelze zjistit název souboru, který je požadován k uložení.</value>
+    <comment>DalRepository</comment>
+  </data>
+  <data name="FileNotCompatible" xml:space="preserve">
+    <value>Načtený soubor není validní.</value>
+    <comment>File</comment>
+  </data>
+  <data name="ExceptionCantLoadFileHistory" xml:space="preserve">
+    <value>Nelze načíst historii souboru</value>
+  </data>
+  <data name="TypeDeviceUwp" xml:space="preserve">
+    <value>PC</value>
+    <comment>TypeDeviceEnum</comment>
+  </data>
+  <data name="FileNameArchive" xml:space="preserve">
+    <value>Archiv</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameAuditDb" xml:space="preserve">
+    <value>Databáze auditu</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameDevice" xml:space="preserve">
+    <value>Zařízení</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameHistory" xml:space="preserve">
+    <value>Historie</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameMainDb" xml:space="preserve">
+    <value>MyTagPocket databáze</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNamePackage" xml:space="preserve">
+    <value>Soubor</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameSetting" xml:space="preserve">
+    <value>Nastavení</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameTag" xml:space="preserve">
+    <value>Štítek</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameTheme" xml:space="preserve">
+    <value>Téma</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameUnclassified" xml:space="preserve">
+    <value>Neklasifikováno</value>
+    <comment>FileType</comment>
+  </data>
+  <data name="FileNameUser" xml:space="preserve">
+    <value>Uživatel</value>
+    <comment>FileType</comment>
   </data>
 </root>

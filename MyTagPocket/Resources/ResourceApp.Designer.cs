@@ -187,6 +187,105 @@ namespace MyTagPocket.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Archive.
+        /// </summary>
+        public static string FileNameArchive {
+            get {
+                return ResourceManager.GetString("FileNameArchive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Audit database.
+        /// </summary>
+        public static string FileNameAuditDb {
+            get {
+                return ResourceManager.GetString("FileNameAuditDb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Device.
+        /// </summary>
+        public static string FileNameDevice {
+            get {
+                return ResourceManager.GetString("FileNameDevice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to History.
+        /// </summary>
+        public static string FileNameHistory {
+            get {
+                return ResourceManager.GetString("FileNameHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MyTagPocket database.
+        /// </summary>
+        public static string FileNameMainDb {
+            get {
+                return ResourceManager.GetString("FileNameMainDb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Package.
+        /// </summary>
+        public static string FileNamePackage {
+            get {
+                return ResourceManager.GetString("FileNamePackage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setting.
+        /// </summary>
+        public static string FileNameSetting {
+            get {
+                return ResourceManager.GetString("FileNameSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tag.
+        /// </summary>
+        public static string FileNameTag {
+            get {
+                return ResourceManager.GetString("FileNameTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Theme.
+        /// </summary>
+        public static string FileNameTheme {
+            get {
+                return ResourceManager.GetString("FileNameTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unclassified.
+        /// </summary>
+        public static string FileNameUnclassified {
+            get {
+                return ResourceManager.GetString("FileNameUnclassified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User.
+        /// </summary>
+        public static string FileNameUser {
+            get {
+                return ResourceManager.GetString("FileNameUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The loaded file is not valid..
         /// </summary>
         public static string FileNotCompatible {
@@ -264,6 +363,15 @@ namespace MyTagPocket.Resources {
         public static string ThemeDescriptionExample {
             get {
                 return ResourceManager.GetString("ThemeDescriptionExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PC.
+        /// </summary>
+        public static string TypeDeviceUwp {
+            get {
+                return ResourceManager.GetString("TypeDeviceUwp", resourceCulture);
             }
         }
         
