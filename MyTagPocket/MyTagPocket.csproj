@@ -86,6 +86,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Models\Audits\" />
     <Folder Include="Resources\Images\" />
     <Folder Include="Services\Interface\" />
     <Folder Include="ViewModels\Users\" />

@@ -3,6 +3,7 @@ using MyTagPocket.CoreUtil.Interfaces;
 using MyTagPocket.Models.Devices;
 using MyTagPocket.Repository.Interfaces;
 using System;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 
 namespace MyTagPocket.Services
@@ -50,21 +51,21 @@ namespace MyTagPocket.Services
     /// </summary>
     /// <param name="deviceType">The type of device on which the new record is created</param>
     /// <returns>New device definition</returns>
-    Device CreateNewDevice(DeviceTypeEnum deviceType, IFileHelper fileHelper)
+    public async Task<Device> CreateNewDevice(DeviceTypeEnum deviceType)
     {
       const string methodCode = "M01";
-     
+
       Device device = new Device();
       device.DeviceId = Guid.NewGuid().ToString("N");
       device.Name = $"{deviceType.LocalizedName}";
       device.FolderId = Guid.NewGuid().ToString("N");
       device.CreatedWhen = DateTimeOffset.Now;
 
-
       Log.Trace(methodCode, "Create Device {@DeviceType}", deviceType.LocalizedName);
       Log.InitializeLog();
+      await dalRepo.InitilizeDbAsync();
       Log.Audit("DvcCreate", DataTypeEnum.Device, AppGlobal.Device.DeviceGuid, AppGlobal.UserSystem.UserGuid);
-     
+
       /*
       if(string.IsNullOrEmpty(app.ActualFoderDevices))
         app.ActualFoderDevices = Guid.NewGuid().ToString("N");

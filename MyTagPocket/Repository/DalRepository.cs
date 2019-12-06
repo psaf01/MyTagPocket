@@ -1,13 +1,16 @@
 ﻿namespace MyTagPocket.Repository
 {
   using LiteDB;
+  using MyTagPocket.CoreUtil;
   using MyTagPocket.CoreUtil.Exceptions;
+  using MyTagPocket.CoreUtil.Interfaces;
   using MyTagPocket.Repository.Dal.Entities.Devices;
   using MyTagPocket.Repository.Dal.Entities.Settings;
   using MyTagPocket.Repository.Dal.Entities.Users;
   using MyTagPocket.Repository.Dal.Interface;
   using MyTagPocket.Repository.Interfaces;
   using MyTagPocket.Resources;
+  using NeoSmart.AsyncLock;
   using System;
   using System.IO;
   using System.Threading.Tasks;
@@ -17,37 +20,33 @@
   /// </summary>
   public class DalRepository : IDalRepository
   {
-
     /// <summary>
     /// Identifikation class for localization code
     /// <see cref="_ClassCodeLast.cs"/>
     /// </summary>
-    const string classCode = "C10024";
+    const string classCode = "C10034";
 
     /// <summary>
-    /// LiteDb
+    /// Logger instance
     /// </summary>
-    private LiteDatabase liteDb;
-
-    public DalRepository(string pathDb)
-    {
-      liteDb = new LiteDatabase(pathDb);
-    }
-
-    public DalRepository(MemoryStream db)
-    {
-      liteDb = new LiteDatabase(db);
-    }
+    public static ILogger Log;
 
     /// <summary>
-    /// Instance LiteDb
+    /// Database helper instance
     /// </summary>
-    public LiteDatabase Db
+    public static IDalHelper DalHelper { get; set; }
+
+    AsyncLock lockObject = new AsyncLock();
+
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="logManager">Log manager</param>
+    /// <param name="fileHelper">File helper</param>
+    public DalRepository(ILogManager logManager, IDalHelper dalHelper)
     {
-      get
-      {
-        return liteDb;
-      }
+      Log = logManager.GetLog(classCode);
+      DalHelper = dalHelper;
     }
 
     /// <summary>
@@ -57,28 +56,17 @@
     {
       await Task.Run(() =>
       {
-        InitializeMainDb();
+        using (lockObject.Lock())
+        {
+          using (var db = DalHelper.OpenDB())
+          {
+            if (db.Engine.UserVersion == 0)
+              InitializeMainDbVer1(db);
+          }
+        }
       });
     }
 
-    /// <summary>
-    /// Initialize MyTagPocket database
-    /// </summary>
-    private void InitializeMainDb()
-    {
-      var engine = liteDb.Engine;
-
-      // database initialize
-      if (engine.UserVersion == 0)
-      {
-        Setting setting = new Setting();
-        engine.EnsureIndex(setting.GetNameCollection, nameof(setting.Name), true);
-        Device device = new Device();
-        engine.EnsureIndex(device.GetNameCollection, nameof(device.DeviceId), true);
-        //User user
-      }
-    }
-   
     /// <summary>
     /// Save file to repository
     /// </summary>
@@ -134,5 +122,24 @@
     {
       throw new NotImplementedException();
     }
+
+    #region Update database
+    /// <summary>
+    /// Initialize MyTagPocket database
+    /// </summary>
+    private void InitializeMainDbVer1(LiteDatabase db)
+    {
+      const string methodCode = "M01";
+      Log.Trace(methodCode, "Initialize database");
+
+      
+      db.Engine.EnsureIndex(setting.GetNameCollection, nameof(setting.Name), true);
+      
+      db.Engine.EnsureIndex(device.GetNameCollection, nameof(device.DeviceId), true);
+      //User user
+
+      db.Engine.UserVersion = 1;
+    }
+    #endregion Update database
   }
 }

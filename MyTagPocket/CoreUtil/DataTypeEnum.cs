@@ -12,6 +12,12 @@ namespace MyTagPocket.CoreUtil
     /// <summary>
     /// Constructor
     /// </summary>
+    public DataTypeEnum()
+    { }
+
+    /// <summary>
+    /// Constructor
+    /// </summary>
     /// <param name="name">Name type of data</param>
     /// <param name="valueEnum">Data type</param>
     /// <param name="codeDataType">Code data type</param>
@@ -77,57 +83,57 @@ namespace MyTagPocket.CoreUtil
     /// <summary>
     /// A unique or unclassifiable type
     /// </summary>
-    public static readonly DataTypeEnum Unclassified = new DataTypeEnum("Unclassified", DataType.Setting, Resources.ResourceApp.FileNameUnclassified, "mtp");
+    public static readonly DataTypeEnum Unclassified = new DataTypeEnum("unclassified", DataType.Setting, Resources.ResourceApp.FileNameUnclassified, "mtp");
 
     /// <summary>
     /// Application settings
     /// </summary>
-    public static readonly DataTypeEnum Setting = new DataTypeEnum("Setting", DataType.Setting, Resources.ResourceApp.FileNameSetting, "cfg");
+    public static readonly DataTypeEnum Setting = new DataTypeEnum("setting", DataType.Setting, Resources.ResourceApp.FileNameSetting, "cfg");
 
     /// <summary>
     /// Contents notes
     /// </summary>
-    public static readonly DataTypeEnum Package = new DataTypeEnum("Package", DataType.Package, Resources.ResourceApp.FileNamePackage,  "pck");
+    public static readonly DataTypeEnum Package = new DataTypeEnum("package", DataType.Package, Resources.ResourceApp.FileNamePackage,  "pck");
 
     /// <summary>
     /// TAG
     /// </summary>
-    public static readonly DataTypeEnum Tag = new DataTypeEnum("Tag", DataType.Tag, Resources.ResourceApp.FileNameTag, "tag");
+    public static readonly DataTypeEnum Tag = new DataTypeEnum("tag", DataType.Tag, Resources.ResourceApp.FileNameTag, "tag");
 
     /// <summary>
     /// Contents notes
     /// </summary>
-    public static readonly DataTypeEnum Theme = new DataTypeEnum("Themes", DataType.Theme, Resources.ResourceApp.FileNameTheme, "thm");
+    public static readonly DataTypeEnum Theme = new DataTypeEnum("themes", DataType.Theme, Resources.ResourceApp.FileNameTheme, "thm");
 
     /// <summary>
     /// Compress Archive contents
     /// </summary>
-    public static readonly DataTypeEnum Archive = new DataTypeEnum("Archive", DataType.Archive, Resources.ResourceApp.FileNameArchive, "arc");
+    public static readonly DataTypeEnum Archive = new DataTypeEnum("archive", DataType.Archive, Resources.ResourceApp.FileNameArchive, "arc");
 
     /// <summary>
     /// History archive content. Information about stored individual contents in the ARC file is stored here
     /// </summary>
-    public static readonly DataTypeEnum History = new DataTypeEnum("History", DataType.History, Resources.ResourceApp.FileNameHistory, "hst");
+    public static readonly DataTypeEnum History = new DataTypeEnum("history", DataType.History, Resources.ResourceApp.FileNameHistory, "hst");
 
     /// <summary>
     /// Device. Information about device
     /// </summary>
-    public static readonly DataTypeEnum Device = new DataTypeEnum("Device", DataType.Device, Resources.ResourceApp.FileNameDevice, "dvc");
+    public static readonly DataTypeEnum Device = new DataTypeEnum("device", DataType.Device, Resources.ResourceApp.FileNameDevice, "dvc");
 
     /// <summary>
     /// User. Information about user
     /// </summary>
-    public static readonly DataTypeEnum User = new DataTypeEnum("User", DataType.User, Resources.ResourceApp.FileNameUser, "usr");
+    public static readonly DataTypeEnum User = new DataTypeEnum("user", DataType.User, Resources.ResourceApp.FileNameUser, "usr");
 
     /// <summary>
     /// Local database
     /// </summary>
-    public static readonly DataTypeEnum Db = new DataTypeEnum("MyTagPocket", DataType.User, Resources.ResourceApp.FileNameMainDb, "db");
+    public static readonly DataTypeEnum Db = new DataTypeEnum("mytagpocket", DataType.Db, Resources.ResourceApp.FileNameMainDb, "db");
 
     /// <summary>
     /// Local database for audit log
     /// </summary>
-    public static readonly DataTypeEnum Audit = new DataTypeEnum("Audit", DataType.User, Resources.ResourceApp.FileNameAuditDb, "db");
+    public static readonly DataTypeEnum Audit = new DataTypeEnum("audit", DataType.Audit, Resources.ResourceApp.FileNameAuditDb, "db");
 
     #region Enum methods
     private static List<DataTypeEnum> listEnum { get; set; } = null;

@@ -120,7 +120,10 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CoreUtil\DalAuditHelper_UWP_file.cs" />
+    <Compile Include="CoreUtil\DalAuditHelper_UWP_memory.cs" />
     <Compile Include="CoreUtil\FileHelper_UWP.cs" />
+    <Compile Include="CoreUtil\LogManager_UWP_audit_memory.cs" />
     <Compile Include="CoreUtil\LogManager_UWP.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="_ClassCodeLast.cs" />

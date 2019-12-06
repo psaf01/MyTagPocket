@@ -1,18 +1,18 @@
 ﻿using MyTagPocket.Repository.Dal.Interface;
 
-namespace MyTagPocket.Repository.Dal.Entities
+namespace MyTagPocket.Repository.Audit.Entities
 {
   /// <summary>
   /// Base object for LiteDb
   /// </summary>
-  public class DalBase : IDalBase
+  public abstract class AuditBase : IDalBase
   {
-    private string nameCollection;
+    protected private string nameCollection;
     /// <summary>
     /// Constructor
     /// </summary>
     /// <param name="nameCollection"></param>
-    public DalBase(string nameCollectionEntity)
+    public AuditBase(string nameCollectionEntity)
     {
       nameCollection = nameCollectionEntity;
     }

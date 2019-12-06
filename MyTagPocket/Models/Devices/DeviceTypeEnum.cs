@@ -8,6 +8,10 @@ namespace MyTagPocket.Models.Devices
   /// </summary>
   public sealed class DeviceTypeEnum : EnumBase<DeviceTypeEnum, string, DeviceType, string>
   {
+
+    public DeviceTypeEnum() : base("Unknown", DeviceType.Unknown, "Unknown")
+    { }
+
     /// <summary>
     /// Constructor
     /// </summary>
@@ -33,6 +37,11 @@ namespace MyTagPocket.Models.Devices
       /// </summary>
       Unknown
     }
+
+    /// <summary>
+    ///  Universal Windows Platform 
+    /// </summary>
+    public static readonly DeviceTypeEnum Uknown = new DeviceTypeEnum("Unknown", DeviceType.Unknown, Resources.ResourceApp.TypeDeviceUnknown);
 
     /// <summary>
     ///  Universal Windows Platform 

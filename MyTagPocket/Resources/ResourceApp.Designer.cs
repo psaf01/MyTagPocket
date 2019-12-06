@@ -115,6 +115,15 @@ namespace MyTagPocket.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to initialize audit database..
+        /// </summary>
+        public static string ExceptionAuditRepositoryInitialize {
+            get {
+                return ResourceManager.GetString("ExceptionAuditRepositoryInitialize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can&apos;t delete file..
         /// </summary>
         public static string ExceptionCantDeleteFile {
@@ -363,6 +372,15 @@ namespace MyTagPocket.Resources {
         public static string ThemeDescriptionExample {
             get {
                 return ResourceManager.GetString("ThemeDescriptionExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown.
+        /// </summary>
+        public static string TypeDeviceUnknown {
+            get {
+                return ResourceManager.GetString("TypeDeviceUnknown", resourceCulture);
             }
         }
         

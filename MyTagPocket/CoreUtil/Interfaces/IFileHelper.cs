@@ -89,6 +89,18 @@ namespace MyTagPocket.CoreUtil.Interfaces
     bool FolderExists(string path);
 
     /// <summary>
+    /// Create folder
+    /// </summary>
+    /// <param name="path">Full path folder</param>
+    void CreateFolder(string folder);
+
+    /// <summary>
+    /// Delete folder
+    /// </summary>
+    /// <param name="folder">Full path folder</param>
+    void DeleteFolder(string folder);
+
+    /// <summary>
     /// Load text file
     /// </summary>
     /// <param name="path">Full path file</param>

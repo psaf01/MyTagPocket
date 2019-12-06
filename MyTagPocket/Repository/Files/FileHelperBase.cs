@@ -139,6 +139,25 @@ namespace MyTagPocket.Repository.Files
     }
 
     /// <summary>
+    /// Create folder
+    /// </summary>
+    /// <param name="path">Full path folder</param>
+    public virtual void CreateFolder(string folder)
+    {
+      if (!fileSystemStorage.Directory.Exists(folder))
+        fileSystemStorage.Directory.CreateDirectory(folder);
+    }
+
+    /// <summary>
+    /// Delete folder
+    /// </summary>
+    /// <param name="folder">Full path folder</param>
+    public virtual void DeleteFolder(string folder)
+    {
+      if (fileSystemStorage.Directory.Exists(folder))
+        fileSystemStorage.Directory.Delete(folder);
+    }
+    /// <summary>
     /// Save text file
     /// </summary>
     /// <param name="path">Full path file</param>

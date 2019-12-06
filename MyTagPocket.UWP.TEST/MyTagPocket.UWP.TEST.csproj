@@ -99,8 +99,10 @@
     <Compile Include="Mocks\ApplicationMock.cs" />
     <Compile Include="Mocks\MockFileSystemStorage.cs" />
     <Compile Include="Mocks\MockSettingRepository.cs" />
+    <Compile Include="Repository\AuditRepositoryTest.cs" />
     <Compile Include="Repository\File\DiffMatchPatchTest.cs" />
     <Compile Include="Repository\SecureRepositoryTest.cs" />
+    <Compile Include="Services\DeviceServiceTest.cs" />
     <Compile Include="Xamarin.Forms.Mocks\MockForms.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App.xaml.cs">

@@ -7,6 +7,9 @@ namespace MyTagPocket.CoreUtil
   /// </summary>
   public sealed class EncryptTypeEnum : EnumBase<EncryptTypeEnum, string, EncryptType, string>
   {
+    public EncryptTypeEnum() : base("NONE", EncryptType.None, "0")
+    { }
+
     /// <summary>
     /// Constructor
     /// </summary>

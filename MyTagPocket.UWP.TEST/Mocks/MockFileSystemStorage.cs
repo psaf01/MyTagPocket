@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO.Abstractions.TestingHelpers;
+using Windows.Storage;
 
 namespace MyTagPocket.UWP.Test.Mocks
 {
@@ -27,6 +28,7 @@ namespace MyTagPocket.UWP.Test.Mocks
       mockFileSystem.AddDirectory(System.IO.Path.Combine(appDataFolder.Path, "settings"));
       mockFileSystem.AddDirectory(System.IO.Path.Combine(appDataFolder.Path, "contents"));
       mockFileSystem.AddDirectory(System.IO.Path.Combine(appDataFolder.Path, "temp"));
+      mockFileSystem.AddDirectory(System.IO.Path.Combine(appDataFolder.Path, "db"));
     }
 
     /// <summary>

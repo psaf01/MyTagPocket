@@ -1,20 +1,23 @@
 ﻿using MyTagPocket.CoreUtil;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace MyTagPocket.Repository.Dal.Entities.App
+namespace MyTagPocket.Repository.Audit.Entities
 {
   /// <summary>
   /// Audit log item
   /// </summary>
-  public class Audit : DalBase
+  public class Audit : AuditBase
   {
     /// <summary>
     /// Constructor
     /// </summary>
-    public Audit(): base(nameCollectionEntity: "audit")
-    { }
+    public Audit() : base(nameCollectionEntity: "audit")
+    {
+      DateTimeOffset dateTime = DateTimeOffset.Now;
+      nameCollection = $"audit{dateTime.Year.ToString("D4")}{dateTime.Month.ToString("D2")}";
+      DataType = DataTypeEnum.Unclassified;
+      CreatedWhen = dateTime;
+    }
 
     /// <summary>
     /// Audit code

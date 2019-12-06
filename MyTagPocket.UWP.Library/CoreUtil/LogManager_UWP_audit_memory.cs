@@ -12,15 +12,15 @@ using System.IO;
 namespace MyTagPocket.UWP.Library.CoreUtil
 {
   /// <summary>
-  /// Log Manager for OS UWP
+  /// Log Manager for OS UWP and log audit to memory
   /// </summary>
-  public class LogManager_UWP : MyTagPocket.CoreUtil.Interfaces.ILogManager
+  public class LogManager_UWP_audit_memory : MyTagPocket.CoreUtil.Interfaces.ILogManager
   {
     
     /// <summary>
     /// Constructor
     /// </summary>
-    public LogManager_UWP()
+    public LogManager_UWP_audit_memory()
     {
       var config = NLog.LogManager.Configuration;
       if (config == null)
@@ -129,14 +129,13 @@ namespace MyTagPocket.UWP.Library.CoreUtil
       */
       NLog.LogManager.Configuration = config;
 
-      auditLogger = new AuditRepository(new DalAuditHelper_UWP_file());
+      AuditLogger = new AuditRepository(new DalAuditHelper_UWP_memory());
     }
 
     /// <summary>
-    /// Audit logger
+    /// Get audti log instance
     /// </summary>
-    private IAuditRepository auditLogger;
-
+    public IAuditRepository AuditLogger { get; }
     /// <summary>
     ///  GetLog instance
     /// </summary>
@@ -154,7 +153,7 @@ namespace MyTagPocket.UWP.Library.CoreUtil
 
       //config.AddRuleForAllLevels(consoleTarget);
       var logger = LogManager.GetLogger(fileName);
-      return new Log(logger, auditLogger) { ClassCode = classCode };
+      return new Log(logger, AuditLogger) { ClassCode = classCode };
     }
 
     /// <summary>

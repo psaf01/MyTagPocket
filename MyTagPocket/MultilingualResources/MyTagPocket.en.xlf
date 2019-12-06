@@ -269,6 +269,16 @@
           <target state="final">User</target>
           <note from="MultilingualBuild" annotates="source" priority="2">FileType</note>
         </trans-unit>
+        <trans-unit id="ExceptionAuditRepositoryInitialize" translate="yes" xml:space="preserve">
+          <source>Failed to initialize audit database.</source>
+          <target state="new">Failed to initialize audit database.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Audit</note>
+        </trans-unit>
+        <trans-unit id="TypeDeviceUnknown" translate="yes" xml:space="preserve">
+          <source>Unknown</source>
+          <target state="new">Unknown</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TypeDeviceEnum</note>
+        </trans-unit>
       </group>
     </body>
   </file>

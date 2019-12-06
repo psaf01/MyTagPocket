@@ -327,4 +327,12 @@
     <value>User</value>
     <comment>FileType</comment>
   </data>
+  <data name="ExceptionAuditRepositoryInitialize" xml:space="preserve">
+    <value>Failed to initialize audit database.</value>
+    <comment>Audit</comment>
+  </data>
+  <data name="TypeDeviceUnknown" xml:space="preserve">
+    <value>Unknown</value>
+    <comment>TypeDeviceEnum</comment>
+  </data>
 </root>

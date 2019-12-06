@@ -1,4 +1,4 @@
-﻿namespace MyTagPocket.Models.Audits
+﻿namespace MyTagPocket.Repository.Audit
 {
   /// <summary>
   /// Codes for audit log
