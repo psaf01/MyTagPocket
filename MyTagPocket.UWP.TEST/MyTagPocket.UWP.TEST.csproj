@@ -100,6 +100,7 @@
     <Compile Include="Mocks\MockFileSystemStorage.cs" />
     <Compile Include="Mocks\MockSettingRepository.cs" />
     <Compile Include="Repository\AuditRepositoryTest.cs" />
+    <Compile Include="Repository\DalRepositoryTest.cs" />
     <Compile Include="Repository\File\DiffMatchPatchTest.cs" />
     <Compile Include="Repository\SecureRepositoryTest.cs" />
     <Compile Include="Services\DeviceServiceTest.cs" />

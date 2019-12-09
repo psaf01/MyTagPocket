@@ -34,12 +34,12 @@ namespace MyTagPocket.UWP.TEST.Services
       var mockSetting = new MockSettingRepository();
       mockSetting.InitializeTestDataBasic();
       AppGlobal.Init(mockSetting);
-      logManager.AuditLogger.InitializeAuditLog();
+      logManager.AuditLogger.InitializeAuditLogAsync();
 
       var fileRepository = new FileRepository(logManager, fileHelper);
-      var dalRepository = new DalRepository(logManager, fileHelper);
-      DeviceService deviceService = new DeviceService(logManager, fileRepository, dalRepository);
-      var device = deviceService.CreateNewDevice(DeviceTypeEnum.Uwp).Result;
+      //var dalRepository = new DalRepository(logManager, fileHelper);
+      //DeviceService deviceService = new DeviceService(logManager, fileRepository, dalRepository);
+      //var device = deviceService.CreateNewDevice(DeviceTypeEnum.Uwp).Result;
     }
   }
 }

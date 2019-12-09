@@ -1,19 +1,18 @@
 ﻿namespace MyTagPocket.Repository
 {
   using LiteDB;
-  using MyTagPocket.CoreUtil;
   using MyTagPocket.CoreUtil.Exceptions;
   using MyTagPocket.CoreUtil.Interfaces;
   using MyTagPocket.Repository.Dal.Entities.Devices;
-  using MyTagPocket.Repository.Dal.Entities.Settings;
-  using MyTagPocket.Repository.Dal.Entities.Users;
   using MyTagPocket.Repository.Dal.Interface;
   using MyTagPocket.Repository.Interfaces;
   using MyTagPocket.Resources;
   using NeoSmart.AsyncLock;
   using System;
-  using System.IO;
-  using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq.Expressions;
+    using System.Threading.Tasks;
 
   /// <summary>
   /// Database repository
@@ -73,15 +72,24 @@
     /// <param name="idFile">Identification file</param>
     /// <param name="fileName">File name</param>
     /// <param name="stream">IO stream file content</param>
-    public void SaveFile(string idFile, string fileName, Stream stream)
+    public async Task SaveFileAsync(string idFile, string fileName, Stream stream)
     {
-      if (string.IsNullOrEmpty(idFile))
-        throw new ErrorException(ResourceApp.ExceptionDalRepositorySaveFileIdFileEmpty);
+      await Task.Run(() =>
+      {
+        using (lockObject.Lock())
+        {
+          using (var db = DalHelper.OpenDB())
+          {
+            if (string.IsNullOrEmpty(idFile))
+              throw new ErrorException(ResourceApp.ExceptionDalRepositorySaveFileIdFileEmpty);
 
-      if (string.IsNullOrEmpty(fileName))
-        throw new ErrorException(ResourceApp.ExceptionDalRepositorySaveFileName);
+            if (string.IsNullOrEmpty(fileName))
+              throw new ErrorException(ResourceApp.ExceptionDalRepositorySaveFileName);
 
-      liteDb.FileStorage.Upload(idFile, fileName, stream);
+            db.FileStorage.Upload(idFile, fileName, stream);
+          }
+        }
+      });
     }
 
     /// <summary>
@@ -89,9 +97,18 @@
     /// </summary>
     /// <param name="idFile">Identification file</param>
     /// <param name="filePath">Full path to file on system</param>
-    public void SaveFile(string idFile, string filePath)
+    public async Task SaveFileAsync(string idFile, string filePath)
     {
-      var file = liteDb.FileStorage.Upload(idFile, filePath);
+      await Task.Run(() =>
+      {
+        using (lockObject.Lock())
+        {
+          using (var db = DalHelper.OpenDB())
+          {
+            db.FileStorage.Upload(idFile, filePath);
+          }
+        }
+      });
     }
 
     public void GetFile(string idFile, string filePath, Stream stream)
@@ -113,16 +130,90 @@
       */
     }
 
-    public void Save(IDalBase entity)
+    /// <summary>
+    /// Save entity
+    /// </summary>
+    /// <typeparam name="T">Type entiy</typeparam>
+    /// <param name="entity">Entity</param>
+    /// <returns>Task</returns>
+    public async Task SaveAsync<T>(T entity)
     {
-      throw new NotImplementedException();
+      await Task.Run(() =>
+      {
+        using (lockObject.Lock())
+        {
+          using (var db = DalHelper.OpenDB())
+          {
+            var dbCol = db.GetCollection<T>();
+            dbCol.Upsert((T)entity);
+          }
+        }
+      });
     }
 
-    public IDalBase Load(string entityId)
+    /// <summary>
+    /// Find entity
+    /// </summary>
+    /// <typeparam name="T">Type entity</typeparam>
+    /// <param name="id">ID entity</param>
+    /// <returns>Entity</returns>
+    public async Task<T> FindById<T>(int id)
     {
-      throw new NotImplementedException();
+      return await Task.Run(() =>
+      {
+        using (lockObject.Lock())
+        {
+          using (var db = DalHelper.OpenDB())
+          {
+            var dbCol = db.GetCollection<T>();
+            return dbCol.FindById(id);
+          }
+        }
+      });
     }
 
+    /// <summary>
+    /// Find entity
+    /// </summary>
+    /// <typeparam name="T">Type entity</typeparam>
+    /// <param name="predicate">Predicate for search entity</param>
+    /// <param name="skip">Skip records</param>
+    /// <param name="limit">Return max records</param>
+    /// <returns>List Entities</returns>
+    public async Task<IEnumerable<T>> FindAsync<T>(Expression<Func<T, bool>> predicate, int skip = 0, int limit = int.MaxValue)
+    {
+      return await Task.Run(() =>
+      {
+        using (lockObject.Lock())
+        {
+          using (var db = DalHelper.OpenDB())
+          {
+            var dbCol = db.GetCollection<T>();
+            return dbCol.Find(predicate, skip, limit);
+          }
+        }
+      });
+    }
+
+    /// <summary>
+    /// Count entities
+    /// </summary>
+    /// <typeparam name="T">Type entity</typeparam>
+    /// <returns>Count</returns>
+    public async Task<int> CountAsync<T>()
+    {
+      return await Task.Run(() =>
+      {
+        using (lockObject.Lock())
+        {
+          using (var db = DalHelper.OpenDB())
+          {
+            var dbCol = db.GetCollection<T>();
+            return dbCol.Count();
+          }
+        }
+      });
+    }
     #region Update database
     /// <summary>
     /// Initialize MyTagPocket database
@@ -131,12 +222,24 @@
     {
       const string methodCode = "M01";
       Log.Trace(methodCode, "Initialize database");
+      var dbColl = db.Engine.GetCollectionNames();
+      int dbCollCount = 0;
+      var findDeviceColl = false;
+      var dateTime = DateTimeOffset.Now;
+      var device = new Device();
+      foreach (var collName in dbColl)
+      {
+        if (collName == device.GetNameCollection)
+          findDeviceColl = true;
 
-      
-      db.Engine.EnsureIndex(setting.GetNameCollection, nameof(setting.Name), true);
-      
-      db.Engine.EnsureIndex(device.GetNameCollection, nameof(device.DeviceId), true);
-      //User user
+        dbCollCount++;
+      }
+
+      if (!findDeviceColl)
+      {
+        db.Engine.EnsureIndex(device.GetNameCollection, nameof(device.DeviceId), true);
+        db.Engine.EnsureIndex(device.GetNameCollection, nameof(device.Name), true);
+      }
 
       db.Engine.UserVersion = 1;
     }

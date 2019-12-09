@@ -1,18 +1,12 @@
 ﻿using MyTagPocket.CoreUtil;
 using MyTagPocket.CoreUtil.Interfaces;
-using MyTagPocket.Repository;
-using MyTagPocket.Repository.Audit.Entities;
-using MyTagPocket.Repository.Files;
-using MyTagPocket.Repository.Files.Interfaces;
 using MyTagPocket.UWP.Library.CoreUtil;
 using MyTagPocket.UWP.Test.Mocks;
 using MyTagPocket.UWP.TEST.Mocks;
 using System;
 using System.Linq;
 using Unity;
-using Xamarin.Forms;
 using Xunit;
-using static MyTagPocket.UWP.TEST.Xamarin.Forms.Mocks.MockForms;
 
 namespace MyTagPocket.UWP.TEST.Repository
 {
@@ -36,11 +30,11 @@ namespace MyTagPocket.UWP.TEST.Repository
 
       AppGlobal.Init(mockSetting);
       logManager.AuditLogger.InitializeAuditLogAsync().Wait();
-      
+
       var log = logManager.GetLog("C00000");
       var deviceGuid = Guid.NewGuid().ToString("N");
       var userGuid = Guid.NewGuid().ToString("N");
-    
+
       log.Audit("CODE1", DataTypeEnum.Audit, deviceGuid, userGuid, null);
       log.Audit("CODE2", DataTypeEnum.Audit, deviceGuid, userGuid, null);
       log.Audit("CODE3", DataTypeEnum.Audit, deviceGuid, userGuid, null);

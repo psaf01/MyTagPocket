@@ -51,7 +51,7 @@ namespace MyTagPocket.CoreUtil
     {
       try
       {
-        auditLog.InitializeAuditLog();
+        auditLog.InitializeAuditLogAsync();
       }
       catch (ErrorException ex)
       {
