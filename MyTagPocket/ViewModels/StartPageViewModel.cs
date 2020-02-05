@@ -27,7 +27,7 @@ namespace MyTagPocket.ViewModels
     public StartPageViewModel(INavigationService navigationService, ILogManager logManager ) : base(logManager, ClassCode)
     {
       const string methodCode = "[1002801]";
-      Log.Trace(methodCode, $"Init");
+      Log.Trace(methodCode, $"InitApp");
       var testA = "testvalue";
       var testB = 100;
       Log.Debug(methodCode, $"Init debug testA=[{testA}] testB=[{testB}]", testA, testB);

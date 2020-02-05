@@ -14,31 +14,6 @@ namespace MyTagPocket.CoreUtil.Interfaces
     /// </summary>
     IFileSystem FileSystemStorage { get; set; }
 
-    /// <summary>Abstractions.IFileSystem
-    /// Get local folder path
-    /// </summary>
-    /// <param name="type">File type</param>
-    /// <returns>Full path folder</returns>
-    string GetLocalFolderPath(DataTypeEnum type);
-
-    /// <summary>
-    /// Get local file path
-    /// </summary>
-    /// <param name="fileTypeValue">Idnetification file type</param>
-    /// <param name="subFolder">Generic subfolder</param>
-    /// <param name="filename">File name</param>
-    /// <returns>Full path file. If File name null or empty return Full path folder</returns>
-    string GetLocalFilePath(string fileTypeValue, string subFolder, string filename);
-
-    /// <summary>
-    /// Get local file path
-    /// </summary>
-    /// <param name="fileType">File of type</param>
-    /// <param name="subFolder">Generic subfolder</param>
-    /// <param name="filename">File name</param>
-    /// <returns>Full path file. If File name null or empty return Full path folder</returns>
-    string GetLocalFilePath(DataTypeEnum fileType, string subFolder, string filename);
-
     /// <summary>
     /// Save text file
     /// </summary>

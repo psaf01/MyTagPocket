@@ -17,6 +17,10 @@ namespace MyTagPocket.UWP.Library.CoreUtil
     {
       FileSystemStorage = new FileSystem();
       ApplicationDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+      if (string.IsNullOrEmpty(AppGlobal.Folders.LocalRootFolder))
+      {
+        AppGlobal.Folders.LocalRootFolder = ApplicationDataPath;
+      }
     }
   }
 }

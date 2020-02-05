@@ -27,6 +27,7 @@ namespace MyTagPocket.Models.Settings
     {
       devicesGuid = GetPersistText(nameof(DevicesGuid), Guid.NewGuid().ToString("N"));
       usersGuid = GetPersistText(nameof(UsersGuid), Guid.NewGuid().ToString("N"));
+      localRootFolder = GetPersistText(nameof(LocalRootFolder), string.Empty );
     }
 
     private string devicesGuid;
@@ -61,6 +62,24 @@ namespace MyTagPocket.Models.Settings
       {
         SetPersistText(nameof(UsersGuid), value);
         usersGuid = value;
+      }
+    }
+
+    private string localRootFolder;
+
+    /// <summary>
+    /// Root path for local file data application
+    /// </summary>
+    public string LocalRootFolder
+    {
+      get
+      {
+        return localRootFolder;
+      }
+      set
+      {
+        SetPersistText(nameof(LocalRootFolder), value);
+        localRootFolder = value;
       }
     }
 

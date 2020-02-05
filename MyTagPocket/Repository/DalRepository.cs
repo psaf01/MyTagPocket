@@ -4,15 +4,14 @@
   using MyTagPocket.CoreUtil.Exceptions;
   using MyTagPocket.CoreUtil.Interfaces;
   using MyTagPocket.Repository.Dal.Entities.Devices;
-  using MyTagPocket.Repository.Dal.Interface;
   using MyTagPocket.Repository.Interfaces;
   using MyTagPocket.Resources;
   using NeoSmart.AsyncLock;
   using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq.Expressions;
-    using System.Threading.Tasks;
+  using System.Collections.Generic;
+  using System.IO;
+  using System.Linq.Expressions;
+  using System.Threading.Tasks;
 
   /// <summary>
   /// Database repository

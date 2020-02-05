@@ -3,9 +3,9 @@
 namespace MyTagPocket.CoreUtil.Interfaces
 {
   /// <summary>
-  ///  Interface helper for database system on device
+  ///  Interface helper for fulltext system on device
   /// </summary>
-  public interface IDalHelper
+  public interface IFullTextHelper
   {
     LiteDatabase OpenDB();
   }

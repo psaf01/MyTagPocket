@@ -46,16 +46,6 @@ namespace MyTagPocket.Repository
     }
 
     /// <summary>
-    /// Get path on file system
-    /// </summary>
-    /// <param name="type">Data type</param>
-    /// <returns>Full path to file</returns>
-    public string GetPath(DataTypeEnum type)
-    {
-      return fileHelper.GetLocalFolderPath(type);
-    }
-
-    /// <summary>
     /// Save entity to file system
     /// </summary>
     /// <typeparam name="T">Entity type</typeparam>
@@ -68,7 +58,7 @@ namespace MyTagPocket.Repository
        try
        {
          Log.Trace(methodCode, "Load Entity={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
-         string path = fileHelper.GetLocalFilePath(entity.TypeEntity, entity.FolderId, entity.EntityId);
+         string path = GetLocalFilePath(entity.TypeEntity, entity.FolderId, entity.EntityId);
 
          string jsonString = fileHelper.LoadFile(path);
          int versionExpect = entity.Version;
@@ -108,7 +98,7 @@ namespace MyTagPocket.Repository
 
           Log.Trace(methodCode, "Load from archive {@FileType} ID={@FileId} commit={@CommitId}", fileInfo.FileType, fileInfo.FileId, fileInfo.CommitId);
           var entityType = DataTypeEnum.ValueOf(fileInfo.FileType);
-          string path = fileHelper.GetLocalFilePath(entityType, fileInfo.FolderId, fileInfo.FileId);
+          string path = GetLocalFilePath(entityType, fileInfo.FolderId, fileInfo.FileId);
           string archivePath = System.IO.Path.ChangeExtension(path, DataTypeEnum.Archive.LocalizedName);
           string historyPath = System.IO.Path.ChangeExtension(path, DataTypeEnum.History.LocalizedName);
           var archives = LoadHistoryFile(historyPath);
@@ -184,7 +174,7 @@ namespace MyTagPocket.Repository
         try
         {
           Log.Trace(methodCode, "Load history Entity={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
-          string path = fileHelper.GetLocalFilePath(entity.TypeEntity, entity.FolderId, entity.EntityId);
+          string path = GetLocalFilePath(entity.TypeEntity, entity.FolderId, entity.EntityId);
           var pathHistory = System.IO.Path.ChangeExtension(path, DataTypeEnum.History.LocalizedName);
           return LoadHistoryFile(pathHistory).AsEnumerable();
         }
@@ -214,7 +204,7 @@ namespace MyTagPocket.Repository
           entityNew.CommitId = Guid.NewGuid().ToString("N");
           entityNew.Hash = entityNew.GetHashCode().ToString();
           string jsonStringNew = entityNew.SerializeJson();
-          string path = fileHelper.GetLocalFilePath(entityNew.TypeEntity, entityNew.FolderId, entityNew.EntityId);
+          string path = GetLocalFilePath(entityNew.TypeEntity, entityNew.FolderId, entityNew.EntityId);
           fileHelper.SaveFile(path, jsonStringNew);
           entityNew.FullPathFile = path;
           if (entityOld == null)
@@ -266,7 +256,7 @@ namespace MyTagPocket.Repository
         try
         {
           Log.Trace(methodCode, "Delete Entity={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
-          string path = fileHelper.GetLocalFilePath(entity.TypeEntity, entity.FolderId, entity.EntityId);
+          string path = GetLocalFilePath(entity.TypeEntity, entity.FolderId, entity.EntityId);
           fileHelper.DeleteFile(path);
           //Delete the archive
           switch (entity.TypeEntity.Value)
@@ -320,6 +310,19 @@ namespace MyTagPocket.Repository
         startPosition += info.LengthContent;
       }
       return result;
+    }
+
+    /// <summary>
+    /// Get path for file 
+    /// </summary>
+    /// <param name="typeEntity"></param>
+    /// <param name="folderId"></param>
+    /// <param name="entityId"></param>
+    /// <returns></returns>
+    private string GetLocalFilePath(DataTypeEnum typeEntity, string folderId, string entityId)
+    {
+      //AppGlobal.Folders.
+      throw new NotImplementedException();
     }
   }
 }

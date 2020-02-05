@@ -32,20 +32,23 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="LiteDB" Version="4.1.4" />
-    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.1.1" />
-    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.1.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-    <PackageReference Include="Newtonsoft.Json.Encryption" Version="2.1.0" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.6.4" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.6.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json.Encryption" Version="2.1.1" />
     <PackageReference Include="NLog" Version="4.6.8" />
     <PackageReference Include="NLog.Extensions.Logging" Version="1.6.1" />
     <PackageReference Include="NLog.Targets.Seq" Version="1.1.0" />
-    <PackageReference Include="Prism.Forms" Version="7.2.0.1367" />
-    <PackageReference Include="Prism.Plugin.Logging.AppCenter" Version="7.2.0.616" />
-    <PackageReference Include="Prism.Plugin.Logging.Common" Version="7.2.0.616" />
-    <PackageReference Include="System.IO.Abstractions" Version="7.0.7" />
+    <PackageReference Include="Prism.Forms" Version="7.2.0.1422" />
+    <PackageReference Include="Prism.Plugin.Logging.AppCenter" Version="7.2.0.700" />
+    <PackageReference Include="Prism.Plugin.Logging.Common" Version="7.2.0.700" />
+    <PackageReference Include="Syncfusion.Licensing" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.4.0.44" />
+    <PackageReference Include="System.IO.Abstractions" Version="7.1.4" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
-    <PackageReference Include="Xamarin.Forms" Version="4.3.0.947036" />
-    <PackageReference Include="Prism.Unity.Forms" Version="7.2.0.1367" />
+    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
+    <PackageReference Include="Prism.Unity.Forms" Version="7.2.0.1422" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
@@ -58,6 +61,10 @@
     <EmbeddedResource Update="Resources\Audit.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Audit.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Help.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Help.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\ResourceApp.cs.resx">
       <Generator></Generator>
@@ -87,7 +94,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\Audits\" />
-    <Folder Include="Resources\Images\" />
+    <Folder Include="Resources\help\ios\" />
+    <Folder Include="Resources\help\droid\" />
+    <Folder Include="Resources\help\all\" />
+    <Folder Include="Resources\help\uwp\" />
+    <Folder Include="Resources\Images\ios\" />
+    <Folder Include="Resources\Images\droid\" />
+    <Folder Include="Resources\Images\all\" />
+    <Folder Include="Resources\Images\uwp\" />
     <Folder Include="Services\Interface\" />
     <Folder Include="ViewModels\Users\" />
   </ItemGroup>
@@ -106,6 +120,11 @@
       <DependentUpon>Audit.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Resources\Help.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Help.resx</DependentUpon>
     </Compile>
     <Compile Update="Resources\ResourceApp.Designer.cs">
       <DesignTime>True</DesignTime>

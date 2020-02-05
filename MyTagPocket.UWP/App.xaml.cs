@@ -1,4 +1,9 @@
-﻿using System;
+﻿using MyTagPocket.Repository;
+using Syncfusion.XForms.UWP.Border;
+using Syncfusion.XForms.UWP.Buttons;
+using System;
+using System.Collections.Generic;
+using System.Reflection;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -20,6 +25,8 @@ namespace MyTagPocket.UWP
     {
       this.InitializeComponent();
       this.Suspending += OnSuspending;
+      var setting = new SettingRepository();
+      AppGlobal.Init(setting);
     }
 
     /// <summary>
@@ -29,20 +36,25 @@ namespace MyTagPocket.UWP
     /// <param name="e">Details about the launch request and process.</param>
     protected override void OnLaunched(LaunchActivatedEventArgs e)
     {
-
-
       Frame rootFrame = Window.Current.Content as Frame;
 
       // Do not repeat app initialization when the Window already has content,
       // just ensure that the window is active
       if (rootFrame == null)
       {
+        //Syncfusion
+        List<Assembly> assembliesToInclude = new List<Assembly>();
+        assembliesToInclude.Add(typeof(SfButtonRenderer).GetTypeInfo().Assembly);
+        assembliesToInclude.Add(typeof(SfChipRenderer).GetTypeInfo().Assembly);
+        assembliesToInclude.Add(typeof(SfChipGroupRenderer).GetTypeInfo().Assembly);
+        assembliesToInclude.Add(typeof(SfBorderRenderer).GetTypeInfo().Assembly);
+
         // Create a Frame to act as the navigation context and navigate to the first page
         rootFrame = new Frame();
 
         rootFrame.NavigationFailed += OnNavigationFailed;
 
-        Xamarin.Forms.Forms.Init(e);
+        Xamarin.Forms.Forms.Init(e, assembliesToInclude);
 
         if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
         {

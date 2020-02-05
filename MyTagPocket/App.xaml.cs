@@ -20,6 +20,7 @@ namespace MyTagPocket
 
     protected override async void OnInitialized()
     {
+      Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjAzMTI5QDMxMzcyZTMzMmUzMG82VDd3RGJMTnJMUEd1NDg3N2pxMDFGeFIwUDI5Wjl0bXh0SHEwa2NLcEk9");
       InitializeComponent();
 
       await NavigationService.NavigateAsync("MainNavigationPage/ContentListPage");

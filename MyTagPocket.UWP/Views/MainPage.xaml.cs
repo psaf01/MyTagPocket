@@ -2,6 +2,7 @@
 using MyTagPocket.UWP.Library.CoreUtil;
 using Prism;
 using Prism.Ioc;
+using System;
 
 namespace MyTagPocket.UWP
 {
@@ -11,8 +12,15 @@ namespace MyTagPocket.UWP
     public MainPage()
     {
       this.InitializeComponent();
-
       LoadApplication(new MyTagPocket.App(new UwpInitializer()));
+      InitApp();
+    }
+
+    /// <summary>
+    /// Initialize UWP application
+    /// </summary>
+    private void InitApp()
+    {
     }
   }
   public class UwpInitializer : IPlatformInitializer

@@ -46,7 +46,7 @@ namespace MyTagPocket
     public static CurrentUser UserSystem { get; set; }
 
     /// <summary>
-    /// Current directories for writing file entities
+    /// Current directories for writing or read file entities
     /// </summary>
     public static CurrentFolders Folders{get;set;}
   }

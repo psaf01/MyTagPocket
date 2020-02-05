@@ -11,13 +11,6 @@ namespace MyTagPocket.Repository.Interfaces
   public interface IFileRepository
   {
     /// <summary>
-    /// Get path on file system
-    /// </summary>
-    /// <param name="type">Data type</param>
-    /// <returns>Full path to file</returns>
-    string GetPath(DataTypeEnum type);
-
-    /// <summary>
     /// Load entity from file system
     /// </summary>
     /// <typeparam name="T">Entity type</typeparam>

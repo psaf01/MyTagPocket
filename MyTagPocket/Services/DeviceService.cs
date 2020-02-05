@@ -47,11 +47,11 @@ namespace MyTagPocket.Services
     }
 
     /// <summary>
-    /// Create new device. Initialize device
+    /// Create new local device. Initialize device
     /// </summary>
     /// <param name="deviceType">The type of device on which the new record is created</param>
     /// <returns>New device definition</returns>
-    public async Task<Device> CreateNewDevice(DeviceTypeEnum deviceType)
+    public async Task<Device> CreateDevice(DeviceTypeEnum deviceType)
     {
       const string methodCode = "M01";
 
@@ -62,8 +62,7 @@ namespace MyTagPocket.Services
       device.CreatedWhen = DateTimeOffset.Now;
 
       Log.Trace(methodCode, "Create Device {@DeviceType}", deviceType.LocalizedName);
-      Log.InitializeLog();
-      await dalRepo.InitilizeDbAsync();
+      await dalRepo.SaveAsync(device);
       Log.Audit("DvcCreate", DataTypeEnum.Device, AppGlobal.Device.DeviceGuid, AppGlobal.UserSystem.UserGuid);
 
       /*

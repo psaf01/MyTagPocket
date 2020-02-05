@@ -7,6 +7,6 @@
 
   <StackLayout>
 
-    <Label Text="TEST" />
+    <Label Text="TEST PAVEL1" />
   </StackLayout>
 </ContentPage>
