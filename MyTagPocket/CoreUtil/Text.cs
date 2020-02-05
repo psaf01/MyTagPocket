@@ -13,59 +13,7 @@ namespace MyTagPocket.CoreUtil
     const string classCode = "[1001700]";
     public static Interfaces.ILogger Log = Xamarin.Forms.DependencyService.Get<Interfaces.ILogManager>().GetLog(classCode);
 
-    /// <summary>
-    /// Get new GUID short
-    /// </summary>
-    /// <returns>Short GUID</returns>
-    public static string GuidShort()
-    {
-      return GuidShort(Guid.NewGuid());
-    }
-
-    /// <summary>
-    /// Get GUID short
-    /// </summary>
-    /// <param name="guid">GUID</param>
-    /// <returns>Short GUID</returns>
-    public static string GuidShort(Guid guid)
-    {
-      string encoded =  Convert.ToBase64String(guid.ToByteArray());
-      encoded = encoded.Replace("/", "_").Replace("+", "-");
-      return encoded.Substring(0, 22);
-    }
-
-    /// <summary>
-    /// Decode short GUID to GUID
-    /// </summary>
-    /// <param name="guid">Shor GUID</param>
-    /// <returns>GUID</returns>
-    public static Guid GuidShordDecode(string guid)
-    {
-      guid = guid.Replace("_", "/").Replace("-", "+");
-      byte[] blob = Convert.FromBase64String(guid + "==");
-      return new Guid(blob);
-    }
-
-    /// <summary>
-    /// Try decode short GUID
-    /// </summary>
-    /// <param name="value">Try value</param>
-    /// <param name="guid">Output GUID</param>
-    /// <returns>True is correct decode</returns>
-    public static bool GuidShortDecodeTry(string value, out Guid guid)
-    {
-      try
-      {
-        guid = GuidShordDecode(value);
-        return true;
-      }
-      catch
-      {
-        guid = Guid.Empty;
-        return false;
-      }
-    }
-
+   
     /// <summary>
     /// Convert string to Ascii text
     /// </summary>

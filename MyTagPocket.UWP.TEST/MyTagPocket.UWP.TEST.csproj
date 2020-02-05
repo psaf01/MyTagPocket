@@ -96,6 +96,7 @@
   <ItemGroup>
     <Compile Include="AppGlobalTest.cs" />
     <Compile Include="CoreUtil\SecurityTest.cs" />
+    <Compile Include="CoreUtil\ShortGuidTest.cs" />
     <Compile Include="Mocks\ApplicationMock.cs" />
     <Compile Include="Mocks\MockFileSystemStorage.cs" />
     <Compile Include="Mocks\MockSettingRepository.cs" />
