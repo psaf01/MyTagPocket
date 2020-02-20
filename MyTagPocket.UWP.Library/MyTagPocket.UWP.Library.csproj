@@ -128,6 +128,10 @@
     <Compile Include="CoreUtil\LogManager_UWP_audit_memory.cs" />
     <Compile Include="CoreUtil\LogManager_UWP.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\App\PackageListPageViewModel.cs" />
+    <Compile Include="Views\App\PackageListPage.xaml.cs">
+      <DependentUpon>PackageListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="_ClassCodeLast.cs" />
     <EmbeddedResource Include="Properties\MyTagPocket.UWP.Library.rd.xml" />
   </ItemGroup>
@@ -178,9 +182,12 @@
       <Name>MyTagPocket</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="ViewModel\" />
-    <Folder Include="Views\" />
+    <EmbeddedResource Include="Views\App\PackageListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

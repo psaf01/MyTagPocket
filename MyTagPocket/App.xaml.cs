@@ -1,6 +1,8 @@
-﻿using MyTagPocket.ViewModels;
+﻿using MyTagPocket.Events.Navigation;
+using MyTagPocket.ViewModels;
 using MyTagPocket.Views;
 using Prism;
+using Prism.Events;
 using Prism.Ioc;
 using Xamarin.Forms.Xaml;
 
@@ -22,8 +24,9 @@ namespace MyTagPocket
     {
       Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjAzMTI5QDMxMzcyZTMzMmUzMG82VDd3RGJMTnJMUEd1NDg3N2pxMDFGeFIwUDI5Wjl0bXh0SHEwa2NLcEk9");
       InitializeComponent();
-
-      await NavigationService.NavigateAsync("MainNavigationPage/ContentListPage");
+      var ea = Container.Resolve<IEventAggregator>();
+      ea.GetEvent<ShowPackagesListPageEvent>().Publish();
+      //await NavigationService.NavigateAsync("MainNavigationPage/ContentListPage");
     }
 
     protected override void RegisterTypes(IContainerRegistry containerRegistry)
