@@ -10,7 +10,8 @@
   using System;
   using System.Collections.Generic;
   using System.IO;
-  using System.Linq.Expressions;
+    using System.Linq;
+    using System.Linq.Expressions;
   using System.Threading.Tasks;
 
   /// <summary>
@@ -58,8 +59,8 @@
         {
           using (var db = DalHelper.OpenDB())
           {
-            //if (db.Engine.UserVersion == 0)
-            //  InitializeMainDbVer1(db);
+            if (GetVersionDb(db) == 0)
+              InitializeMainDbVer1(db);
           }
         }
       });
@@ -188,7 +189,29 @@
           using (var db = DalHelper.OpenDB())
           {
             var dbCol = db.GetCollection<T>();
-            return dbCol.Find(predicate, skip, limit);
+            return dbCol.Find(predicate, skip, limit).ToList();
+          }
+        }
+      });
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="predicate">Predicate for search entity</param>
+    /// <returns></returns>
+    public async Task<T> FindOneAsync<T>(Expression<Func<T, bool>> predicate)
+    {
+      return await Task.Run(() =>
+      {
+        using (lockObject.Lock())
+        {
+          using (var db = DalHelper.OpenDB())
+          {
+            var dbCol = db.GetCollection<T>();
+            T result = dbCol.FindOne(predicate);
+            return result;
           }
         }
       });
@@ -214,6 +237,7 @@
       });
     }
     #region Update database
+
     /// <summary>
     /// Initialize MyTagPocket database
     /// </summary>
@@ -221,29 +245,43 @@
     {
       const string methodCode = "M01";
       Log.Trace(methodCode, "Initialize database");
-      /*
-      var dbColl = db.Engine.GetCollectionNames();
-      int dbCollCount = 0;
-      var findDeviceColl = false;
+
       var dateTime = DateTimeOffset.Now;
       var device = new Device();
-      foreach (var collName in dbColl)
-      {
-        if (collName == device.GetNameCollection)
-          findDeviceColl = true;
+      Log.Trace(methodCode, $"Initialize collection {device.GetNameCollection}");
+      var deviceCol = db.GetCollection<Device>(device.GetNameCollection);
+      deviceCol.EnsureIndex(nameof(device.DeviceId), true);
+      deviceCol.EnsureIndex(nameof(device.Name), false);
 
-        dbCollCount++;
-      }
-
-      if (!findDeviceColl)
-      {
-        db.Engine.EnsureIndex(device.GetNameCollection, nameof(device.DeviceId), true);
-        db.Engine.EnsureIndex(device.GetNameCollection, nameof(device.Name), true);
-      }
-
-      db.Engine.UserVersion = 1;
-      */
+      SetVersionDb(db, 1);
     }
     #endregion Update database
+
+    #region Private method
+    /// <summary>
+    /// Actual version Audit database
+    /// </summary>
+    /// <returns>Version</returns>
+    private int GetVersionDb(LiteDatabase db)
+    {
+      int ver = 0;
+      var dbVersion = db.Pragma("USER_VERSION");
+      if (dbVersion == null)
+        return ver;
+
+      ver = dbVersion.AsInt32;
+      return ver;
+    }
+
+    /// <summary>
+    /// Set new user version LiteDb
+    /// </summary>
+    /// <param name="db"LiteDb session></param>
+    /// <param name="newVersion">Number new version</param>
+    private void SetVersionDb(LiteDatabase db, int newVersion)
+    {
+      db.Pragma("USER_VERSION", newVersion);
+    }
+    #endregion Private method
   }
 }

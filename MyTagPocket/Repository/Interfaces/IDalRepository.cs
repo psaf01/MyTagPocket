@@ -57,6 +57,8 @@ namespace MyTagPocket.Repository.Interfaces
     /// <returns>List Entities</returns>
     Task<IEnumerable<T>> FindAsync<T>(Expression<Func<T, bool>> predicate, int skip = 0, int limit = int.MaxValue);
 
+    Task<T> FindOneAsync<T>(Expression<Func<T, bool>> predicate);
+
     /// <summary>
     /// Count entities
     /// </summary>
