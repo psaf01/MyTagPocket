@@ -176,6 +176,7 @@ namespace MyTagPocket.Repository
       if (db.CollectionExists(audit.GetNameCollection))
         return;
 
+      CreateIndexAuditCollection(db, audit);
       //First audit collection
       var col = new Entity.AuditDbCollection();
       col.CollectionName = audit.GetNameCollection;
