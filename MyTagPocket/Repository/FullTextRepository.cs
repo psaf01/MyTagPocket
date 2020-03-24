@@ -62,8 +62,8 @@ namespace MyTagPocket.Repository
         {
           using (var db = FullTextHelper.OpenDB())
           {
-            if (db.Engine.UserVersion == 0)
-              InitializeMainDbVer1(db);
+            //if (db.Engine.UserVersion == 0)
+            //  InitializeMainDbVer1(db);
           }
         }
       });
@@ -77,6 +77,7 @@ namespace MyTagPocket.Repository
     {
       const string methodCode = "M01";
       Log.Trace(methodCode, "Initialize fullText");
+      /*
       var dbColl = db.Engine.GetCollectionNames();
       int dbCollCount = 0;
       var findWordIndexColl = false;
@@ -106,6 +107,7 @@ namespace MyTagPocket.Repository
         db.Engine.EnsureIndex(catalogIndex.GetNameCollection, nameof(catalogIndex.WordId), true);
       }
       db.Engine.UserVersion = 1;
+      */
     }
     #endregion Update fullText
   }

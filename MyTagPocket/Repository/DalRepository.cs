@@ -58,8 +58,8 @@
         {
           using (var db = DalHelper.OpenDB())
           {
-            if (db.Engine.UserVersion == 0)
-              InitializeMainDbVer1(db);
+            //if (db.Engine.UserVersion == 0)
+            //  InitializeMainDbVer1(db);
           }
         }
       });
@@ -221,6 +221,7 @@
     {
       const string methodCode = "M01";
       Log.Trace(methodCode, "Initialize database");
+      /*
       var dbColl = db.Engine.GetCollectionNames();
       int dbCollCount = 0;
       var findDeviceColl = false;
@@ -241,6 +242,7 @@
       }
 
       db.Engine.UserVersion = 1;
+      */
     }
     #endregion Update database
   }

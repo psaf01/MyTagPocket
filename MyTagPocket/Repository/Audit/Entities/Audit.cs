@@ -14,7 +14,7 @@ namespace MyTagPocket.Repository.Audit.Entities
     public Audit() : base(nameCollectionEntity: "audit")
     {
       DateTimeOffset dateTime = DateTimeOffset.Now;
-      nameCollection = $"audit{dateTime.Year.ToString("D4")}{dateTime.Month.ToString("D2")}";
+      nameCollection = Audit.GenerateNameCollection(); 
       DataType = DataTypeEnum.Unclassified;
       CreatedWhen = dateTime;
     }
@@ -48,5 +48,27 @@ namespace MyTagPocket.Repository.Audit.Entities
     /// GUID user
     /// </summary>
     public string UserGuid { get; set; }
+
+
+    /// <summary>
+    /// Generate name collection for audit
+    /// </summary>
+    /// <returns>Name</returns>
+    public static string GenerateNameCollection()
+    {
+      DateTimeOffset dateTime = DateTimeOffset.Now;
+      return $"audit{dateTime.Year.ToString("D4")}{dateTime.Month.ToString("D2")}";
+    }
+
+    /// <summary>
+    /// Generate name collection for audit
+    /// </summary>
+    /// <param name="year">Year</param>
+    /// <param name="month">Month</param>
+    /// <returns>Name</returns>
+    public static string GenerateNameCollection(int year, int month)
+    {
+      return $"audit{year.ToString("D4")}{ month.ToString("D2")}";
+    }
   }
 }

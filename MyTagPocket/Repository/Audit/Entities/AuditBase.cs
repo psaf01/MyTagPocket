@@ -1,9 +1,10 @@
 ﻿using MyTagPocket.Repository.Dal.Interface;
+using System;
 
 namespace MyTagPocket.Repository.Audit.Entities
 {
   /// <summary>
-  /// Base object for LiteDb
+  /// Base object for audit collection in LiteDb
   /// </summary>
   public abstract class AuditBase : IDalBase
   {

@@ -28,6 +28,10 @@ namespace MyTagPocket
       CurrentUser user = new CurrentUser(setttingRepository, Folders.UsersGuid);
       User = user;
       User.Init();
+
+      SettingLog log = new SettingLog(setttingRepository);
+      Log = log;
+      Log.Init();
     }
 
     /// <summary>
@@ -49,5 +53,10 @@ namespace MyTagPocket
     /// Current directories for writing or read file entities
     /// </summary>
     public static CurrentFolders Folders{get;set;}
+
+    /// <summary>
+    /// Settin for logging, auditing etc
+    /// </summary>
+    public static SettingLog Log { get; set; }
   }
 }

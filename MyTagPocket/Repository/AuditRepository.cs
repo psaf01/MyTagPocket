@@ -1,14 +1,11 @@
 ﻿using LiteDB;
 using MyTagPocket.CoreUtil;
-using MyTagPocket.CoreUtil.Exceptions;
 using MyTagPocket.CoreUtil.Interfaces;
 using MyTagPocket.Repository.Audit;
 using MyTagPocket.Repository.Interfaces;
-using MyTagPocket.Resources;
 using NeoSmart.AsyncLock;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Entity = MyTagPocket.Repository.Audit.Entities;
@@ -46,7 +43,7 @@ namespace MyTagPocket.Repository
         {
           using (var db = DalHelper.OpenDB())
           {
-            if (db.Engine.UserVersion == 0)
+            if (GetVersionDb(db) == 0)
               InitializeAuditLogVer1(db);
           }
         }
@@ -117,7 +114,7 @@ namespace MyTagPocket.Repository
       {
         using (var db = DalHelper.OpenDB())
         {
-          var audits = db.GetCollection<Entity.Audit>($"audit{year.ToString("D4")}{month.ToString("D2")}");
+          var audits = db.GetCollection<Entity.Audit>(Entity.Audit.GenerateNameCollection(year, month));
           return audits.Find(x => x.Id > 0, skip, limit);
         }
       }
@@ -135,7 +132,7 @@ namespace MyTagPocket.Repository
       {
         using (var db = DalHelper.OpenDB())
         {
-          var audits = db.GetCollection<Entity.Audit>($"audit{year.ToString("D4")}{month.ToString("D2")}");
+          var audits = db.GetCollection<Entity.Audit>(Entity.Audit.GenerateNameCollection(year, month));
           return audits.Count();
         }
       }
@@ -144,55 +141,111 @@ namespace MyTagPocket.Repository
     #region Update database
     private void InitializeAuditLogVer1(LiteDatabase db)
     {
-      var dbColl = db.Engine.GetCollectionNames();
-      int dbCollCount = 0;
-      var findAuditDbColl = false;
-      var findAudit = false;
+      DatabaseSetUtcData(db);
+      
       var dateTime = DateTimeOffset.Now;
-
-      Entity.Audit a = new Entity.Audit();
-      a.Code = AuditCodes.InitAuditDb;
-      a.CreatedWhen = dateTime;
-      a.UserGuid = AppGlobal.UserSystem.UserGuid;
-      a.DeviceGuid = AppGlobal.Device.DeviceGuid;
-      a.DataType = DataTypeEnum.Audit;
-      a.Parameters = new string[] { dateTime.Year.ToString(), dateTime.Month.ToString() };
-
-      var auditDbCollection = new Entity.AuditDbCollection();
-      auditDbCollection.CollectionName = a.GetNameCollection;
-      auditDbCollection.CreatedWhen = dateTime;
-
-      foreach (var collName in dbColl)
-      {
-        if (collName == auditDbCollection.GetNameCollection)
-          findAuditDbColl = true;
-
-        if (collName == a.GetNameCollection)
-          findAudit = true;
-
-        dbCollCount++;
-      }
-
-      if (!findAuditDbColl)
-      {
-        db.Engine.EnsureIndex(auditDbCollection.GetNameCollection, nameof(auditDbCollection.CollectionName), false);
-        var colAudit = db.GetCollection<Entity.AuditDbCollection>();
-        colAudit.Insert(auditDbCollection);
-      }
-
-      if (!findAudit)
-      {
-        db.Engine.EnsureIndex(a.GetNameCollection, nameof(a.Code), false);
-        db.Engine.EnsureIndex(a.GetNameCollection, nameof(a.CreatedWhen), false);
-        db.Engine.EnsureIndex(a.GetNameCollection, nameof(a.UserGuid), false);
-        db.Engine.EnsureIndex(a.GetNameCollection, nameof(a.DeviceGuid), false);
-        db.Engine.EnsureIndex(a.GetNameCollection, nameof(a.DataType), false);
-        var col = db.GetCollection<Entity.Audit>();
-        col.Insert(a);
-      }
-
-      db.Engine.UserVersion = 1;
+      //First audit log
+      Entity.Audit audit = new Entity.Audit();
+      audit.Code = AuditCodes.InitAuditDb;
+      audit.CreatedWhen = dateTime;
+      audit.UserGuid = AppGlobal.UserSystem.UserGuid;
+      audit.DeviceGuid = AppGlobal.Device.DeviceGuid;
+      audit.DataType = DataTypeEnum.Audit;
+      audit.Parameters = new string[] { dateTime.Year.ToString(), dateTime.Month.ToString() };
+      
+      CreateIndexAuditCollection(db, audit);
+      CreateIndexAuditDbCollection(db);
+      
+      var colAudit = db.GetCollection<Entity.Audit>(audit.GetNameCollection);
+      colAudit.Insert(audit);
+      CheckAuditCollection(db, audit);
+      SetVersionDb(db, 1);
     }
+
     #endregion Update database
+
+    #region Private method
+    /// <summary>
+    /// Check audit collection exist and create new collection for audit if not exists
+    /// </summary>
+    /// <param name="db">Database</param>
+    /// <param name="audit">Audit record</param>
+    private void CheckAuditCollection(LiteDatabase db, Entity.Audit audit)
+    {
+      if (db.CollectionExists(audit.GetNameCollection))
+        return;
+
+      //First audit collection
+      var col = new Entity.AuditDbCollection();
+      col.CollectionName = audit.GetNameCollection;
+      col.CreatedWhen = audit.CreatedWhen;
+      var colDb = db.GetCollection<Entity.AuditDbCollection>(col.GetNameCollection);
+      colDb.Insert(col);
+      if (!(colDb.Count() > AppGlobal.Log.MaxAuditCollection))
+        return;
+
+      var deleteCol = colDb.FindOne(Query.All(-1));
+      if (deleteCol == null)
+        return;
+
+      db.DropCollection(deleteCol.CollectionName);
+    }
+    /// <summary>
+    /// Create new definition audit index collection
+    /// </summary>
+    /// <param name="db">Database</param>
+    private void CreateIndexAuditDbCollection(LiteDatabase db)
+    {
+      var colDbDef = new Entity.AuditDbCollection();
+      var colDb = db.GetCollection<Entity.AuditDbCollection>(colDbDef.GetNameCollection);
+      colDb.EnsureIndex(nameof(colDbDef.CollectionName), true);
+    }
+
+    /// <summary>
+    /// Create new audit index collection
+    /// </summary>
+    /// <param name="db">Database</param>
+    /// <param name="audit">Audit</param>
+    private void CreateIndexAuditCollection(LiteDatabase db, Entity.Audit audit)
+    {
+      var colAudit = db.GetCollection<Entity.Audit>(audit.GetNameCollection);
+      colAudit.EnsureIndex(nameof(audit.CreatedWhen), false);
+      colAudit.EnsureIndex(nameof(audit.DataType), false);
+    }
+
+    /// <summary>
+    /// Set UTC datetime in LiteDB
+    /// </summary>
+    /// <param name="db"></param>
+    private void DatabaseSetUtcData(LiteDatabase db)
+    {
+      db.Pragma("UTC_DATE", true);
+    }
+
+    /// <summary>
+    /// Actual version Audit database
+    /// </summary>
+    /// <returns>Version</returns>
+    private int GetVersionDb(LiteDatabase db)
+    {
+      int ver = 0;
+      var dbVersion = db.Pragma("USER_VERSION");
+      if (dbVersion == null)
+        return ver;
+
+      ver = dbVersion.AsInt32;
+      return ver;
+    }
+
+    /// <summary>
+    /// Set new user version LiteDb
+    /// </summary>
+    /// <param name="db"LiteDb session></param>
+    /// <param name="newVersion">Number new version</param>
+    private void SetVersionDb(LiteDatabase db, int newVersion)
+    {
+      db.Pragma("USER_VERSION", newVersion);
+    }
+    #endregion
   }
 }
