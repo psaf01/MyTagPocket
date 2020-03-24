@@ -18,6 +18,8 @@ namespace MyTagPocket.UWP.TEST.Repository
     [Fact]
     public void SaveGetTest()
     {
+      var mockSetting = new MockSettingRepository();
+      AppGlobal.Init(mockSetting);
       IUnityContainer myContainer = new UnityContainer();
       myContainer.RegisterType<IFileHelper, FileHelper_UWP>();
       myContainer.RegisterType<ILogManager, LogManager_UWP_audit_memory>();
@@ -25,10 +27,10 @@ namespace MyTagPocket.UWP.TEST.Repository
       var fileHelper = myContainer.Resolve<FileHelper_UWP>();
       fileHelper.FileSystemStorage = MockFileSystemStorage.MockFileSystem;
       MockFileSystemStorage.InitMockFileSystem();
-      var mockSetting = new MockSettingRepository();
+     
       mockSetting.InitializeTestDataBasic();
 
-      AppGlobal.Init(mockSetting);
+     
       logManager.AuditLogger.InitializeAuditLogAsync().Wait();
 
       var log = logManager.GetLog("C00000");
@@ -44,7 +46,7 @@ namespace MyTagPocket.UWP.TEST.Repository
       var dateTime = DateTimeOffset.Now;
       var audits = logManager.AuditLogger.GetAudits(dateTime.Year, dateTime.Month);
       var count = logManager.AuditLogger.Count(dateTime.Year, dateTime.Month);
-      Assert.True(count == 4);
+      Assert.True(count == 5);
       Assert.True(count == audits.ToList().Count());
     }
   }

@@ -60,8 +60,9 @@ namespace MyTagPocket.Repository
       {
         using (var db = DalHelper.OpenDB())
         {
+          CheckAuditCollection(db, audit);
           DateTimeOffset dateTime = DateTimeOffset.Now;
-          var audits = db.GetCollection<Entity.Audit>($"audit{dateTime.Year.ToString("D4")}{dateTime.Month.ToString("D2")}");
+          var audits = db.GetCollection<Entity.Audit>(audit.GetNameCollection);
           var x = audits.Insert(audit);
         }
       }
