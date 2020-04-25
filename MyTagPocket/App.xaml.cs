@@ -24,9 +24,9 @@ namespace MyTagPocket
     {
       Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjAzMTI5QDMxMzcyZTMzMmUzMG82VDd3RGJMTnJMUEd1NDg3N2pxMDFGeFIwUDI5Wjl0bXh0SHEwa2NLcEk9");
       InitializeComponent();
-      var ea = Container.Resolve<IEventAggregator>();
-      ea.GetEvent<ShowPackagesListPageEvent>().Publish();
-      //await NavigationService.NavigateAsync("MainNavigationPage/ContentListPage");
+      //var ea = Container.Resolve<IEventAggregator>();
+      //ea.GetEvent<ShowPackagesListPageEvent>().Publish();
+      await NavigationService.NavigateAsync("MainPage");
     }
 
     protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -37,6 +37,11 @@ namespace MyTagPocket
       containerRegistry.RegisterForNavigation<MainMasterDetailPage, MainMasterDetailPageViewModel>();
       containerRegistry.RegisterForNavigation<MainNavigationPage, MainNavigationPageViewModel>();
       containerRegistry.RegisterForNavigation<Views.Contents.ContentListPage, ViewModels.Contents.ContentListPageViewModel>();
+      containerRegistry.RegisterForNavigationOnIdiom<MainPage, MainPageViewModel>(
+        phoneView: typeof(MainPage),
+         desktopView: typeof(MainPageDesktop),
+          tabletView: typeof(MainPage)
+);
     }
   }
 }

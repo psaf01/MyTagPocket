@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MyTagPocket.Views.MainPageDesktop">
+  <ContentPage.Content>
+    <Grid x:Name="MainPageGrid">
+      <Grid.RowDefinitions>
+        <RowDefinition x:Name="MainPageGridRowFavorites" Height="100" />
+        <RowDefinition x:Name="MainPageGridRowContent" Height="*" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition x:Name="MainPageGridColumnFilterList" Width="50" />
+        <ColumnDefinition x:Name="MainPageGridColumnPackageList" Width="50" />
+        <ColumnDefinition x:Name="MainPageGridColumnPackage" Width="*" />
+      </Grid.ColumnDefinitions>
+      <Frame x:Name="MainPageFrameFavorites" 
+             Grid.Row="0" Grid.Column="0"
+             Grid.ColumnSpan="3"
+             BorderColor="Black"
+              CornerRadius="10"
+              HasShadow="True">
+        <Label Text="FAVORITES LIST"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+      </Frame>
+      <Frame x:Name="MainPageFrameFilterList" 
+             Grid.Row="1" Grid.Column="0"
+              BorderColor="Black"
+              CornerRadius="10"
+              HasShadow="True">
+        <Label Text="FILTER LIST"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+      </Frame>
+      <Frame x:Name="MainPageFramePackageList" 
+             Grid.Row="1" Grid.Column="1"
+              BorderColor="Black"
+              CornerRadius="10"
+              HasShadow="True">
+        <Label Text="PACKAGE LIST"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+      </Frame>
+      <Frame x:Name="MainPageFramePackage" 
+             Grid.Row="1" Grid.Column="2"
+              BorderColor="Black"
+              CornerRadius="10"
+              HasShadow="True">
+        <StackLayout>
+          <Label Text="Package" TextColor="Red"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+          <Button x:Name="Button1" BackgroundColor="Green" Text="TEST"/>
+        </StackLayout>
+      </Frame>
+    </Grid>
+  </ContentPage.Content>
+</ContentPage>
