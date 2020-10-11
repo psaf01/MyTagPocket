@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTagPocket.UWP.TEST", "MyT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTagPocket.UWP.Library", "MyTagPocket.UWP.Library\MyTagPocket.UWP.Library.csproj", "{FB3F24CB-514F-4259-A8C1-19AAD9BA8394}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{8D56CD21-FBB0-4B4F-B411-475938D8D9D2}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU

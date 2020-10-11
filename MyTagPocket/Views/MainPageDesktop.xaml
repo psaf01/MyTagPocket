@@ -8,14 +8,26 @@
   <ContentPage.Content>
     <Grid x:Name="MainPageGrid">
       <Grid.RowDefinitions>
-        <RowDefinition x:Name="MainPageGridRowFavorites" Height="100" />
+        <RowDefinition x:Name="MainPageGridRowFavorites" Height="50" />
         <RowDefinition x:Name="MainPageGridRowContent" Height="*" />
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
-        <ColumnDefinition x:Name="MainPageGridColumnFilterList" Width="50" />
-        <ColumnDefinition x:Name="MainPageGridColumnPackageList" Width="50" />
+        <ColumnDefinition x:Name="MainPageGridColumnFilterList" Width="20*" />
+        <ColumnDefinition x:Name="MainPageGridColumnPackageList" Width="20*" />
         <ColumnDefinition x:Name="MainPageGridColumnPackage" Width="*" />
       </Grid.ColumnDefinitions>
+      <StackLayout x:Name="MainPageFramePackageList"
+                    Grid.Row="1" Grid.Column="1">
+        <Frame x:Name="FilterResult">
+          <StackLayout x:Name="FilterResultContent">
+            <Entry x:Name="FullTextEntry" Placeholder="" />
+            <Label Text="NAME:"></Label>
+            <Label Text="FULLTEXT:"></Label>
+            <Label Text="SYSTEM TAG:"></Label>
+            <Label Text="USER TAG:"></Label>
+          </StackLayout>
+        </Frame>
+      </StackLayout>
       <Frame x:Name="MainPageFrameFavorites" 
              Grid.Row="0" Grid.Column="0"
              Grid.ColumnSpan="3"
@@ -32,15 +44,6 @@
               CornerRadius="10"
               HasShadow="True">
         <Label Text="FILTER LIST"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-      </Frame>
-      <Frame x:Name="MainPageFramePackageList" 
-             Grid.Row="1" Grid.Column="1"
-              BorderColor="Black"
-              CornerRadius="10"
-              HasShadow="True">
-        <Label Text="PACKAGE LIST"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
       </Frame>

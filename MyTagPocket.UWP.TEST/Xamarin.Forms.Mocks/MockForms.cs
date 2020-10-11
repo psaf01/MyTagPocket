@@ -78,6 +78,8 @@ namespace MyTagPocket.UWP.TEST.Xamarin.Forms.Mocks
 
       public string RuntimePlatform { get; set; }
 
+      public OSAppTheme RequestedTheme => throw new NotImplementedException();
+
       public void BeginInvokeOnMainThread(Action action)
       {
         if (_invokeOnMainThread == null)
@@ -127,6 +129,16 @@ namespace MyTagPocket.UWP.TEST.Xamarin.Forms.Mocks
       }
 
       public SizeRequest GetNativeSize(VisualElement view, double widthConstraint, double heightConstraint)
+      {
+        throw new NotImplementedException();
+      }
+
+      public string GetHash(string input)
+      {
+        throw new NotImplementedException();
+      }
+
+      public Color GetNamedColor(string name)
       {
         throw new NotImplementedException();
       }
