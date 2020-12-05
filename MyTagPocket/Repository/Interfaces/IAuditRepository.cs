@@ -20,27 +20,31 @@ namespace MyTagPocket.Repository.Interfaces
     /// Save audit item
     /// </summary>
     /// <param name="audit">Audit item</param>
-    void Save(Entity.Audit audit);
+    Task SaveAsync(Entity.Audit audit);
 
     /// <summary>
     /// Delete audit items for year and month
     /// </summary>
-    /// <param name="year"></param>
-    /// <param name="month"></param>
-    void DeleteAuditCollection(int year, int month);
+    /// <param name="year">Year</param>
+    /// <param name="month">month</param>
+    Task DeleteAuditCollectionAsync(int year, int month);
 
     /// <summary>
     /// Get audit items
     /// </summary>
     /// <param name="predicate">Filter predicate</param>
     /// <returns>Audits</returns>
-    IEnumerable<Entity.Audit> GetAudits(int year, int month, Expression<Func<Entity.Audit, bool>> predicate, int skip = 0, int limit = int.MaxValue);
-    
+    Task<IEnumerable<Entity.Audit>> GetAuditsAsync(int year, int month, Expression<Func<Entity.Audit, bool>> predicate, int skip = 0, int limit = int.MaxValue);
+
     /// <summary>
     /// Get audit items
     /// </summary>
+    /// <param name="year">Year</param>
+    /// <param name="month">Month</param>
+    /// <param name="skip">Skip items</param>
+    /// <param name="limit">Count return items</param>
     /// <returns>Audits</returns>
-    IEnumerable<Entity.Audit> GetAudits(int year, int month, int skip = 0, int limit = int.MaxValue);
+    Task<IEnumerable<Entity.Audit>> GetAuditsAsync(int year, int month, int skip = 0, int limit = int.MaxValue);
 
     /// <summary>
     /// Count audit items 
@@ -48,6 +52,6 @@ namespace MyTagPocket.Repository.Interfaces
     /// <param name="year">Year</param>
     /// <param name="month">Month</param>
     /// <returns>Count audit items</returns>
-    int Count(int year, int month);
+    Task<int> CountAsync(int year, int month);
   }
 }

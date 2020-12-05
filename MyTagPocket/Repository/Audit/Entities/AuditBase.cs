@@ -26,12 +26,9 @@ namespace MyTagPocket.Repository.Audit.Entities
     /// <summary>
     /// Get name collection
     /// </summary>
-    public virtual string GetNameCollection
+    public virtual string GetNameCollection()
     {
-      get
-      {
         return nameCollection;
-      }
     }
   }
 }

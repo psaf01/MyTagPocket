@@ -1,7 +1,4 @@
 ﻿using MyTagPocket.CoreUtil;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MyTagPocket.Repository.Dal.Entities
 {

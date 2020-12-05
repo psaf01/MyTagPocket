@@ -17,12 +17,10 @@ namespace MyTagPocket.UWP.TEST
     public void BasicTest()
     {
       IUnityContainer myContainer = new UnityContainer();
-      myContainer.RegisterType<IFileHelper, FileHelper_UWP>();
-      myContainer.RegisterType<ILogManager, LogManager_UWP>();
-      var logManager = myContainer.Resolve<LogManager_UWP>();
-      var fileHelper = myContainer.Resolve<FileHelper_UWP>();
+      myContainer.RegisterType<ILogManager, LogManager_UWP_audit_memory>();
+      var logManager = myContainer.Resolve<LogManager_UWP_audit_memory>();
       NLog.GlobalDiagnosticsContext.Set("user", "UnitTest");
-      fileHelper.FileSystemStorage = MockFileSystemStorage.MockFileSystem;
+      //fileHelper.FileSystemStorage = MockFileSystemStorage.MockFileSystem;
       var mockSetting = new MockSettingRepository();
       mockSetting.InitializeTestDataBasic();
 

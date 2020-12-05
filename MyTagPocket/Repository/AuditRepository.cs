@@ -1,6 +1,7 @@
 ﻿using LiteDB;
 using MyTagPocket.CoreUtil;
 using MyTagPocket.CoreUtil.Interfaces;
+using MyTagPocket.DbStorage;
 using MyTagPocket.Repository.Audit;
 using MyTagPocket.Repository.Interfaces;
 using NeoSmart.AsyncLock;
@@ -17,19 +18,25 @@ namespace MyTagPocket.Repository
   /// </summary>
   public class AuditRepository : IAuditRepository
   {
-    AsyncLock lockObject = new AsyncLock();
+    private DalDbLiteRepository dbRepository;
 
-    /// <summary>
-    /// Database helper instance
-    /// </summary>
-    public static IDalHelper DalHelper { get; set; }
+    private string actualAuditCollection = "";
 
     /// <summary>
     /// Constructor
     /// </summary>
-    public AuditRepository(IDalHelper dalHelper)
+    public AuditRepository()
     {
-      DalHelper = dalHelper;
+      dbRepository = new DalDbLiteRepository(new DbLiteMemmoryHelper());
+    }
+
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="fullPathToDb">Full path to audit database</param>
+    public AuditRepository(string fullPathToDb)
+    {
+      dbRepository = new DalDbLiteRepository(new DbLiteFileHelper(fullPathToDb));
     }
 
     /// <summary>
@@ -39,14 +46,8 @@ namespace MyTagPocket.Repository
     {
       await Task.Run(() =>
       {
-        using (lockObject.Lock())
-        {
-          using (var db = DalHelper.OpenDB())
-          {
-            if (GetVersionDb(db) == 0)
-              InitializeAuditLogVer1(db);
-          }
-        }
+        if (dbRepository.GetVersionDb() == 0)
+          InitializeAuditLogVer2();
       });
     }
 
@@ -54,34 +55,29 @@ namespace MyTagPocket.Repository
     /// Save audit item
     /// </summary>
     /// <param name="audit">Audit item</param>
-    public void Save(Entity.Audit audit)
+    public async Task SaveAsync(Entity.Audit audit)
     {
-      using (lockObject.Lock())
+      if (audit.GetNameCollection() != actualAuditCollection)
       {
-        using (var db = DalHelper.OpenDB())
-        {
-          CheckAuditCollection(db, audit);
-          DateTimeOffset dateTime = DateTimeOffset.Now;
-          var audits = db.GetCollection<Entity.Audit>(audit.GetNameCollection);
-          var x = audits.Insert(audit);
-        }
+        CheckAuditCollection(audit);
+        actualAuditCollection = audit.GetNameCollection();
       }
+
+      DateTimeOffset dateTime = DateTimeOffset.Now;
+      await dbRepository.InsertAsync(audit, audit.GetNameCollection());
     }
 
     /// <summary>
     /// Delete audit items for year and month
     /// </summary>
-    /// <param name="year"></param>
-    /// <param name="month"></param>
-    public void DeleteAuditCollection(int year, int month)
+    /// <param name="year">Year</param>
+    /// <param name="month">month</param>
+    public async Task DeleteAuditCollectionAsync(int year, int month)
     {
-      using (lockObject.Lock())
+      await Task.Run(() =>
       {
-        using (var db = DalHelper.OpenDB())
-        {
-          db.DropCollection($"audit{year.ToString("D4")}{month.ToString("D2")}");
-        }
-      }
+        dbRepository.DeleteCollection($"audit{year.ToString("D4")}{month.ToString("D2")}");
+      });
     }
 
     /// <summary>
@@ -89,16 +85,9 @@ namespace MyTagPocket.Repository
     /// </summary>
     /// <param name="predicate">Filter predicate</param>
     /// <returns>Audits</returns>
-    public IEnumerable<Entity.Audit> GetAudits(int year, int month, Expression<Func<Entity.Audit, bool>> predicate, int skip = 0, int limit = int.MaxValue)
+    public async Task<IEnumerable<Entity.Audit>> GetAuditsAsync(int year, int month, Expression<Func<Entity.Audit, bool>> predicate, int skip = 0, int limit = int.MaxValue)
     {
-      using (lockObject.Lock())
-      {
-        using (var db = DalHelper.OpenDB())
-        {
-          var audits = db.GetCollection<Entity.Audit>($"audit{year.ToString("D4")}{month.ToString("D2")}");
-          return audits.Find(predicate, skip, limit);
-        }
-      }
+      return await dbRepository.FindAsync<Entity.Audit>(predicate, Entity.Audit.GenerateNameCollection(year, month), skip, limit);
     }
 
     /// <summary>
@@ -109,16 +98,9 @@ namespace MyTagPocket.Repository
     /// <param name="skip">Skip items</param>
     /// <param name="limit">Count return items</param>
     /// <returns>Audits</returns>
-    public IEnumerable<Entity.Audit> GetAudits(int year, int month, int skip = 0, int limit = int.MaxValue)
+    public async Task<IEnumerable<Entity.Audit>> GetAuditsAsync(int year, int month, int skip = 0, int limit = int.MaxValue)
     {
-      using (lockObject.Lock())
-      {
-        using (var db = DalHelper.OpenDB())
-        {
-          var audits = db.GetCollection<Entity.Audit>(Entity.Audit.GenerateNameCollection(year, month));
-          return audits.Find(x => x.Id > 0, skip, limit);
-        }
-      }
+      return await dbRepository.FindAsync<Entity.Audit>(x => x.Id > 0, Entity.Audit.GenerateNameCollection(year, month), skip, limit);
     }
 
     /// <summary>
@@ -127,40 +109,36 @@ namespace MyTagPocket.Repository
     /// <param name="year">Year</param>
     /// <param name="month">Month</param>
     /// <returns>Count audit items</returns>
-    public int Count(int year, int month)
+    public async Task<int> CountAsync(int year, int month)
     {
-      using (lockObject.Lock())
-      {
-        using (var db = DalHelper.OpenDB())
-        {
-          var audits = db.GetCollection<Entity.Audit>(Entity.Audit.GenerateNameCollection(year, month));
-          return audits.Count();
-        }
-      }
+      return await dbRepository.CountAsync(Entity.Audit.GenerateNameCollection(year, month));
     }
 
     #region Update database
-    private void InitializeAuditLogVer1(LiteDatabase db)
+    private void InitializeAuditLogVer2()
     {
-      DatabaseSetUtcData(db);
-      
+      dbRepository.InitDatabase();
+      dbRepository.SetVersionDb(1);
       var dateTime = DateTimeOffset.Now;
       //First audit log
-      Entity.Audit audit = new Entity.Audit();
+      Entity.Audit audit = new Entity.Audit(Entity.Audit.GenerateNameCollection());
+      audit.DataType = DataTypeEnum.Audit.Name;
       audit.Code = AuditCodes.InitAuditDb;
+      audit.Parameters = new Dictionary<string, string>() { { AuditCodes.InitAuditDb_year, dateTime.Year.ToString() }, { AuditCodes.InitAuditDb_month, dateTime.Month.ToString() } };
       audit.CreatedWhen = dateTime;
       audit.UserGuid = AppGlobal.UserSystem.UserGuid;
       audit.DeviceGuid = AppGlobal.Device.DeviceGuid;
-      audit.DataType = DataTypeEnum.Audit;
-      audit.Parameters = new string[] { dateTime.Year.ToString(), dateTime.Month.ToString() };
-      
-      CreateIndexAuditCollection(db, audit);
-      CreateIndexAuditDbCollection(db);
-      
-      var colAudit = db.GetCollection<Entity.Audit>(audit.GetNameCollection);
-      colAudit.Insert(audit);
-      CheckAuditCollection(db, audit);
-      SetVersionDb(db, 1);
+
+      var colDbDef = new Entity.AuditDbCollection();
+      var cols = new Dictionary<string, bool>();
+      cols.Add(nameof(colDbDef.CollectionName), true);
+      dbRepository.CreateNewCollection<Entity.AuditDbCollection>(colDbDef.GetNameCollection(), cols);
+
+      CheckAuditCollection(audit);
+
+      dbRepository.InsertAsync(audit, audit.GetNameCollection()).Wait();
+
+      dbRepository.SetVersionDb(2);
     }
 
     #endregion Update database
@@ -171,83 +149,35 @@ namespace MyTagPocket.Repository
     /// </summary>
     /// <param name="db">Database</param>
     /// <param name="audit">Audit record</param>
-    private void CheckAuditCollection(LiteDatabase db, Entity.Audit audit)
+    private void CheckAuditCollection(Entity.Audit audit)
     {
-      if (db.CollectionExists(audit.GetNameCollection))
+      if (dbRepository.IsExistCollection(audit.GetNameCollection()))
         return;
+      var cols = new Dictionary<string, bool>();
+      cols.Add(nameof(Entity.Audit.CreatedWhen), false);
+      cols.Add(nameof(Entity.Audit.DataType), false);
 
-      CreateIndexAuditCollection(db, audit);
+      //Create new collection audit periods
+      dbRepository.CreateNewCollection<Entity.Audit>(audit.GetNameCollection(), cols);
+
       //First audit collection
-      var col = new Entity.AuditDbCollection();
-      col.CollectionName = audit.GetNameCollection;
-      col.CreatedWhen = audit.CreatedWhen;
-      var colDb = db.GetCollection<Entity.AuditDbCollection>(col.GetNameCollection);
-      colDb.Insert(col);
-      if (!(colDb.Count() > AppGlobal.Log.MaxAuditCollection))
+      var newAuditCol = new Entity.AuditDbCollection();
+      newAuditCol.CollectionName = audit.GetNameCollection();
+      newAuditCol.CreatedWhen = audit.CreatedWhen;
+      dbRepository.InsertAsync(newAuditCol).Wait();
+
+
+      if (!(dbRepository.CountAsync<Entity.AuditDbCollection>().Result > AppGlobal.Log.MaxAuditCollection))
         return;
 
-      var deleteCol = colDb.FindOne(Query.All(-1));
+      var deleteCol = dbRepository.FindFirstAsync<Entity.AuditDbCollection>().Result;
+
       if (deleteCol == null)
         return;
 
-      db.DropCollection(deleteCol.CollectionName);
-    }
-    /// <summary>
-    /// Create new definition audit index collection
-    /// </summary>
-    /// <param name="db">Database</param>
-    private void CreateIndexAuditDbCollection(LiteDatabase db)
-    {
-      var colDbDef = new Entity.AuditDbCollection();
-      var colDb = db.GetCollection<Entity.AuditDbCollection>(colDbDef.GetNameCollection);
-      colDb.EnsureIndex(nameof(colDbDef.CollectionName), true);
+      dbRepository.DeleteCollection(deleteCol.CollectionName);
     }
 
-    /// <summary>
-    /// Create new audit index collection
-    /// </summary>
-    /// <param name="db">Database</param>
-    /// <param name="audit">Audit</param>
-    private void CreateIndexAuditCollection(LiteDatabase db, Entity.Audit audit)
-    {
-      var colAudit = db.GetCollection<Entity.Audit>(audit.GetNameCollection);
-      colAudit.EnsureIndex(nameof(audit.CreatedWhen), false);
-      colAudit.EnsureIndex(nameof(audit.DataType), false);
-    }
-
-    /// <summary>
-    /// Set UTC datetime in LiteDB
-    /// </summary>
-    /// <param name="db"></param>
-    private void DatabaseSetUtcData(LiteDatabase db)
-    {
-      db.Pragma("UTC_DATE", true);
-    }
-
-    /// <summary>
-    /// Actual version Audit database
-    /// </summary>
-    /// <returns>Version</returns>
-    private int GetVersionDb(LiteDatabase db)
-    {
-      int ver = 0;
-      var dbVersion = db.Pragma("USER_VERSION");
-      if (dbVersion == null)
-        return ver;
-
-      ver = dbVersion.AsInt32;
-      return ver;
-    }
-
-    /// <summary>
-    /// Set new user version LiteDb
-    /// </summary>
-    /// <param name="db"LiteDb session></param>
-    /// <param name="newVersion">Number new version</param>
-    private void SetVersionDb(LiteDatabase db, int newVersion)
-    {
-      db.Pragma("USER_VERSION", newVersion);
-    }
     #endregion
   }
 }

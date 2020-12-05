@@ -120,11 +120,6 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CoreUtil\DalHelper_UWP_memory.cs" />
-    <Compile Include="CoreUtil\DalHelper_UWP_file.cs" />
-    <Compile Include="CoreUtil\DalAuditHelper_UWP_file.cs" />
-    <Compile Include="CoreUtil\DalAuditHelper_UWP_memory.cs" />
-    <Compile Include="CoreUtil\FileHelper_UWP.cs" />
     <Compile Include="CoreUtil\LogManager_UWP_audit_memory.cs" />
     <Compile Include="CoreUtil\LogManager_UWP.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -165,9 +160,6 @@
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Core">
       <Version>18.3.0.38</Version>
-    </PackageReference>
-    <PackageReference Include="System.IO.Abstractions">
-      <Version>12.2.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Essentials">
       <Version>1.5.3.2</Version>

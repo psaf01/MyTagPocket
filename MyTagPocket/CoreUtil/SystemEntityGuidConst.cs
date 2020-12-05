@@ -6,29 +6,35 @@
   /// </summary>
   public static class SystemEntityGuidConst
   {
+    #region Security
+    public const string UserSystem = "Nyl2iqROQkGmUNWA1H_Acw";
+    #endregion Security
+    
+    #region Settings
     /// <summary>
     /// Application global setting
     /// </summary>
-    public const string AppGlobal = "fcfb2dee00794253ae8a8432dc2fef97";
+    public const string AppGlobal = "s0ZxABMTU0KfV0-unuKtwg";
 
     /// <summary>
     /// Basic theme
     /// </summary>
-    public const string ThemeBasicSettings = "0464d848b2284d3f8dc9e8758d2c644f";
+    public const string ThemeBasicSettings = "j6vZK0_Dw0KnEZ2XIHdjrQ";
 
     /// <summary>
     /// Version contents
     /// </summary>
-    public const string ContentsVersion = "30bffd9656c74d6b87b4a1c280ab8235";
+    public const string ContentsVersion = "zMZptRalX0ewkcCh9wRmPw";
 
     /// <summary>
     /// Version settings
     /// </summary>
-    public const string SettingsVersion = "46553f3a836847f8942a07b4ba4aa497";
+    public const string SettingsVersion = "hvfNfY7VbUez7rlPBQVwWg";
 
     /// <summary>
     /// Version theme
     /// </summary>
-    public const string ThemesVersion = "31525f4c93804e46a1334942d9092c9e";
+    public const string ThemesVersion = "8_2Ae4QXLUuMMrJCFgouHQ";
+    #endregion Settings
   }
 }

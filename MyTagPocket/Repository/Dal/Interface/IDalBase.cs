@@ -15,7 +15,7 @@ namespace MyTagPocket.Repository.Dal.Interface
     /// <summary>
     /// Name collection entity
     /// </summary>
-    string GetNameCollection { get; }
+    string GetNameCollection();
 
   }
 }

@@ -25,19 +25,16 @@ namespace MyTagPocket.UWP.TEST.Repository
       AppGlobal.Init(mockSetting);
 
       IUnityContainer myContainer = new UnityContainer();
-      myContainer.RegisterType<IFileHelper, FileHelper_UWP>();
-      myContainer.RegisterType<ILogManager, LogManager_UWP_audit_memory>();
-      myContainer.RegisterType<IDalHelper, DalAuditHelper_UWP_memory>();
+      myContainer.RegisterType<ILogManager, LogManagerMemory>();
+
       var logManager = myContainer.Resolve<LogManager_UWP_audit_memory>();
-      var fileHelper = myContainer.Resolve<FileHelper_UWP>();
-      var dalHelper = myContainer.Resolve<DalHelper_UWP_memory>();
-      fileHelper.FileSystemStorage = MockFileSystemStorage.MockFileSystem;
+      //fileHelper.FileSystemStorage = MockFileSystemStorage.MockFileSystem;
       
       MockFileSystemStorage.InitMockFileSystem();
      
       logManager.AuditLogger.InitializeAuditLogAsync().Wait();
      
-      var dalRepository = new DalRepository(logManager, dalHelper);
+      var dalRepository = new DalRepository(logManager);
       dalRepository.InitilizeDbAsync().Wait();
 
       var dateTime = DateTimeOffset.Now;
@@ -66,19 +63,15 @@ namespace MyTagPocket.UWP.TEST.Repository
       AppGlobal.Init(mockSetting);
 
       IUnityContainer myContainer = new UnityContainer();
-      myContainer.RegisterType<IFileHelper, FileHelper_UWP>();
       myContainer.RegisterType<ILogManager, LogManager_UWP_audit_memory>();
-      myContainer.RegisterType<IDalHelper, DalAuditHelper_UWP_memory>();
       var logManager = myContainer.Resolve<LogManager_UWP_audit_memory>();
-      var fileHelper = myContainer.Resolve<FileHelper_UWP>();
-      var dalHelper = myContainer.Resolve<DalHelper_UWP_memory>();
-      fileHelper.FileSystemStorage = MockFileSystemStorage.MockFileSystem;
+      //fileHelper.FileSystemStorage = MockFileSystemStorage.MockFileSystem;
 
       MockFileSystemStorage.InitMockFileSystem();
 
       logManager.AuditLogger.InitializeAuditLogAsync().Wait();
 
-      var dalRepository = new DalRepository(logManager, dalHelper);
+      var dalRepository = new DalRepository(logManager);
       dalRepository.InitilizeDbAsync().Wait();
 
       var dateTime = DateTimeOffset.Now;

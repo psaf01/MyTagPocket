@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MyTagPocket.CoreUtil.Interfaces
 {
@@ -44,7 +46,18 @@ namespace MyTagPocket.CoreUtil.Interfaces
     /// <param name="deviceGuid">GUID device</param>
     /// <param name="userGuid">GUID user</param>
     /// <param name="values">Values parameters</param>
-    void Audit(string auditCode, DataTypeEnum type, string deviceGuid, string userGuid, params string[] values);
+    Task AuditAsync(string auditCode, DataTypeEnum type, string deviceGuid, string userGuid);
+
+    /// <summary>
+    /// Audit
+    /// </summary>
+    /// <param name="fileHelper">File helper</param>
+    /// <param name="auditCode">Audit code</param>
+    /// <param name="type">Data type</param>
+    /// <param name="deviceGuid">GUID device</param>
+    /// <param name="userGuid">GUID user</param>
+    /// <param name="values">Values parameters</param>
+    Task AuditAsync(string auditCode, DataTypeEnum type, string deviceGuid, string userGuid, Dictionary<string, string> values);
 
       /// <summary>
       /// Debug
@@ -53,7 +66,7 @@ namespace MyTagPocket.CoreUtil.Interfaces
       /// <param name="type">Data type</param>
       /// <param name="text">Message</param>
       /// <param name="args">Arguments</param>
-      void Debug(string methodCode, string text, params object[] args);
+    void Debug(string methodCode, string text, params object[] args);
 
     /// <summary>
     /// Error

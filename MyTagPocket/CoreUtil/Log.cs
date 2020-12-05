@@ -4,6 +4,8 @@ using MyTagPocket.CoreUtil.Interfaces;
 using MyTagPocket.Repository.Audit.Entities;
 using MyTagPocket.Repository.Interfaces;
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MyTagPocket.CoreUtil
 {
@@ -32,10 +34,6 @@ namespace MyTagPocket.CoreUtil
       auditLog = auditLogHelper;
     }
 
-    /// <summary>
-    /// File helper
-    /// </summary>
-    public IFileHelper FileHelper { get; set; }
     /// <summary>
     /// Initialize logger for first time
     /// </summary>
@@ -95,16 +93,31 @@ namespace MyTagPocket.CoreUtil
     /// <param name="deviceGuid">GUID device</param>
     /// <param name="userGuid">GUID user</param>
     /// <param name="values">Values parameters</param>
-    public void Audit(string auditCode, DataTypeEnum type, string deviceGuid, string userGuid, params string[] values)
+    public async Task AuditAsync(string auditCode, DataTypeEnum type, string deviceGuid, string userGuid)
+    {
+      await AuditAsync(auditCode, type, deviceGuid, userGuid, null);
+    }
+
+    /// <summary>
+    /// Audit
+    /// </summary>
+    /// <param name="fileHelper">File helper</param>
+    /// <param name="auditCode">Audit code</param>
+    /// <param name="type">Data type</param>
+    /// <param name="deviceGuid">GUID device</param>
+    /// <param name="userGuid">GUID user</param>
+    /// <param name="values">Values parameters</param>
+    public async Task AuditAsync(string auditCode, DataTypeEnum type, string deviceGuid, string userGuid, Dictionary<string, string> values)
     {
       Audit a = new Audit();
       a.Code = auditCode;
       a.CreatedWhen = DateTimeOffset.Now;
       a.UserGuid = userGuid;
       a.DeviceGuid = deviceGuid;
-      a.DataType = type;
+      a.DataType = type.Name;
       a.Parameters = values;
-      auditLog.Save(a);
+      Info("AUDIT", $"{auditCode} {type.LocalizedName}");
+      await auditLog.SaveAsync(a);
     }
 
     /// <summary>

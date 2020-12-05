@@ -69,7 +69,8 @@ namespace MyTagPocket.UWP.Library.CoreUtil
       {
         ServerUrl = "http://localhost:5341",
         Name = "Seq",
-        ApiKey = ""
+        //ApiKey = "vRQKdWlomEKG7ta4fOayww" //UNIT TEST
+        ApiKey=""
       };
       seqSubTarget.Properties.Add(deviceProperty);
       seqSubTarget.Properties.Add(userProperty);
@@ -129,13 +130,19 @@ namespace MyTagPocket.UWP.Library.CoreUtil
       */
       NLog.LogManager.Configuration = config;
 
-      AuditLogger = new AuditRepository(new DalAuditHelper_UWP_memory());
+      auditLogger = new AuditRepository();
     }
+
+    /// <summary>
+    /// Audit logger
+    /// </summary>
+    private IAuditRepository auditLogger;
 
     /// <summary>
     /// Get audti log instance
     /// </summary>
-    public IAuditRepository AuditLogger { get; }
+    public IAuditRepository AuditLogger { get=>auditLogger; }
+
     /// <summary>
     ///  GetLog instance
     /// </summary>

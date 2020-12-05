@@ -29,9 +29,12 @@
     <None Remove="MultilingualResources\MyTagPocket.cs.xlf" />
     <None Remove="MultilingualResources\MyTagPocket.en.xlf" />
     <None Remove="MultilingualResources\MyTagPocket.qps-ploc.xlf" />
+    <None Remove="Resources\Licences\LiteDb.txt" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="LiteDB" Version="5.0.9" />
+    <EmbeddedResource Include="Resources\Licences\LiteDb.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="3.4.3" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="3.4.3" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
@@ -45,7 +48,6 @@
     <PackageReference Include="Syncfusion.Licensing" Version="18.3.0.38" />
     <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.3.0.38" />
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.3.0.38" />
-    <PackageReference Include="System.IO.Abstractions" Version="12.2.2" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1534" />
     <PackageReference Include="Prism.Unity.Forms" Version="7.2.0.1422" />
@@ -82,16 +84,7 @@
     <EmbeddedResource Update="Views\Contents\ContentListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MainMasterDetailPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\MainNavigationPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\MainPageDesktop.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\StartPage.xaml">
+    <EmbeddedResource Update="Views\MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -110,6 +103,10 @@
     <Folder Include="Resources\Images\uwp\" />
     <Folder Include="Services\Interface\" />
     <Folder Include="ViewModels\Users\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyTagPocket.DbStorage\MyTagPocket.DbStorage.csproj" />
+    <ProjectReference Include="..\MyTagPocket.FileStorage\MyTagPocket.FileStorage.csproj" />
   </ItemGroup>
   <ItemGroup>
     <XliffResource Include="MultilingualResources\MyTagPocket.en.xlf"></XliffResource>

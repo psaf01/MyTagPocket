@@ -1,5 +1,4 @@
-﻿using LiteDB;
-using MyTagPocket.CoreUtil;
+﻿using MyTagPocket.CoreUtil;
 using MyTagPocket.Repository;
 using MyTagPocket.Repository.Interfaces;
 using NLog;
@@ -9,18 +8,18 @@ using NLog.Targets.Seq;
 using NLog.Targets.Wrappers;
 using System.IO;
 
-namespace MyTagPocket.UWP.Library.CoreUtil
+namespace MyTagPocket.UWP.TEST.Mocks
 {
   /// <summary>
-  /// Log Manager for OS UWP
+  /// Log manager in memory
   /// </summary>
-  public class LogManager_UWP : MyTagPocket.CoreUtil.Interfaces.ILogManager
+  public class LogManagerMemory : MyTagPocket.CoreUtil.Interfaces.ILogManager
   {
-    
+
     /// <summary>
     /// Constructor
     /// </summary>
-    public LogManager_UWP()
+    public LogManagerMemory()
     {
       var config = NLog.LogManager.Configuration;
       if (config == null)
@@ -28,7 +27,7 @@ namespace MyTagPocket.UWP.Library.CoreUtil
       //Debuger
 #if DEBUG
       Windows.Storage.StorageFolder folder = Windows.Storage.ApplicationData.Current.LocalFolder;
-      AppGlobal.Folders.LocalRootFolder = folder.Path;
+
       var debugerTarget = new DebuggerTarget("FileTrace")
       {
         Layout = @"${shortdate} | ${pad:padding=5:inner=${level:uppercase=true}} | ${gdc:item=device} | ${event-properties:MethodCode} | ${message} | ${exception}"
@@ -69,7 +68,7 @@ namespace MyTagPocket.UWP.Library.CoreUtil
       {
         ServerUrl = "http://localhost:5341",
         Name = "Seq",
-        //ApiKey = "vRQKdWlomEKG7ta4fOayww" //UNIT TEST
+        //ApiKey = "u2yACDwps9byCSURfmEA" //UNIT TEST
         ApiKey=""
       };
       seqSubTarget.Properties.Add(deviceProperty);
@@ -79,7 +78,6 @@ namespace MyTagPocket.UWP.Library.CoreUtil
       var seqTarget = new BufferingTargetWrapper(seqSubTarget, 1000, 2000);
       seqTarget.Name = "seq";
       config.AddTarget(seqTarget);
-
       config.LoggingRules.Add(new LoggingRule("*", LogLevel.Info, seqTarget));
       NLog.GlobalDiagnosticsContext.Set("device", "TESTPC");
 
@@ -131,14 +129,13 @@ namespace MyTagPocket.UWP.Library.CoreUtil
       */
       NLog.LogManager.Configuration = config;
 
-      auditLogger = new AuditRepository(Path.Combine(AppGlobal.Folders.LocalRootFolder, DataTypeEnum.Audit.FileExtension, $"{DataTypeEnum.Audit.Name}.{DataTypeEnum.Audit.FileExtension}"));
+      AuditLogger = new AuditRepository();
     }
 
     /// <summary>
-    /// Audit logger
+    /// Get audti log instance
     /// </summary>
-    private IAuditRepository auditLogger;
-
+    public IAuditRepository AuditLogger { get; }
     /// <summary>
     ///  GetLog instance
     /// </summary>
@@ -156,12 +153,9 @@ namespace MyTagPocket.UWP.Library.CoreUtil
 
       //config.AddRuleForAllLevels(consoleTarget);
       var logger = LogManager.GetLogger(fileName);
-      return new Log(logger, auditLogger) { ClassCode = classCode };
+      return new Log(logger, AuditLogger) { ClassCode = classCode };
     }
-    /// <summary>
-    /// Get audti log instance
-    /// </summary>
-    public IAuditRepository AuditLogger { get=>auditLogger; }
+
     /// <summary>
     /// Flush buffer
     /// </summary>

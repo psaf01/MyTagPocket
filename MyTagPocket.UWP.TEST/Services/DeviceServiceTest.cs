@@ -25,18 +25,18 @@ namespace MyTagPocket.UWP.TEST.Services
     public void CreateDeviceTest()
     {
       IUnityContainer myContainer = new UnityContainer();
-      myContainer.RegisterType<IFileHelper, FileHelper_UWP>();
       myContainer.RegisterType<ILogManager, LogManager_UWP_audit_memory>();
       var logManager = myContainer.Resolve<LogManager_UWP_audit_memory>();
-      var fileHelper = myContainer.Resolve<FileHelper_UWP>();
-      fileHelper.FileSystemStorage = MockFileSystemStorage.MockFileSystem;
+      //fileHelper.FileSystemStorage = MockFileSystemStorage.MockFileSystem;
       MockFileSystemStorage.InitMockFileSystem();
       var mockSetting = new MockSettingRepository();
       mockSetting.InitializeTestDataBasic();
       AppGlobal.Init(mockSetting);
       logManager.AuditLogger.InitializeAuditLogAsync();
 
-      var fileRepository = new FileRepository(logManager, fileHelper);
+      Windows.Storage.StorageFolder appDataFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+      var repository = new FileRepository(logManager, MockFileSystemStorage.MockFileSystem, appDataFolder.Path);
+
       //var dalRepository = new DalRepository(logManager, fileHelper);
       //DeviceService deviceService = new DeviceService(logManager, fileRepository, dalRepository);
       //var device = deviceService.CreateNewDevice(DeviceTypeEnum.Uwp).Result;

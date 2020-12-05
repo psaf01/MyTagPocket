@@ -1,19 +1,19 @@
 ﻿using LiteDB;
-using MyTagPocket.CoreUtil.Interfaces;
 using System.IO;
 
-namespace MyTagPocket.UWP.Library.CoreUtil
+namespace MyTagPocket.DbStorage
 {
   /// <summary>
-  ///  Helper for database system in memory on device UWP
+  /// DbLite helper
   /// </summary>
-  public class DalHelper_UWP_memory : IDalHelper
+  public class DbLiteMemmoryHelper : IDbLiteHelper
   {
     private static MemoryStream memoryDb;
+
     /// <summary>
-    /// Memory database
+    /// Open LiteDb in memmory
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Lite db</returns>
     public LiteDatabase OpenDB()
     {
       if (memoryDb == null)
@@ -21,5 +21,10 @@ namespace MyTagPocket.UWP.Library.CoreUtil
 
       return new LiteDatabase(memoryDb);
     }
+
+    /// <summary>
+    /// Full path to LiteDb database
+    /// </summary>
+    public string FullPathToDatabase { get => null; }
   }
 }

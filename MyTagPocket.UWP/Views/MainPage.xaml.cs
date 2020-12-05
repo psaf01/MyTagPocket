@@ -56,7 +56,6 @@ namespace MyTagPocket.UWP
     private void RegisterFunctions(IContainerRegistry containerRegistry)
     {
       containerRegistry.Register<ILogManager, LogManager_UWP>();
-      containerRegistry.Register<IFileHelper, FileHelper_UWP>();
     }
   }
 }

@@ -1,5 +1,6 @@
 ﻿using MyTagPocket.CoreUtil;
 using System;
+using System.Collections.Generic;
 
 namespace MyTagPocket.Repository.Audit.Entities
 {
@@ -13,12 +14,20 @@ namespace MyTagPocket.Repository.Audit.Entities
     /// </summary>
     public Audit() : base(nameCollectionEntity: "audit")
     {
-      DateTimeOffset dateTime = DateTimeOffset.Now;
-      nameCollection = Audit.GenerateNameCollection(); 
-      DataType = DataTypeEnum.Unclassified;
-      CreatedWhen = dateTime;
+      DataType = DataTypeEnum.Unclassified.Name;
+      CreatedWhen = DateTimeOffset.Now;
+      nameCollection = GenerateNameCollection();
     }
 
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="nameCollection">Internal name object for database collection</param>
+    public Audit(string nameCollection) : base(nameCollectionEntity: nameCollection)
+    {
+      DataType = DataTypeEnum.Unclassified.Name;
+      CreatedWhen = DateTimeOffset.Now;
+    }
     /// <summary>
     /// Audit code
     /// </summary>
@@ -27,12 +36,13 @@ namespace MyTagPocket.Repository.Audit.Entities
     /// <summary>
     /// Data type
     /// </summary>
-    public DataTypeEnum DataType { get; set; }
+    public string DataType { get; set; }
 
     /// <summary>
-    /// Parameters values
+    /// Parameters values 
+    /// Key, Value
     /// </summary>
-    public string[] Parameters { get; set; }
+    public Dictionary<string, string> Parameters { get; set; }
 
     /// <summary>
     /// Date time created

@@ -15,7 +15,7 @@ namespace MyTagPocket.UWP.TEST.Mocks
     {
       persistText = new Dictionary<string, string>();
     }
-   
+
     /// <summary>
     /// Set mock basic test data
     /// </summary>
@@ -23,7 +23,7 @@ namespace MyTagPocket.UWP.TEST.Mocks
     public void InitializeTestDataBasic()
     {
       Dictionary<string, string> test = new Dictionary<string, string>();
-      
+
       CurrentFolders folder = new CurrentFolders(this);
       test.Add($"{nameof(CurrentFolders)}{nameof(folder.DevicesGuid)}", "9866738119bc461fb6c2bb14751ffcb0");
       test.Add($"{nameof(CurrentFolders)}{nameof(folder.UsersGuid)}", "f426ad8fd1f44849b61f9e3a486e4fab");

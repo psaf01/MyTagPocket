@@ -26,18 +26,17 @@ namespace MyTagPocket.UWP.TEST.Repository
       myContainer.RegisterType<MockResourcesProvider>();
       myContainer.RegisterType<MockDeserializer>();
 
-      myContainer.RegisterType<IFileHelper, FileHelper_UWP>();
-      myContainer.RegisterType<ILogManager, LogManager_UWP>();
-      var logManager = myContainer.Resolve<LogManager_UWP>();
-      var fileHelper = myContainer.Resolve<FileHelper_UWP>();
+      myContainer.RegisterType<ILogManager, LogManager_UWP_audit_memory>();
+      var logManager = myContainer.Resolve<LogManager_UWP_audit_memory>();
       NLog.GlobalDiagnosticsContext.Set("user", "UnitTest");
-      fileHelper.FileSystemStorage = MockFileSystemStorage.MockFileSystem;
-      var repository = new FileRepository(logManager, fileHelper);
+      //fileHelper.FileSystemStorage = MockFileSystemStorage.MockFileSystem;
+      Windows.Storage.StorageFolder appDataFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+      var repository = new FileRepository(logManager, MockFileSystemStorage.MockFileSystem, appDataFolder.Path);
       var device = new MyTagPocket.Repository.Files.Entities.Devices.Device();
       device.Name = "Test device ěščřžýáíé";
       device.FolderId = "2d2740d9ac634bed83050879ce0a1018";
 
-      repository.SaveAsync(device, null).Wait();
+      repository.SaveAsync(device).Wait();
       MyTagPocket.Repository.Files.Entities.Devices.Device testDevice = repository.LoadAsync(device).Result;
 
       Assert.Equal(device.Hash, testDevice.Hash);
@@ -64,13 +63,11 @@ namespace MyTagPocket.UWP.TEST.Repository
       myContainer.RegisterType<MockResourcesProvider>();
       myContainer.RegisterType<MockDeserializer>();
 
-      myContainer.RegisterType<IFileHelper, FileHelper_UWP>();
-      myContainer.RegisterType<ILogManager, LogManager_UWP>();
-      var logManager = myContainer.Resolve<LogManager_UWP>();
-      var fileHelper = myContainer.Resolve<FileHelper_UWP>();
+      myContainer.RegisterType<ILogManager, LogManager_UWP_audit_memory>();
+      var logManager = myContainer.Resolve<LogManager_UWP_audit_memory>();
       NLog.GlobalDiagnosticsContext.Set("user", "UnitTest");
-      fileHelper.FileSystemStorage = MockFileSystemStorage.MockFileSystem;
-      var repository = new FileRepository(logManager, fileHelper);
+      Windows.Storage.StorageFolder appDataFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+      var repository = new FileRepository(logManager, MockFileSystemStorage.MockFileSystem, appDataFolder.Path);
       var device1 = new MyTagPocket.Repository.Files.Entities.Devices.Device();
       device1.Name = "1 Test device ěščřžýáíé";
       device1.FolderId = "2d2740d9ac634bed83050879ce0a1018";
@@ -80,9 +77,10 @@ namespace MyTagPocket.UWP.TEST.Repository
         EntityId = "1",
         FullName = "1 test name ěščřžýáíé"
       };
-      repository.SaveAsync(device1, null).Wait();
+      repository.SaveAsync(device1).Wait();
 
       var device2 = repository.LoadAsync(device1).Result;
+      Assert.True(device1.Name == device2.Name, "Object not same");
       device2.Name = "2 Test device";
       device2.UpdatedWho = new MyTagPocket.Repository.Files.Entities.Users.UserBasicInfo()
       {
@@ -90,9 +88,11 @@ namespace MyTagPocket.UWP.TEST.Repository
         EntityId = "2",
         FullName = "2 test name"
       };
-      repository.SaveAsync(device2, device1).Wait();
+      repository.SaveAsync(device2).Wait();
 
       var device3 = repository.LoadAsync(device2).Result;
+      Assert.True(device2.Name == device3.Name, "Object not same");
+
       device3.Name = "3 Test device";
       device3.UpdatedWho = new MyTagPocket.Repository.Files.Entities.Users.UserBasicInfo()
       {
@@ -100,9 +100,11 @@ namespace MyTagPocket.UWP.TEST.Repository
         EntityId = "3",
         FullName = "3 None"
       };
-      repository.SaveAsync(device3, device2).Wait();
+      repository.SaveAsync(device3).Wait();
 
       var device4 = repository.LoadAsync(device2).Result;
+      Assert.True(device3.Name == device4.Name, "Object not same");
+/*
       device4.Name = "4 Test device";
       device3.UpdatedWho = new MyTagPocket.Repository.Files.Entities.Users.UserBasicInfo()
       {
@@ -110,7 +112,7 @@ namespace MyTagPocket.UWP.TEST.Repository
         EntityId = "4",
         FullName = "4 None"
       };
-      repository.SaveAsync(device4, device3).Wait();
+      repository.SaveAsync(device4).Wait();
 
       var history = repository.LoadHistoryAsync(device4).Result;
       IFileHistoryInfo restore1 = new FileHistoryInfo();
@@ -142,7 +144,7 @@ namespace MyTagPocket.UWP.TEST.Repository
       Assert.Equal(device2.Name, restoreDevice2.Name);
       var restoreDevice3 = repository.LoadFromArchivAsync<MyTagPocket.Repository.Files.Entities.Devices.Device>(restore3).Result;
       Assert.Equal(device3.Name, restoreDevice3.Name);
-
+*/
     }
   }
 }

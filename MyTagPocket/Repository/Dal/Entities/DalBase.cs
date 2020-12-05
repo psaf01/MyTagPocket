@@ -25,12 +25,9 @@ namespace MyTagPocket.Repository.Dal.Entities
     /// <summary>
     /// Get name collection
     /// </summary>
-    public virtual string GetNameCollection
-    {
-      get
-      {
+    public virtual string GetNameCollection()
+    { 
         return nameCollection;
-      }
     }
   }
 }

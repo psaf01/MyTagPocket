@@ -1,9 +1,8 @@
-﻿using MyTagPocket.Events.Navigation;
-using MyTagPocket.ViewModels;
+﻿using MyTagPocket.ViewModels;
 using MyTagPocket.Views;
 using Prism;
-using Prism.Events;
 using Prism.Ioc;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -31,17 +30,19 @@ namespace MyTagPocket
 
     protected override void RegisterTypes(IContainerRegistry containerRegistry)
     {
-      containerRegistry.RegisterForNavigation<MainNavigationPage, MainNavigationPageViewModel>();
-      containerRegistry.RegisterForNavigation<StartPage, StartPageViewModel>();
-      //containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
-      containerRegistry.RegisterForNavigation<MainMasterDetailPage, MainMasterDetailPageViewModel>();
-      containerRegistry.RegisterForNavigation<MainNavigationPage, MainNavigationPageViewModel>();
+      containerRegistry.RegisterForNavigation<NavigationPage>();
+      //containerRegistry.RegisterForNavigation<MainMasterDetailPage, MainMasterDetailPageViewModel>();
       containerRegistry.RegisterForNavigation<Views.Contents.ContentListPage, ViewModels.Contents.ContentListPageViewModel>();
-      containerRegistry.RegisterForNavigationOnIdiom<MainPage, MainPageViewModel>(
+      containerRegistry.RegisterForNavigationOnIdiom<MainPage, MainPageViewModel>();
+      /*containerRegistry.RegisterForNavigationOnIdiom<MainPage, MainPageViewModel>(
         phoneView: typeof(MainPage),
          desktopView: typeof(MainPageDesktop),
+         //desktopView: typeof(MainMasterDetailPage),
           tabletView: typeof(MainPage)
-);
+      );
+      */
+      //containerRegistry.RegisterForNavigation<NavigationPage, NavigationPageViewModel>();
+      containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
     }
   }
 }

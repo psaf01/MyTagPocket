@@ -130,9 +130,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="LiteDB">
-      <Version>5.0.9</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.AppCenter.Analytics">
       <Version>3.4.3</Version>
     </PackageReference>
@@ -172,9 +169,6 @@
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Core">
       <Version>18.3.0.38</Version>
-    </PackageReference>
-    <PackageReference Include="System.IO.Abstractions">
-      <Version>12.2.2</Version>
     </PackageReference>
     <PackageReference Include="Prism.Unity.Forms" Version="7.2.0.1422" />
     <PackageReference Include="Xamarin.Essentials">

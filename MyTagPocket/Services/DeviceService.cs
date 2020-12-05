@@ -1,6 +1,7 @@
 ﻿using MyTagPocket.CoreUtil;
 using MyTagPocket.CoreUtil.Interfaces;
 using MyTagPocket.Models.Devices;
+using MyTagPocket.Repository.Audit;
 using MyTagPocket.Repository.Interfaces;
 using System;
 using System.Threading.Tasks;
@@ -56,14 +57,14 @@ namespace MyTagPocket.Services
       const string methodCode = "M01";
 
       Device device = new Device();
-      device.DeviceId = Guid.NewGuid().ToString("N");
+      device.DeviceId = ShortGuid.NewGuid().Value;
       device.Name = $"{deviceType.LocalizedName}";
       device.FolderId = Guid.NewGuid().ToString("N");
       device.CreatedWhen = DateTimeOffset.Now;
 
       Log.Trace(methodCode, "Create Device {@DeviceType}", deviceType.LocalizedName);
       await dalRepo.SaveAsync(device);
-      Log.Audit("DvcCreate", DataTypeEnum.Device, AppGlobal.Device.DeviceGuid, AppGlobal.UserSystem.UserGuid);
+      await Log.AuditAsync(AuditCodes.CreateDevice, DataTypeEnum.Device, device.DeviceId, SystemEntityGuidConst.UserSystem);
 
       /*
       if(string.IsNullOrEmpty(app.ActualFoderDevices))
