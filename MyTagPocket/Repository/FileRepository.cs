@@ -204,31 +204,36 @@ namespace MyTagPocket.Repository
           });
         }
     */
+
+
     /// <summary>
     /// Load entity from file system
     /// </summary>
     /// <typeparam name="T">Entity type</typeparam>
     /// <param name="entity">Instance entity</param>
-    /// <param name="toArchive">Save entity to archive too</param>
-    public async Task SaveAsync<T>(IFileEntityBase<T> entityNew)
+    /// <param name="path">Path to folder where entity save</param>
+    public async Task SaveAsync<T>(IFileEntityBase<T> entity, string path)
     {
       await Task.Run(() =>
       {
         const string methodCode = "M01";
         try
         {
-          Log.Trace(methodCode, "Save Entity={@TypeEntity} ID={@EntityId}", entityNew.TypeEntity.Name, entityNew.EntityId);
-          entityNew.UpdatedWhen = DateTimeOffset.Now;
-          entityNew.CommitId = Guid.NewGuid().ToString("N");
-          entityNew.Hash = entityNew.GetHashCode().ToString();
-          string jsonStringNew = entityNew.SerializeJson();
-          string path = GetLocalFilePath(entityNew.TypeEntity, entityNew.FolderId, entityNew.EntityId);
-          fs.File.SaveFile(path, jsonStringNew);
-          entityNew.FullPathFile = path;
+          Log.Trace(methodCode, "Save Entity={@TypeEntity} ID={@EntityId}", entity.TypeEntity.Name, entity.EntityId);
+          entity.UpdatedWhen = DateTimeOffset.Now;
+          entity.CommitId = Guid.NewGuid().ToString("N");
+          entity.Hash = entity.GetHashCode().ToString();
+          string jsonStringNew = entity.SerializeJson();
+          //string path = GetLocalFilePath(entityNew.TypeEntity, entityNew.FolderId, entityNew.EntityId);
+          if (fs.Directory.FolderExists(path))
+            fs.File.SaveFile(path, jsonStringNew);
+          else
+            throw new Exception("Folder not exists");
+          entity.FullPathFile = path;
         }
         catch (Exception ex)
         {
-          Log.Error(ex, methodCode, "Cant Save Entity={@TypeEntity} ID={@EntityId}", entityNew.TypeEntity.Name, entityNew.EntityId);
+          Log.Error(ex, methodCode, "Cant Save Entity={@TypeEntity} ID={@EntityId} path={@Path}", entity.TypeEntity.Name, entity.EntityId, path);
           throw ex;
         }
       });

@@ -23,8 +23,16 @@ namespace MyTagPocket.Repository.Interfaces
     /// </summary>
     /// <typeparam name="T">Entity type</typeparam>
     /// <param name="entity">Instance entity</param>
+    /// <param name="path">Path to folder where entity save</param>
+    Task SaveAsync<T>(IFileEntityBase<T> entity, string path);
+
+    /// <summary>
+    /// Load entity from file system
+    /// </summary>
+    /// <typeparam name="T">Entity type</typeparam>
+    /// <param name="entity">Instance entity</param>
     /// <param name="toArchive">Save entity to archive too</param>
-    Task SaveAsync<T>(IFileEntityBase<T> entityNew);
+    //Task SaveAsync<T>(IFileEntityBase<T> entityNew);
 
     /// <summary>
     /// Load entity from file system

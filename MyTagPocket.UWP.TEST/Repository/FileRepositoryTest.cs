@@ -36,7 +36,7 @@ namespace MyTagPocket.UWP.TEST.Repository
       device.Name = "Test device ěščřžýáíé";
       device.FolderId = "2d2740d9ac634bed83050879ce0a1018";
 
-      repository.SaveAsync(device).Wait();
+      repository.SaveAsync(device, System.IO.Path.Combine(appDataFolder.Path, "files")).Wait();
       MyTagPocket.Repository.Files.Entities.Devices.Device testDevice = repository.LoadAsync(device).Result;
 
       Assert.Equal(device.Hash, testDevice.Hash);
@@ -77,7 +77,7 @@ namespace MyTagPocket.UWP.TEST.Repository
         EntityId = "1",
         FullName = "1 test name ěščřžýáíé"
       };
-      repository.SaveAsync(device1).Wait();
+      //repository.SaveAsync(device1).Wait();
 
       var device2 = repository.LoadAsync(device1).Result;
       Assert.True(device1.Name == device2.Name, "Object not same");
@@ -88,7 +88,7 @@ namespace MyTagPocket.UWP.TEST.Repository
         EntityId = "2",
         FullName = "2 test name"
       };
-      repository.SaveAsync(device2).Wait();
+      //repository.SaveAsync(device2).Wait();
 
       var device3 = repository.LoadAsync(device2).Result;
       Assert.True(device2.Name == device3.Name, "Object not same");
@@ -100,7 +100,7 @@ namespace MyTagPocket.UWP.TEST.Repository
         EntityId = "3",
         FullName = "3 None"
       };
-      repository.SaveAsync(device3).Wait();
+      //repository.SaveAsync(device3).Wait();
 
       var device4 = repository.LoadAsync(device2).Result;
       Assert.True(device3.Name == device4.Name, "Object not same");
